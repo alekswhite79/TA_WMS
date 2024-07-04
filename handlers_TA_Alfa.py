@@ -1,3 +1,5 @@
+import android
+from pelican import pelicans
 import json
 import struct
 from decimal import Decimal
@@ -321,10 +323,13 @@ def py_OrderList_OnStart(hashMap,_files=None,_data=None):
    
     j["customcards"]["cardsdata"]=[]
 
-    sql = sqlClass()
-    res = sql.SQLQuery("select DISTINCT НомерЗаказа,Получатель,ВидЗаказа from GoodsForSelection where ВидЗаказа='Заказ покупателя' and КоличествоСпланировано <> КоличествоОтобрано order by Получатель,НомерЗаказа","")
+    # sql = sqlClass()
+    # res = sql.SQLQuery("select DISTINCT НомерЗаказа,Получатель,ВидЗаказа from GoodsForSelection where ВидЗаказа='Заказ покупателя' and КоличествоСпланировано <> КоличествоОтобрано order by Получатель,НомерЗаказа","")
         
-    records = json.loads(res)
+    # records = json.loads(res)
+    db = pelicans["TA_WMS"]
+    db["GoodsForSelection"].all()
+    records = db["GoodsForSelection"].all()
     if len(records)>0:
         i = 1
         c =  {"group": "Заказы покупателя"}
