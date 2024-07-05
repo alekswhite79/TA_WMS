@@ -328,8 +328,8 @@ def py_OrderList_OnStart(hashMap,_files=None,_data=None):
         
     # records = json.loads(res)
     db = pelicans["TA_WMS"]
-    db["GoodsForSelection"].all()
-    records = db["GoodsForSelection"].all()
+    records = db["OrdersForSelection"].find({"ВидЗаказа":"Заказ покупателя"})
+    # records = db["OrdersForSelection"].all()
     if len(records)>0:
         i = 1
         c =  {"group": "Заказы покупателя"}
@@ -350,22 +350,23 @@ def py_OrderList_OnStart(hashMap,_files=None,_data=None):
     # res = sql.SQLQuery("select DISTINCT НомерЗаказа,Получатель,ВидЗаказа from GoodsForSelection where ВидЗаказа='Внутренний заказ' and КоличествоСпланировано <> КоличествоОтобрано order by Получатель,НомерЗаказа","")
         
     # records = json.loads(res)
-    # if len(records)>0:
-    #     i = 1
-    #     c =  {"group": "Внутренние заказы"}
-    #     j["customcards"]["cardsdata"].append(c)
-    #     for record in records:
-    #         c =  {
-    #             "key": record['НомерЗаказа'],
+    records = db["OrdersForSelection"].find({"ВидЗаказа":"Внутренний заказ"})
+    if len(records)>0:
+        i = 1
+        c =  {"group": "Внутренние заказы"}
+        j["customcards"]["cardsdata"].append(c)
+        for record in records:
+            c =  {
+                "key": record['НомерЗаказа'],
             
-    #             "descr": "Pos. "+str(i),
-    #             "НомерЗаказа": record['НомерЗаказа'],
-    #             "Получатель": record['Получатель'],
-    #             "ВидЗаказа": record['ВидЗаказа']
-    #             }
+                "descr": "Pos. "+str(i),
+                "НомерЗаказа": record['НомерЗаказа'],
+                "Получатель": record['Получатель'],
+                "ВидЗаказа": record['ВидЗаказа']
+                }
       
-    #         j["customcards"]["cardsdata"].append(c)
-    #         i+=1
+            j["customcards"]["cardsdata"].append(c)
+            i+=1
 
     if not hashMap.containsKey("cards"):
       hashMap.put("cards",json.dumps(j,ensure_ascii=False).encode('utf8').decode())
