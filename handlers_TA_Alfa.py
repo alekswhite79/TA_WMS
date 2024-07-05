@@ -328,7 +328,9 @@ def py_OrderList_OnStart(hashMap,_files=None,_data=None):
         
     # records = json.loads(res)
     db = pelicans["TA_WMS"]
-    records = db["OrdersForSelection"].find({"НомерЗаказа":"ТА01489519"})#{"ВидЗаказа":"Заказ покупателя"},{"НомерЗаказа":"ТА01489519"})
+    #records = db["OrdersForSelection"].find({"НомерЗаказа":"ТА01489519"},{"ВидЗаказа":"Заказ покупателя"})
+    records = db["GoodsForSelection"].find({"ВидЗаказа":"Заказ покупателя"},{ "НомерЗаказа": 1, "Получатель": 1})
+
     # records = db["OrdersForSelection"].all()
     if len(records)>0:
         i = 1
