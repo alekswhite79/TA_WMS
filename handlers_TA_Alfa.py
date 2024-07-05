@@ -328,7 +328,7 @@ def py_OrderList_OnStart(hashMap,_files=None,_data=None):
         
     # records = json.loads(res)
     db = pelicans["TA_WMS"]
-    records = db["OrdersForSelection"].find({"ВидЗаказа":"Заказ покупателя", "НомерЗаказа":"1489519" })
+    records = db["OrdersForSelection"].find({"НомерЗаказа":"1489519" })
     # records = db["OrdersForSelection"].all()
     if len(records)>0:
         i = 1
@@ -338,7 +338,7 @@ def py_OrderList_OnStart(hashMap,_files=None,_data=None):
             c =  {
                 "key": record['НомерЗаказа'],
             
-                "descr": "Pos. "+str(i),
+                "descr": str(i),
                 "НомерЗаказа": record['НомерЗаказа'],
                 "Получатель": record['Получатель'],
                 "ВидЗаказа": record['ВидЗаказа']
@@ -359,7 +359,7 @@ def py_OrderList_OnStart(hashMap,_files=None,_data=None):
             c =  {
                 "key": record['НомерЗаказа'],
             
-                "descr": "Pos. "+str(i),
+                "descr": str(i),
                 "НомерЗаказа": record['НомерЗаказа'],
                 "Получатель": record['Получатель'],
                 "ВидЗаказа": record['ВидЗаказа']
