@@ -575,8 +575,10 @@ def py_LoadGoods(hashMap):
     j["customcards"]["cardsdata"]=[]
 
     db = pelicans["TA_WMS"]
-    records = db["GoodsForSelection"].find([{"ВидЗаказа":hashMap.get("ВидЗаказа"), "НомерЗаказа":hashMap.get("НомерЗаказа")}])#+"' and g.КоличествоСпланировано <> g.КоличествоОтобрано})
-        
+    records = db["GoodsForSelection"].find({"$and":[
+                                                    {"ВидЗаказа":hashMap.get("ВидЗаказа")},
+                                                    {"НомерЗаказа":hashMap.get("НомерЗаказа")}
+                                                   ]})#+"' and g.КоличествоСпланировано <> g.КоличествоОтобрано})
     if len(records)>0:
         i = 1
         for record in records:
