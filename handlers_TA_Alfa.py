@@ -736,9 +736,12 @@ def py_LoadGoods(hashMap):
         # }
    
     j["customcards"]["cardsdata"]=[]
-    sql = sqlClass()
+    #sql = sqlClass()
     # res = sql.SQLQuery("select НомерЗаказа,Получатель,ВидЗаказа,Номенклатура,Артикул,Производитель,Штрихкод,КоличествоСпланировано,КоличествоОтобрано from GoodsForSelection where ВидЗаказа="+hashMap.get("ВидЗаказа")+" and НомерЗаказа="+hashMap.get("НомерЗаказа")+" order by Производитель,Артикул","")
-    res = sql.SQLQuery("select g.НомерЗаказа,g.Получатель,g.ВидЗаказа,g.Код,g.Номенклатура,g.Артикул,g.Производитель,g.ФотоТовара,g.Штрихкод,g.КоличествоСпланировано,g.КоличествоОтобрано,COALESCE(f.КоличествоФото,0) as КоличествоФото from GoodsForSelection as g left join (select count(ИДФото) as КоличествоФото,Код FROM GoodsImg GROUP BY Код) as f on g.Код=f.Код where g.ВидЗаказа='"+hashMap.get("ВидЗаказа")+"' and g.НомерЗаказа='"+hashMap.get("НомерЗаказа")+"' and g.КоличествоСпланировано <> g.КоличествоОтобрано order by g.Производитель,g.Артикул","")
+    #res = sql.SQLQuery("select g.НомерЗаказа,g.Получатель,g.ВидЗаказа,g.Код,g.Номенклатура,g.Артикул,g.Производитель,g.ФотоТовара,g.Штрихкод,g.КоличествоСпланировано,g.КоличествоОтобрано,COALESCE(f.КоличествоФото,0) as КоличествоФото from GoodsForSelection as g left join (select count(ИДФото) as КоличествоФото,Код FROM GoodsImg GROUP BY Код) as f on g.Код=f.Код where g.ВидЗаказа='"+hashMap.get("ВидЗаказа")+"' and g.НомерЗаказа='"+hashMap.get("НомерЗаказа")+"' and g.КоличествоСпланировано <> g.КоличествоОтобрано order by g.Производитель,g.Артикул","")
+
+    db = pelicans["TA_WMS"]
+    records = db["GoodsForSelection"].find({"ВидЗаказа":hashMap.get("ВидЗаказа"), "НомерЗаказа":hashMap.get("НомерЗаказа")})#+"' and g.КоличествоСпланировано <> g.КоличествоОтобрано})
         
     records = json.loads(res)
     if len(records)>0:
