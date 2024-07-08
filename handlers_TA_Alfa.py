@@ -409,198 +409,181 @@ def Display_Elrment(hashMap): #, Elrment, Visible = True, isInput = True):
     return hashMap    
 
 def py_LoadGoods(hashMap):
-    j = { "customcards":         
-            {
-                "options":{
-                "search_enabled":True,
-                "save_position":True
-                },
-                "layout": {
-                    "type": "LinearLayout",
-                    "orientation": "vertical",
-                    "height": "match_parent",
-                    "width": "match_parent",
-                    "weight": "0",
-                    "Elements": [
-                        # {
-                        #     "type": "Picture",
-                        #     "show_by_condition": "",
-                        #     "Value": "@ФотоТовара",
-                        #     "NoRefresh": False,
-                        #     "document_type": "",
-                        #     "mask": "",
-                        #     "Variable": "",
-                        #     "TextSize": "",
-                        #     "TextColor": "",
-                        #     "TextBold": False,
-                        #     "TextItalic": False,
-                        #     "BackgroundColor": "",
-                        #     "width": "wrap_content",
-                        #     "height": "match_parent",
-                        #     "weight": "1"
-                        # },
-                        {
-                            "type": "LinearLayout",
-                            "orientation": "horizontal",
-                            "height": "wrap_content",
-                            "width": "match_parent",
-                            "weight": "0",
-                            "Elements": [
-                                {
+    j = {
+        "customcards":  {
+                        "options":  {
+                                    "search_enabled":True,
+                                    "save_position":True
+                                    },
+                        "layout":   {
                                     "type": "LinearLayout",
                                     "orientation": "vertical",
-                                    "height": "wrap_content",
+                                    "height": "match_parent",
                                     "width": "match_parent",
-                                    "weight": "5",
+                                    "weight": "0",
                                     "Elements": [
-                                        {
-                                            "type": "TextView",
-                                            "show_by_condition": "",
-                                            "Value": "@Номенклатура",
-                                            "width": "match_parent",
-                                            "gravity_horizontal": "center",
-                                            "NoRefresh": False,
-                                            "document_type": "",
-                                            "mask": "",
-                                            "Variable": ""
-                                        },
-                                        {
-                                            "type": "TextView",
-                                            "show_by_condition": "",
-                                            "Value": "@Артикул",
-                                            "width": "match_parent",
-                                            "gravity_horizontal": "center",
-                                            "NoRefresh": False,
-                                            "document_type": "",
-                                            "mask": "",
-                                            "Variable": ""
-                                        },
-                                        {
-                                            "type": "TextView",
-                                            "show_by_condition": "",
-                                            "Value": "@Производитель",
-                                            "width": "match_parent",
-                                            "gravity_horizontal": "center",
-                                            "NoRefresh": False,
-                                            "document_type": "",
-                                            "mask": "",
-                                            "Variable": ""
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "LinearLayout",
-                                    "orientation": "vertical",
-                                    "height": "wrap_content",
-                                    "width": "match_parent",
-                                    "weight": "2",
-                                    "Elements": [
-                                        {
-                                            "type": "LinearLayout",
-                                            "height": "wrap_content",
-                                            "width": "wrap_content",
-                                            "weight": "0",
-                                            "Value": "",
-                                            "Variable": "",
-                                            "orientation": "horizontal",
-                                            "Elements": [
                                                 {
-                                                    "type": "TextView",
-                                                    "height": "wrap_content",
-                                                    "width": "wrap_content",
-                                                    "weight": "0",
-                                                    "Value": "Заказано:",
-                                                    "Variable": "",
-                                                    "TextSize": "16",
-                                                    "TextBold": True,
-                                                    "TextColor": "#DB7093"
+                                                "type": "LinearLayout",
+                                                "orientation": "horizontal",
+                                                "height": "wrap_content",
+                                                "width": "match_parent",
+                                                "weight": "0",
+                                                "Elements": [
+                                                            {
+                                                            "type": "LinearLayout",
+                                                            "orientation": "vertical",
+                                                            "height": "wrap_content",
+                                                            "width": "match_parent",
+                                                            "weight": "5",
+                                                            "Elements": [
+                                                                        {
+                                                                        "type": "TextView",
+                                                                        "show_by_condition": "",
+                                                                        "Value": "@Номенклатура",
+                                                                        "width": "match_parent",
+                                                                        "gravity_horizontal": "center",
+                                                                        "NoRefresh": False,
+                                                                        "document_type": "",
+                                                                        "mask": "",
+                                                                        "Variable": ""
+                                                                        },
+                                                                        {
+                                                                        "type": "TextView",
+                                                                        "show_by_condition": "",
+                                                                        "Value": "@Артикул",
+                                                                        "width": "match_parent",
+                                                                        "gravity_horizontal": "center",
+                                                                        "NoRefresh": False,
+                                                                        "document_type": "",
+                                                                        "mask": "",
+                                                                        "Variable": ""
+                                                                        },
+                                                                        {
+                                                                        "type": "TextView",
+                                                                        "show_by_condition": "",
+                                                                        "Value": "@Производитель",
+                                                                        "width": "match_parent",
+                                                                        "gravity_horizontal": "center",
+                                                                        "NoRefresh": False,
+                                                                        "document_type": "",
+                                                                        "mask": "",
+                                                                        "Variable": ""
+                                                                        }
+                                                                        ]
+                                                            },
+                                                            {
+                                                            "type": "LinearLayout",
+                                                            "orientation": "vertical",
+                                                            "height": "wrap_content",
+                                                            "width": "match_parent",
+                                                            "weight": "2",
+                                                            "Elements": [
+                                                                        {
+                                                                        "type": "LinearLayout",
+                                                                        "height": "wrap_content",
+                                                                        "width": "wrap_content",
+                                                                        "weight": "0",
+                                                                        "Value": "",
+                                                                        "Variable": "",
+                                                                        "orientation": "horizontal",
+                                                                        "Elements": [
+                                                                                    {
+                                                                                    "type": "TextView",
+                                                                                    "height": "wrap_content",
+                                                                                    "width": "wrap_content",
+                                                                                    "weight": "0",
+                                                                                    "Value": "Заказано:",
+                                                                                    "Variable": "",
+                                                                                    "TextSize": "16",
+                                                                                    "TextBold": True,
+                                                                                    "TextColor": "#DB7093"
+                                                                                    },
+                                                                                    {
+                                                                                    "type": "TextView",
+                                                                                    "height": "wrap_content",
+                                                                                    "width": "wrap_content",
+                                                                                    "weight": "0",
+                                                                                    "Value": "@КоличествоСпланировано",
+                                                                                    "Variable": "",
+                                                                                    "TextSize": "16",
+                                                                                    "TextBold": True,
+                                                                                    "TextColor": "#DB7093"
+                                                                                    }
+                                                                                    ]
+                                                                        },
+                                                                        {
+                                                                        "type": "LinearLayout",
+                                                                        "height": "wrap_content",
+                                                                        "width": "wrap_content",
+                                                                        "weight": "0",
+                                                                        "Value": "",
+                                                                        "Variable": "",
+                                                                        "orientation": "horizontal",
+                                                                        "Elements": [
+                                                                                    {
+                                                                                    "type": "TextView",
+                                                                                    "height": "wrap_content",
+                                                                                    "width": "wrap_content",
+                                                                                    "weight": "0",
+                                                                                    "Value": "Отобрано:",
+                                                                                    "Variable": "",
+                                                                                    "TextSize": "16",
+                                                                                    "TextBold": True,
+                                                                                    "TextColor": "#DB7093"
+                                                                                    },
+                                                                                    {
+                                                                                    "type": "TextView",
+                                                                                    "height": "wrap_content",
+                                                                                    "width": "wrap_content",
+                                                                                    "weight": "0",
+                                                                                    "Value": "@КоличествоОтобрано",
+                                                                                    "Variable": "",
+                                                                                    "TextSize": "16",
+                                                                                    "TextBold": True,
+                                                                                    "TextColor": "#DB7093"
+                                                                                    }
+                                                                                    ]
+                                                                        },
+                                                                        {
+                                                                        "type": "Button",
+                                                                        "show_by_condition": "",
+                                                                        "Value": "@НадписьКнФото", #"ФОТО",
+                                                                        "Variable": "btn_img",
+                                                                        "NoRefresh": False,
+                                                                        "document_type": "",
+                                                                        "mask": "",
+                                                                        "TextSize": "-1",
+                                                                        "TextColor": "#6F9393",
+                                                                        "width": "wrap_content",
+                                                                        "height": "wrap_content",
+                                                                        "weight": "1"
+                                                                        }                                    
+                                                                        ]
+                                                            }
+                                                            ]
                                                 },
                                                 {
-                                                    "type": "TextView",
-                                                    "height": "wrap_content",
-                                                    "width": "wrap_content",
-                                                    "weight": "0",
-                                                    "Value": "@КоличествоСпланировано",
-                                                    "Variable": "",
-                                                    "TextSize": "16",
-                                                    "TextBold": True,
-                                                    "TextColor": "#DB7093"
+                                                "type": "TextView",
+                                                "show_by_condition": "",
+                                                "Value": "@descr",
+                                                "NoRefresh": False,
+                                                "document_type": "",
+                                                "mask": "",
+                                                "Variable": "",
+                                                "TextSize": "-1",
+                                                "TextColor": "#6F9393",
+                                                "gravity_horizontal": "left",
+                                                "gravity_vertical": "center",
+                                                "TextBold": False,
+                                                "TextItalic": True,
+                                                "BackgroundColor": "",
+                                                "width": "wrap_content",
+                                                "height": "wrap_content",
+                                                "weight": "3"
                                                 }
-                                            ]
-                                        },
-                                        {
-                                            "type": "LinearLayout",
-                                            "height": "wrap_content",
-                                            "width": "wrap_content",
-                                            "weight": "0",
-                                            "Value": "",
-                                            "Variable": "",
-                                            "orientation": "horizontal",
-                                            "Elements": [
-                                                {
-                                                    "type": "TextView",
-                                                    "height": "wrap_content",
-                                                    "width": "wrap_content",
-                                                    "weight": "0",
-                                                    "Value": "Отобрано:",
-                                                    "Variable": "",
-                                                    "TextSize": "16",
-                                                    "TextBold": True,
-                                                    "TextColor": "#DB7093"
-                                                },
-                                                {
-                                                    "type": "TextView",
-                                                    "height": "wrap_content",
-                                                    "width": "wrap_content",
-                                                    "weight": "0",
-                                                    "Value": "@КоличествоОтобрано",
-                                                    "Variable": "",
-                                                    "TextSize": "16",
-                                                    "TextBold": True,
-                                                    "TextColor": "#DB7093"
-                                                }
-                                            ]
-                                        }#,
-                                        # {
-                                        #     "type": "Button",
-                                        #     "show_by_condition": "",
-                                        #     "Value": "@НадписьКнФото", #"ФОТО",
-                                        #     "Variable": "btn_img",
-                                        #     "NoRefresh": False,
-                                        #     "document_type": "",
-                                        #     "mask": "",
-                                        #     "TextSize": "-1",
-                                        #     "TextColor": "#6F9393",
-                                        #     "width": "wrap_content",
-                                        #     "height": "wrap_content",
-                                        #     "weight": "1"
-                                        # }                                    
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "type": "TextView",
-                            "show_by_condition": "",
-                            "Value": "@descr",
-                            "NoRefresh": False,
-                            "document_type": "",
-                            "mask": "",
-                            "Variable": "",
-                            "TextSize": "-1",
-                            "TextColor": "#6F9393",
-                            "gravity_horizontal": "left",
-                            "gravity_vertical": "center",
-                            "TextBold": False,
-                            "TextItalic": True,
-                            "BackgroundColor": "",
-                            "width": "wrap_content",
-                            "height": "wrap_content",
-                            "weight": "3"
+                                                ]
+                                    }
                         }
-                    ]
-                }
-            }
         }
         #     {
         #     "type": "LinearLayout",
