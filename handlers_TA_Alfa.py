@@ -543,21 +543,7 @@ def py_LoadGoods(hashMap):
                                                                                     "TextColor": "#DB7093"
                                                                                     }
                                                                                     ]
-                                                                        },
-                                                                        {
-                                                                        "type": "Button",
-                                                                        "show_by_condition": "",
-                                                                        "Value": "@НадписьКнФото", #"ФОТО",
-                                                                        "Variable": "btn_img",
-                                                                        "NoRefresh": False,
-                                                                        "document_type": "",
-                                                                        "mask": "",
-                                                                        "TextSize": "-1",
-                                                                        "TextColor": "#6F9393",
-                                                                        "width": "wrap_content",
-                                                                        "height": "wrap_content",
-                                                                        "weight": "1"
-                                                                        }                                    
+                                                                        }
                                                                         ]
                                                             }
                                                             ]
