@@ -748,7 +748,7 @@ def py_LoadGoods(hashMap):
         i = 1
         for record in records:
             c =  {
-                "key": record['Штрихкод'],
+                "key": record['ШтрихКод'],
                 "descr": "Pos. "+str(i)+". "+record['Код'],
                 "КоличествоСпланировано": record['КоличествоСпланировано'],
                 "КоличествоОтобрано": record['КоличествоОтобрано'],
