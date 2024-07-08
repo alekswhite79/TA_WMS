@@ -743,13 +743,12 @@ def py_LoadGoods(hashMap):
     db = pelicans["TA_WMS"]
     records = db["GoodsForSelection"].find({"ВидЗаказа":hashMap.get("ВидЗаказа"), "НомерЗаказа":hashMap.get("НомерЗаказа")})#+"' and g.КоличествоСпланировано <> g.КоличествоОтобрано})
         
-    records = json.loads(res)
+    # records = json.loads(res)
     if len(records)>0:
         i = 1
         for record in records:
             c =  {
                 "key": record['Штрихкод'],
-            
                 "descr": "Pos. "+str(i)+". "+record['Код'],
                 "КоличествоСпланировано": record['КоличествоСпланировано'],
                 "КоличествоОтобрано": record['КоличествоОтобрано'],
@@ -757,11 +756,9 @@ def py_LoadGoods(hashMap):
                 "Номенклатура": record['Номенклатура'],
                 "Артикул": record['Артикул'],
                 "Производитель": record['Производитель'],
-                # "ФотоТовара": record['ФотоТовара'],
                 "НомерЗаказа": record['НомерЗаказа'],
                 "Получатель": record['Получатель'],
-                "ВидЗаказа": record['ВидЗаказа'],
-                "НадписьКнФото": "ФОТО" if record['КоличествоФото']>0 else "НЕТ ФОТО"
+                "ВидЗаказа": record['ВидЗаказа']
                 }
             
             j["customcards"]["cardsdata"].append(c)
