@@ -195,8 +195,9 @@ def py_LoadGoods(hashMap):
         #                                             {"НомерЗаказа":hashMap.get("НомерЗаказа")}
         #                                            ]})#+"' and g.КоличествоСпланировано <> g.Количество})
     if len(records)>0:
-        i = 1
         for record in records:
+            if (record['КОтбору']==record['Отобрано']):
+                continue                
             c =  {
                 "key": record['ШтрихКод'],
                 "descr": "Pos. "+str(i)+". "+record['Код'],
@@ -212,7 +213,6 @@ def py_LoadGoods(hashMap):
                 }
             
             j["customcards"]["cardsdata"].append(c)
-            i+=1
 
     # hashMap.put("toast","Зписей "+str(i))
 
