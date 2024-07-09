@@ -575,7 +575,7 @@ def py_LoadGoods(hashMap):
     j["customcards"]["cardsdata"]=[]
 
     db = pelicans["TA_WMS"]
-    records = db["GoodsForSelection"].find({"ВидЗаказа":hashMap.get("ВидЗаказа"),"НомерЗаказа":hashMap.get("НомерЗаказа")})
+    records = db["GoodsForSelection"].find({"$and":[{"ВидЗаказа":hashMap.get("ВидЗаказа")},{"НомерЗаказа":hashMap.get("НомерЗаказа")}]})
         # {"$and":[
         #                                             {"ВидЗаказа":hashMap.get("ВидЗаказа")},
         #                                             {"НомерЗаказа":hashMap.get("НомерЗаказа")}
@@ -688,12 +688,21 @@ def py_select_on_input(hashMap,_files=None,_data=None):
     return hashMap
 
 def Update_Qty_Goods(hashMap,card_of_goods):
-    sql = sqlClass()
-    success=sql.SQLExec("update GoodsForSelection set КоличествоОтобрано=КоличествоОтобрано+1 where НомерЗаказа=? and ВидЗаказа=? and Код=?",card_of_goods['НомерЗаказа']+','+card_of_goods['ВидЗаказа']+','+card_of_goods['Код'])
-    if  not success:
-        hashMap.put("beep","15") 
-        hashMap.put("ShowDialog","Ошибка") 
-        hashMap.put("ShowDialogStyle","{'title': 'Ошибка записи в базу данных',   'yes': '',   'no': 'OK' }");
+    db = pelicans["TA_WMS"]
+    # db["GoodsForSelection"].update(key, value)
+    # records = db["GoodsForSelection"].find({"ВидЗаказа":hashMap.get("ВидЗаказа"),"НомерЗаказа":hashMap.get("НомерЗаказа")})
+    db["GoodsForSelection"].update({"ВидЗаказа":card_of_goods['ВидЗаказа'],
+                                    "НомерЗаказа":card_of_goods['НомерЗаказа'],
+                                    "Код":card_of_goods['Код']},
+                                   {"КоличествоОтобрано": card_of_goods['КоличествоОтобрано']+1})
+
+    # sql = sqlClass()
+    # success=sql.SQLExec("update GoodsForSelection set КоличествоОтобрано=КоличествоОтобрано+1 where НомерЗаказа=? and ВидЗаказа=? and Код=?",
+    #                     card_of_goods['НомерЗаказа']+','+card_of_goods['ВидЗаказа']+','+card_of_goods['Код'])
+    # if  not success:
+    #     hashMap.put("beep","15") 
+    #     hashMap.put("ShowDialog","Ошибка") 
+    #     hashMap.put("ShowDialogStyle","{'title': 'Ошибка записи в базу данных',   'yes': '',   'no': 'OK' }");
 
 
 def py_Input(hashMap,_files=None,_data=None):
