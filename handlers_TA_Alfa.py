@@ -186,7 +186,7 @@ def py_LoadGoods(hashMap):
     db = pelicans["TA_WMS"]
     records = db["GoodsForSelection"].find({"$and":[{"ВидЗаказа":hashMap.get("ВидЗаказа")},
                                                     {"НомерЗаказа":hashMap.get("НомерЗаказа")},
-                                                    {"КОтбору":{"$ne":records["Отобрано"]}}]})
+                                                    {"КОтбору":{"$ne":this.Отобрано}}]})
 
     # records = db["GoodsForSelection"].find({"$and":[{"ВидЗаказа":hashMap.get("ВидЗаказа")},
     #                                                 {"НомерЗаказа":hashMap.get("НомерЗаказа")},
