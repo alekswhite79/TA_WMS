@@ -187,6 +187,10 @@ def py_LoadGoods(hashMap):
     records = db["GoodsForSelection"].find({"$and":[{"ВидЗаказа":hashMap.get("ВидЗаказа")},
                                                     {"НомерЗаказа":hashMap.get("НомерЗаказа")},
                                                     {"КОтбору":{"$ne":records["Отобрано"]}}]})
+
+    # records = db["GoodsForSelection"].find({"$and":[{"ВидЗаказа":hashMap.get("ВидЗаказа")},
+    #                                                 {"НомерЗаказа":hashMap.get("НомерЗаказа")},
+    #                                                 {"КОтбору":{"$ne":records["Отобрано"]}}]})
         # {"$and":[
         #                                             {"ВидЗаказа":hashMap.get("ВидЗаказа")},
         #                                             {"НомерЗаказа":hashMap.get("НомерЗаказа")}
