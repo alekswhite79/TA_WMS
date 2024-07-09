@@ -10,19 +10,21 @@ from ru.travelfood.simple_ui import SimpleUtilites as suClass
 import os
 from ru.travelfood.simple_ui import NoSQL as noClass
 
-def py_OnStartOrder(hashMap,_files=None,_data=None):
 
-    if hashMap.containsKey("НомерЗаказа") and hashMap.get("НомерЗаказа")!="":
+def py_OnStartOrder(hashMap, _files=None, _data=None):
+
+    if hashMap.containsKey("НомерЗаказа") and hashMap.get("НомерЗаказа") != "":
         py_LoadGoods(hashMap)
     Display_Elrment(hashMap)
     return hashMap
+
 
 def py_LoadGoods(hashMap):
     j = {
         "customcards":  {
                         "options":  {
-                                    "search_enabled":True,
-                                    "save_position":True
+                                    "search_enabled": True,
+                                    "save_position": True
                                     },
                         "layout":   {
                                     "type": "LinearLayout",
@@ -180,12 +182,12 @@ def py_LoadGoods(hashMap):
                                     }
                         }
         }
-   
-    j["customcards"]["cardsdata"]=[]
+
+    j["customcards"]["cardsdata"] = []
 
     db = pelicans["TA_WMS"]
-    records = db["GoodsForSelection"].find({"$and":[{"ВидЗаказа":hashMap.get("ВидЗаказа")},
-                                                    {"НомерЗаказа":hashMap.get("НомерЗаказа")}]})
+    records = db["GoodsForSelection"].find({"$and": [{"ВидЗаказа": hashMap.get("ВидЗаказа")},
+                                                    {"НомерЗаказа": hashMap.get("НомерЗаказа")}]})
 
     # records = db["GoodsForSelection"].find({"$and":[{"ВидЗаказа":hashMap.get("ВидЗаказа")},
     #                                                 {"НомерЗаказа":hashMap.get("НомерЗаказа")},
@@ -194,10 +196,12 @@ def py_LoadGoods(hashMap):
         #                                             {"ВидЗаказа":hashMap.get("ВидЗаказа")},
         #                                             {"НомерЗаказа":hashMap.get("НомерЗаказа")}
         #                                            ]})#+"' and g.КоличествоСпланировано <> g.Количество})
-    if len(records)>0:
+    if len(records) > 0:
+        i = 1
         for record in records:
-            if (record['КОтбору']==record['Отобрано']):
+            if (record['КОтбору'] == record['Отобрано']):
                 continue                
+
             c =  {
                 "key": record['ШтрихКод'],
                 "descr": "Pos. "+str(i)+". "+record['Код'],
@@ -213,6 +217,7 @@ def py_LoadGoods(hashMap):
                 }
             
             j["customcards"]["cardsdata"].append(c)
+            i+=1
 
     # hashMap.put("toast","Зписей "+str(i))
 
