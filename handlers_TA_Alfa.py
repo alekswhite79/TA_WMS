@@ -691,9 +691,10 @@ def Update_Qty_Goods(hashMap,card_of_goods):
     db = pelicans["TA_WMS"]
     # db["GoodsForSelection"].update(key, value)
     # records = db["GoodsForSelection"].find({"ВидЗаказа":hashMap.get("ВидЗаказа"),"НомерЗаказа":hashMap.get("НомерЗаказа")})
-    db["GoodsForSelection"].update({"ВидЗаказа":card_of_goods['ВидЗаказа'],
-                                    "НомерЗаказа":card_of_goods['НомерЗаказа'],
-                                    "Код":card_of_goods['Код']},
+    db["GoodsForSelection"].update({"$and":[
+                                    {"ВидЗаказа":card_of_goods['ВидЗаказа']},
+                                    {"НомерЗаказа":card_of_goods['НомерЗаказа']},
+                                    {"Код":card_of_goods['Код']}]},
                                    {"КоличествоОтобрано": card_of_goods['КоличествоОтобрано']+1})
 
     # sql = sqlClass()
