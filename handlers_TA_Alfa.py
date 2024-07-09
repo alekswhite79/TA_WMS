@@ -639,24 +639,24 @@ def py_select_on_input(hashMap,_files=None,_data=None):
             hashMap.put("ShowDialog","Ошибка") 
             hashMap.put("ShowDialogStyle","{'title': 'Введен неверный штрихкод!',   'yes': '',   'no': 'OK' }");
     
-    elif hashMap.get("listener")=="LayoutAction" and hashMap.get("layout_listener")=="btn_img":
+    # elif hashMap.get("listener")=="LayoutAction" and hashMap.get("layout_listener")=="btn_img":
 
-        dict_selected_card = json.loads(hashMap.get('card_data'))
-        sql = sqlClass()
-        res = sql.SQLQuery("select ФотоТовара,ИДФото from GoodsImg where Код='"+dict_selected_card['Код']+"' order by ИДФото","")
-        records = json.loads(res)
-        masImg = []
-        for record in records:
-            masImg.append(record['ИДФото'])
-        if len(masImg)>0:
-            hashMap.put("мсвФото",json.dumps(masImg))
-            hashMap.put("Товар",dict_selected_card['Номенклатура'])
-            hashMap.put("Производитель",dict_selected_card['Производитель'])
-            hashMap.put("Артикул",dict_selected_card['Артикул'])
-            hashMap.put("Код",dict_selected_card['Код'])
-            hashMap.put("Заказано",dict_selected_card['КоличествоСпланировано'])
-            hashMap.put("Отобрано",dict_selected_card['КоличествоОтобрано'])
-            hashMap.put('ShowScreen','КарточкаТовара')
+    #     dict_selected_card = json.loads(hashMap.get('card_data'))
+    #     sql = sqlClass()
+    #     res = sql.SQLQuery("select ФотоТовара,ИДФото from GoodsImg where Код='"+dict_selected_card['Код']+"' order by ИДФото","")
+    #     records = json.loads(res)
+    #     masImg = []
+    #     for record in records:
+    #         masImg.append(record['ИДФото'])
+    #     if len(masImg)>0:
+    #         hashMap.put("мсвФото",json.dumps(masImg))
+    #         hashMap.put("Товар",dict_selected_card['Номенклатура'])
+    #         hashMap.put("Производитель",dict_selected_card['Производитель'])
+    #         hashMap.put("Артикул",dict_selected_card['Артикул'])
+    #         hashMap.put("Код",dict_selected_card['Код'])
+    #         hashMap.put("Заказано",dict_selected_card['КоличествоСпланировано'])
+    #         hashMap.put("Отобрано",dict_selected_card['КоличествоОтобрано'])
+    #         hashMap.put('ShowScreen','КарточкаТовара')
         
 
 
@@ -695,7 +695,7 @@ def Update_Qty_Goods(hashMap,card_of_goods):
                                     {"ВидЗаказа":card_of_goods['ВидЗаказа']},
                                     {"НомерЗаказа":card_of_goods['НомерЗаказа']},
                                     {"Код":card_of_goods['Код']}]},
-                                   {"КоличествоОтобрано": card_of_goods['КоличествоОтобрано']+1})
+                                   {"Отобрано": card_of_goods['Отобрано']+1})
 
     # sql = sqlClass()
     # success=sql.SQLExec("update GoodsForSelection set КоличествоОтобрано=КоличествоОтобрано+1 where НомерЗаказа=? and ВидЗаказа=? and Код=?",
