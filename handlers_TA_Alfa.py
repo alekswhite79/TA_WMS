@@ -10,6 +10,216 @@ from ru.travelfood.simple_ui import SimpleUtilites as suClass
 import os
 from ru.travelfood.simple_ui import NoSQL as noClass
 
+def py_OnStartOrder(hashMap,_files=None,_data=None):
+
+    if hashMap.containsKey("НомерЗаказа") and hashMap.get("НомерЗаказа")!="":
+        py_LoadGoods(hashMap)
+    Display_Elrment(hashMap)
+    return hashMap
+
+def py_LoadGoods(hashMap):
+    j = {
+        "customcards":  {
+                        "options":  {
+                                    "search_enabled":True,
+                                    "save_position":True
+                                    },
+                        "layout":   {
+                                    "type": "LinearLayout",
+                                    "orientation": "vertical",
+                                    "height": "match_parent",
+                                    "width": "match_parent",
+                                    "weight": "0",
+                                    "Elements": [
+                                                {
+                                                "type": "LinearLayout",
+                                                "orientation": "horizontal",
+                                                "height": "wrap_content",
+                                                "width": "match_parent",
+                                                "weight": "0",
+                                                "Elements": [
+                                                            {
+                                                            "type": "LinearLayout",
+                                                            "orientation": "vertical",
+                                                            "height": "wrap_content",
+                                                            "width": "match_parent",
+                                                            "weight": "5",
+                                                            "Elements": [
+                                                                        {
+                                                                        "type": "TextView",
+                                                                        "show_by_condition": "",
+                                                                        "Value": "@Номенклатура",
+                                                                        "width": "match_parent",
+                                                                        "gravity_horizontal": "center",
+                                                                        "NoRefresh": False,
+                                                                        "document_type": "",
+                                                                        "mask": "",
+                                                                        "Variable": ""
+                                                                        },
+                                                                        {
+                                                                        "type": "TextView",
+                                                                        "show_by_condition": "",
+                                                                        "Value": "@Артикул",
+                                                                        "width": "match_parent",
+                                                                        "gravity_horizontal": "center",
+                                                                        "NoRefresh": False,
+                                                                        "document_type": "",
+                                                                        "mask": "",
+                                                                        "Variable": ""
+                                                                        },
+                                                                        {
+                                                                        "type": "TextView",
+                                                                        "show_by_condition": "",
+                                                                        "Value": "@Производитель",
+                                                                        "width": "match_parent",
+                                                                        "gravity_horizontal": "center",
+                                                                        "NoRefresh": False,
+                                                                        "document_type": "",
+                                                                        "mask": "",
+                                                                        "Variable": ""
+                                                                        }
+                                                                        ]
+                                                            },
+                                                            {
+                                                            "type": "LinearLayout",
+                                                            "orientation": "vertical",
+                                                            "height": "wrap_content",
+                                                            "width": "match_parent",
+                                                            "weight": "2",
+                                                            "Elements": [
+                                                                        {
+                                                                        "type": "LinearLayout",
+                                                                        "height": "wrap_content",
+                                                                        "width": "wrap_content",
+                                                                        "weight": "0",
+                                                                        "Value": "",
+                                                                        "Variable": "",
+                                                                        "orientation": "horizontal",
+                                                                        "Elements": [
+                                                                                    {
+                                                                                    "type": "TextView",
+                                                                                    "height": "wrap_content",
+                                                                                    "width": "wrap_content",
+                                                                                    "weight": "0",
+                                                                                    "Value": "Заказано:",
+                                                                                    "Variable": "",
+                                                                                    "TextSize": "16",
+                                                                                    "TextBold": True,
+                                                                                    "TextColor": "#DB7093"
+                                                                                    },
+                                                                                    {
+                                                                                    "type": "TextView",
+                                                                                    "height": "wrap_content",
+                                                                                    "width": "wrap_content",
+                                                                                    "weight": "0",
+                                                                                    "Value": "@КОтбору",
+                                                                                    "Variable": "",
+                                                                                    "TextSize": "16",
+                                                                                    "TextBold": True,
+                                                                                    "TextColor": "#DB7093"
+                                                                                    }
+                                                                                    ]
+                                                                        },
+                                                                        {
+                                                                        "type": "LinearLayout",
+                                                                        "height": "wrap_content",
+                                                                        "width": "wrap_content",
+                                                                        "weight": "0",
+                                                                        "Value": "",
+                                                                        "Variable": "",
+                                                                        "orientation": "horizontal",
+                                                                        "Elements": [
+                                                                                    {
+                                                                                    "type": "TextView",
+                                                                                    "height": "wrap_content",
+                                                                                    "width": "wrap_content",
+                                                                                    "weight": "0",
+                                                                                    "Value": "Отобрано:",
+                                                                                    "Variable": "",
+                                                                                    "TextSize": "16",
+                                                                                    "TextBold": True,
+                                                                                    "TextColor": "#DB7093"
+                                                                                    },
+                                                                                    {
+                                                                                    "type": "TextView",
+                                                                                    "height": "wrap_content",
+                                                                                    "width": "wrap_content",
+                                                                                    "weight": "0",
+                                                                                    "Value": "@Отобрано",
+                                                                                    "Variable": "",
+                                                                                    "TextSize": "16",
+                                                                                    "TextBold": True,
+                                                                                    "TextColor": "#DB7093"
+                                                                                    }
+                                                                                    ]
+                                                                        }
+                                                                        ]
+                                                            }
+                                                            ]
+                                                },
+                                                {
+                                                "type": "TextView",
+                                                "show_by_condition": "",
+                                                "Value": "@descr",
+                                                "NoRefresh": False,
+                                                "document_type": "",
+                                                "mask": "",
+                                                "Variable": "",
+                                                "TextSize": "-1",
+                                                "TextColor": "#6F9393",
+                                                "gravity_horizontal": "left",
+                                                "gravity_vertical": "center",
+                                                "TextBold": False,
+                                                "TextItalic": True,
+                                                "BackgroundColor": "",
+                                                "width": "wrap_content",
+                                                "height": "wrap_content",
+                                                "weight": "3"
+                                                }
+                                                ]
+                                    }
+                        }
+        }
+   
+    j["customcards"]["cardsdata"]=[]
+
+    db = pelicans["TA_WMS"]
+    records = db["GoodsForSelection"].find({"$and":[{"ВидЗаказа":hashMap.get("ВидЗаказа")},
+                                                    {"НомерЗаказа":hashMap.get("НомерЗаказа")},
+                                                    {"КОтбору":{"$ne":"Отобрано"}}]})
+        # {"$and":[
+        #                                             {"ВидЗаказа":hashMap.get("ВидЗаказа")},
+        #                                             {"НомерЗаказа":hashMap.get("НомерЗаказа")}
+        #                                            ]})#+"' and g.КоличествоСпланировано <> g.Количество})
+    if len(records)>0:
+        i = 1
+        for record in records:
+            c =  {
+                "key": record['ШтрихКод'],
+                "descr": "Pos. "+str(i)+". "+record['Код'],
+                "КОтбору": record['КОтбору'],
+                "Отобрано": record['Отобрано'],
+                "Код": record['Код'],
+                "Номенклатура": record['Номенклатура'],
+                "Артикул": record['Артикул'],
+                "Производитель": record['Производитель'],
+                "НомерЗаказа": record['НомерЗаказа'],
+                "Получатель": record['Получатель'],
+                "ВидЗаказа": record['ВидЗаказа']
+                }
+            
+            j["customcards"]["cardsdata"].append(c)
+            i+=1
+
+    # hashMap.put("toast","Зписей "+str(i))
+
+    # if not hashMap.containsKey("CardsGoods"):
+    hashMap.put("CardsGoods",json.dumps(j,ensure_ascii=False).encode('utf8').decode())
+    
+    return hashMap
+
+
+
 def init_on_start(hashMap, _files=None, _data=None):
 
     hashMap.put("SQLConnectDatabase", "")
@@ -381,20 +591,6 @@ def py_SelectionOrder(hashMap,_files=None,_data=None):
     hashMap.put("BackScreen","")
     # @field=@selected_card_key; BackScreen
 
-def py_OnStartOrder(hashMap,_files=None,_data=None):
-
-    hashMap.put("mm_local","")
-    # hashMap.put("mm_compression","70")
-    # hashMap.put("mm_size","65")
-
-    if hashMap.containsKey("НомерЗаказа") and hashMap.get("НомерЗаказа")!="":
-        # Sel_card = json.loads(hashMap.get("selected_card_data"))
-        # hashMap.put("Получатель",Sel_card['Получатель'])
-        # hashMap.put("ВидЗаказа",Sel_card['ВидЗаказа'])
-        py_LoadGoods(hashMap)
-    Display_Elrment(hashMap)
-    return hashMap
-
 def Display_Elrment(hashMap): #, Elrment, Visible = True, isInput = True):
     OrderIsSelect = hashMap.containsKey("НомерЗаказа") and hashMap.get("НомерЗаказа")!=""
     
@@ -407,205 +603,6 @@ def Display_Elrment(hashMap): #, Elrment, Visible = True, isInput = True):
     # hashMap.put("Show_ПолеВвода_"+Elrment, "1" if isInput else "-1")
     # hashMap.put("Show_НадписьКомментарий_"+Elrment, "1" if isInput and Visible else "-1")
     return hashMap    
-
-def py_LoadGoods(hashMap):
-    j = {
-        "customcards":  {
-                        "options":  {
-                                    "search_enabled":True,
-                                    "save_position":True
-                                    },
-                        "layout":   {
-                                    "type": "LinearLayout",
-                                    "orientation": "vertical",
-                                    "height": "match_parent",
-                                    "width": "match_parent",
-                                    "weight": "0",
-                                    "Elements": [
-                                                {
-                                                "type": "LinearLayout",
-                                                "orientation": "horizontal",
-                                                "height": "wrap_content",
-                                                "width": "match_parent",
-                                                "weight": "0",
-                                                "Elements": [
-                                                            {
-                                                            "type": "LinearLayout",
-                                                            "orientation": "vertical",
-                                                            "height": "wrap_content",
-                                                            "width": "match_parent",
-                                                            "weight": "5",
-                                                            "Elements": [
-                                                                        {
-                                                                        "type": "TextView",
-                                                                        "show_by_condition": "",
-                                                                        "Value": "@Номенклатура",
-                                                                        "width": "match_parent",
-                                                                        "gravity_horizontal": "center",
-                                                                        "NoRefresh": False,
-                                                                        "document_type": "",
-                                                                        "mask": "",
-                                                                        "Variable": ""
-                                                                        },
-                                                                        {
-                                                                        "type": "TextView",
-                                                                        "show_by_condition": "",
-                                                                        "Value": "@Артикул",
-                                                                        "width": "match_parent",
-                                                                        "gravity_horizontal": "center",
-                                                                        "NoRefresh": False,
-                                                                        "document_type": "",
-                                                                        "mask": "",
-                                                                        "Variable": ""
-                                                                        },
-                                                                        {
-                                                                        "type": "TextView",
-                                                                        "show_by_condition": "",
-                                                                        "Value": "@Производитель",
-                                                                        "width": "match_parent",
-                                                                        "gravity_horizontal": "center",
-                                                                        "NoRefresh": False,
-                                                                        "document_type": "",
-                                                                        "mask": "",
-                                                                        "Variable": ""
-                                                                        }
-                                                                        ]
-                                                            },
-                                                            {
-                                                            "type": "LinearLayout",
-                                                            "orientation": "vertical",
-                                                            "height": "wrap_content",
-                                                            "width": "match_parent",
-                                                            "weight": "2",
-                                                            "Elements": [
-                                                                        {
-                                                                        "type": "LinearLayout",
-                                                                        "height": "wrap_content",
-                                                                        "width": "wrap_content",
-                                                                        "weight": "0",
-                                                                        "Value": "",
-                                                                        "Variable": "",
-                                                                        "orientation": "horizontal",
-                                                                        "Elements": [
-                                                                                    {
-                                                                                    "type": "TextView",
-                                                                                    "height": "wrap_content",
-                                                                                    "width": "wrap_content",
-                                                                                    "weight": "0",
-                                                                                    "Value": "Заказано:",
-                                                                                    "Variable": "",
-                                                                                    "TextSize": "16",
-                                                                                    "TextBold": True,
-                                                                                    "TextColor": "#DB7093"
-                                                                                    },
-                                                                                    {
-                                                                                    "type": "TextView",
-                                                                                    "height": "wrap_content",
-                                                                                    "width": "wrap_content",
-                                                                                    "weight": "0",
-                                                                                    "Value": "@КОтбору",
-                                                                                    "Variable": "",
-                                                                                    "TextSize": "16",
-                                                                                    "TextBold": True,
-                                                                                    "TextColor": "#DB7093"
-                                                                                    }
-                                                                                    ]
-                                                                        },
-                                                                        {
-                                                                        "type": "LinearLayout",
-                                                                        "height": "wrap_content",
-                                                                        "width": "wrap_content",
-                                                                        "weight": "0",
-                                                                        "Value": "",
-                                                                        "Variable": "",
-                                                                        "orientation": "horizontal",
-                                                                        "Elements": [
-                                                                                    {
-                                                                                    "type": "TextView",
-                                                                                    "height": "wrap_content",
-                                                                                    "width": "wrap_content",
-                                                                                    "weight": "0",
-                                                                                    "Value": "Отобрано:",
-                                                                                    "Variable": "",
-                                                                                    "TextSize": "16",
-                                                                                    "TextBold": True,
-                                                                                    "TextColor": "#DB7093"
-                                                                                    },
-                                                                                    {
-                                                                                    "type": "TextView",
-                                                                                    "height": "wrap_content",
-                                                                                    "width": "wrap_content",
-                                                                                    "weight": "0",
-                                                                                    "Value": "@Отобрано",
-                                                                                    "Variable": "",
-                                                                                    "TextSize": "16",
-                                                                                    "TextBold": True,
-                                                                                    "TextColor": "#DB7093"
-                                                                                    }
-                                                                                    ]
-                                                                        }
-                                                                        ]
-                                                            }
-                                                            ]
-                                                },
-                                                {
-                                                "type": "TextView",
-                                                "show_by_condition": "",
-                                                "Value": "@descr",
-                                                "NoRefresh": False,
-                                                "document_type": "",
-                                                "mask": "",
-                                                "Variable": "",
-                                                "TextSize": "-1",
-                                                "TextColor": "#6F9393",
-                                                "gravity_horizontal": "left",
-                                                "gravity_vertical": "center",
-                                                "TextBold": False,
-                                                "TextItalic": True,
-                                                "BackgroundColor": "",
-                                                "width": "wrap_content",
-                                                "height": "wrap_content",
-                                                "weight": "3"
-                                                }
-                                                ]
-                                    }
-                        }
-        }
-   
-    j["customcards"]["cardsdata"]=[]
-
-    db = pelicans["TA_WMS"]
-    records = db["GoodsForSelection"].find({"$and":[{"ВидЗаказа":hashMap.get("ВидЗаказа")},{"НомерЗаказа":hashMap.get("НомерЗаказа")}]})
-        # {"$and":[
-        #                                             {"ВидЗаказа":hashMap.get("ВидЗаказа")},
-        #                                             {"НомерЗаказа":hashMap.get("НомерЗаказа")}
-        #                                            ]})#+"' and g.КоличествоСпланировано <> g.КоличествоОтобрано})
-    if len(records)>0:
-        i = 1
-        for record in records:
-            c =  {
-                "key": record['ШтрихКод'],
-                "descr": "Pos. "+str(i)+". "+record['Код'],
-                "КОтбору": record['КОтбору'],
-                "Отобрано": record['Отобрано'],
-                "Код": record['Код'],
-                "Номенклатура": record['Номенклатура'],
-                "Артикул": record['Артикул'],
-                "Производитель": record['Производитель'],
-                "НомерЗаказа": record['НомерЗаказа'],
-                "Получатель": record['Получатель'],
-                "ВидЗаказа": record['ВидЗаказа']
-                }
-            
-            j["customcards"]["cardsdata"].append(c)
-            i+=1
-
-    # hashMap.put("toast","Зписей "+str(i))
-
-    # if not hashMap.containsKey("CardsGoods"):
-    hashMap.put("CardsGoods",json.dumps(j,ensure_ascii=False).encode('utf8').decode())
-    
-    return hashMap
 
 def py_select_on_input(hashMap,_files=None,_data=None):
 
