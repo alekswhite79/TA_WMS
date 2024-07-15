@@ -155,6 +155,39 @@ def py_LoadGoods(hashMap):
                                                 "TextColor": "#DB7093"
                                             }
                                         ]
+                                    },
+                                    {
+                                        "type": "LinearLayout",
+                                        "height": "wrap_content",
+                                        "width": "wrap_content",
+                                        "weight": "0",
+                                        "Value": "",
+                                        "Variable": "",
+                                        "orientation": "horizontal",
+                                        "Elements": [
+                                            {
+                                                "type": "TextView",
+                                                "height": "wrap_content",
+                                                "width": "wrap_content",
+                                                "weight": "0",
+                                                "Value": "Св.остаток:",
+                                                "Variable": "",
+                                                "TextSize": "16",
+                                                "TextBold": True,
+                                                "TextColor": "#DB7093"
+                                            },
+                                            {
+                                                "type": "TextView",
+                                                "height": "wrap_content",
+                                                "width": "wrap_content",
+                                                "weight": "0",
+                                                "Value": "@СвободныйОстаток",
+                                                "Variable": "",
+                                                "TextSize": "16",
+                                                "TextBold": True,
+                                                "TextColor": "#DB7093"
+                                            }
+                                        ]
                                     }
                                 ]
                             }
