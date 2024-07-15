@@ -12,7 +12,7 @@ from ru.travelfood.simple_ui import NoSQL as noClass
 
 
 def py_OnStartOrder(hashMap, _files=None, _data=None):
-    android.stop()
+    #android.stop()
     if hashMap.containsKey("НомерЗаказа") and hashMap.get("НомерЗаказа") != "":
         py_LoadGoods(hashMap)
     Display_Elrment(hashMap)
@@ -20,7 +20,7 @@ def py_OnStartOrder(hashMap, _files=None, _data=None):
 
 
 def py_LoadGoods(hashMap):
-    android.stop()
+    #android.stop()
     j = {
         "customcards":  {
             "options":  {
