@@ -404,9 +404,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
     # records = db["OrdersForSelection"].all()
     if len(records) > 0:
         i = 1
-        c = {"group": "Заказы покупателя",
-            "TextColor": "#DB7093"
-        }
+        c = {"group": "Заказы покупателя"}
         j["customcards"]["cardsdata"].append(c)
         for record in records:
             c = {
@@ -433,7 +431,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                 "key": record['НомерЗаказа'],
                 "descr": str(i),
                 "НомерЗаказа": record['НомерЗаказа'],
-                "Получатель": record['Получатель'],
+                "Получатель": "<b>"+record['Получатель']+"</b>",
                 "ВидЗаказа": record['ВидЗаказа']
             }
 
