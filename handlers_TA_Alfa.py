@@ -306,6 +306,146 @@ def Update_Qty_Goods(hashMap, card_of_goods):
                                    {"Отобрано": card_of_goods['Отобрано']+1})
 
 
+def py_OrderList_OnStart(hashMap, _files=None, _data=None):
+
+    hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
+
+    j = {"customcards":         {
+        "options": {
+            "search_enabled": True,
+            "save_position": True
+
+
+        },
+        "layout": {
+            "type": "LinearLayout",
+            "orientation": "vertical",
+            "height": "match_parent",
+            "width": "match_parent",
+            "weight": "0",
+            "Elements": [
+                    {
+                        "type": "LinearLayout",
+                        "orientation": "horizontal",
+                        "height": "wrap_content",
+                        "width": "match_parent",
+                        "weight": "0",
+                        "Elements": [
+
+                            {
+                                "type": "LinearLayout",
+                                "orientation": "vertical",
+                                "height": "wrap_content",
+                                "width": "match_parent",
+                                "weight": "1",
+                                "Elements": [
+                                    {
+                                        "type": "TextView",
+                                        "show_by_condition": "",
+                                        "Value": "@Получатель",
+                                        "NoRefresh": False,
+                                        "document_type": "",
+                                        "mask": "",
+                                        "Variable": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "TextView",
+                                "show_by_condition": "",
+                                "Value": "@НомерЗаказа",
+                                "NoRefresh": False,
+                                "document_type": "",
+                                "mask": "",
+                                "Variable": "",
+                                "TextSize": "16",
+                                "TextColor": "#DB7093",
+                                "TextBold": True,
+                                "TextItalic": False,
+                                "BackgroundColor": "",
+                                "width": "match_parent",
+                                "height": "wrap_content",
+                                "weight": 2
+                            }
+                        ]
+                    },
+                {
+                        "type": "TextView",
+                        "show_by_condition": "",
+                        "Value": "@descr",
+                        "NoRefresh": False,
+                        "document_type": "",
+                        "mask": "",
+                        "Variable": "",
+                        "TextSize": "-1",
+                        "TextColor": "#6F9393",
+                        "TextBold": False,
+                        "TextItalic": True,
+                        "BackgroundColor": "",
+                        "width": "wrap_content",
+                        "height": "wrap_content",
+                        "weight": 0
+                    }
+            ]
+        }
+    }
+    }
+
+    j["customcards"]["cardsdata"] = []
+
+    # sql = sqlClass()
+    # res = sql.SQLQuery("select DISTINCT НомерЗаказа,Получатель,ВидЗаказа from GoodsForSelection where ВидЗаказа='Заказ покупателя' and КоличествоСпланировано <> КоличествоОтобрано order by Получатель,НомерЗаказа","")
+
+    # records = json.loads(res)
+    db = pelicans["TA_WMS"]
+    records = db["OrdersForSelection"].find({"ВидЗаказа": "Заказ покупателя"})
+    # records = db["GoodsForSelection"].find({"ВидЗаказа":"Заказ покупателя"})
+
+    # records = db["OrdersForSelection"].all()
+    if len(records) > 0:
+        i = 1
+        c = {"group": "<b>Заказы покупателя</b>"}
+        j["customcards"]["cardsdata"].append(c)
+        for record in records:
+            c = {
+                "key": record['НомерЗаказа'],
+                "descr": str(i),
+                "НомерЗаказа": record['НомерЗаказа'],
+                "Получатель": record['Получатель'],
+                "ВидЗаказа": record['ВидЗаказа']
+            }
+
+            j["customcards"]["cardsdata"].append(c)
+            i += 1
+
+    # res = sql.SQLQuery("select DISTINCT НомерЗаказа,Получатель,ВидЗаказа from GoodsForSelection where ВидЗаказа='Внутренний заказ' and КоличествоСпланировано <> КоличествоОтобрано order by Получатель,НомерЗаказа","")
+
+    # records = json.loads(res)
+    records = db["OrdersForSelection"].find({"ВидЗаказа": "Внутренний заказ"})
+    if len(records) > 0:
+        i = 1
+        c = {"group": "<b>Внутренние заказы</b>"}
+        j["customcards"]["cardsdata"].append(c)
+        for record in records:
+            c = {
+                "key": record['НомерЗаказа'],
+                "descr": str(i),
+                "НомерЗаказа": record['НомерЗаказа'],
+                "Получатель": record['Получатель'],
+                "ВидЗаказа": record['ВидЗаказа']
+            }
+
+            j["customcards"]["cardsdata"].append(c)
+            i += 1
+
+    if not hashMap.containsKey("cards"):
+        hashMap.put("cards", json.dumps(
+            j, ensure_ascii=False).encode('utf8').decode())
+
+    return hashMap
+
+
+
 # -------------------
 def init_on_start(hashMap, _files=None, _data=None):
 
@@ -540,145 +680,6 @@ def Update_central_table(hashMap, _files):
     #     hashMap.put("toast","Ошибка Update_central_table")
     # finally:
     #     hashMap.put("central_table",json.dumps(table))
-
-    return hashMap
-
-
-def py_OrderList_OnStart(hashMap, _files=None, _data=None):
-
-    hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
-
-    j = {"customcards":         {
-        "options": {
-            "search_enabled": True,
-            "save_position": True
-
-
-        },
-        "layout": {
-            "type": "LinearLayout",
-            "orientation": "vertical",
-            "height": "match_parent",
-            "width": "match_parent",
-            "weight": "0",
-            "Elements": [
-                    {
-                        "type": "LinearLayout",
-                        "orientation": "horizontal",
-                        "height": "wrap_content",
-                        "width": "match_parent",
-                        "weight": "0",
-                        "Elements": [
-
-                            {
-                                "type": "LinearLayout",
-                                "orientation": "vertical",
-                                "height": "wrap_content",
-                                "width": "match_parent",
-                                "weight": "1",
-                                "Elements": [
-                                    {
-                                        "type": "TextView",
-                                        "show_by_condition": "",
-                                        "Value": "@Получатель",
-                                        "NoRefresh": False,
-                                        "document_type": "",
-                                        "mask": "",
-                                        "Variable": ""
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "TextView",
-                                "show_by_condition": "",
-                                "Value": "@НомерЗаказа",
-                                "NoRefresh": False,
-                                "document_type": "",
-                                "mask": "",
-                                "Variable": "",
-                                "TextSize": "16",
-                                "TextColor": "#DB7093",
-                                "TextBold": True,
-                                "TextItalic": False,
-                                "BackgroundColor": "",
-                                "width": "match_parent",
-                                "height": "wrap_content",
-                                "weight": 2
-                            }
-                        ]
-                    },
-                {
-                        "type": "TextView",
-                        "show_by_condition": "",
-                        "Value": "@descr",
-                        "NoRefresh": False,
-                        "document_type": "",
-                        "mask": "",
-                        "Variable": "",
-                        "TextSize": "-1",
-                        "TextColor": "#6F9393",
-                        "TextBold": False,
-                        "TextItalic": True,
-                        "BackgroundColor": "",
-                        "width": "wrap_content",
-                        "height": "wrap_content",
-                        "weight": 0
-                    }
-            ]
-        }
-    }
-    }
-
-    j["customcards"]["cardsdata"] = []
-
-    # sql = sqlClass()
-    # res = sql.SQLQuery("select DISTINCT НомерЗаказа,Получатель,ВидЗаказа from GoodsForSelection where ВидЗаказа='Заказ покупателя' and КоличествоСпланировано <> КоличествоОтобрано order by Получатель,НомерЗаказа","")
-
-    # records = json.loads(res)
-    db = pelicans["TA_WMS"]
-    records = db["OrdersForSelection"].find({"ВидЗаказа": "Заказ покупателя"})
-    # records = db["GoodsForSelection"].find({"ВидЗаказа":"Заказ покупателя"})
-
-    # records = db["OrdersForSelection"].all()
-    if len(records) > 0:
-        i = 1
-        c = {"group": "Заказы покупателя"}
-        j["customcards"]["cardsdata"].append(c)
-        for record in records:
-            c = {
-                "key": record['НомерЗаказа'],
-                "descr": str(i),
-                "НомерЗаказа": record['НомерЗаказа'],
-                "Получатель": record['Получатель'],
-                "ВидЗаказа": record['ВидЗаказа']
-            }
-
-            j["customcards"]["cardsdata"].append(c)
-            i += 1
-
-    # res = sql.SQLQuery("select DISTINCT НомерЗаказа,Получатель,ВидЗаказа from GoodsForSelection where ВидЗаказа='Внутренний заказ' and КоличествоСпланировано <> КоличествоОтобрано order by Получатель,НомерЗаказа","")
-
-    # records = json.loads(res)
-    records = db["OrdersForSelection"].find({"ВидЗаказа": "Внутренний заказ"})
-    if len(records) > 0:
-        i = 1
-        c = {"group": "Внутренние заказы"}
-        j["customcards"]["cardsdata"].append(c)
-        for record in records:
-            c = {
-                "key": record['НомерЗаказа'],
-                "descr": str(i),
-                "НомерЗаказа": record['НомерЗаказа'],
-                "Получатель": record['Получатель'],
-                "ВидЗаказа": record['ВидЗаказа']
-            }
-
-            j["customcards"]["cardsdata"].append(c)
-            i += 1
-
-    if not hashMap.containsKey("cards"):
-        hashMap.put("cards", json.dumps(
-            j, ensure_ascii=False).encode('utf8').decode())
 
     return hashMap
 
