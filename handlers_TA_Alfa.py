@@ -405,7 +405,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
     if len(records) > 0:
         i = 1
         c = {"group": "Заказы покупателя",
-            "TextColor": "#6F9393"
+            "TextColor": "#DB7093"
         }
         j["customcards"]["cardsdata"].append(c)
         for record in records:
