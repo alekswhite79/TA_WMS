@@ -12,7 +12,7 @@ from ru.travelfood.simple_ui import NoSQL as noClass
 
 
 def py_OnStartOrder(hashMap, _files=None, _data=None):
-    #android.stop()
+    # android.stop()
     if hashMap.containsKey("НомерЗаказа") and hashMap.get("НомерЗаказа") != "":
         py_LoadGoods(hashMap)
     Display_Elrment(hashMap)
@@ -20,7 +20,7 @@ def py_OnStartOrder(hashMap, _files=None, _data=None):
 
 
 def py_LoadGoods(hashMap):
-    #android.stop()
+    # android.stop()
     j = {
         "customcards":  {
             "options":  {
@@ -237,7 +237,7 @@ def py_LoadGoods(hashMap):
                 "Код": record['Код'],
                 "Номенклатура": record['Номенклатура'],
                 "Артикул": record['Артикул'],
-                "Производитель": record['Производитель']#,
+                "Производитель": record['Производитель']  # ,
                 # "НомерЗаказа": record['НомерЗаказа'],
                 # "Получатель": record['Получатель'],
                 # "ВидЗаказа": record['ВидЗаказа']
@@ -268,20 +268,24 @@ def py_select_on_input(hashMap, _files=None, _data=None):
 
         b = hashMap.get('barcode')
         hashMap.put('barcode', '')
-        goods_in_order = json.loads(hashMap.get('CardsGoods'))["customcards"]["cardsdata"]
+        goods_in_order = json.loads(hashMap.get('CardsGoods'))[
+            "customcards"]["cardsdata"]
         # search by barcode value
-        card_of_goods = next((item for item in goods_in_order if item["key"] == b), None)
+        card_of_goods = next(
+            (item for item in goods_in_order if item["key"] == b), None)
         if card_of_goods == None:
             hashMap.put("beep", "15")
             hashMap.put("ShowDialog", "Ошибка")
-            hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
+            hashMap.put(
+                "ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
         else:
             Update_Qty_Goods(hashMap, card_of_goods)
 
     elif hashMap.get("listener") == 'CardsClick':
 
         hashMap.put("ShowDialog", "ДиалогВводШК")
-        hashMap.put("ShowDialogStyle", json.dumps({"title": "Введите штрихкод:", "yes": "ОК",   "no": "Отмена"}))
+        hashMap.put("ShowDialogStyle", json.dumps(
+            {"title": "Введите штрихкод:", "yes": "ОК",   "no": "Отмена"}))
 
     elif hashMap.get("event") == "onResultPositive":
 
@@ -293,7 +297,8 @@ def py_select_on_input(hashMap, _files=None, _data=None):
         else:
             hashMap.put("beep", "15")
             hashMap.put("ShowDialog", "Ошибка")
-            hashMap.put("ShowDialogStyle", "{'title': 'Введен неверный штрихкод!',   'yes': '',   'no': 'OK' }")
+            hashMap.put(
+                "ShowDialogStyle", "{'title': 'Введен неверный штрихкод!',   'yes': '',   'no': 'OK' }")
 
     return hashMap
 
@@ -301,7 +306,8 @@ def py_select_on_input(hashMap, _files=None, _data=None):
 def Update_Qty_Goods(hashMap, card_of_goods):
     db = pelicans["TA_WMS"]
     db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": card_of_goods['ВидЗаказа']},
-                                             {"НомерЗаказа": card_of_goods['НомерЗаказа']},
+                                             {"НомерЗаказа":
+                                                 card_of_goods['НомерЗаказа']},
                                              {"Код": card_of_goods['Код']}]},
                                    {"Отобрано": card_of_goods['Отобрано']+1})
 
@@ -310,98 +316,123 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
     hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
 
-    j = {"customcards":         {
-        "options": {
-            "search_enabled": True,
-            "save_position": True
-
-
-        },
-        "layout": {
-            "type": "LinearLayout",
-            "orientation": "vertical",
-            "height": "match_parent",
-            "width": "match_parent",
-            "weight": "0",
-            "Elements": [
-                    {
-                        "type": "LinearLayout",
-                        "orientation": "horizontal",
-                        "height": "wrap_content",
-                        "width": "match_parent",
-                        "weight": "0",
-                        "Elements": [
-
-                            {
-                                "type": "LinearLayout",
-                                "orientation": "vertical",
-                                "height": "wrap_content",
-                                "width": "match_parent",
-                                "weight": "1",
-                                "Elements": [
+    j = {"customcards": {
+                        "options": {
+                            "search_enabled": True,
+                            "save_position": True
+                        },
+                        "layout": {
+                            "type": "LinearLayout",
+                            "orientation": "vertical",
+                            "height": "match_parent",
+                            "width": "match_parent",
+                            "weight": "0",
+                            "Elements": [
+                                    {
+                                        "type": "LinearLayout",
+                                        "orientation": "horizontal",
+                                        "height": "wrap_content",
+                                        "width": "match_parent",
+                                        "weight": "0",
+                                        "Elements": [
+                                            {
+                                                "type": "LinearLayout",
+                                                "orientation": "vertical",
+                                                "height": "wrap_content",
+                                                "width": "match_parent",
+                                                "weight": "1",
+                                                "Elements": [
+                                                        {
+                                                            "type": "TextView",
+                                                            "show_by_condition": "",
+                                                            "Value": "@Получатель",
+                                                            "NoRefresh": False,
+                                                            "document_type": "",
+                                                            "mask": "",
+                                                            "Variable": ""
+                                                        }
+                                                ]
+                                            },
+                                            {
+                                                "type": "TextView",
+                                                "show_by_condition": "",
+                                                "Value": "@НомерЗаказа",
+                                                "NoRefresh": False,
+                                                "document_type": "",
+                                                "mask": "",
+                                                "Variable": "",
+                                                "TextSize": "16",
+                                                "TextColor": "#DB7093",
+                                                "TextBold": True,
+                                                "TextItalic": False,
+                                                "BackgroundColor": "",
+                                                "width": "match_parent",
+                                                "height": "wrap_content",
+                                                "weight": 2
+                                            }
+                                        ]
+                                    },
                                     {
                                         "type": "TextView",
                                         "show_by_condition": "",
-                                        "Value": "@Получатель",
+                                        "Value": "@Доставка",
                                         "NoRefresh": False,
                                         "document_type": "",
                                         "mask": "",
-                                        "Variable": ""
+                                        "Variable": "",
+                                        "TextSize": "-1",
+                                        "TextColor": "#6F9393",
+                                        "TextBold": False,
+                                        "TextItalic": True,
+                                        "BackgroundColor": "",
+                                        "width": "wrap_content",
+                                        "height": "wrap_content",
+                                        "weight": 0
+                                    },
+                                    {
+                                        "type": "TextView",
+                                        "show_by_condition": "",
+                                        "Value": "@descr",
+                                        "NoRefresh": False,
+                                        "document_type": "",
+                                        "mask": "",
+                                        "Variable": "",
+                                        "TextSize": "-1",
+                                        "TextColor": "#6F9393",
+                                        "TextBold": False,
+                                        "TextItalic": True,
+                                        "BackgroundColor": "",
+                                        "width": "wrap_content",
+                                        "height": "wrap_content",
+                                        "weight": 0
+                                    },
+                                    {
+                                        "type": "TextView",
+                                        "show_by_condition": "",
+                                        "Value": "@Комментарий",
+                                        "NoRefresh": False,
+                                        "document_type": "",
+                                        "mask": "",
+                                        "Variable": "",
+                                        "TextSize": "-1",
+                                        "TextColor": "#6F9393",
+                                        "TextBold": False,
+                                        "TextItalic": True,
+                                        "BackgroundColor": "",
+                                        "width": "wrap_content",
+                                        "height": "wrap_content",
+                                        "weight": 0
                                     }
-                                ]
-                            },
-                            {
-                                "type": "TextView",
-                                "show_by_condition": "",
-                                "Value": "@НомерЗаказа",
-                                "NoRefresh": False,
-                                "document_type": "",
-                                "mask": "",
-                                "Variable": "",
-                                "TextSize": "16",
-                                "TextColor": "#DB7093",
-                                "TextBold": True,
-                                "TextItalic": False,
-                                "BackgroundColor": "",
-                                "width": "match_parent",
-                                "height": "wrap_content",
-                                "weight": 2
-                            }
-                        ]
-                    },
-                {
-                        "type": "TextView",
-                        "show_by_condition": "",
-                        "Value": "@descr",
-                        "NoRefresh": False,
-                        "document_type": "",
-                        "mask": "",
-                        "Variable": "",
-                        "TextSize": "-1",
-                        "TextColor": "#6F9393",
-                        "TextBold": False,
-                        "TextItalic": True,
-                        "BackgroundColor": "",
-                        "width": "wrap_content",
-                        "height": "wrap_content",
-                        "weight": 0
+                            ]
+                        }
                     }
-            ]
-        }
-    }
     }
 
     j["customcards"]["cardsdata"] = []
 
-    # sql = sqlClass()
-    # res = sql.SQLQuery("select DISTINCT НомерЗаказа,Получатель,ВидЗаказа from GoodsForSelection where ВидЗаказа='Заказ покупателя' and КоличествоСпланировано <> КоличествоОтобрано order by Получатель,НомерЗаказа","")
-
-    # records = json.loads(res)
     db = pelicans["TA_WMS"]
     records = db["OrdersForSelection"].find({"ВидЗаказа": "Заказ покупателя"})
-    # records = db["GoodsForSelection"].find({"ВидЗаказа":"Заказ покупателя"})
 
-    # records = db["OrdersForSelection"].all()
     if len(records) > 0:
         i = 1
         c = {"group": "Заказы покупателя"}
@@ -409,7 +440,8 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
         for record in records:
             c = {
                 "key": record['НомерЗаказа'],
-                "descr": str(i),
+                "Доставка": record['Доставка'],
+                "Комментарий": record['Комментарий'],
                 "НомерЗаказа": record['НомерЗаказа'],
                 "Получатель": record['Получатель'],
                 "ВидЗаказа": record['ВидЗаказа']
@@ -418,9 +450,6 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
             j["customcards"]["cardsdata"].append(c)
             i += 1
 
-    # res = sql.SQLQuery("select DISTINCT НомерЗаказа,Получатель,ВидЗаказа from GoodsForSelection where ВидЗаказа='Внутренний заказ' and КоличествоСпланировано <> КоличествоОтобрано order by Получатель,НомерЗаказа","")
-
-    # records = json.loads(res)
     records = db["OrdersForSelection"].find({"ВидЗаказа": "Внутренний заказ"})
     if len(records) > 0:
         i = 1
@@ -429,9 +458,10 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
         for record in records:
             c = {
                 "key": record['НомерЗаказа'],
-                "descr": str(i),
+                "Доставка": record['Доставка'],
+                "Комментарий": record['Комментарий'],
                 "НомерЗаказа": record['НомерЗаказа'],
-                "Получатель": "<b>"+record['Получатель']+"</b>",
+                "Получатель": record['Получатель'],
                 "ВидЗаказа": record['ВидЗаказа']
             }
 
@@ -443,7 +473,6 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
             j, ensure_ascii=False).encode('utf8').decode())
 
     return hashMap
-
 
 
 # -------------------
