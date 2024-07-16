@@ -329,6 +329,40 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                             "weight": "0",
                             "Elements": [
                                     {
+                                        "type": "TextView",
+                                        "show_by_condition": "",
+                                        "Value": "@Комментарий",
+                                        "NoRefresh": False,
+                                        "document_type": "",
+                                        "mask": "",
+                                        "Variable": "",
+                                        "TextSize": "-1",
+                                        "TextColor": "#6F9393",
+                                        "TextBold": False,
+                                        "TextItalic": True,
+                                        "BackgroundColor": "",
+                                        "width": "wrap_content",
+                                        "height": "wrap_content",
+                                        "weight": 0
+                                    },
+                                    {
+                                        "type": "TextView",
+                                        "show_by_condition": "",
+                                        "Value": "@Доставка",
+                                        "NoRefresh": False,
+                                        "document_type": "",
+                                        "mask": "",
+                                        "Variable": "",
+                                        "TextSize": "-1",
+                                        "TextColor": "#6F9393",
+                                        "TextBold": False,
+                                        "TextItalic": True,
+                                        "BackgroundColor": "",
+                                        "width": "wrap_content",
+                                        "height": "wrap_content",
+                                        "weight": 0
+                                    },
+                                    {
                                         "type": "LinearLayout",
                                         "orientation": "horizontal",
                                         "height": "wrap_content",
@@ -371,57 +405,6 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                                                 "weight": 2
                                             }
                                         ]
-                                    },
-                                    {
-                                        "type": "TextView",
-                                        "show_by_condition": "",
-                                        "Value": "@Доставка",
-                                        "NoRefresh": False,
-                                        "document_type": "",
-                                        "mask": "",
-                                        "Variable": "",
-                                        "TextSize": "-1",
-                                        "TextColor": "#6F9393",
-                                        "TextBold": False,
-                                        "TextItalic": True,
-                                        "BackgroundColor": "",
-                                        "width": "wrap_content",
-                                        "height": "wrap_content",
-                                        "weight": 0
-                                    },
-                                    {
-                                        "type": "TextView",
-                                        "show_by_condition": "",
-                                        "Value": "@descr",
-                                        "NoRefresh": False,
-                                        "document_type": "",
-                                        "mask": "",
-                                        "Variable": "",
-                                        "TextSize": "-1",
-                                        "TextColor": "#6F9393",
-                                        "TextBold": False,
-                                        "TextItalic": True,
-                                        "BackgroundColor": "",
-                                        "width": "wrap_content",
-                                        "height": "wrap_content",
-                                        "weight": 0
-                                    },
-                                    {
-                                        "type": "TextView",
-                                        "show_by_condition": "",
-                                        "Value": "@Комментарий",
-                                        "NoRefresh": False,
-                                        "document_type": "",
-                                        "mask": "",
-                                        "Variable": "",
-                                        "TextSize": "-1",
-                                        "TextColor": "#6F9393",
-                                        "TextBold": False,
-                                        "TextItalic": True,
-                                        "BackgroundColor": "",
-                                        "width": "wrap_content",
-                                        "height": "wrap_content",
-                                        "weight": 0
                                     }
                             ]
                         }
