@@ -342,7 +342,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                                         "TextItalic": True,
                                         "BackgroundColor": "",
                                         "width": "wrap_content",
-                                        "height": "wrap_content",
+                                        "height": 0, #"wrap_content",
                                         "weight": 0
                                     },
                                     { #Надпись Комментарий
