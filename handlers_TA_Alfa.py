@@ -412,8 +412,8 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
     }
 
     j["customcards"]["cardsdata"] = []
-    hashMap.put("structcards", str(j))
-    android.stop(hashMap)
+    # hashMap.put("structcards", str(j))
+    # android.stop(hashMap)
     db = pelicans["TA_WMS"]
     records = db["OrdersForSelection"].find({"ВидЗаказа": "Заказ покупателя"})
 
