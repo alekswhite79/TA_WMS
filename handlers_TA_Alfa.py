@@ -367,7 +367,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                                                 "BackgroundColor": "",
                                                 "width": "match_parent",
                                                 "height": "wrap_content",
-                                                "weight": 2
+                                                "weight": 1
                                             },
                                             { #Надпись НомерЗаказа
                                                 "type": "TextView",
@@ -378,7 +378,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                                                 "mask": "",
                                                 "Variable": "",
                                                 "TextSize": "16",
-                                                "TextColor": "#DB7093",
+                                                # "TextColor": "#DB7093",
                                                 "TextBold": True,
                                                 "TextItalic": False,
                                                 "BackgroundColor": "",
