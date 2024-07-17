@@ -407,7 +407,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
         for record in records:
             OrderHeader = ""
             OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка']
-            OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<p>"+"<font color=#FA8072>"+record['Комментарий']+"</font>"
+            OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<br><font color=#FA8072>"+record['Комментарий']+"</font>"
             c = {
                 "key": record['НомерЗаказа'],
                 "ЗаголовокЗаказа": OrderHeader,	
@@ -427,7 +427,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
         for record in records:
             OrderHeader = ""
             OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка']
-            OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<br>"+"<font color=#FA8072>"+record['Комментарий']+"</font>"
+            OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<br><font color=#FA8072>"+record['Комментарий']+"</font>"
             c = {
                 "key": record['НомерЗаказа'],
                 "ЗаголовокЗаказа": OrderHeader,
