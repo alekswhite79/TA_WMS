@@ -408,7 +408,6 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
             OrderHeader = ""
             OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка']
             OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<p>"+"<font color=#FA8072>"+record['Комментарий']+"</font>"
-            
             c = {
                 "key": record['НомерЗаказа'],
                 "ЗаголовокЗаказа": OrderHeader,	
@@ -426,10 +425,12 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
         c = {"group": "Внутренние заказы"}
         j["customcards"]["cardsdata"].append(c)
         for record in records:
+            OrderHeader = ""
+            OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка']
+            OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<br>"+"<font color=#FA8072>"+record['Комментарий']+"</font>"
             c = {
                 "key": record['НомерЗаказа'],
-                "Доставка": record['Доставка'],
-                "Комментарий": record['Комментарий'],
+                "ЗаголовокЗаказа": OrderHeader,
                 "НомерЗаказа": record['НомерЗаказа'],
                 "Получатель": record['Получатель'],
                 "ВидЗаказа": record['ВидЗаказа']
