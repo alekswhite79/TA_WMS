@@ -321,14 +321,14 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                             "search_enabled": True,
                             "save_position": True
                         },
-                        "layout": {
+                        "layout": { #Корневой котейнер
                             "type": "LinearLayout",
                             "orientation": "vertical",
                             "height": "match_parent",
                             "width": "match_parent",
                             "weight": "0",
                             "Elements": [
-                                    {
+                                    { #Надпись Доставка
                                         "type": "TextView",
                                         "show_by_condition": "",
                                         "Value": "@Доставка",
@@ -345,7 +345,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                                         "height": "wrap_content",
                                         "weight": 0
                                     },
-                                    {
+                                    { #Надпись Комментарий
                                         "type": "TextView",
                                         "show_by_condition": "",
                                         "Value": "@Комментарий",
@@ -362,7 +362,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                                         "height": "wrap_content",
                                         "weight": 0
                                     },
-                                    {
+                                    { #Контейнер Получатель/номер заказа
                                         "type": "LinearLayout",
                                         "orientation": "horizontal",
                                         "height": "wrap_content",
@@ -376,7 +376,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                                                 "width": "match_parent",
                                                 "weight": "1",
                                                 "Elements": [
-                                                        {
+                                                        { #Надпись Получатель
                                                             "type": "TextView",
                                                             "show_by_condition": "",
                                                             "Value": "@Получатель",
@@ -387,7 +387,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                                                         }
                                                 ]
                                             },
-                                            {
+                                            { #Надпись НомерЗаказа
                                                 "type": "TextView",
                                                 "show_by_condition": "",
                                                 "Value": "@НомерЗаказа",
