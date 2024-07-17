@@ -369,7 +369,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                                                 "height": "wrap_content",
                                                 "weight": 1
                                             },
-                                            { #Надпись НомерЗаказа
+                                            { 
                                                 "type": "TextView",
                                                 "show_by_condition": "",
                                                 "Value": "@Получатель",
@@ -442,7 +442,8 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
         for record in records:
             OrderHeader = ""
             OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка']
-            OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<br><font color=#DB7093>"+record['Комментарий']+"</font>"
+            OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<p align=left><font color=#DB7093>"+record['Комментарий']+"</font>"
+            OrderHeader = OrderHeader +"<p align=left><font color=#2E8B57>"+record['Заказ']+"</font>"
             c = {
                 "key": record['НомерЗаказа'],
                 "ЗаголовокЗаказа": OrderHeader,	
