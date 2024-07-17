@@ -342,7 +342,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                                         "TextItalic": True,
                                         "BackgroundColor": "",
                                         "width": "wrap_content",
-                                        "height": 0, #"wrap_content",
+                                        "height": "wrap_content",
                                         "weight": 0
                                     },
                                     { #Надпись Комментарий
@@ -427,7 +427,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                 "Доставка": record['Доставка'],
                 "Комментарий": record['Комментарий'],
                 "НомерЗаказа": record['НомерЗаказа'],
-                "Получатель": record['Получатель'],
+                "Получатель": "<b>"+record['Получатель']+"</b>",
                 "ВидЗаказа": record['ВидЗаказа']
             }
 
