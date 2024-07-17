@@ -425,7 +425,6 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
             c = {
                 "key": record['НомерЗаказа'],
                 "Доставка": record['Доставка']+"<br>"+"<font color=#FA8072>"+record['Комментарий']+"</font>",	
-,
                 # "Комментарий": record['Комментарий'],
                 "НомерЗаказа": record['НомерЗаказа'],
                 "Получатель": "<b>"+record['Получатель']+"</b>",
