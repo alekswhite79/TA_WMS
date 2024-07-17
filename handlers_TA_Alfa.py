@@ -381,7 +381,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                                                 # "TextColor": "#DB7093",
                                                 "TextBold": True,
                                                 "TextItalic": False,
-                                                "gravity_horizontal": "left"
+                                                "gravity_horizontal": "left",
                                                 "BackgroundColor": "",
                                                 "width": "match_parent",
                                                 "height": "wrap_content",
