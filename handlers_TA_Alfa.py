@@ -345,23 +345,23 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                                         "height": "wrap_content",
                                         "weight": 0
                                     },
-                                    { #Надпись Комментарий
-                                        "type": "TextView",
-                                        "show_by_condition": "",
-                                        "Value": "@Комментарий",
-                                        "NoRefresh": False,
-                                        "document_type": "",
-                                        "mask": "",
-                                        "Variable": "",
-                                        "TextSize": "-1",
-                                        "TextColor": "#F08080",
-                                        "TextBold": False,
-                                        "TextItalic": True,
-                                        "BackgroundColor": "",
-                                        "width": "wrap_content",
-                                        "height": "wrap_content",
-                                        "weight": 0
-                                    },
+                                    # { #Надпись Комментарий
+                                    #     "type": "TextView",
+                                    #     "show_by_condition": "",
+                                    #     "Value": "@Комментарий",
+                                    #     "NoRefresh": False,
+                                    #     "document_type": "",
+                                    #     "mask": "",
+                                    #     "Variable": "",
+                                    #     "TextSize": "-1",
+                                    #     "TextColor": "#F08080",
+                                    #     "TextBold": False,
+                                    #     "TextItalic": True,
+                                    #     "BackgroundColor": "",
+                                    #     "width": "wrap_content",
+                                    #     "height": "wrap_content",
+                                    #     "weight": 0
+                                    # },
                                     { #Контейнер Получатель/номер заказа
                                         "type": "LinearLayout",
                                         "orientation": "horizontal",
@@ -424,8 +424,9 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
         for record in records:
             c = {
                 "key": record['НомерЗаказа'],
-                "Доставка": record['Доставка'],
-                "Комментарий": record['Комментарий'],
+                "Доставка": record['Доставка']+"<br>"+"<font color=#FA8072>"+record['Комментарий']+"</font>",	
+,
+                # "Комментарий": record['Комментарий'],
                 "НомерЗаказа": record['НомерЗаказа'],
                 "Получатель": "<b>"+record['Получатель']+"</b>",
                 "ВидЗаказа": record['ВидЗаказа']
