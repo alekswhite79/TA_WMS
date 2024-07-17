@@ -365,7 +365,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                                                 # "TextBold": True,
                                                 # "TextItalic": False,
                                                 "BackgroundColor": "",
-                                                "width": 10, #"match_parent",
+                                                "width": 100, #"match_parent",
                                                 "height": "wrap_content",
                                                 "weight": 1
                                             },
