@@ -345,7 +345,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                                         "height": "wrap_content",
                                         "weight": 0
                                     },
-                                    { #Контейнер Получатель/номер заказа
+                                    { #Контейнер Получатель
                                         "type": "LinearLayout",
                                         "orientation": "horizontal",
                                         "height": "wrap_content",
@@ -353,27 +353,26 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                                         "weight": "0",
                                         "Elements": [
                                             {
-                                                "type": "LinearLayout",
-                                                "orientation": "vertical",
-                                                "height": "wrap_content",
+                                                "type": "TextView",
+                                                "show_by_condition": "",
+                                                "Value": "@ПолучательНадпись",
+                                                "NoRefresh": False,
+                                                "document_type": "",
+                                                "mask": "",
+                                                "Variable": "",
+                                                "TextSize": "16",
+                                                # "TextColor": "#DB7093",
+                                                # "TextBold": True,
+                                                # "TextItalic": False,
+                                                "BackgroundColor": "",
                                                 "width": "match_parent",
-                                                "weight": "1",
-                                                "Elements": [
-                                                        { #Надпись Получатель
-                                                            "type": "TextView",
-                                                            "show_by_condition": "",
-                                                            "Value": "@Получатель",
-                                                            "NoRefresh": False,
-                                                            "document_type": "",
-                                                            "mask": "",
-                                                            "Variable": ""
-                                                        }
-                                                ]
+                                                "height": "wrap_content",
+                                                "weight": 2
                                             },
                                             { #Надпись НомерЗаказа
                                                 "type": "TextView",
                                                 "show_by_condition": "",
-                                                "Value": "@НомерЗаказа",
+                                                "Value": "@Получатель",
                                                 "NoRefresh": False,
                                                 "document_type": "",
                                                 "mask": "",
@@ -387,6 +386,41 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                                                 "height": "wrap_content",
                                                 "weight": 2
                                             }
+                                            # {
+                                            #     "type": "LinearLayout",
+                                            #     "orientation": "vertical",
+                                            #     "height": "wrap_content",
+                                            #     "width": "match_parent",
+                                            #     "weight": "1",
+                                            #     "Elements": [
+                                            #             { #Надпись Получатель
+                                            #                 "type": "TextView",
+                                            #                 "show_by_condition": "",
+                                            #                 "Value": "@Получатель",
+                                            #                 "NoRefresh": False,
+                                            #                 "document_type": "",
+                                            #                 "mask": "",
+                                            #                 "Variable": ""
+                                            #             }
+                                            #     ]
+                                            # },
+                                            # { #Надпись НомерЗаказа
+                                            #     "type": "TextView",
+                                            #     "show_by_condition": "",
+                                            #     "Value": "@НомерЗаказа",
+                                            #     "NoRefresh": False,
+                                            #     "document_type": "",
+                                            #     "mask": "",
+                                            #     "Variable": "",
+                                            #     "TextSize": "16",
+                                            #     "TextColor": "#DB7093",
+                                            #     "TextBold": True,
+                                            #     "TextItalic": False,
+                                            #     "BackgroundColor": "",
+                                            #     "width": "match_parent",
+                                            #     "height": "wrap_content",
+                                            #     "weight": 2
+                                            # }
                                         ]
                                     }
                             ]
@@ -407,11 +441,12 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
         for record in records:
             OrderHeader = ""
             OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка']
-            OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<br><font color=#FA8072>"+record['Комментарий']+"</font>"
+            OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<br><font color=#DB7093>"+record['Комментарий']+"</font>"
             c = {
                 "key": record['НомерЗаказа'],
                 "ЗаголовокЗаказа": OrderHeader,	
                 "НомерЗаказа": record['НомерЗаказа'],
+                "ПолучательНадпись": "Покупатель: ",
                 "Получатель": "<b>"+record['Получатель']+"</b>",
                 "ВидЗаказа": record['ВидЗаказа']
             }
@@ -427,11 +462,12 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
         for record in records:
             OrderHeader = ""
             OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка']
-            OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<br><font color=#FA8072>"+record['Комментарий']+"</font>"
+            OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<br><font color=#DB7093>"+record['Комментарий']+"</font>"
             c = {
                 "key": record['НомерЗаказа'],
                 "ЗаголовокЗаказа": OrderHeader,
                 "НомерЗаказа": record['НомерЗаказа'],
+                "ПолучательНадпись": "Получатель: ",
                 "Получатель": record['Получатель'],
                 "ВидЗаказа": record['ВидЗаказа']
             }
