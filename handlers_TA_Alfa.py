@@ -314,6 +314,8 @@ def Update_Qty_Goods(hashMap, card_of_goods):
 
 def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
+    hashMap.put("list_btn", "Заказы покупателя;Внутренние заказы")
+
     hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
 
     j = {"customcards": {
@@ -443,8 +445,8 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
         for record in records:
             OrderHeader = ""
             OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка'] + "</p>"
-            OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<p align=left><font color=#DB7093>"+record['Комментарий']+"</font>"+ "</p>"
-            OrderHeader = OrderHeader +"<p align=left><font color=#2E8B57>"+record['Заказ']+"</font>"+ "</p>"
+            OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<p align=left><font color=#DB7093>"+record['Комментарий']+"</font></p>"
+            OrderHeader = OrderHeader +"<p align=left><font color=#2E8B57>"+record['Заказ']+"</font></p>"
             c = {
                 "key": record['НомерЗаказа'],
                 "ЗаголовокЗаказа": OrderHeader,	
