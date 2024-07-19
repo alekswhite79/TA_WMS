@@ -314,8 +314,6 @@ def Update_Qty_Goods(hashMap, card_of_goods):
 
 def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
-    hashMap.put("list_btn", "Заказы покупателя;Внутренние заказы")
-
     hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
 
     j = {"customcards": {
@@ -438,6 +436,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
     db = pelicans["TA_WMS"]
     records = db["OrdersForSelection"].find({"ВидЗаказа": "Заказ покупателя"})
 
+    i = 0
     if len(records) > 0:
         i = 1
         c = {"group": "Заказы покупателя"}
@@ -458,8 +457,10 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
             j["customcards"]["cardsdata"].append(c)
             i += 1
-
+    list_btn = "Заказы покупателя("+str(i)+")"
     records = db["OrdersForSelection"].find({"ВидЗаказа": "Внутренний заказ"})
+
+    i = 0
     if len(records) > 0:
         i = 1
         c = {"group": "Внутренние заказы"}
@@ -479,10 +480,13 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
             j["customcards"]["cardsdata"].append(c)
             i += 1
+    list_btn = list_btn + ";Внутренние заказы("+str(i)+")"
 
     if not hashMap.containsKey("cards"):
         hashMap.put("cards", json.dumps(
             j, ensure_ascii=False).encode('utf8').decode())
+
+    hashMap.put("list_btn", )
 
     return hashMap
 
