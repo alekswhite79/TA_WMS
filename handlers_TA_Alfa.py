@@ -24,8 +24,8 @@ def py_LoadGoods(hashMap):
     j = {
         "customcards":  {
             "options":  {
-                "search_enabled": True,
-                "save_position": True
+                # "search_enabled": True,
+                # "save_position": True
             },
             "layout":   {
                 "type": "LinearLayout",
@@ -316,6 +316,9 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
     hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
 
+    # if not hashMap.containsKey("btn_z"):
+        
+    
     j = {"customcards": {
                         "options": {
                             "search_enabled": True,
