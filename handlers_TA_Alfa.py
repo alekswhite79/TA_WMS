@@ -456,10 +456,14 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
             j["customcards"]["cardsdata"].append(c)
             for record in recordsZP:
                 OrderHeader = ""
-                OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка'] + "</p>"
-                OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<p align=left><font color=#DB7093>"+record['Комментарий']+"</font></p>"
-                OrderHeader = OrderHeader +"<p align=left><font color=#2E8B57>"+record['Заказ']+"</font><br>"
-                OrderHeader = OrderHeader +"<font color=#000000>Статус: "+record['Статус']+"</font></p>"
+                OrderHeader = OrderHeader if record['Доставка'] == "" else record['Доставка']+"\n"
+                OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader + record['Комментарий']+"\n"
+                OrderHeader = OrderHeader + record['Заказ']+"\n"
+                OrderHeader = OrderHeader +record['Статус']
+                # OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка'] + "</p>"
+                # OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<p align=left><font color=#DB7093>"+record['Комментарий']+"</font></p>"
+                # OrderHeader = OrderHeader +"<p align=left><font color=#2E8B57>"+record['Заказ']+"</font><br>"
+                # OrderHeader = OrderHeader +"<font color=#000000>Статус: "+record['Статус']+"</font></p>"
                 c = {
                     "key": record['НомерЗаказа'],
                     "ЗаголовокЗаказа": OrderHeader,	
