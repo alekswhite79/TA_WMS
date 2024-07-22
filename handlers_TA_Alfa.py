@@ -456,9 +456,9 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
             j["customcards"]["cardsdata"].append(c)
             for record in recordsZP:
                 # OrderHeader = ""
-                OrderHeader = record['Заказ']+"<br>"#"<font color=#000000>"+record['Заказ']+"</font><br>"
+                OrderHeader = "<font color=#000000>"+record['Заказ']+"</font><br>"
                 OrderHeader = OrderHeader + "Статус: " +record['Статус']
-                OrderHeader = OrderHeader if record['Доставка'] == "" else record['Доставка']+"<br>"
+                OrderHeader = OrderHeader if record['Доставка'] == "" else OrderHeader + record['Доставка']+"<br>"
                 OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader + "<font color=#DB7093>"+record['Комментарий']+"</font><br>"
                 # OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка'] + "</p>"
                 # OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<p align=left><font color=#DB7093>"+record['Комментарий']+"</font></p>"
