@@ -492,9 +492,8 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                 j["customcards"]["cardsdata"].append(c)
                 i += 1
 
-    if not hashMap.containsKey("cards"):
-        hashMap.put("cards", json.dumps(
-            j, ensure_ascii=False).encode('utf8').decode())
+    # if not hashMap.containsKey("cards"):
+    hashMap.put("cards", json.dumps(j, ensure_ascii=False).encode('utf8').decode())
 
     return hashMap
 
