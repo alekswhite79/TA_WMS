@@ -458,7 +458,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                 OrderHeader = ""
                 OrderHeader = OrderHeader if record['Доставка'] == "" else record['Доставка']+"<br>"
                 OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader + "<font color=#DB7093>"+record['Комментарий']+"</font><br>"
-                OrderHeader = OrderHeader + "<font color=#000000 size=6>"+ record['Заказ']+"</font><br>"
+                OrderHeader = OrderHeader + '<font color=#000000 size="6">'+ record['Заказ']+'</font><br>'
                 OrderHeader = OrderHeader + "Статус: " +record['Статус']
                 # OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка'] + "</p>"
                 # OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<p align=left><font color=#DB7093>"+record['Комментарий']+"</font></p>"
