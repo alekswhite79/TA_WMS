@@ -446,49 +446,51 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
     j["customcards"]["cardsdata"] = []
     # hashMap.put("structcards", str(j))
     # android.stop(hashMap)
-
-    i = 0
-    if len(recordsZP) > 0:
-        i = 1
-        c = {"group": "Заказы покупателя"}
-        j["customcards"]["cardsdata"].append(c)
-        for record in recordsZP:
-            OrderHeader = ""
-            OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка'] + "</p>"
-            OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<p align=left><font color=#DB7093>"+record['Комментарий']+"</font></p>"
-            OrderHeader = OrderHeader +"<p align=left><font color=#2E8B57>"+record['Заказ']+"</font></p>"
-            c = {
-                "key": record['НомерЗаказа'],
-                "ЗаголовокЗаказа": OrderHeader,	
-                "НомерЗаказа": record['НомерЗаказа'],
-                "ПолучательНадпись": "Покупатель: ",
-                "Получатель": "<b>"+record['Получатель']+"</b>",
-                "ВидЗаказа": record['ВидЗаказа']
-            }
-
+    ZP = True if hashMap.get("btn_z")[:6] == "Заказы" else False
+        
+    if ZP:
+        i = 0
+        if len(recordsZP) > 0:
+            i = 1
+            c = {"group": "Заказы покупателя"}
             j["customcards"]["cardsdata"].append(c)
-            i += 1
+            for record in recordsZP:
+                OrderHeader = ""
+                OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка'] + "</p>"
+                OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<p align=left><font color=#DB7093>"+record['Комментарий']+"</font></p>"
+                OrderHeader = OrderHeader +"<p align=left><font color=#2E8B57>"+record['Заказ']+"</font></p>"
+                c = {
+                    "key": record['НомерЗаказа'],
+                    "ЗаголовокЗаказа": OrderHeader,	
+                    "НомерЗаказа": record['НомерЗаказа'],
+                    "ПолучательНадпись": "Покупатель: ",
+                    "Получатель": "<b>"+record['Получатель']+"</b>",
+                    "ВидЗаказа": record['ВидЗаказа']
+                }
 
-    i = 0
-    if len(recordsVZ) > 0:
-        i = 1
-        c = {"group": "Внутренние заказы"}
-        j["customcards"]["cardsdata"].append(c)
-        for record in recordsVZ:
-            OrderHeader = ""
-            OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка']
-            OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<br><font color=#DB7093>"+record['Комментарий']+"</font>"
-            c = {
-                "key": record['НомерЗаказа'],
-                "ЗаголовокЗаказа": OrderHeader,
-                "НомерЗаказа": record['НомерЗаказа'],
-                "ПолучательНадпись": "Получатель: ",
-                "Получатель": record['Получатель'],
-                "ВидЗаказа": record['ВидЗаказа']
-            }
-
+                j["customcards"]["cardsdata"].append(c)
+                i += 1
+    else:
+        i = 0
+        if len(recordsVZ) > 0:
+            i = 1
+            c = {"group": "Внутренние заказы"}
             j["customcards"]["cardsdata"].append(c)
-            i += 1
+            for record in recordsVZ:
+                OrderHeader = ""
+                OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка']
+                OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<br><font color=#DB7093>"+record['Комментарий']+"</font>"
+                c = {
+                    "key": record['НомерЗаказа'],
+                    "ЗаголовокЗаказа": OrderHeader,
+                    "НомерЗаказа": record['НомерЗаказа'],
+                    "ПолучательНадпись": "Получатель: ",
+                    "Получатель": record['Получатель'],
+                    "ВидЗаказа": record['ВидЗаказа']
+                }
+
+                j["customcards"]["cardsdata"].append(c)
+                i += 1
 
     if not hashMap.containsKey("cards"):
         hashMap.put("cards", json.dumps(
