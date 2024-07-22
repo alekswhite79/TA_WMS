@@ -354,7 +354,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                                         "TextBold": False,
                                         "TextItalic": True,
                                         "gravity_horizontal": "left",
-                                        "BackgroundColor": "",
+                                        "BackgroundColor": "#FFEFD5",
                                         "width": "wrap_content",
                                         "height": "wrap_content",
                                         "weight": 0
@@ -372,7 +372,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                                         "TextBold": False,
                                         "TextItalic": True,
                                         "gravity_horizontal": "left",
-                                        "BackgroundColor": "",
+                                        "BackgroundColor": "#FFEFD5",
                                         "width": "wrap_content",
                                         "height": "wrap_content",
                                         "weight": 0
