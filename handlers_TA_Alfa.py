@@ -497,8 +497,9 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
             j["customcards"]["cardsdata"].append(c)
             for record in recordsVZ:
                 OrderHeader = ""
-                OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка']
-                OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<br><font color=#DB7093>"+record['Комментарий']+"</font>"
+                OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка'] + "</p>"
+                OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<p align=left><font color=#DB7093>"+record['Комментарий']+"</font></p>"
+                OrderHeader = OrderHeader +"<p align=left><font color=#2E8B57>"+record['Заказ']+"</font></p>"
                 c = {
                     "key": record['НомерЗаказа'],
                     "ЗаголовокЗаказа": OrderHeader,
