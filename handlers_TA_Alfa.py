@@ -317,6 +317,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
     hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
 
     # if not hashMap.containsKey("btn_z"):
+    android.stop(hashMap)
         
     
     j = {"customcards": {
