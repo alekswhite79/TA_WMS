@@ -316,8 +316,17 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
     hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
 
-    # if not hashMap.containsKey("btn_z"):
-    android.stop(hashMap)
+    db = pelicans["TA_WMS"]
+    recordsZP = db["OrdersForSelection"].find({"ВидЗаказа": "Заказ покупателя"})
+    recordsVZ = db["OrdersForSelection"].find({"ВидЗаказа": "Внутренний заказ"})
+
+    if not hashMap.containsKey("btn_z"):
+        list_btn = "Заказы покупателя("+str(len(recordsZP))+")"
+        list_btn = list_btn + ";Внутренние заказы("+str(len(recordsVZ))+")"
+        hashMap.put("list_btn", list_btn)
+        return hashMap
+    
+    # android.stop(hashMap)
         
     
     j = {"customcards": {
@@ -437,15 +446,13 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
     j["customcards"]["cardsdata"] = []
     # hashMap.put("structcards", str(j))
     # android.stop(hashMap)
-    db = pelicans["TA_WMS"]
-    records = db["OrdersForSelection"].find({"ВидЗаказа": "Заказ покупателя"})
 
     i = 0
-    if len(records) > 0:
+    if len(recordsZP) > 0:
         i = 1
         c = {"group": "Заказы покупателя"}
         j["customcards"]["cardsdata"].append(c)
-        for record in records:
+        for record in recordsZP:
             OrderHeader = ""
             OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка'] + "</p>"
             OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<p align=left><font color=#DB7093>"+record['Комментарий']+"</font></p>"
@@ -461,15 +468,13 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
             j["customcards"]["cardsdata"].append(c)
             i += 1
-    list_btn = "Заказы покупателя("+str(i)+")"
-    records = db["OrdersForSelection"].find({"ВидЗаказа": "Внутренний заказ"})
 
     i = 0
-    if len(records) > 0:
+    if len(recordsVZ) > 0:
         i = 1
         c = {"group": "Внутренние заказы"}
         j["customcards"]["cardsdata"].append(c)
-        for record in records:
+        for record in recordsVZ:
             OrderHeader = ""
             OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка']
             OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<br><font color=#DB7093>"+record['Комментарий']+"</font>"
@@ -484,13 +489,10 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
             j["customcards"]["cardsdata"].append(c)
             i += 1
-    list_btn = list_btn + ";Внутренние заказы("+str(i)+")"
 
     if not hashMap.containsKey("cards"):
         hashMap.put("cards", json.dumps(
             j, ensure_ascii=False).encode('utf8').decode())
-
-    hashMap.put("list_btn", list_btn)
 
     return hashMap
 
