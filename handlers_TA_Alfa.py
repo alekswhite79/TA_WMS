@@ -24,8 +24,8 @@ def py_LoadGoods(hashMap):
     j = {
         "customcards":  {
             "options":  {
-                # "search_enabled": True,
-                # "save_position": True
+                "search_enabled": True,
+                "save_position": True
             },
             "layout":   {
                 "type": "LinearLayout",
@@ -321,8 +321,8 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
     
     j = {"customcards": {
                         "options": {
-                            "search_enabled": True,
-                            "save_position": True
+                            # "search_enabled": True,
+                            # "save_position": True
                         },
                         "layout": { #Корневой котейнер
                             "type": "LinearLayout",
