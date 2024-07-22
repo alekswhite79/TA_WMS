@@ -359,6 +359,24 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                                         "height": "wrap_content",
                                         "weight": 0
                                     },
+                                    { #Надпись СтатусЗаказа
+                                        "type": "TextView",
+                                        "show_by_condition": "",
+                                        "Value": "@Статус",
+                                        "NoRefresh": False,
+                                        "document_type": "",
+                                        "mask": "",
+                                        "Variable": "",
+                                        "TextSize": "-1",
+                                        "TextColor": "#6F9393",
+                                        "TextBold": False,
+                                        "TextItalic": True,
+                                        "gravity_horizontal": "left",
+                                        "BackgroundColor": "",
+                                        "width": "wrap_content",
+                                        "height": "wrap_content",
+                                        "weight": 0
+                                    },
                                     { #Контейнер Получатель
                                         "type": "LinearLayout",
                                         "orientation": "horizontal",
@@ -463,6 +481,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                     "key": record['НомерЗаказа'],
                     "ЗаголовокЗаказа": OrderHeader,	
                     "НомерЗаказа": record['НомерЗаказа'],
+                    "Статус": record['Статус'],
                     "ПолучательНадпись": "Покупатель: ",
                     "Получатель": "<b>"+record['Получатель']+"</b>",
                     "ВидЗаказа": record['ВидЗаказа']
@@ -484,6 +503,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                     "key": record['НомерЗаказа'],
                     "ЗаголовокЗаказа": OrderHeader,
                     "НомерЗаказа": record['НомерЗаказа'],
+                    "Статус": record['Статус'],
                     "ПолучательНадпись": "Получатель: ",
                     "Получатель": record['Получатель'],
                     "ВидЗаказа": record['ВидЗаказа']
