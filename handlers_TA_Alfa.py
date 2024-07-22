@@ -354,25 +354,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                                         "TextBold": False,
                                         "TextItalic": True,
                                         "gravity_horizontal": "left",
-                                        "BackgroundColor": "#FFEFD5",
-                                        "width": "wrap_content",
-                                        "height": "wrap_content",
-                                        "weight": 0
-                                    },
-                                    { #Надпись СтатусЗаказа
-                                        "type": "TextView",
-                                        "show_by_condition": "",
-                                        "Value": "@Статус",
-                                        "NoRefresh": False,
-                                        "document_type": "",
-                                        "mask": "",
-                                        "Variable": "",
-                                        "TextSize": "-1",
-                                        "TextColor": "#6F9393",
-                                        "TextBold": False,
-                                        "TextItalic": True,
-                                        "gravity_horizontal": "left",
-                                        "BackgroundColor": "#FFEFD5",
+                                        "BackgroundColor": "",
                                         "width": "wrap_content",
                                         "height": "wrap_content",
                                         "weight": 0
@@ -477,11 +459,11 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                 OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка'] + "</p>"
                 OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<p align=left><font color=#DB7093>"+record['Комментарий']+"</font></p>"
                 OrderHeader = OrderHeader +"<p align=left><font color=#2E8B57>"+record['Заказ']+"</font></p>"
+                OrderHeader = OrderHeader +"<p align=left><font color=#000000>Статус:"+record['Статус']+"</font></p>"
                 c = {
                     "key": record['НомерЗаказа'],
                     "ЗаголовокЗаказа": OrderHeader,	
                     "НомерЗаказа": record['НомерЗаказа'],
-                    "Статус": record['Статус'],
                     "ПолучательНадпись": "Покупатель: ",
                     "Получатель": "<b>"+record['Получатель']+"</b>",
                     "ВидЗаказа": record['ВидЗаказа']
@@ -500,11 +482,11 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                 OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка'] + "</p>"
                 OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<p align=left><font color=#DB7093>"+record['Комментарий']+"</font></p>"
                 OrderHeader = OrderHeader +"<p align=left><font color=#2E8B57>"+record['Заказ']+"</font></p>"
+                OrderHeader = OrderHeader +"<p align=left><font color=#000000>Статус:"+record['Статус']+"</font></p>"
                 c = {
                     "key": record['НомерЗаказа'],
                     "ЗаголовокЗаказа": OrderHeader,
                     "НомерЗаказа": record['НомерЗаказа'],
-                    "Статус": record['Статус'],
                     "ПолучательНадпись": "Получатель: ",
                     "Получатель": record['Получатель'],
                     "ВидЗаказа": record['ВидЗаказа']
