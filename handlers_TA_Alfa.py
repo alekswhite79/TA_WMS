@@ -49,6 +49,105 @@ def py_LoadGoods(hashMap):
                                 "weight": "5",
                                 "Elements": [
                                     {
+                                        "type": "LinearLayout",
+                                        "height": "wrap_content",
+                                        "width": "wrap_content",
+                                        "weight": "0",
+                                        "Value": "",
+                                        "Variable": "",
+                                        "orientation": "horizontal",
+                                        "Elements": [
+                                            {
+                                                "type": "TextView",
+                                                "height": "wrap_content",
+                                                "width": "wrap_content",
+                                                "weight": "1",
+                                                "Value": "Производитель:",
+                                                "Variable": "",
+                                                "TextSize": "16",
+                                                # "TextBold": True,
+                                                # "TextColor": "#DB7093"
+                                            },
+                                            {
+                                                "type": "TextView",
+                                                "height": "wrap_content",
+                                                "width": "wrap_content",
+                                                "weight": "2",
+                                                "Value": "@Производитель",
+                                                "Variable": "",
+                                                "TextSize": "16",
+                                                "TextBold": True,
+                                                # "TextColor": "#DB7093"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "LinearLayout",
+                                        "height": "wrap_content",
+                                        "width": "wrap_content",
+                                        "weight": "0",
+                                        "Value": "",
+                                        "Variable": "",
+                                        "orientation": "horizontal",
+                                        "Elements": [
+                                            {
+                                                "type": "TextView",
+                                                "height": "wrap_content",
+                                                "width": "wrap_content",
+                                                "weight": "1",
+                                                "Value": "№ по каталогу:",
+                                                "Variable": "",
+                                                "TextSize": "16",
+                                                # "TextBold": True,
+                                                # "TextColor": "#DB7093"
+                                            },
+                                            {
+                                                "type": "TextView",
+                                                "height": "wrap_content",
+                                                "width": "wrap_content",
+                                                "weight": "2",
+                                                "Value": "@Артикул",
+                                                "Variable": "",
+                                                "TextSize": "16",
+                                                "TextBold": True,
+                                                # "TextColor": "#DB7093"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "LinearLayout",
+                                        "height": "wrap_content",
+                                        "width": "wrap_content",
+                                        "weight": "0",
+                                        "Value": "",
+                                        "Variable": "",
+                                        "orientation": "horizontal",
+                                        "Elements": [
+                                            {
+                                                "type": "TextView",
+                                                "height": "wrap_content",
+                                                "width": "wrap_content",
+                                                "weight": "1",
+                                                "Value": "Наименование:",
+                                                "Variable": "",
+                                                "TextSize": "16",
+                                                # "TextBold": True,
+                                                # "TextColor": "#DB7093"
+                                            },
+                                            {
+                                                "type": "TextView",
+                                                "height": "wrap_content",
+                                                "width": "wrap_content",
+                                                "weight": "2",
+                                                "Value": "@Номенклатура",
+                                                "Variable": "",
+                                                "TextSize": "16",
+                                                "TextBold": True,
+                                                # "TextColor": "#DB7093"
+                                            }
+                                        ]
+                                    },
+                                    {
                                         "type": "TextView",
                                         "show_by_condition": "",
                                         "Value": "@Номенклатура",
@@ -58,29 +157,29 @@ def py_LoadGoods(hashMap):
                                         "document_type": "",
                                         "mask": "",
                                         "Variable": ""
-                                    },
-                                    {
-                                        "type": "TextView",
-                                        "show_by_condition": "",
-                                        "Value": "@Артикул",
-                                        "width": "match_parent",
-                                        "gravity_horizontal": "center",
-                                        "NoRefresh": False,
-                                        "document_type": "",
-                                        "mask": "",
-                                        "Variable": ""
-                                    },
-                                    {
-                                        "type": "TextView",
-                                        "show_by_condition": "",
-                                        "Value": "@Производитель",
-                                        "width": "match_parent",
-                                        "gravity_horizontal": "center",
-                                        "NoRefresh": False,
-                                        "document_type": "",
-                                        "mask": "",
-                                        "Variable": ""
-                                    }
+                                    }#,
+                                    # {
+                                    #     "type": "TextView",
+                                    #     "show_by_condition": "",
+                                    #     "Value": "@Артикул",
+                                    #     "width": "match_parent",
+                                    #     "gravity_horizontal": "center",
+                                    #     "NoRefresh": False,
+                                    #     "document_type": "",
+                                    #     "mask": "",
+                                    #     "Variable": ""
+                                    # },
+                                    # {
+                                    #     "type": "TextView",
+                                    #     "show_by_condition": "",
+                                    #     "Value": "@Производитель",
+                                    #     "width": "match_parent",
+                                    #     "gravity_horizontal": "center",
+                                    #     "NoRefresh": False,
+                                    #     "document_type": "",
+                                    #     "mask": "",
+                                    #     "Variable": ""
+                                    # }
                                 ]
                             },
                             {
