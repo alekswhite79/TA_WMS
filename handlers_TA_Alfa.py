@@ -27,7 +27,7 @@ def py_LoadGoods(hashMap):
                 "search_enabled": True,
                 "save_position": True
             },
-            "layout":   {
+            "layout":   { #корневой контейнер
                 "type": "LinearLayout",
                 "orientation": "vertical",
                 "height": "match_parent",
@@ -36,7 +36,7 @@ def py_LoadGoods(hashMap):
                 "Elements": [
                     {
                         "type": "LinearLayout",
-                        "orientation": "horizontal",
+                        "orientation": "vertical",
                         "height": "wrap_content",
                         "width": "match_parent",
                         "weight": "0",
@@ -217,6 +217,202 @@ def py_LoadGoods(hashMap):
         }
     }
 
+    # j = {
+    #     "customcards":  {
+    #         "options":  {
+    #             "search_enabled": True,
+    #             "save_position": True
+    #         },
+    #         "layout":   { #корневой контейнер
+    #             "type": "LinearLayout",
+    #             "orientation": "vertical",
+    #             "height": "match_parent",
+    #             "width": "match_parent",
+    #             "weight": "0",
+    #             "Elements": [
+    #                 {
+    #                     "type": "LinearLayout",
+    #                     "orientation": "vertical",
+    #                     "height": "wrap_content",
+    #                     "width": "match_parent",
+    #                     "weight": "0",
+    #                     "Elements": [
+    #                         {
+    #                             "type": "LinearLayout",
+    #                             "orientation": "vertical",
+    #                             "height": "wrap_content",
+    #                             "width": "match_parent",
+    #                             "weight": "5",
+    #                             "Elements": [
+    #                                 {
+    #                                     "type": "TextView",
+    #                                     "show_by_condition": "",
+    #                                     "Value": "@Номенклатура",
+    #                                     "width": "match_parent",
+    #                                     "gravity_horizontal": "center",
+    #                                     "NoRefresh": False,
+    #                                     "document_type": "",
+    #                                     "mask": "",
+    #                                     "Variable": ""
+    #                                 },
+    #                                 {
+    #                                     "type": "TextView",
+    #                                     "show_by_condition": "",
+    #                                     "Value": "@Артикул",
+    #                                     "width": "match_parent",
+    #                                     "gravity_horizontal": "center",
+    #                                     "NoRefresh": False,
+    #                                     "document_type": "",
+    #                                     "mask": "",
+    #                                     "Variable": ""
+    #                                 },
+    #                                 {
+    #                                     "type": "TextView",
+    #                                     "show_by_condition": "",
+    #                                     "Value": "@Производитель",
+    #                                     "width": "match_parent",
+    #                                     "gravity_horizontal": "center",
+    #                                     "NoRefresh": False,
+    #                                     "document_type": "",
+    #                                     "mask": "",
+    #                                     "Variable": ""
+    #                                 }
+    #                             ]
+    #                         },
+    #                         {
+    #                             "type": "LinearLayout",
+    #                             "orientation": "vertical",
+    #                             "height": "wrap_content",
+    #                             "width": "match_parent",
+    #                             "weight": "2",
+    #                             "Elements": [
+    #                                 {
+    #                                     "type": "LinearLayout",
+    #                                     "height": "wrap_content",
+    #                                     "width": "wrap_content",
+    #                                     "weight": "0",
+    #                                     "Value": "",
+    #                                     "Variable": "",
+    #                                     "orientation": "horizontal",
+    #                                     "Elements": [
+    #                                         {
+    #                                             "type": "TextView",
+    #                                             "height": "wrap_content",
+    #                                             "width": "wrap_content",
+    #                                             "weight": "0",
+    #                                             "Value": "Заказано:",
+    #                                             "Variable": "",
+    #                                             "TextSize": "16",
+    #                                             "TextBold": True,
+    #                                             "TextColor": "#DB7093"
+    #                                         },
+    #                                         {
+    #                                             "type": "TextView",
+    #                                             "height": "wrap_content",
+    #                                             "width": "wrap_content",
+    #                                             "weight": "0",
+    #                                             "Value": "@КОтбору",
+    #                                             "Variable": "",
+    #                                             "TextSize": "16",
+    #                                             "TextBold": True,
+    #                                             "TextColor": "#DB7093"
+    #                                         }
+    #                                     ]
+    #                                 },
+    #                                 {
+    #                                     "type": "LinearLayout",
+    #                                     "height": "wrap_content",
+    #                                     "width": "wrap_content",
+    #                                     "weight": "0",
+    #                                     "Value": "",
+    #                                     "Variable": "",
+    #                                     "orientation": "horizontal",
+    #                                     "Elements": [
+    #                                         {
+    #                                             "type": "TextView",
+    #                                             "height": "wrap_content",
+    #                                             "width": "wrap_content",
+    #                                             "weight": "0",
+    #                                             "Value": "Отобрано:",
+    #                                             "Variable": "",
+    #                                             "TextSize": "16",
+    #                                             "TextBold": True,
+    #                                             "TextColor": "#DB7093"
+    #                                         },
+    #                                         {
+    #                                             "type": "TextView",
+    #                                             "height": "wrap_content",
+    #                                             "width": "wrap_content",
+    #                                             "weight": "0",
+    #                                             "Value": "@Отобрано",
+    #                                             "Variable": "",
+    #                                             "TextSize": "16",
+    #                                             "TextBold": True,
+    #                                             "TextColor": "#DB7093"
+    #                                         }
+    #                                     ]
+    #                                 },
+    #                                 {
+    #                                     "type": "LinearLayout",
+    #                                     "height": "wrap_content",
+    #                                     "width": "wrap_content",
+    #                                     "weight": "0",
+    #                                     "Value": "",
+    #                                     "Variable": "",
+    #                                     "orientation": "horizontal",
+    #                                     "Elements": [
+    #                                         {
+    #                                             "type": "TextView",
+    #                                             "height": "wrap_content",
+    #                                             "width": "wrap_content",
+    #                                             "weight": "0",
+    #                                             "Value": "Св.остаток:",
+    #                                             "Variable": "",
+    #                                             "TextSize": "16",
+    #                                             "TextBold": True,
+    #                                             "TextColor": "#DB7093"
+    #                                         },
+    #                                         {
+    #                                             "type": "TextView",
+    #                                             "height": "wrap_content",
+    #                                             "width": "wrap_content",
+    #                                             "weight": "0",
+    #                                             "Value": "@СвободныйОстаток",
+    #                                             "Variable": "",
+    #                                             "TextSize": "16",
+    #                                             "TextBold": True,
+    #                                             "TextColor": "#DB7093"
+    #                                         }
+    #                                     ]
+    #                                 }
+    #                             ]
+    #                         }
+    #                     ]
+    #                 },
+    #                 {
+    #                     "type": "TextView",
+    #                     "show_by_condition": "",
+    #                     "Value": "@descr",
+    #                     "NoRefresh": False,
+    #                     "document_type": "",
+    #                     "mask": "",
+    #                     "Variable": "",
+    #                     "TextSize": "-1",
+    #                     "TextColor": "#6F9393",
+    #                     "gravity_horizontal": "left",
+    #                     "gravity_vertical": "center",
+    #                     "TextBold": False,
+    #                     "TextItalic": True,
+    #                     "BackgroundColor": "",
+    #                     "width": "wrap_content",
+    #                     "height": "wrap_content",
+    #                     "weight": "3"
+    #                 }
+    #             ]
+    #         }
+    #     }
+    # }
+
     j["customcards"]["cardsdata"] = []
 
     db = pelicans["TA_WMS"]
@@ -246,8 +442,7 @@ def py_LoadGoods(hashMap):
             j["customcards"]["cardsdata"].append(c)
             i += 1
 
-    hashMap.put("CardsGoods", json.dumps(
-        j, ensure_ascii=False).encode('utf8').decode())
+    hashMap.put("CardsGoods", json.dumps(j, ensure_ascii=False).encode('utf8').decode())
 
     return hashMap
 
