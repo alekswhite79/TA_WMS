@@ -48,7 +48,7 @@ def py_LoadGoods(hashMap):
                                 "width": "match_parent",
                                 "weight": "5",
                                 "Elements": [
-                                    {
+                                    { #Контейнер Производитель
                                         "type": "LinearLayout",
                                         "height": "wrap_content",
                                         "width": "wrap_content",
@@ -60,7 +60,7 @@ def py_LoadGoods(hashMap):
                                             {
                                                 "type": "TextView",
                                                 "height": "wrap_content",
-                                                "width": "wrap_content",
+                                                "width": "match_parent",
                                                 "weight": "1",
                                                 "Value": "Производитель:",
                                                 "Variable": "",
@@ -71,7 +71,7 @@ def py_LoadGoods(hashMap):
                                             {
                                                 "type": "TextView",
                                                 "height": "wrap_content",
-                                                "width": "wrap_content",
+                                                "width": "match_parent",
                                                 "weight": "2",
                                                 "Value": "@Производитель",
                                                 "Variable": "",
@@ -81,7 +81,7 @@ def py_LoadGoods(hashMap):
                                             }
                                         ]
                                     },
-                                    {
+                                    { #Контейнер Артикул
                                         "type": "LinearLayout",
                                         "height": "wrap_content",
                                         "width": "wrap_content",
@@ -95,7 +95,7 @@ def py_LoadGoods(hashMap):
                                                 "height": "wrap_content",
                                                 "width": "wrap_content",
                                                 "weight": "1",
-                                                "Value": "№ по каталогу:",
+                                                "Value": "№ по каталогу: ",
                                                 "Variable": "",
                                                 "TextSize": "16",
                                                 # "TextBold": True,
@@ -114,7 +114,7 @@ def py_LoadGoods(hashMap):
                                             }
                                         ]
                                     },
-                                    {
+                                    { #Контейнер Наименование
                                         "type": "LinearLayout",
                                         "height": "wrap_content",
                                         "width": "wrap_content",
@@ -142,14 +142,13 @@ def py_LoadGoods(hashMap):
                                                 "Value": "@Номенклатура",
                                                 "Variable": "",
                                                 "gravity_horizontal": "left",
-                                                "gravity_vertical": "center",
                                                 "TextSize": "16",
                                                 "TextBold": True,
                                                 # "TextColor": "#DB7093"
                                             }
                                         ]
                                     },
-                                    {
+                                    { #Контейнер Св.остаток
                                         "type": "LinearLayout",
                                         "height": "wrap_content",
                                         "width": "wrap_content",
