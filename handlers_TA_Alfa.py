@@ -174,7 +174,7 @@ def py_LoadGoods(hashMap):
                                                 "width": "wrap_content",
                                                 "weight": "0",
                                                 "Value": "@СвободныйОстаток",
-                                                "NumberPrecision": "3",
+                                                "NumberPrecision": 3,
                                                 "Variable": "",
                                                 "TextSize": "16",
                                                 "TextBold": True,
