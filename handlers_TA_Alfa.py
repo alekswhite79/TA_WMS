@@ -142,6 +142,7 @@ def py_LoadGoods(hashMap):
                                                 "Value": "@Номенклатура",
                                                 "Variable": "",
                                                 "gravity_horizontal": "left",
+                                                "gravity_vertical": "center",
                                                 "TextSize": "16",
                                                 "TextBold": True,
                                                 # "TextColor": "#DB7093"
@@ -174,7 +175,6 @@ def py_LoadGoods(hashMap):
                                                 "width": "wrap_content",
                                                 "weight": "0",
                                                 "Value": "@СвободныйОстаток",
-                                                "NumberPrecision": 3,
                                                 "Variable": "",
                                                 "TextSize": "16",
                                                 "TextBold": True,
