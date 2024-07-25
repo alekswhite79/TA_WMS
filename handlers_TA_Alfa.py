@@ -51,7 +51,7 @@ def py_LoadGoods(hashMap):
                                     { #Контейнер Производитель
                                         "type": "LinearLayout",
                                         "height": "wrap_content",
-                                        "width": "wrap_content",
+                                        "width": "match_parent",
                                         "weight": "0",
                                         "Value": "",
                                         "Variable": "",
@@ -84,7 +84,7 @@ def py_LoadGoods(hashMap):
                                     { #Контейнер Артикул
                                         "type": "LinearLayout",
                                         "height": "wrap_content",
-                                        "width": "wrap_content",
+                                        "width": "match_parent",
                                         "weight": "0",
                                         "Value": "",
                                         "Variable": "",
@@ -93,7 +93,7 @@ def py_LoadGoods(hashMap):
                                             {
                                                 "type": "TextView",
                                                 "height": "wrap_content",
-                                                "width": "wrap_content",
+                                                "width": "match_parent",
                                                 "weight": "1",
                                                 "Value": "№ по каталогу: ",
                                                 "Variable": "",
@@ -104,7 +104,7 @@ def py_LoadGoods(hashMap):
                                             {
                                                 "type": "TextView",
                                                 "height": "wrap_content",
-                                                "width": "wrap_content",
+                                                "width": "match_parent",
                                                 "weight": "2",
                                                 "Value": "@Артикул",
                                                 "Variable": "",
@@ -161,7 +161,7 @@ def py_LoadGoods(hashMap):
                                                 "type": "TextView",
                                                 "height": "wrap_content",
                                                 "width": "wrap_content",
-                                                "weight": "0",
+                                                "weight": "1",
                                                 "Value": "Св.остаток:",
                                                 "Variable": "",
                                                 "TextSize": "16",
@@ -172,7 +172,7 @@ def py_LoadGoods(hashMap):
                                                 "type": "TextView",
                                                 "height": "wrap_content",
                                                 "width": "wrap_content",
-                                                "weight": "0",
+                                                "weight": "1",
                                                 "Value": "@СвободныйОстаток",
                                                 "Variable": "",
                                                 "TextSize": "16",
