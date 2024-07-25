@@ -66,6 +66,7 @@ def py_LoadGoods(hashMap):
                                                 "Variable": "",
                                                 "TextSize": "16",
                                                 # "TextBold": True,
+                                                "BackgroundColor": "#A9A9A9",
                                                 # "TextColor": "#DB7093"
                                             },
                                             {
@@ -77,6 +78,7 @@ def py_LoadGoods(hashMap):
                                                 "Variable": "",
                                                 "TextSize": "16",
                                                 "TextBold": True,
+                                                "BackgroundColor": "#A9A9A9",
                                                 # "TextColor": "#DB7093"
                                             }
                                         ]
@@ -95,7 +97,7 @@ def py_LoadGoods(hashMap):
                                                 "height": "wrap_content",
                                                 "width": "match_parent",
                                                 "weight": "1",
-                                                "Value": "№ по каталогу: ",
+                                                "Value": "№ по каталогу:",
                                                 "Variable": "",
                                                 "TextSize": "16",
                                                 # "TextBold": True,
