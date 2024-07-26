@@ -160,7 +160,7 @@ def py_LoadGoods(hashMap):
                                     { #Контейнер Св.остаток
                                         "type": "LinearLayout",
                                         "height": "wrap_content",
-                                        "width": "wrap_content",
+                                        "width": "match_parent",
                                         "weight": "0",
                                         "Value": "",
                                         "Variable": "",
@@ -169,7 +169,7 @@ def py_LoadGoods(hashMap):
                                             {
                                                 "type": "TextView",
                                                 "height": "wrap_content",
-                                                "width": "wrap_content",
+                                                "width": "match_parent",
                                                 "weight": "3",
                                                 "Value": "Св.остаток:",
                                                 "Variable": "",
@@ -181,7 +181,7 @@ def py_LoadGoods(hashMap):
                                             {
                                                 "type": "TextView",
                                                 "height": "wrap_content",
-                                                "width": "wrap_content",
+                                                "width": "match_parent",
                                                 "weight": "2",
                                                 "Value": "@СвободныйОстаток",
                                                 "Variable": "",
@@ -190,86 +190,11 @@ def py_LoadGoods(hashMap):
                                                 # "TextColor": "#DB7093"
                                             }
                                         ]
-                                    }
-                                    # {
-                                    #     "type": "TextView",
-                                    #     "show_by_condition": "",
-                                    #     "Value": "@Номенклатура",
-                                    #     "width": "match_parent",
-                                    #     "gravity_horizontal": "center",
-                                    #     "NoRefresh": False,
-                                    #     "document_type": "",
-                                    #     "mask": "",
-                                    #     "Variable": ""
-                                    # }#,
-                                    # {
-                                    #     "type": "TextView",
-                                    #     "show_by_condition": "",
-                                    #     "Value": "@Артикул",
-                                    #     "width": "match_parent",
-                                    #     "gravity_horizontal": "center",
-                                    #     "NoRefresh": False,
-                                    #     "document_type": "",
-                                    #     "mask": "",
-                                    #     "Variable": ""
-                                    # },
-                                    # {
-                                    #     "type": "TextView",
-                                    #     "show_by_condition": "",
-                                    #     "Value": "@Производитель",
-                                    #     "width": "match_parent",
-                                    #     "gravity_horizontal": "center",
-                                    #     "NoRefresh": False,
-                                    #     "document_type": "",
-                                    #     "mask": "",
-                                    #     "Variable": ""
-                                    # }
-                                ]
-                            },
-                            {
-                                "type": "LinearLayout",
-                                "orientation": "vertical",
-                                "height": "wrap_content",
-                                "width": "match_parent",
-                                "weight": "2",
-                                "Elements": [
-                                    {
-                                        "type": "LinearLayout",
-                                        "height": "wrap_content",
-                                        "width": "wrap_content",
-                                        "weight": "0",
-                                        "Value": "",
-                                        "Variable": "",
-                                        "orientation": "horizontal",
-                                        "Elements": [
-                                            {
-                                                "type": "TextView",
-                                                "height": "wrap_content",
-                                                "width": "wrap_content",
-                                                "weight": "0",
-                                                "Value": "Заказано:",
-                                                "Variable": "",
-                                                "TextSize": "16",
-                                                "TextBold": True,
-                                                "TextColor": "#DB7093"
-                                            },
-                                            {
-                                                "type": "TextView",
-                                                "height": "wrap_content",
-                                                "width": "wrap_content",
-                                                "weight": "0",
-                                                "Value": "@КОтбору",
-                                                "Variable": "",
-                                                "TextSize": "16",
-                                                "TextBold": True,
-                                                "TextColor": "#DB7093"
-                                            }
-                                        ]
                                     },
-                                    {
+                                    { #Контейнер Заказано/Отобрано
                                         "type": "LinearLayout",
                                         "height": "wrap_content",
-                                        "width": "wrap_content",
+                                        "width": "match_parent",
                                         "weight": "0",
                                         "Value": "",
                                         "Variable": "",
@@ -278,29 +203,105 @@ def py_LoadGoods(hashMap):
                                             {
                                                 "type": "TextView",
                                                 "height": "wrap_content",
-                                                "width": "wrap_content",
-                                                "weight": "0",
-                                                "Value": "Отобрано:",
+                                                "width": "match_parent",
+                                                "weight": "3",
+                                                "Value": "Заказано/Отобрано:",
                                                 "Variable": "",
                                                 "TextSize": "16",
+                                                "gravity_horizontal": "right",
                                                 "TextBold": True,
-                                                "TextColor": "#DB7093"
+                                                # "TextColor": "#DB7093"
                                             },
                                             {
                                                 "type": "TextView",
                                                 "height": "wrap_content",
-                                                "width": "wrap_content",
-                                                "weight": "0",
-                                                "Value": "@Отобрано",
+                                                "width": "match_parent",
+                                                "weight": "2",
+                                                "Value": "@ЗаказаноОтобрано",
                                                 "Variable": "",
                                                 "TextSize": "16",
                                                 "TextBold": True,
-                                                "TextColor": "#DB7093"
+                                                # "TextColor": "#DB7093"
                                             }
                                         ]
                                     }
                                 ]
-                            }
+                            }#,
+                            # {
+                            #     "type": "LinearLayout",
+                            #     "orientation": "vertical",
+                            #     "height": "wrap_content",
+                            #     "width": "match_parent",
+                            #     "weight": "2",
+                            #     "Elements": [
+                            #         {
+                            #             "type": "LinearLayout",
+                            #             "height": "wrap_content",
+                            #             "width": "wrap_content",
+                            #             "weight": "0",
+                            #             "Value": "",
+                            #             "Variable": "",
+                            #             "orientation": "horizontal",
+                            #             "Elements": [
+                            #                 {
+                            #                     "type": "TextView",
+                            #                     "height": "wrap_content",
+                            #                     "width": "wrap_content",
+                            #                     "weight": "0",
+                            #                     "Value": "Заказано:",
+                            #                     "Variable": "",
+                            #                     "TextSize": "16",
+                            #                     "TextBold": True,
+                            #                     "TextColor": "#DB7093"
+                            #                 },
+                            #                 {
+                            #                     "type": "TextView",
+                            #                     "height": "wrap_content",
+                            #                     "width": "wrap_content",
+                            #                     "weight": "0",
+                            #                     "Value": "@КОтбору",
+                            #                     "Variable": "",
+                            #                     "TextSize": "16",
+                            #                     "TextBold": True,
+                            #                     "TextColor": "#DB7093"
+                            #                 }
+                            #             ]
+                            #         },
+                            #         {
+                            #             "type": "LinearLayout",
+                            #             "height": "wrap_content",
+                            #             "width": "wrap_content",
+                            #             "weight": "0",
+                            #             "Value": "",
+                            #             "Variable": "",
+                            #             "orientation": "horizontal",
+                            #             "Elements": [
+                            #                 {
+                            #                     "type": "TextView",
+                            #                     "height": "wrap_content",
+                            #                     "width": "wrap_content",
+                            #                     "weight": "0",
+                            #                     "Value": "Отобрано:",
+                            #                     "Variable": "",
+                            #                     "TextSize": "16",
+                            #                     "TextBold": True,
+                            #                     "TextColor": "#DB7093"
+                            #                 },
+                            #                 {
+                            #                     "type": "TextView",
+                            #                     "height": "wrap_content",
+                            #                     "width": "wrap_content",
+                            #                     "weight": "0",
+                            #                     "Value": "@Отобрано",
+                            #                     "Variable": "",
+                            #                     "TextSize": "16",
+                            #                     "TextBold": True,
+                            #                     "TextColor": "#DB7093"
+                            #                 }
+                            #             ]
+                            #         }
+                            #     ]
+                            # }
                         ]
                     },
                     {
@@ -537,8 +538,9 @@ def py_LoadGoods(hashMap):
             c = {
                 "key": record['ШтрихКод'],
                 "descr": "Pos. "+str(i)+". "+record['Код'],
-                "КОтбору": record['КОтбору'],
-                "Отобрано": record['Отобрано'],
+                "ЗаказаноОтобрано": record['КОтбору']+"/"+record['Отобрано']+" "+ record['ЕдиницаИзмерения'],
+                # "КОтбору": record['КОтбору'],
+                # "Отобрано": record['Отобрано'],
                 "СвободныйОстаток": record['СвободныйОстаток'] + " " + record['ЕдиницаИзмерения'],
                 "Код": record['Код'],
                 "Номенклатура": record['Номенклатура'],
