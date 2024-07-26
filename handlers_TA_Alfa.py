@@ -170,23 +170,24 @@ def py_LoadGoods(hashMap):
                                                 "type": "TextView",
                                                 "height": "wrap_content",
                                                 "width": "wrap_content",
-                                                "weight": "1",
+                                                "weight": "3",
                                                 "Value": "Св.остаток:",
                                                 "Variable": "",
                                                 "TextSize": "16",
+                                                "gravity_horizontal": "right",
                                                 "TextBold": True,
-                                                "TextColor": "#DB7093"
+                                                # "TextColor": "#DB7093"
                                             },
                                             {
                                                 "type": "TextView",
                                                 "height": "wrap_content",
                                                 "width": "wrap_content",
-                                                "weight": "1",
+                                                "weight": "2",
                                                 "Value": "@СвободныйОстаток",
                                                 "Variable": "",
                                                 "TextSize": "16",
                                                 "TextBold": True,
-                                                "TextColor": "#DB7093"
+                                                # "TextColor": "#DB7093"
                                             }
                                         ]
                                     }
@@ -538,11 +539,12 @@ def py_LoadGoods(hashMap):
                 "descr": "Pos. "+str(i)+". "+record['Код'],
                 "КОтбору": record['КОтбору'],
                 "Отобрано": record['Отобрано'],
-                "СвободныйОстаток": record['СвободныйОстаток'],
+                "СвободныйОстаток": record['СвободныйОстаток'] + " " + record['ЕдиницаИзмерения'],
                 "Код": record['Код'],
                 "Номенклатура": record['Номенклатура'],
                 "Артикул": record['Артикул'],
-                "Производитель": record['Производитель']  # ,
+                "Производитель": record['Производитель']#,
+                # "ЕдиницаИзмерения": record['ЕдиницаИзмерения']
                 # "НомерЗаказа": record['НомерЗаказа'],
                 # "Получатель": record['Получатель'],
                 # "ВидЗаказа": record['ВидЗаказа']
