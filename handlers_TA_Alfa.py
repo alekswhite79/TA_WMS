@@ -567,7 +567,7 @@ def Display_Elrment(hashMap):
     hashMap.put("Заголовок", hashMap.get("ВидЗаказа").upper()
                 if OrderIsSelect else "ВЫБЕРИТЕ ЗАКАЗ")
     hashMap.put("Show_Контейнер_Получатель", "1" if OrderIsSelect else "-1")
-    hashMap.put("Show_Контейнер_ВремяОстатков", "-1" if OrderIsSelect else "1")
+    hashMap.put("Show_Контейнер_ВремяОстатков", "1" if OrderIsSelect else "-1")
     hashMap.put("Show_Контейнер_Товар", "1" if OrderIsSelect else "-1")
     return hashMap
 
