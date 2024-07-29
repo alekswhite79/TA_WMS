@@ -538,8 +538,8 @@ def py_LoadGoods(hashMap):
             c = {
                 "key": record['ШтрихКод'],
                 "descr": "Pos. "+str(i)+". "+record['Код'],
-                "ЗаказаноОтобрано": "<font color=#F08080>"+str(record['КОтбору'])+"/"+str(record['Отобрано'])+" "+ record['ЕдиницаИзмерения']+"</font>",
-                # "ЗаказаноОтобрано": "<font color=#"+"F08080" if record['КОтбору']>record['Отобрано'] else "32CD32" + ">"+str(record['КОтбору'])+"/"+str(record['Отобрано'])+" "+ record['ЕдиницаИзмерения']+"</font>",
+                # "ЗаказаноОтобрано": "<font color=#F08080>"+str(record['КОтбору'])+"/"+str(record['Отобрано'])+" "+ record['ЕдиницаИзмерения']+"</font>",
+                "ЗаказаноОтобрано": "<font color=#F08080>" if record['КОтбору']>record['Отобрано'] else "<font color=#32CD32>" + str(record['КОтбору'])+"/"+str(record['Отобрано'])+" "+ record['ЕдиницаИзмерения']+"</font>",
                 # "КОтбору": record['КОтбору'],
                 # "Отобрано": record['Отобрано'],
                 "СвободныйОстаток": record['СвободныйОстаток'] + " " + record['ЕдиницаИзмерения'],
