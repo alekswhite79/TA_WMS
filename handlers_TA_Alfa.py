@@ -67,7 +67,7 @@ def py_LoadGoods(hashMap):
                                                 "gravity_horizontal": "right",
                                                 "TextSize": "16",
                                                 # "TextBold": True,
-                                                "BackgroundColor": "#A9A9A9",
+                                                # "BackgroundColor": "#A9A9A9",
                                                 # "TextColor": "#DB7093"
                                             },
                                             {
@@ -80,7 +80,7 @@ def py_LoadGoods(hashMap):
                                                 "gravity_horizontal": "left",
                                                 "TextSize": "16",
                                                 "TextBold": True,
-                                                "BackgroundColor": "#A9A9A9",
+                                                # "BackgroundColor": "#A9A9A9",
                                                 # "TextColor": "#DB7093"
                                             }
                                         ]
@@ -104,7 +104,7 @@ def py_LoadGoods(hashMap):
                                                 "gravity_horizontal": "right",
                                                 "TextSize": "16",
                                                 # "TextBold": True,
-                                                "BackgroundColor": "#A9A9A9",
+                                                # "BackgroundColor": "#A9A9A9",
                                                 # "TextColor": "#DB7093"
                                             },
                                             {
@@ -117,7 +117,7 @@ def py_LoadGoods(hashMap):
                                                 "gravity_horizontal": "left",
                                                 "TextSize": "16",
                                                 "TextBold": True,
-                                                "BackgroundColor": "#A9A9A9",
+                                                # "BackgroundColor": "#A9A9A9",
                                                 # "TextColor": "#DB7093"
                                             }
                                         ]
@@ -170,7 +170,7 @@ def py_LoadGoods(hashMap):
                                                 "type": "TextView",
                                                 "height": "wrap_content",
                                                 "width": "match_parent",
-                                                "weight": "3",
+                                                "weight": "1",
                                                 "Value": "Св.остаток:",
                                                 "Variable": "",
                                                 "TextSize": "16",
@@ -182,7 +182,7 @@ def py_LoadGoods(hashMap):
                                                 "type": "TextView",
                                                 "height": "wrap_content",
                                                 "width": "match_parent",
-                                                "weight": "2",
+                                                "weight": "1",
                                                 "Value": "@СвободныйОстаток",
                                                 "Variable": "",
                                                 "TextSize": "16",
