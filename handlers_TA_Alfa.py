@@ -768,8 +768,8 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                 # OrderHeader = ""
                 OrderHeader = "<font color=#000000><b>"+record['Заказ']+"</b></font><br>"
                 OrderHeader = OrderHeader + "Статус: " +record['Статус']
-                OrderHeader = OrderHeader if record['Доставка'] == "" else "<br>"+OrderHeader + record['Доставка']
-                OrderHeader = OrderHeader if record['Комментарий'] == "" else "<br>"+OrderHeader + "<font color=#DB7093>"+record['Комментарий']+"</font>"
+                OrderHeader = OrderHeader if record['Доставка'] == "" else OrderHeader + "<br>"+record['Доставка']
+                OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader + "<br><font color=#DB7093>"+record['Комментарий']+"</font>"
                 # OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка'] + "</p>"
                 # OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<p align=left><font color=#DB7093>"+record['Комментарий']+"</font></p>"
                 # OrderHeader = OrderHeader +"<p align=left><font color=#2E8B57>"+record['Заказ']+"</font><br>"
@@ -795,8 +795,8 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
             for record in recordsVZ:
                 OrderHeader = "<font color=#000000><b>"+record['Заказ']+"</b></font><br>"
                 OrderHeader = OrderHeader + "Статус: " +record['Статус']
-                OrderHeader = OrderHeader if record['Доставка'] == "" else "<br>"+OrderHeader + record['Доставка']
-                OrderHeader = OrderHeader if record['Комментарий'] == "" else "<br>"+OrderHeader + "<font color=#DB7093>"+record['Комментарий']+"</font>"
+                OrderHeader = OrderHeader if record['Доставка'] == "" else OrderHeader + "<br>"+record['Доставка']
+                OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader + "<br><font color=#DB7093>"+record['Комментарий']+"</font>"
 
                 # OrderHeader = ""
                 # OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка'] + "</p>"
