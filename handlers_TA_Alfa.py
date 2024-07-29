@@ -303,26 +303,26 @@ def py_LoadGoods(hashMap):
                             #     ]
                             # }
                         ]
-                    },
-                    {
-                        "type": "TextView",
-                        "show_by_condition": "",
-                        "Value": "@descr",
-                        "NoRefresh": False,
-                        "document_type": "",
-                        "mask": "",
-                        "Variable": "",
-                        "TextSize": "-1",
-                        "TextColor": "#6F9393",
-                        "gravity_horizontal": "left",
-                        "gravity_vertical": "center",
-                        "TextBold": False,
-                        "TextItalic": True,
-                        "BackgroundColor": "",
-                        "width": "wrap_content",
-                        "height": "wrap_content",
-                        "weight": "3"
-                    }
+                    }#,
+                    # {
+                    #     "type": "TextView",
+                    #     "show_by_condition": "",
+                    #     "Value": "@descr",
+                    #     "NoRefresh": False,
+                    #     "document_type": "",
+                    #     "mask": "",
+                    #     "Variable": "",
+                    #     "TextSize": "-1",
+                    #     "TextColor": "#6F9393",
+                    #     "gravity_horizontal": "left",
+                    #     "gravity_vertical": "center",
+                    #     "TextBold": False,
+                    #     "TextItalic": True,
+                    #     "BackgroundColor": "",
+                    #     "width": "wrap_content",
+                    #     "height": "wrap_content",
+                    #     "weight": "3"
+                    # }
                 ]
             }
         }
@@ -537,9 +537,9 @@ def py_LoadGoods(hashMap):
 
             c = {
                 "key": record['ШтрихКод'],
-                "descr": "Pos. "+str(i)+". "+record['Код'],
-                # "ЗаказаноОтобрано": "<font color=#F08080>"+str(record['КОтбору'])+"/"+str(record['Отобрано'])+" "+ record['ЕдиницаИзмерения']+"</font>",
-                "ЗаказаноОтобрано": "<font color=#F08080>" if record['КОтбору']>record['Отобрано'] else "<font color=#32CD32>" + str(record['КОтбору'])+"/"+str(record['Отобрано'])+" "+ record['ЕдиницаИзмерения']+"</font>",
+                # "descr": "Pos. "+str(i)+". "+record['Код'],
+                "ЗаказаноОтобрано": "<font color=#F08080>"+str(record['КОтбору'])+"/"+str(record['Отобрано'])+" "+ record['ЕдиницаИзмерения']+"</font>",
+                # "ЗаказаноОтобрано": "<font color=#F08080>" if record['КОтбору']>record['Отобрано'] else "<font color=#32CD32>" + str(record['КОтбору'])+"/"+str(record['Отобрано'])+" "+ record['ЕдиницаИзмерения']+"</font>",
                 # "КОтбору": record['КОтбору'],
                 # "Отобрано": record['Отобрано'],
                 "СвободныйОстаток": record['СвободныйОстаток'] + " " + record['ЕдиницаИзмерения'],
@@ -568,6 +568,7 @@ def Display_Elrment(hashMap):
                 if OrderIsSelect else "ВЫБЕРИТЕ ЗАКАЗ")
     hashMap.put("Show_Контейнер_Получатель", "1" if OrderIsSelect else "-1")
     hashMap.put("Show_Контейнер_Товар", "1" if OrderIsSelect else "-1")
+    hashMap.put("Контейнер_ВремяОст", "1" if OrderIsSelect else "-1")
     return hashMap
 
 
@@ -777,8 +778,9 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                     "key": record['НомерЗаказа'],
                     "ЗаголовокЗаказа": OrderHeader,	
                     "НомерЗаказа": record['НомерЗаказа'],
-                    "ПолучательНадпись": "Покупатель: ",
+                    "ВремяОст": record['ВремяОстатков'],
                     "Получатель": "<b>"+record['Получатель']+"</b>",
+                    "ПолучательНадпись": "Покупатель: ",
                     "ВидЗаказа": record['ВидЗаказа']
                 }
 
