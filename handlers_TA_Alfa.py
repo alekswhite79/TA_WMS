@@ -817,6 +817,18 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
     return hashMap
 
 
+def py_SelectionOrder(hashMap, _files=None, _data=None):
+    Sel_card = json.loads(hashMap.get("selected_card_data"))
+    hashMap.put("Получатель", Sel_card['Получатель'])
+    hashMap.put("ВидЗаказа", Sel_card['ВидЗаказа'])
+    hashMap.put("ВремяОстатков", Sel_card['ВремяОстатков'])
+    hashMap.put(hashMap.get("field"), hashMap.get("selected_card_key"))
+    hashMap.put("BackScreen", "")
+    # @field=@selected_card_key; BackScreen
+
+
+
+
 # -------------------
 def init_on_start(hashMap, _files=None, _data=None):
 
@@ -1053,15 +1065,6 @@ def Update_central_table(hashMap, _files):
     #     hashMap.put("central_table",json.dumps(table))
 
     return hashMap
-
-
-def py_SelectionOrder(hashMap, _files=None, _data=None):
-    Sel_card = json.loads(hashMap.get("selected_card_data"))
-    hashMap.put("Получатель", Sel_card['Получатель'])
-    hashMap.put("ВидЗаказа", Sel_card['ВидЗаказа'])
-    hashMap.put(hashMap.get("field"), hashMap.get("selected_card_key"))
-    hashMap.put("BackScreen", "")
-    # @field=@selected_card_key; BackScreen
 
 
 def py_Input(hashMap, _files=None, _data=None):
