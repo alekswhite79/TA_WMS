@@ -568,7 +568,7 @@ def Display_Elrment(hashMap):
                 if OrderIsSelect else "ВЫБЕРИТЕ ЗАКАЗ")
     hashMap.put("Show_Контейнер_Получатель", "1" if OrderIsSelect else "-1")
     hashMap.put("Show_Контейнер_Товар", "1" if OrderIsSelect else "-1")
-    hashMap.put("Контейнер_ВремяОст", "1" if OrderIsSelect else "-1")
+    hashMap.put("Show_Контейнер_ВремяОстатков", "1" if OrderIsSelect else "-1")
     return hashMap
 
 
@@ -778,9 +778,9 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                     "key": record['НомерЗаказа'],
                     "ЗаголовокЗаказа": OrderHeader,	
                     "НомерЗаказа": record['НомерЗаказа'],
-                    "ВремяОст": record['ВремяОстатков'],
                     "Получатель": "<b>"+record['Получатель']+"</b>",
                     "ПолучательНадпись": "Покупатель: ",
+                    "ВремяОстатков": record['ВремяОстатков'],
                     "ВидЗаказа": record['ВидЗаказа']
                 }
 
@@ -804,6 +804,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                     "НомерЗаказа": record['НомерЗаказа'],
                     "ПолучательНадпись": "Получатель: ",
                     "Получатель": record['Получатель'],
+                    "ВремяОстатков": record['ВремяОстатков'],
                     "ВидЗаказа": record['ВидЗаказа']
                 }
 
