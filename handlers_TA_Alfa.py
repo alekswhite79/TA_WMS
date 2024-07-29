@@ -710,7 +710,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                                                 "width": "match_parent",
                                                 "height": "wrap_content",
                                                 "weight": 1
-                                            }
+                                            }#,
                                             # {
                                             #     "type": "LinearLayout",
                                             #     "orientation": "vertical",
@@ -767,9 +767,9 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
             for record in recordsZP:
                 # OrderHeader = ""
                 OrderHeader = "<font color=#000000><b>"+record['Заказ']+"</b></font><br>"
-                OrderHeader = OrderHeader + "Статус: " +record['Статус']+"<br>"
-                OrderHeader = OrderHeader if record['Доставка'] == "" else OrderHeader + record['Доставка']+"<br>"
-                OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader + "<font color=#DB7093>"+record['Комментарий']+"</font>"
+                OrderHeader = OrderHeader + "Статус: " +record['Статус']
+                OrderHeader = OrderHeader if record['Доставка'] == "" else "<br>"+OrderHeader + record['Доставка']
+                OrderHeader = OrderHeader if record['Комментарий'] == "" else "<br>"+OrderHeader + "<font color=#DB7093>"+record['Комментарий']+"</font>"
                 # OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка'] + "</p>"
                 # OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<p align=left><font color=#DB7093>"+record['Комментарий']+"</font></p>"
                 # OrderHeader = OrderHeader +"<p align=left><font color=#2E8B57>"+record['Заказ']+"</font><br>"
@@ -790,14 +790,19 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
         i = 0
         if len(recordsVZ) > 0:
             i = 1
-            c = {"group": "Внутренние заказы"}
-            j["customcards"]["cardsdata"].append(c)
+            # c = {"group": "Внутренние заказы"}
+            # j["customcards"]["cardsdata"].append(c)
             for record in recordsVZ:
-                OrderHeader = ""
-                OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка'] + "</p>"
-                OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<p align=left><font color=#DB7093>"+record['Комментарий']+"</font></p>"
-                OrderHeader = OrderHeader +"<p align=left><font color=#2E8B57>"+record['Заказ']+"</font></p>"
-                OrderHeader = OrderHeader +"<p align=left><font color=#000000>Статус:"+record['Статус']+"</font></p>"
+                OrderHeader = "<font color=#000000><b>"+record['Заказ']+"</b></font><br>"
+                OrderHeader = OrderHeader + "Статус: " +record['Статус']
+                OrderHeader = OrderHeader if record['Доставка'] == "" else "<br>"+OrderHeader + record['Доставка']
+                OrderHeader = OrderHeader if record['Комментарий'] == "" else "<br>"+OrderHeader + "<font color=#DB7093>"+record['Комментарий']+"</font>"
+
+                # OrderHeader = ""
+                # OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка'] + "</p>"
+                # OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<p align=left><font color=#DB7093>"+record['Комментарий']+"</font></p>"
+                # OrderHeader = OrderHeader +"<p align=left><font color=#2E8B57>"+record['Заказ']+"</font></p>"
+                # OrderHeader = OrderHeader +"<p align=left><font color=#000000>Статус:"+record['Статус']+"</font></p>"
                 c = {
                     "key": record['НомерЗаказа'],
                     "ЗаголовокЗаказа": OrderHeader,
