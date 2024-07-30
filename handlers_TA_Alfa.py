@@ -851,8 +851,9 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
             for record in recordsVZ:
                 OrderHeader = "<font color=#000000><b>"+record['Заказ']+"</b></font><br>"
                 OrderHeader = OrderHeader + "Статус: " +record['Статус']
-                OrderHeader = OrderHeader if record['Доставка'] == "" else OrderHeader + "<br>"+str(ord(record['Доставка'][0]))+" что-то"
-                OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader + "<br><font color=#DB7093>"+record['Комментарий']+"что-то2"+"</font>"
+                # OrderHeader = OrderHeader if record['Доставка'] == "" else OrderHeader + "<br>"+str(ord(record['Доставка'][0]))+" что-то"
+                OrderHeader = OrderHeader if record['Доставка'] == "" else OrderHeader + "<br>"+record['Доставка']
+                OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader + "<br><font color=#DB7093>"+record['Комментарий']+"</font>"
 
                 # OrderHeader = ""
                 # OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка'] + "</p>"
