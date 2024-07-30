@@ -224,7 +224,21 @@ def py_LoadGoods(hashMap):
                                                 # "TextColor": "#DB7093"
                                             }
                                         ]
-                                    }
+                                    },
+                                    { # Кнопка ручной ввод
+                                        "type": "Button",
+                                        "show_by_condition": "",
+                                        "Value": "@НадписьКнРучВвод", 
+                                        "Variable": "btn_manual",
+                                        "NoRefresh": False,
+                                        "document_type": "",
+                                        "mask": "",
+                                        "TextSize": "-1",
+                                        "TextColor": "#6F9393",
+                                        "width": "wrap_content",
+                                        "height": "wrap_content",
+                                        "weight": "1"
+                                    }   
                                 ]
                             }#,
                             # {
@@ -536,7 +550,7 @@ def py_LoadGoods(hashMap):
                 continue
 
             c = {
-                "key": record['ШтрихКод'],
+                "key": record['Код'],
                 # "descr": "Pos. "+str(i)+". "+record['Код'],
                 "ЗаказаноОтобрано": "<font color=#F08080>"+str(record['КОтбору'])+"/"+str(record['Отобрано'])+" "+ record['ЕдиницаИзмерения']+"</font>",
                 # "ЗаказаноОтобрано": "<font color=#F08080>" if record['КОтбору']>record['Отобрано'] else "<font color=#32CD32>" + str(record['КОтбору'])+"/"+str(record['Отобрано'])+" "+ record['ЕдиницаИзмерения']+"</font>",
@@ -546,7 +560,8 @@ def py_LoadGoods(hashMap):
                 "Код": record['Код'],
                 "Номенклатура": record['Номенклатура'],
                 "Артикул": record['Артикул'],
-                "Производитель": record['Производитель']#,
+                "Производитель": record['Производитель'],
+                "НадписьКнРучВвод": "Подтвердить отбор" if record['ШтрихКод'] == "Нет штрихкода" else "Ввести ШК вручную"
                 # "ЕдиницаИзмерения": record['ЕдиницаИзмерения']
                 # "НомерЗаказа": record['НомерЗаказа'],
                 # "Получатель": record['Получатель'],
