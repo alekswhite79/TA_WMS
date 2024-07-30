@@ -240,7 +240,8 @@ def py_LoadGoods(hashMap):
                                                 "width": "match_parent",
                                                 "type_s": "Список кнопока горизонтальный",
                                                 "weight": "0",
-                                                "Value": "@list_btn_Goods",
+                                                # "Value": "@list_btn_Goods",
+                                                "Value": "Кнопка 1; Кнопка 2",
                                                 "Variable": "btn_z_Goods",
                                                 "width_value": "match_parent",
                                                 "height_value": "match_parent"
