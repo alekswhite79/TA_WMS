@@ -236,32 +236,32 @@ def py_LoadGoods(hashMap):
                                         # "Padding": "10",
                                         "Elements": [
                                             {
-                                                # "type": "Button",
-                                                # "show_by_condition": "",
-                                                # "Value": "@НадписьКнРучВвод", 
-                                                # "Variable": "btn_manual",
-                                                # "NoRefresh": False,
-                                                # "document_type": "",
-                                                # "mask": "",
-                                                # "TextSize": "-1",
-                                                # "TextColor": "#6F9393",
-                                                # "width": "wrap_content",
-                                                # "height": "wrap_content",
-                                                # "weight": "1"
-                                                "type": "CButtonsHorizontal",
-                                                "orientation": "vertical",
-                                                "height": "match_parent",
-                                                "width": "match_parent",
-                                                "type_s": "Список кнопока горизонтальный",
-                                                "weight": "1",
-                                                # "Value": "@list_btn_Goods",
-                                                "Value": "Кнопка 1; Кнопка 2",
-                                                "Variable": "btn_z_Goods",
-                                                "width_value": "match_parent",
-                                                "height_value": "match_parent"
+                                                "type": "Button",
+                                                "show_by_condition": "1",
+                                                "Value": "@НадписьКнРучВвод", 
+                                                "Variable": "btn_manual",
+                                                "NoRefresh": False,
+                                                "document_type": "",
+                                                "mask": "",
+                                                "TextSize": "-1",
+                                                "TextColor": "#6F9393",
+                                                "width": "wrap_content",
+                                                "height": "wrap_content",
+                                                "weight": "1"
+                                                # "type": "CButtonsHorizontal",
+                                                # "orientation": "vertical",
+                                                # "height": "match_parent",
+                                                # "width": "match_parent",
+                                                # "type_s": "Список кнопока горизонтальный",
+                                                # "weight": "1",
+                                                # # "Value": "@list_btn_Goods",
+                                                # "Value": "Кнопка 1; Кнопка 2",
+                                                # "Variable": "btn_z_Goods",
+                                                # "width_value": "match_parent",
+                                                # "height_value": "match_parent"
                                             }
                                         ],
-                                    },
+                                    }#,
                                     # { # Кнопка ручной ввод
                                     #     "type": "Button",
                                     #     "show_by_condition": "",
@@ -600,9 +600,9 @@ def py_LoadGoods(hashMap):
                 "Номенклатура": record['Номенклатура'],
                 "Артикул": record['Артикул'],
                 "Производитель": record['Производитель'],
-                "list_btn_Goods": list_btn_Goods
+                # "list_btn_Goods": list_btn_Goods
 
-                # "НадписьКнРучВвод": "Подтвердить отбор" if record['ШтрихКод'] == "Нет штрихкода" else "Ручной ввод ШК"
+                "НадписьКнРучВвод": "Подтвердить отбор" if record['ШтрихКод'] == "Нет штрихкода" else "Ручной ввод ШК"
                 # "ЕдиницаИзмерения": record['ЕдиницаИзмерения']
                 # "НомерЗаказа": record['НомерЗаказа'],
                 # "Получатель": record['Получатель'],
@@ -851,7 +851,6 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
             for record in recordsVZ:
                 OrderHeader = "<font color=#000000><b>"+record['Заказ']+"</b></font><br>"
                 OrderHeader = OrderHeader + "Статус: " +record['Статус']
-                # OrderHeader = OrderHeader if record['Доставка'] == "" else OrderHeader + "<br>"+str(ord(record['Доставка'][0]))+" что-то"
                 OrderHeader = OrderHeader if record['Доставка'] == "" else OrderHeader + "<br>"+record['Доставка']
                 OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader + "<br><font color=#DB7093>"+record['Комментарий']+"</font>"
 
