@@ -227,11 +227,13 @@ def py_LoadGoods(hashMap):
                                     },
                                     { #Кнопки ручного ввода
                                         "type": "LinearLayout",
-                                        "orientation": "horizontal",
                                         "height": "wrap_content",
                                         "width": "match_parent",
-                                        "Padding": "10",
                                         "weight": "0",
+                                        "Value": "",
+                                        "Variable": "",
+                                        "orientation": "horizontal",
+                                        # "Padding": "10",
                                         "Elements": [
                                             {
                                                 "type": "CButtonsHorizontal",
