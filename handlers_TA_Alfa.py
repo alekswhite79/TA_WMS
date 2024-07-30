@@ -225,20 +225,42 @@ def py_LoadGoods(hashMap):
                                             }
                                         ]
                                     },
-                                    { # Кнопка ручной ввод
-                                        "type": "Button",
-                                        "show_by_condition": "",
-                                        "Value": "@НадписьКнРучВвод", 
-                                        "Variable": "btn_manual",
-                                        "NoRefresh": False,
-                                        "document_type": "",
-                                        "mask": "",
-                                        "TextSize": "-1",
-                                        "TextColor": "#6F9393",
-                                        "width": "wrap_content",
+                                    { #Кнопки ручного ввода
+                                        "type": "LinearLayout",
+                                        "orientation": "horizontal",
                                         "height": "wrap_content",
-                                        "weight": "1"
-                                    }   
+                                        "width": "match_parent",
+                                        "Padding": "10",
+                                        "weight": "0",
+                                        "Elements": [
+                                            {
+                                                "type": "CButtonsHorizontal",
+                                                "orientation": "vertical",
+                                                "height": "match_parent",
+                                                "width": "match_parent",
+                                                "type_s": "Список кнопока горизонтальный",
+                                                "weight": "0",
+                                                "Value": "@list_btn_Goods",
+                                                "Variable": "btn_z_Goods",
+                                                "width_value": "match_parent",
+                                                "height_value": "match_parent"
+                                            }
+                                        ],
+                                    },
+                                    # { # Кнопка ручной ввод
+                                    #     "type": "Button",
+                                    #     "show_by_condition": "",
+                                    #     "Value": "@НадписьКнРучВвод", 
+                                    #     "Variable": "btn_manual",
+                                    #     "NoRefresh": False,
+                                    #     "document_type": "",
+                                    #     "mask": "",
+                                    #     "TextSize": "-1",
+                                    #     "TextColor": "#6F9393",
+                                    #     "width": "wrap_content",
+                                    #     "height": "wrap_content",
+                                    #     "weight": "1"
+                                    # }   
                                 ]
                             }#,
                             # {
@@ -548,7 +570,9 @@ def py_LoadGoods(hashMap):
         for record in records:
             if (record['КОтбору'] == record['Отобрано']):
                 continue
-
+            
+            list_btn_Goods = "Подтвердить отбор" if record['ШтрихКод'] == "Нет штрихкода" else "Ручной ввод ШК" + ";Ввести количество" if record['КОтбору'] > 1 else ""
+                
             c = {
                 "key": record['Код'],
                 # "descr": "Pos. "+str(i)+". "+record['Код'],
@@ -561,7 +585,9 @@ def py_LoadGoods(hashMap):
                 "Номенклатура": record['Номенклатура'],
                 "Артикул": record['Артикул'],
                 "Производитель": record['Производитель'],
-                "НадписьКнРучВвод": "Подтвердить отбор" if record['ШтрихКод'] == "Нет штрихкода" else "Ввести ШК вручную"
+                "list_btn_Goods": list_btn_Goods
+
+                # "НадписьКнРучВвод": "Подтвердить отбор" if record['ШтрихКод'] == "Нет штрихкода" else "Ручной ввод ШК"
                 # "ЕдиницаИзмерения": record['ЕдиницаИзмерения']
                 # "НомерЗаказа": record['НомерЗаказа'],
                 # "Получатель": record['Получатель'],
