@@ -237,7 +237,7 @@ def py_LoadGoods(hashMap):
                                         "Elements": [
                                             {
                                                 "type": "Button",
-                                                "show_by_condition": "0",
+                                                "show_by_condition": False,
                                                 "Value": "@НадписьКнРучВвод", 
                                                 "Variable": "btn_manual",
                                                 "NoRefresh": False,
