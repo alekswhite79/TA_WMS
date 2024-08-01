@@ -205,7 +205,7 @@ def py_LoadGoods(hashMap):
                                                 "height": "wrap_content",
                                                 "width": "match_parent",
                                                 "weight": "1",
-                                                "Value": "Заказано/Отобрано:",
+                                                "Value": "Отобрано/Заказано:",
                                                 "Variable": "",
                                                 "TextSize": "16",
                                                 "gravity_horizontal": "right",
@@ -591,7 +591,7 @@ def py_LoadGoods(hashMap):
             c = {
                 "key": record['Код'],
                 # "descr": "Pos. "+str(i)+". "+record['Код'],
-                "ЗаказаноОтобрано": "<font color=#F08080>"+str(record['КОтбору'])+"/"+str(record['Отобрано'])+" "+ record['ЕдиницаИзмерения']+"</font>",
+                "ЗаказаноОтобрано": "<font color=#F08080>"+str(record['Отобрано'])+"/"+str(record['КОтбору'])+" "+ record['ЕдиницаИзмерения']+"</font>",
                 # "ЗаказаноОтобрано": "<font color=#F08080>" if record['КОтбору']>record['Отобрано'] else "<font color=#32CD32>" + str(record['КОтбору'])+"/"+str(record['Отобрано'])+" "+ record['ЕдиницаИзмерения']+"</font>",
                 # "КОтбору": record['КОтбору'],
                 # "Отобрано": record['Отобрано'],
@@ -628,9 +628,9 @@ def Display_Elrment(hashMap):
     return hashMap
 
 
-def py_select_on_input(hashMap, _files=None, _data=None):
+def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в экране Отбор
 
-    if hashMap.get("listener") == 'barcode':
+    if hashMap.get("listener") == 'barcode': #сканирование
 
         b = hashMap.get('barcode')
         hashMap.put('barcode', '')
@@ -647,8 +647,8 @@ def py_select_on_input(hashMap, _files=None, _data=None):
         else:
             Update_Qty_Goods(hashMap, card_of_goods)
 
-    elif hashMap.get("listener") == 'CardsClick':
-
+    elif hashMap.get("listener") == 'CardsClick': #тап по карточке 
+        android.stop(hashMap)
         hashMap.put("ShowDialog", "ДиалогВводШК")
         hashMap.put("ShowDialogStyle", json.dumps(
             {"title": "Введите штрихкод:", "yes": "ОК",   "no": "Отмена"}))
