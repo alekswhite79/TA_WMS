@@ -10,6 +10,7 @@ from ru.travelfood.simple_ui import SimpleUtilites as suClass
 import os
 from ru.travelfood.simple_ui import NoSQL as noClass
 
+db = pelicans["TA_WMS"]
 
 def py_OnStartOrder(hashMap, _files=None, _data=None):
     # android.stop()
@@ -224,44 +225,44 @@ def py_LoadGoods(hashMap):
                                                 # "TextColor": "#DB7093"
                                             }
                                         ]
-                                    },
-                                    { #Кнопки ручного ввода
-                                        "type": "LinearLayout",
-                                        "height": "wrap_content",
-                                        "width": "match_parent",
-                                        "weight": "0",
-                                        "Value": "",
-                                        "Variable": "",
-                                        "orientation": "horizontal",
-                                        # "Padding": "10",
-                                        "Elements": [
-                                            {
-                                                "type": "Button",
-                                                "show_by_condition": False,
-                                                "Value": "@НадписьКнРучВвод", 
-                                                "Variable": "btn_manual",
-                                                "NoRefresh": False,
-                                                "document_type": "",
-                                                "mask": "",
-                                                "TextSize": "-1",
-                                                "TextColor": "#6F9393",
-                                                "width": "wrap_content",
-                                                "height": "wrap_content",
-                                                "weight": "1"
-                                                # "type": "CButtonsHorizontal",
-                                                # "orientation": "vertical",
-                                                # "height": "match_parent",
-                                                # "width": "match_parent",
-                                                # "type_s": "Список кнопока горизонтальный",
-                                                # "weight": "1",
-                                                # # "Value": "@list_btn_Goods",
-                                                # "Value": "Кнопка 1; Кнопка 2",
-                                                # "Variable": "btn_z_Goods",
-                                                # "width_value": "match_parent",
-                                                # "height_value": "match_parent"
-                                            }
-                                        ],
                                     }#,
+                                    # { #Кнопки ручного ввода
+                                    #     "type": "LinearLayout",
+                                    #     "height": "wrap_content",
+                                    #     "width": "match_parent",
+                                    #     "weight": "0",
+                                    #     "Value": "",
+                                    #     "Variable": "",
+                                    #     "orientation": "horizontal",
+                                    #     # "Padding": "10",
+                                    #     "Elements": [
+                                    #         {
+                                    #             "type": "Button",
+                                    #             "show_by_condition": False,
+                                    #             "Value": "@НадписьКнРучВвод", 
+                                    #             "Variable": "btn_manual",
+                                    #             "NoRefresh": False,
+                                    #             "document_type": "",
+                                    #             "mask": "",
+                                    #             "TextSize": "-1",
+                                    #             "TextColor": "#6F9393",
+                                    #             "width": "wrap_content",
+                                    #             "height": "wrap_content",
+                                    #             "weight": "1"
+                                    #             # "type": "CButtonsHorizontal",
+                                    #             # "orientation": "vertical",
+                                    #             # "height": "match_parent",
+                                    #             # "width": "match_parent",
+                                    #             # "type_s": "Список кнопока горизонтальный",
+                                    #             # "weight": "1",
+                                    #             # # "Value": "@list_btn_Goods",
+                                    #             # "Value": "Кнопка 1; Кнопка 2",
+                                    #             # "Variable": "btn_z_Goods",
+                                    #             # "width_value": "match_parent",
+                                    #             # "height_value": "match_parent"
+                                    #         }
+                                    #     ],
+                                    # }#,
                                     # { # Кнопка ручной ввод
                                     #     "type": "Button",
                                     #     "show_by_condition": "",
@@ -577,7 +578,7 @@ def py_LoadGoods(hashMap):
 
     j["customcards"]["cardsdata"] = []
 
-    db = pelicans["TA_WMS"]
+    # db = pelicans["TA_WMS"]
     records = db["GoodsForSelection"].find({"$and": [{"ВидЗаказа": hashMap.get("ВидЗаказа")},
                                                      {"НомерЗаказа": hashMap.get("НомерЗаказа")}]})
     if len(records) > 0:
@@ -600,9 +601,10 @@ def py_LoadGoods(hashMap):
                 "Номенклатура": record['Номенклатура'],
                 "Артикул": record['Артикул'],
                 "Производитель": record['Производитель'],
+                "ШтрихКод": record['ШтрихКод'],
                 # "list_btn_Goods": list_btn_Goods
 
-                "НадписьКнРучВвод": "Подтвердить отбор" if record['ШтрихКод'] == "Нет штрихкода" else "Ручной ввод ШК"
+                # "НадписьКнРучВвод": "Подтвердить отбор" if record['ШтрихКод'] == "Нет штрихкода" else "Ручной ввод ШК"
                 # "ЕдиницаИзмерения": record['ЕдиницаИзмерения']
                 # "НомерЗаказа": record['НомерЗаказа'],
                 # "Получатель": record['Получатель'],
@@ -634,37 +636,69 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
 
         b = hashMap.get('barcode')
         hashMap.put('barcode', '')
-        goods_in_order = json.loads(hashMap.get('CardsGoods'))[
-            "customcards"]["cardsdata"]
-        # search by barcode value
-        card_of_goods = next(
-            (item for item in goods_in_order if item["key"] == b), None)
-        if card_of_goods == None:
+        
+        records = db["GoodsForSelection"].find({"ШтрихКод":b})
+        if len(records) == 0:
             hashMap.put("beep", "15")
             hashMap.put("ShowDialog", "Ошибка")
-            hashMap.put(
-                "ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
+            hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
+        elif len(records) == 1:
+            kodItem = records['Код']
+            goods_in_order = json.loads(hashMap.get('CardsGoods'))["customcards"]["cardsdata"]
+            # search by barcode value
+            card_of_goods = next((item for item in goods_in_order if item["key"] == kodItem), None)
+            if card_of_goods == None:
+                hashMap.put("beep", "15")
+                hashMap.put("ShowDialog", "Ошибка")
+                hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
+            else:
+                Update_Qty_Goods(hashMap, card_of_goods)
         else:
-            Update_Qty_Goods(hashMap, card_of_goods)
+            hashMap.put("beep", "15")
+            hashMap.put("ShowDialog", "Ошибка")
+            hashMap.put("ShowDialogStyle", "{'title': 'Более 1-го товара с таким штрихкодом!',   'yes': '',   'no': 'OK' }")
 
     elif hashMap.get("listener") == 'CardsClick': #тап по карточке 
         android.stop(hashMap)
+        
         hashMap.put("ShowDialog", "ДиалогВводШК")
-        hashMap.put("ShowDialogStyle", json.dumps(
-            {"title": "Введите штрихкод:", "yes": "ОК",   "no": "Отмена"}))
+        hashMap.put("ShowDialogStyle", json.dumps({"title": "Введите штрихкод:", "yes": "ОК",   "no": "Отмена"}))
 
     elif hashMap.get("event") == "onResultPositive":
 
         b = hashMap.get('barcode')
         hashMap.put('barcode', '')
-        if hashMap.get('selected_card_key') == b:
-            dict_selected_card = json.loads(hashMap.get('selected_card_data'))
-            Update_Qty_Goods(hashMap, dict_selected_card)
+        
+        records = db["GoodsForSelection"].find({"ШтрихКод":b})
+
+        if len(records) == 0:
+            hashMap.put("beep", "15")
+            hashMap.put("ShowDialog", "Ошибка")
+            hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
+        elif len(records) == 1:
+            kodItem = records['Код']
+            if hashMap.get('selected_card_key') == kodItem:
+                dict_selected_card = json.loads(hashMap.get('selected_card_data'))
+                Update_Qty_Goods(hashMap, dict_selected_card)
+            else:
+                hashMap.put("beep", "15")
+                hashMap.put("ShowDialog", "Ошибка")
+                hashMap.put("ShowDialogStyle", "{'title': 'Введен неверный штрихкод!',   'yes': '',   'no': 'OK' }")
+
+            goods_in_order = json.loads(hashMap.get('CardsGoods'))["customcards"]["cardsdata"]
+            # search by barcode value
+            card_of_goods = next((item for item in goods_in_order if item["key"] == kodItem), None)
+            if card_of_goods == None:
+                hashMap.put("beep", "15")
+                hashMap.put("ShowDialog", "Ошибка")
+                hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
+            else:
+                Update_Qty_Goods(hashMap, card_of_goods)
         else:
             hashMap.put("beep", "15")
             hashMap.put("ShowDialog", "Ошибка")
-            hashMap.put(
-                "ShowDialogStyle", "{'title': 'Введен неверный штрихкод!',   'yes': '',   'no': 'OK' }")
+            hashMap.put("ShowDialogStyle", "{'title': 'Более 1-го товара с таким штрихкодом!',   'yes': '',   'no': 'OK' }")
+
 
     return hashMap
 
