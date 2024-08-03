@@ -28,9 +28,9 @@ def py_LoadGoods(hashMap):
                 "search_enabled": True,
                 "save_position": True
             },
-            "layout":   {  # корневой контейнер
+            "layout":   { #корневой контейнер
                 "type": "LinearLayout",
-                "orientation": "horizontal",
+                "orientation": "vertical",
                 "height": "match_parent",
                 "width": "match_parent",
                 "weight": "0",
@@ -42,8 +42,15 @@ def py_LoadGoods(hashMap):
                         "width": "match_parent",
                         "weight": "0",
                         "Elements": [
-                            {  # Контейнер Производитель
+                            {
                                 "type": "LinearLayout",
+                                "orientation": "vertical",
+                                "height": "wrap_content",
+                                "width": "match_parent",
+                                "weight": "5",
+                                "Elements": [
+                                    { #Контейнер Производитель
+                                        "type": "LinearLayout",
                                         "height": "wrap_content",
                                         "width": "match_parent",
                                         "weight": "0",
@@ -78,9 +85,9 @@ def py_LoadGoods(hashMap):
                                                 # "TextColor": "#DB7093"
                                             }
                                         ]
-                            },
-                            {  # Контейнер Артикул
-                                "type": "LinearLayout",
+                                    },
+                                    { #Контейнер Артикул
+                                        "type": "LinearLayout",
                                         "height": "wrap_content",
                                         "width": "match_parent",
                                         "weight": "0",
@@ -115,9 +122,9 @@ def py_LoadGoods(hashMap):
                                                 # "TextColor": "#DB7093"
                                             }
                                         ]
-                            },
-                            {  # Контейнер Наименование
-                                "type": "LinearLayout",
+                                    },
+                                    { #Контейнер Наименование
+                                        "type": "LinearLayout",
                                         "height": "wrap_content",
                                         "width": "match_parent",
                                         "weight": "0",
@@ -150,9 +157,9 @@ def py_LoadGoods(hashMap):
                                                 # "TextColor": "#DB7093"
                                             }
                                         ]
-                            },
-                            {  # Контейнер Св.остаток
-                                "type": "LinearLayout",
+                                    },
+                                    { #Контейнер Св.остаток
+                                        "type": "LinearLayout",
                                         "height": "wrap_content",
                                         "width": "match_parent",
                                         "weight": "0",
@@ -184,9 +191,9 @@ def py_LoadGoods(hashMap):
                                                 # "TextColor": "#DB7093"
                                             }
                                         ]
-                            },
-                            {  # Контейнер Заказано/Отобрано
-                                "type": "LinearLayout",
+                                    },
+                                    { #Контейнер Заказано/Отобрано
+                                        "type": "LinearLayout",
                                         "height": "wrap_content",
                                         "width": "match_parent",
                                         "weight": "0",
@@ -218,45 +225,46 @@ def py_LoadGoods(hashMap):
                                                 # "TextColor": "#DB7093"
                                             }
                                         ]
-                            }  # ,
-                            # { #Кнопка ШК
-                            #     "type": "LinearLayout",
-                            #     "height": "wrap_content",
-                            #     "width": "match_parent",
-                            #     "weight": "0",
-                            #     "Value": "",
-                            #     "Variable": "",
-                            #     "orientation": "horizontal",
-                            #     # "Padding": "10",
-                            #     "Elements": [
-                            #         {
-                            #             "type": "Button",
-                            #             "show_by_condition": False,
-                            #             "Value": "@НадписьКнРучВвод",
-                            #             "Variable": "btn_manual",
-                            #             "NoRefresh": False,
-                            #             "document_type": "",
-                            #             "mask": "",
-                            #             "TextSize": "-1",
-                            #             "TextColor": "#6F9393",
-                            #             "width": "wrap_content",
-                            #             "height": "wrap_content",
-                            #             "weight": "1"
-                            #         }
-                            #     ],
-                            # }#,
+                                    },
+                                    {  # Меню карточки
+                                        "type": "PopupMenuButton",
+                                        "show_by_condition": "",
+                                        "Value": "@ListCardMenu",
+                                        "NoRefresh": False,
+                                        "document_type": "",
+                                        "mask": "",
+                                        "Variable": "menu_card"
+                                    }#,
+                                    # {  # Кнопка ШК
+                                    #     "type": "LinearLayout",
+                                    #     "height": "wrap_content",
+                                    #     "width": "match_parent",
+                                    #     "weight": "0",
+                                    #     "Value": "",
+                                    #     "Variable": "",
+                                    #     "orientation": "horizontal",
+                                    #     # "Padding": "10",
+                                    #     "Elements": [
+                                    #         {
+                                    #             "type": "Button",
+                                    #             "show_by_condition": False,
+                                    #             "Value": "@НадписьКнРучВвод",
+                                    #             "Variable": "btn_manual",
+                                    #             "NoRefresh": False,
+                                    #             "document_type": "",
+                                    #             "mask": "",
+                                    #             "TextSize": "-1",
+                                    #             "TextColor": "#6F9393",
+                                    #             "width": "wrap_content",
+                                    #             "height": "wrap_content",
+                                    #             "weight": "1"
+                                    #         }
+                                    #     ],
+                                    # }  # ,
+                                ]
+                            }
                         ]
-                    },
-                    {  # Меню карточки
-                        "type": "PopupMenuButton",
-                        "show_by_condition": "",
-                        "Value": "@ListCardMenu",
-                        "NoRefresh": False,
-                        "document_type": "",
-                        "mask": "",
-                        "Variable": "menu_card"
-                    }  # ,
-
+                    }# ,
                     # {
                     #     "type": "TextView",
                     #     "show_by_condition": "",
