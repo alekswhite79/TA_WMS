@@ -827,17 +827,12 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
             hashMap.put("ShowDialog", "Ошибка")
             hashMap.put("ShowDialogStyle", "{'title': 'Более 1-го товара с таким штрихкодом!',   'yes': '',   'no': 'OK' }")
 
-    # elif hashMap.get("listener") == 'CardsClick': #тап по карточке 
-        # android.stop(hashMap)
-        
-        # hashMap.put("ShowDialog", "ДиалогВводШК")
-        # hashMap.put("ShowDialogStyle", json.dumps({"title": "Введите штрихкод:", "yes": "ОК",   "no": "Отмена"}))
-    elif hashMap.get("event") == "LayoutAction" and hashMap.get("layout_listener") == "Ручной ввод ШК":
+    elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Ручной ввод ШК":
     
         hashMap.put("ShowDialog", "ДиалогВводШК")
         hashMap.put("ShowDialogStyle", json.dumps({"title": "Введите штрихкод:", "yes": "ОК",   "no": "Отмена"}))
     
-    elif hashMap.get("event") == "LayoutAction" and hashMap.get("layout_listener") == "Ввести количество":
+    elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Ввести количество":
         android.stop(hashMap)
     
         hashMap.put("ShowDialog", "Ввод количества")
@@ -877,6 +872,12 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
             hashMap.put("beep", "15")
             hashMap.put("ShowDialog", "Ошибка")
             hashMap.put("ShowDialogStyle", "{'title': 'Более 1-го товара с таким штрихкодом!',   'yes': '',   'no': 'OK' }")
+
+    # elif hashMap.get("listener") == 'CardsClick': #тап по карточке 
+        # android.stop(hashMap)
+        
+        # hashMap.put("ShowDialog", "ДиалогВводШК")
+        # hashMap.put("ShowDialogStyle", json.dumps({"title": "Введите штрихкод:", "yes": "ОК",   "no": "Отмена"}))
 
 
     return hashMap
