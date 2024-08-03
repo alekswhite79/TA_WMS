@@ -885,11 +885,11 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
 
 def Update_Qty_Goods(hashMap, card_of_goods):
     db = pelicans["TA_WMS"]
-    db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": card_of_goods['ВидЗаказа']},
-                                             {"НомерЗаказа":
-                                                 card_of_goods['НомерЗаказа']},
-                                             {"Код": card_of_goods['Код']}]},
-                                   {"Отобрано": card_of_goods['Отобрано']+1})
+    # db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": card_of_goods['ВидЗаказа']},
+    #                                          {"НомерЗаказа":
+    #                                              card_of_goods['НомерЗаказа']},
+    #                                          {"Код": card_of_goods['Код']}]},
+    #                                {"Отобрано": card_of_goods['Отобрано']+1})
 
 
 def py_OrderList_OnStart(hashMap, _files=None, _data=None):
