@@ -842,11 +842,7 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
         b = hashMap.get('barcode')
         hashMap.put('barcode', '')
 
-        android.stop(hashMap)
-        
         records = db["GoodsForSelection"].find({"ШтрихКод":b})
-
-        android.stop(hashMap)
 
         if len(records) == 0:
             hashMap.put("beep", "15")
@@ -856,7 +852,6 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
             kodItem = records['Код']
             if hashMap.get('selected_card_key') == kodItem:
                 dict_selected_card = json.loads(hashMap.get('selected_card_data'))
-                android.stop(hashMap)
                 Update_Qty_Goods(hashMap, dict_selected_card)
             else:
                 hashMap.put("beep", "15")
@@ -893,7 +888,7 @@ def Update_Qty_Goods(hashMap, card_of_goods):
                                              {"НомерЗаказа":
                                                  card_of_goods['НомерЗаказа']},
                                              {"Код": card_of_goods['Код']}]},
-                                   {"Отобрано": float(card_of_goods['Отобрано'])+1})
+                                   {"Отобрано": card_of_goods['Отобрано']+1})
 
 
 def py_OrderList_OnStart(hashMap, _files=None, _data=None):
