@@ -833,10 +833,9 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
         hashMap.put("ShowDialogStyle", json.dumps({"title": "Введите штрихкод:", "yes": "ОК",   "no": "Отмена"}))
     
     elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Ввести количество":
-        android.stop(hashMap)
     
         hashMap.put("ShowDialog", "Ввод количества")
-        hashMap.put("ShowDialogStyle", json.dumps({"title": "Введите штрихкод:", "yes": "ОК",   "no": "Отмена"}))
+        hashMap.put("ShowDialogStyle", json.dumps({"title": "Введите количество:", "yes": "ОК",   "no": "Отмена"}))
 
     elif hashMap.get("event") == "onResultPositive":
 
