@@ -888,7 +888,7 @@ def Update_Qty_Goods(hashMap, card_of_goods):
                                              {"НомерЗаказа":
                                                  card_of_goods['НомерЗаказа']},
                                              {"Код": card_of_goods['Код']}]},
-                                   {"Отобрано": card_of_goods['Отобрано']+1})
+                                   {"Отобрано": float(card_of_goods['Отобрано'])+1})
 
 
 def py_OrderList_OnStart(hashMap, _files=None, _data=None):
