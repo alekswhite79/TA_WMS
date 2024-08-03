@@ -842,6 +842,8 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
 
         b = hashMap.get('barcode')
         hashMap.put('barcode', '')
+        hashMap.put('VAR_DEBUG', "Точка 1")
+        android.stop(hashMap)
 
         records = db["GoodsForSelection"].find({"ШтрихКод":b})
         hashMap.put('VAR_DEBUG', records)
