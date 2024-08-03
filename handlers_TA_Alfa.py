@@ -799,6 +799,8 @@ def Display_Elrment(hashMap):
 
 def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в экране Отбор
 
+    android.stop(hashMap)
+
     if hashMap.get("listener") == 'barcode': #сканирование
 
         b = hashMap.get('barcode')
@@ -825,11 +827,11 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
             hashMap.put("ShowDialog", "Ошибка")
             hashMap.put("ShowDialogStyle", "{'title': 'Более 1-го товара с таким штрихкодом!',   'yes': '',   'no': 'OK' }")
 
-    elif hashMap.get("listener") == 'CardsClick': #тап по карточке 
-        android.stop(hashMap)
+    # elif hashMap.get("listener") == 'CardsClick': #тап по карточке 
+        # android.stop(hashMap)
         
-        hashMap.put("ShowDialog", "ДиалогВводШК")
-        hashMap.put("ShowDialogStyle", json.dumps({"title": "Введите штрихкод:", "yes": "ОК",   "no": "Отмена"}))
+        # hashMap.put("ShowDialog", "ДиалогВводШК")
+        # hashMap.put("ShowDialogStyle", json.dumps({"title": "Введите штрихкод:", "yes": "ОК",   "no": "Отмена"}))
 
     elif hashMap.get("event") == "onResultPositive":
 
