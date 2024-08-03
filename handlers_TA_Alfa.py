@@ -37,7 +37,7 @@ def py_LoadGoods(hashMap):
                 "Elements": [
                     {
                         "type": "LinearLayout",
-                        "orientation": "vertical",
+                        "orientation": "horizontal",
                         "height": "wrap_content",
                         "width": "match_parent",
                         "weight": "0",
@@ -83,16 +83,7 @@ def py_LoadGoods(hashMap):
                                                 "TextBold": True,
                                                 # "BackgroundColor": "#A9A9A9",
                                                 # "TextColor": "#DB7093"
-                                            },
-                                            {  # Меню карточки
-                                                "type": "PopupMenuButton",
-                                                "show_by_condition": "",
-                                                "Value": "@ListCardMenu",
-                                                "NoRefresh": False,
-                                                "document_type": "",
-                                                "mask": "",
-                                                "Variable": "menu_card"
-                                            }  # ,
+                                            }
                                         ]
                                     },
                                     { #Контейнер Артикул
@@ -262,7 +253,16 @@ def py_LoadGoods(hashMap):
                                     #     ],
                                     # }  # ,
                                 ]
-                            }
+                            },
+                            {  # Меню карточки
+                                "type": "PopupMenuButton",
+                                "show_by_condition": "",
+                                "Value": "@ListCardMenu",
+                                "NoRefresh": False,
+                                "document_type": "",
+                                "mask": "",
+                                "Variable": "menu_card"
+                            }  # ,
                         ]
                     }# ,
                     # {
