@@ -844,6 +844,8 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
         hashMap.put('barcode', '')
 
         records = db["GoodsForSelection"].find({"ШтрихКод":b})
+        hashMap.put('VAR_DEBUG', records)
+        android.stop(hashMap)
 
         if len(records) == 0:
             hashMap.put("beep", "15")
@@ -851,8 +853,14 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
             hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
         elif len(records) == 1:
             kodItem = records['Код']
+            hashMap.put('VAR_DEBUG', kodItem)
+            android.stop(hashMap)
             if hashMap.get('selected_card_key') == kodItem:
+                hashMap.put('VAR_DEBUG', "Точка 1")
+                android.stop(hashMap)
                 dict_selected_card = json.loads(hashMap.get('selected_card_data'))
+                hashMap.put('VAR_DEBUG', "Точка 2")
+                android.stop(hashMap)
                 Update_Qty_Goods(hashMap, dict_selected_card)
             else:
                 hashMap.put("beep", "15")
@@ -885,11 +893,14 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
 
 def Update_Qty_Goods(hashMap, card_of_goods):
     db = pelicans["TA_WMS"]
-    # db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": card_of_goods['ВидЗаказа']},
-    #                                          {"НомерЗаказа":
-    #                                              card_of_goods['НомерЗаказа']},
-    #                                          {"Код": card_of_goods['Код']}]},
-    #                                {"Отобрано": card_of_goods['Отобрано']+1})
+    hashMap.put('VAR_DEBUG', "Точка 3")
+    android.stop(hashMap)
+
+    db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": card_of_goods['ВидЗаказа']},
+                                             {"НомерЗаказа":
+                                                 card_of_goods['НомерЗаказа']},
+                                             {"Код": card_of_goods['Код']}]},
+                                   {"Отобрано": card_of_goods['Отобрано']+1})
 
 
 def py_OrderList_OnStart(hashMap, _files=None, _data=None):
