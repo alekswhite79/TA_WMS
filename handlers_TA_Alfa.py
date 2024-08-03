@@ -30,7 +30,7 @@ def py_LoadGoods(hashMap):
             },
             "layout":   {  # корневой контейнер
                 "type": "LinearLayout",
-                "orientation": "vertical",
+                "orientation": "horizontal",
                 "height": "match_parent",
                 "width": "match_parent",
                 "weight": "0",
