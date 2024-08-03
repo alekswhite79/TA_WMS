@@ -225,17 +225,7 @@ def py_LoadGoods(hashMap):
                                                 # "TextColor": "#DB7093"
                                             }
                                         ]
-                                    },
-                                    { # Меню карточки
-                                        "type": "PopupMenuButton",
-                                        "show_by_condition": "",
-                                        "Value": "@ListCardMenu",
-                                        "NoRefresh": False,
-                                        "document_type": "",
-                                        "mask": "",
-                                        "Variable": "menu_card"
                                     }#,
-
                                     # { #Кнопка ШК
                                     #     "type": "LinearLayout",
                                     #     "height": "wrap_content",
@@ -340,7 +330,17 @@ def py_LoadGoods(hashMap):
                             #     ]
                             # }
                         ]
-                    }#,
+                    },
+                    {  # Меню карточки
+                        "type": "PopupMenuButton",
+                        "show_by_condition": "",
+                        "Value": "@ListCardMenu",
+                        "NoRefresh": False,
+                        "document_type": "",
+                        "mask": "",
+                        "Variable": "menu_card"
+                    }  # ,
+
                     # {
                     #     "type": "TextView",
                     #     "show_by_condition": "",
