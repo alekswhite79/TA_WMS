@@ -799,7 +799,7 @@ def Display_Elrment(hashMap):
 
 def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в экране Отбор
 
-    # android.stop(hashMap)
+    android.stop(hashMap)
 
     if hashMap.get("listener") == 'barcode': #сканирование
 
