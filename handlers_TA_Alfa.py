@@ -832,6 +832,15 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
         
         # hashMap.put("ShowDialog", "ДиалогВводШК")
         # hashMap.put("ShowDialogStyle", json.dumps({"title": "Введите штрихкод:", "yes": "ОК",   "no": "Отмена"}))
+    elif hashMap.get("event") == "LayoutAction" and hashMap.get("layout_listener") == "Ручной ввод ШК":
+    
+        hashMap.put("ShowDialog", "ДиалогВводШК")
+        hashMap.put("ShowDialogStyle", json.dumps({"title": "Введите штрихкод:", "yes": "ОК",   "no": "Отмена"}))
+    
+    elif hashMap.get("event") == "LayoutAction" and hashMap.get("layout_listener") == "Ввести количество":
+    
+        hashMap.put("ShowDialog", "Ввод количества")
+        hashMap.put("ShowDialogStyle", json.dumps({"title": "Введите штрихкод:", "yes": "ОК",   "no": "Отмена"}))
 
     elif hashMap.get("event") == "onResultPositive":
 
