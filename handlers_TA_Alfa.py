@@ -1114,6 +1114,18 @@ def py_SelectionOrder(hashMap, _files=None, _data=None):
     hashMap.put("BackScreen", "")
     # @field=@selected_card_key; BackScreen
 
+# Функция для поиска собранных позиций зказов 
+def check_order_position(document): 
+    if document.get("Отобрано") == document.get("КОтбору"):
+        return True
+    else:
+        return False
+
+def py_UploadOrders(hashMap, _files=None, _data=None):
+    #Использование функции для поиска, вместо условий
+    #передаем функцию как параметр, она работает с документом
+    records = db['goods'].find([check_name])
+    hashMap.put("ТоварыВыгрузить",json.dumps(records))
 
 
 
