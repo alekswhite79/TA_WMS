@@ -842,46 +842,50 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
 
         b = hashMap.get('barcode')
         hashMap.put('barcode', '')
-        # hashMap.put('VAR_DEBUG', "Точка 1")
-        # android.stop(hashMap)
 
-        records = db["GoodsForSelection"].find({"ШтрихКод":b})
-        # hashMap.put('VAR_DEBUG', "Точка 2")
-        # android.stop(hashMap)
+        # records = db["GoodsForSelection"].find({"ШтрихКод":b})
+        card_data = json.loads(hashMap.get('card_data'))
 
-        if len(records) == 0:
-            hashMap.put("beep", "15")
-            hashMap.put("ShowDialog", "Ошибка")
-            hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
-        elif len(records) == 1:
-            kodItem = records[0]['Код']
-            hashMap.put('VAR_DEBUG', kodItem)
-            android.stop(hashMap)
-            if hashMap.get('selected_card_key') == kodItem:
-                hashMap.put('VAR_DEBUG', "Точка 4")
-                android.stop(hashMap)
-                dict_selected_card = json.loads(hashMap.get('selected_card_data'))
-                hashMap.put('VAR_DEBUG', "Точка 5")
-                android.stop(hashMap)
-                Update_Qty_Goods(hashMap, dict_selected_card)
-            else:
-                hashMap.put("beep", "15")
-                hashMap.put("ShowDialog", "Ошибка")
-                hashMap.put("ShowDialogStyle", "{'title': 'Введен неверный штрихкод!',   'yes': '',   'no': 'OK' }")
-
-            goods_in_order = json.loads(hashMap.get('CardsGoods'))["customcards"]["cardsdata"]
-            # search by barcode value
-            card_of_goods = next((item for item in goods_in_order if item["key"] == kodItem), None)
-            if card_of_goods == None:
-                hashMap.put("beep", "15")
-                hashMap.put("ShowDialog", "Ошибка")
-                hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
-            else:
-                Update_Qty_Goods(hashMap, card_of_goods)
+        if card_data['ШтрихКод'] == b:
+            Update_Qty_Goods(hashMap, card_data)
         else:
             hashMap.put("beep", "15")
             hashMap.put("ShowDialog", "Ошибка")
-            hashMap.put("ShowDialogStyle", "{'title': 'Более 1-го товара с таким штрихкодом!',   'yes': '',   'no': 'OK' }")
+            hashMap.put("ShowDialogStyle", "{'title': 'Введен неверный штрихкод!',   'yes': '',   'no': 'OK' }")
+
+        # if len(records) == 0:
+        #     hashMap.put("beep", "15")
+        #     hashMap.put("ShowDialog", "Ошибка")
+        #     hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
+        # elif len(records) == 1:
+        #     kodItem = records[0]['Код']
+        #     hashMap.put('VAR_DEBUG', kodItem)
+        #     android.stop(hashMap)
+        #     if hashMap.get('selected_card_key') == kodItem:
+        #         hashMap.put('VAR_DEBUG', "Точка 4")
+        #         android.stop(hashMap)
+        #         dict_selected_card = json.loads(hashMap.get('selected_card_data'))
+        #         hashMap.put('VAR_DEBUG', "Точка 5")
+        #         android.stop(hashMap)
+        #         Update_Qty_Goods(hashMap, dict_selected_card)
+        #     else:
+        #         hashMap.put("beep", "15")
+        #         hashMap.put("ShowDialog", "Ошибка")
+        #         hashMap.put("ShowDialogStyle", "{'title': 'Введен неверный штрихкод!',   'yes': '',   'no': 'OK' }")
+
+        #     goods_in_order = json.loads(hashMap.get('CardsGoods'))["customcards"]["cardsdata"]
+        #     # search by barcode value
+        #     card_of_goods = next((item for item in goods_in_order if item["key"] == kodItem), None)
+        #     if card_of_goods == None:
+        #         hashMap.put("beep", "15")
+        #         hashMap.put("ShowDialog", "Ошибка")
+        #         hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
+        #     else:
+        #         Update_Qty_Goods(hashMap, card_of_goods)
+        # else:
+        #     hashMap.put("beep", "15")
+        #     hashMap.put("ShowDialog", "Ошибка")
+        #     hashMap.put("ShowDialogStyle", "{'title': 'Более 1-го товара с таким штрихкодом!',   'yes': '',   'no': 'OK' }")
 
     # elif hashMap.get("listener") == 'CardsClick': #тап по карточке 
         # android.stop(hashMap)
@@ -894,9 +898,9 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
 
 
 def Update_Qty_Goods(hashMap, card_of_goods):
-    db = pelicans["TA_WMS"]
-    hashMap.put('VAR_DEBUG', "Точка 3")
-    android.stop(hashMap)
+    # db = pelicans["TA_WMS"]
+    # hashMap.put('VAR_DEBUG', "Точка 3")
+    # android.stop(hashMap)
 
     db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": card_of_goods['ВидЗаказа']},
                                              {"НомерЗаказа":
