@@ -855,13 +855,13 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
             hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
         elif len(records) == 1:
             kodItem = records['Код']
-            hashMap.put('VAR_DEBUG', kodItem)
+            hashMap.put('VAR_DEBUG', "Точка 3")
             android.stop(hashMap)
             if hashMap.get('selected_card_key') == kodItem:
-                hashMap.put('VAR_DEBUG', "Точка 1")
+                hashMap.put('VAR_DEBUG', "Точка 4")
                 android.stop(hashMap)
                 dict_selected_card = json.loads(hashMap.get('selected_card_data'))
-                hashMap.put('VAR_DEBUG', "Точка 2")
+                hashMap.put('VAR_DEBUG', "Точка 5")
                 android.stop(hashMap)
                 Update_Qty_Goods(hashMap, dict_selected_card)
             else:
