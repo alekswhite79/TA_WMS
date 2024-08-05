@@ -854,7 +854,7 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
             hashMap.put("ShowDialog", "Ошибка")
             hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
         elif len(records) == 1:
-            kodItem = records['Код']
+            kodItem = records[0]['Код']
             hashMap.put('VAR_DEBUG', "Точка 3")
             android.stop(hashMap)
             if hashMap.get('selected_card_key') == kodItem:
