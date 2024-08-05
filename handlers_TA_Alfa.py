@@ -1129,6 +1129,9 @@ def py_UploadOrders(hashMap, _files=None, _data=None):
     #передаем функцию как параметр, она работает с документом
     records = db['goods'].find([check_order_position])
     hashMap.put("ТоварыВыгрузить",json.dumps(records))
+    # hashMap.put('VAR_DEBUG', "Точка 3")
+    android.stop(hashMap)
+
 
 
 
