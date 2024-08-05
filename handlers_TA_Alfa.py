@@ -842,12 +842,12 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
 
         b = hashMap.get('barcode')
         hashMap.put('barcode', '')
-        hashMap.put('VAR_DEBUG', "Точка 1")
-        android.stop(hashMap)
+        # hashMap.put('VAR_DEBUG', "Точка 1")
+        # android.stop(hashMap)
 
         records = db["GoodsForSelection"].find({"ШтрихКод":b})
-        hashMap.put('VAR_DEBUG', json.dumps(records))#"Точка 2")
-        android.stop(hashMap)
+        # hashMap.put('VAR_DEBUG', "Точка 2")
+        # android.stop(hashMap)
 
         if len(records) == 0:
             hashMap.put("beep", "15")
@@ -855,7 +855,7 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
             hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
         elif len(records) == 1:
             kodItem = records[0]['Код']
-            hashMap.put('VAR_DEBUG', "Точка 3")
+            hashMap.put('VAR_DEBUG', kodItem)
             android.stop(hashMap)
             if hashMap.get('selected_card_key') == kodItem:
                 hashMap.put('VAR_DEBUG', "Точка 4")
