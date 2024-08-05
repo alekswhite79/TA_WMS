@@ -846,7 +846,7 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
         android.stop(hashMap)
 
         records = db["GoodsForSelection"].find({"ШтрихКод":b})
-        hashMap.put('VAR_DEBUG', "Точка 2")
+        hashMap.put('VAR_DEBUG', json.dumps(records))#"Точка 2")
         android.stop(hashMap)
 
         if len(records) == 0:
