@@ -1127,7 +1127,7 @@ def check_order_position(document):
 def py_UploadOrders(hashMap, _files=None, _data=None):
     #Использование функции для поиска, вместо условий
     #передаем функцию как параметр, она работает с документом
-    records = db['goods'].find([check_name])
+    records = db['goods'].find([check_order_position])
     hashMap.put("ТоварыВыгрузить",json.dumps(records))
 
 
