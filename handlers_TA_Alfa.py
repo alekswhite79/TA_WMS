@@ -903,8 +903,7 @@ def Update_Qty_Goods(hashMap, card_of_goods):
     # android.stop(hashMap)
 
     db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": card_of_goods['ВидЗаказа']},
-                                             {"НомерЗаказа":
-                                                 card_of_goods['НомерЗаказа']},
+                                             {"НомерЗаказа":card_of_goods['НомерЗаказа']},
                                              {"Код": card_of_goods['Код']}]},
                                    {"Отобрано": card_of_goods['Отобрано']+1})
 
