@@ -833,8 +833,12 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
         hashMap.put("ShowDialog", "ДиалогВводШК")
         hashMap.put("ShowDialogStyle", json.dumps({"title": "Введите штрихкод:", "yes": "ОК",   "no": "Отмена"}))
     
+    elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Подтвердить отбор":
+        card_data = json.loads(hashMap.get('card_data'))
+        Update_Qty_Goods(hashMap, card_data)
+
     elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Ввести количество":
-    
+        
         hashMap.put("ShowDialog", "Ввод количества")
         hashMap.put("ShowDialogStyle", json.dumps({"title": "Введите количество:", "yes": "ОК",   "no": "Отмена"}))
 
