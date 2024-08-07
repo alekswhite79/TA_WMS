@@ -1136,8 +1136,8 @@ def py_UploadOrders(hashMap, _files=None, _data=None):
     # hashMap.put('VAR_DEBUG', "Точка 3")
     # android.stop(hashMap)
 
-
-
+def PeriodicLoadOrder(hashMap, _files=None, _data=None):
+    hashMap.put("toast","PeriodicLoadOrder")
 
 # -------------------
 def init_on_start(hashMap, _files=None, _data=None):
