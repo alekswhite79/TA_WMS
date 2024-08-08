@@ -1142,7 +1142,7 @@ def PeriodicLoadOrder(hashMap, _files=None, _data=None):
 
     mainURL = "http://10.4.27.33/test/hs/simpleui"
 
-    url = mainURL+"/testurl/test"
+    url = mainURL+"/get_orderlist/"
     data = {'user': 'user', 'password': 'password'}
     headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
@@ -1712,7 +1712,7 @@ def py_test(hashMap, _files=None, _data=None):
 
     mainURL = "http://10.4.27.33/test/hs/simpleui"
 
-    url = mainURL+"/get_orderlist"
+    url = mainURL+"/get_orderlist/"
     data = {'user': 'user', 'password': 'password'}
     headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
