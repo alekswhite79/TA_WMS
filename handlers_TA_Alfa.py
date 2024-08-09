@@ -1137,18 +1137,22 @@ def py_UploadOrders(hashMap, _files=None, _data=None):
     # android.stop(hashMap)
 
 def PeriodicLoadOrder(hashMap, _files=None, _data=None):
-    import requests
-    from requests.auth import HTTPBasicAuth
 
-    mainURL = "http://10.4.27.33/test/hs/simpleui"
+    hashMap.put("RunEvent",json.dumps([{"action": "run", "type": "online", "method": "ЗагрузитьДанные"},
+                                       {"action":"run","type":"set","method":"speak=Данные загружены"}])) 
 
-    url = mainURL+"/get_orderlist/"
-    data = {'user': 'user', 'password': 'password'}
-    headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+    # import requests
+    # from requests.auth import HTTPBasicAuth
 
-    r = requests.post(url, data=json.dumps(data), headers=headers,
-                      auth=HTTPBasicAuth('Белый'.encode('utf-8'), '20052019SO'))
-    hashMap.put("toast", str(r.status_code))
+    # mainURL = "http://10.4.27.33/test/hs/simpleui"
+
+    # url = mainURL+"/get_orderlist/"
+    # data = {'user': 'user', 'password': 'password'}
+    # headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+
+    # r = requests.post(url, data=json.dumps(data), headers=headers,
+    #                   auth=HTTPBasicAuth('Белый'.encode('utf-8'), '20052019SO'))
+    # hashMap.put("toast", str(r.status_code))
 
     # hashMap.put("toast","PeriodicLoadOrder")
 
