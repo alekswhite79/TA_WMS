@@ -1,5 +1,6 @@
 import android
 from pelican import pelicans
+from pelicandb import Pelican,DBSession,feed
 import json
 import struct
 from decimal import Decimal
@@ -1148,14 +1149,22 @@ def PeriodicLoadOrder(hashMap, _files=None, _data=None):
 
 
 def py_InsertRecords(hashMap, _files=None, _data=None):
-    ЗаказыЗагрузить=json.loads(hashMap.get("ЗаказыЗагрузить"))
-    ЗагруженоЗаказов = db["OrdersForSelection"].insert(ЗаказыЗагрузить, upsert=True)
 
-    ТоварыЗагрузить=json.loads(hashMap.get("ТоварыЗагрузить"))
-    ЗагруженоТоваров = db["GoodsForSelection"].insert(ТоварыЗагрузить, upsert=True)
+    try:
+        with DBSession(db) as s:
+            
+            ЗаказыЗагрузить=json.loads(hashMap.get("ЗаказыЗагрузить"))
+            ЗагруженоЗаказов = db["OrdersForSelection"].insert(ЗаказыЗагрузить, upsert=True, session=s)
 
-    # hashMap.put("_ZZ", json.dumps(ЗагруженоЗаказов))
-    # hashMap.put("_ZT", json.dumps(ЗагруженоТоваров))
+            ТоварыЗагрузить=json.loads(hashMap.get("ТоварыЗагрузить"))
+            ЗагруженоТоваров = db["GoodsForSelection"].insert(ТоварыЗагрузить, upsert=True, session=s)
+    except Exception as e:
+        print("Транзакция не записана:" + str(e))  
+
+
+
+    hashMap.put("_ZZ", str(len(ЗагруженоЗаказов)))
+    hashMap.put("_ZT", str(len(ЗагруженоТоваров)))
     if len(ЗагруженоЗаказов) > 0 and len(ЗагруженоТоваров) > 0:
         hashMap.put("Speak", "Загружено ")#+str(len(ЗагруженоЗаказов))+" заказов из "+str(len(ЗагруженоТоваров))+ " товаров")
     # import requests
