@@ -1138,7 +1138,7 @@ def py_UploadOrders(hashMap, _files=None, _data=None):
 
 def PeriodicLoadOrder(hashMap, _files=None, _data=None):
 
-    hashMap.put("RunEvent",json.dumps([{"action": "run", 
+    hashMap.put("RunEvent",json.dumps([{"action": "runasync", 
                                         "type": "online", 
                                         "method": "ЗагрузитьДанные",
                                         "postExecute": [{"action": "run","type": "python","method": "py_InsertRecords"}]}]))
