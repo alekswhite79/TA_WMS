@@ -1166,7 +1166,7 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
     hashMap.put("_ZZ", str(len(ЗагруженоЗаказов)))
     hashMap.put("_ZT", str(len(ЗагруженоТоваров)))
     if len(ЗагруженоЗаказов) > 0 and len(ЗагруженоТоваров) > 0:
-        hashMap.put("Speak", "Загружено ")#+str(len(ЗагруженоЗаказов))+" заказов из "+str(len(ЗагруженоТоваров))+ " товаров")
+        hashMap.put("Toast", "Загружено")#+str(len(ЗагруженоЗаказов))+" заказов из "+str(len(ЗагруженоТоваров))+ " товаров")
     # import requests
     # from requests.auth import HTTPBasicAuth
 
