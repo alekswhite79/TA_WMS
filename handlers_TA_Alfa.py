@@ -1141,7 +1141,7 @@ def PeriodicLoadOrder(hashMap, _files=None, _data=None):
     hashMap.put("RunEvent",json.dumps([{"action": "runasync", 
                                         "type": "online", 
                                         "method": "ЗагрузитьДанные",
-                                        "postExecute": [{"action": "run","type": "python","method": "py_InsertRecords"}]}]))
+                                        "postExecute": '[{"action": "run","type": "python","method": "py_InsertRecords"}]'}]))
                                     #,
                                     #    {"action": "run", "type": "pythonscript", "method": "ZnJvbSBnZW5lcmFsIGltcG9ydCAqCgojYW5kcm9pZC5zdG9wKCkKICAgCtCX0LDQutCw0LfRi9CX0LDQs9GA0YPQt9C40YLRjD1qc29uLmxvYWRzKGhhc2hNYXAuZ2V0KCLQl9Cw0LrQsNC30YvQl9Cw0LPRgNGD0LfQuNGC0YwiKSkK0JfQsNCz0YDRg9C20LXQvdC+0JfQsNC60LDQt9C+0LIgPSBkYlsiT3JkZXJzRm9yU2VsZWN0aW9uIl0uaW5zZXJ0KNCX0LDQutCw0LfRi9CX0LDQs9GA0YPQt9C40YLRjCwgdXBzZXJ0PVRydWUpCgrQotC+0LLQsNGA0YvQl9Cw0LPRgNGD0LfQuNGC0Yw9anNvbi5sb2FkcyhoYXNoTWFwLmdldCgi0KLQvtCy0LDRgNGL0JfQsNCz0YDRg9C30LjRgtGMIikpCtCX0LDQs9GA0YPQttC10L3QvtCi0L7QstCw0YDQvtCyID0gZGJbIkdvb2RzRm9yU2VsZWN0aW9uIl0uaW5zZXJ0KNCi0L7QstCw0YDRi9CX0LDQs9GA0YPQt9C40YLRjCwgdXBzZXJ0PVRydWUpCg=="},
                                     #    {"action":"run","type":"set","method":"speak=Загружены новые заказы"}])) 
