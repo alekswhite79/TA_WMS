@@ -1154,8 +1154,8 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
     ТоварыЗагрузить=json.loads(hashMap.get("ТоварыЗагрузить"))
     ЗагруженоТоваров = db["GoodsForSelection"].insert(ТоварыЗагрузить, upsert=True)
 
-    hashMap.put("_ЗагруженоЗаказов1", ЗагруженоЗаказов)
-    hashMap.put("_ЗагруженоТоваров1", ЗагруженоТоваров)
+    hashMap.put("_ZZ", json.dumps(ЗагруженоЗаказов))
+    hashMap.put("_ZT", json.dumps(ЗагруженоТоваров))
     # if ЗагруженоЗаказов > 0 and ЗагруженоТоваров > 0:
     #     hashMap.put("Speak", "Загружено "+str(ЗагруженоЗаказов)+" заказов из "+str(ЗагруженоТоваров)+ " товаров")
     # import requests
