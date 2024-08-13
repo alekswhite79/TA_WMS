@@ -1154,8 +1154,9 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
     ТоварыЗагрузить=json.loads(hashMap.get("ТоварыЗагрузить"))
     ЗагруженоТоваров = db["GoodsForSelection"].insert(ТоварыЗагрузить, upsert=True)
 
-    if ЗагруженоЗаказов > 0 and ЗагруженоТоваров > 0:
-        hashMap.put("Speak", "Загружено "+str(ЗагруженоЗаказов)+" заказов из "+str(ЗагруженоТоваров)+ " товаров")
+    hashMap.put("toast", ЗагруженоЗаказов)
+    # if ЗагруженоЗаказов > 0 and ЗагруженоТоваров > 0:
+    #     hashMap.put("Speak", "Загружено "+str(ЗагруженоЗаказов)+" заказов из "+str(ЗагруженоТоваров)+ " товаров")
     # import requests
     # from requests.auth import HTTPBasicAuth
 
