@@ -1156,7 +1156,6 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
 
     hashMap.put("ЗагруженоЗаказов1", ЗагруженоЗаказов)
     hashMap.put("ЗагруженоТоваров1", ЗагруженоТоваров)
-    android.stop(hashMap)
     # if ЗагруженоЗаказов > 0 and ЗагруженоТоваров > 0:
     #     hashMap.put("Speak", "Загружено "+str(ЗагруженоЗаказов)+" заказов из "+str(ЗагруженоТоваров)+ " товаров")
     # import requests
