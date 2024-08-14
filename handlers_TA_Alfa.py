@@ -1163,7 +1163,7 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
                 ТоварыЗагрузить=json.loads(hashMap.get("ТоварыЗагрузить"))
                 ЗагруженоТоваров = db["GoodsForSelection"].insert(ТоварыЗагрузить, upsert=True, session=s)
                 
-                if ЗагруженоЗаказов == hashMap.get("ЗагруженоЗаказов") and ЗагруженоТоваров == hashMap.get("ЗагруженоТоваров"):
+                if len(ЗагруженоЗаказов) == hashMap.get("ЗагруженоЗаказов") and len(ЗагруженоТоваров) == hashMap.get("ЗагруженоТоваров"):
                     #Надо сообщить об этом 1С
                     android.stop(hashMap)
                     hashMap.put("RunEvent",json.dumps([{"action": "runasync", 
