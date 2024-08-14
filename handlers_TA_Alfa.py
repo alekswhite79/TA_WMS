@@ -911,6 +911,7 @@ def Update_Qty_Goods(hashMap, card_of_goods):
                                              {"НомерЗаказа": hashMap.get('НомерЗаказа')},
                                              {"Код": card_of_goods['Код']}]},
                                    {"Отобрано": card_of_goods['Отобрано']+1})
+    return hashMap
 
 
 def py_OrderList_OnStart(hashMap, _files=None, _data=None):
@@ -1121,6 +1122,7 @@ def py_SelectionOrder(hashMap, _files=None, _data=None):
     hashMap.put(hashMap.get("field"), hashMap.get("selected_card_key"))
     hashMap.put("BackScreen", "")
     # @field=@selected_card_key; BackScreen
+    return hashMap
 
 # Функция для поиска собранных позиций зказов 
 def check_order_position(document): 
@@ -1136,6 +1138,7 @@ def py_UploadOrders(hashMap, _files=None, _data=None):
     hashMap.put("ТоварыВыгрузить",json.dumps(records))
     # hashMap.put('VAR_DEBUG', "Точка 3")
     # android.stop(hashMap)
+    return hashMap
 
 def PeriodicLoadOrder(hashMap, _files=None, _data=None):
 
@@ -1146,41 +1149,51 @@ def PeriodicLoadOrder(hashMap, _files=None, _data=None):
                                     #,
                                     #    {"action": "run", "type": "pythonscript", "method": "ZnJvbSBnZW5lcmFsIGltcG9ydCAqCgojYW5kcm9pZC5zdG9wKCkKICAgCtCX0LDQutCw0LfRi9CX0LDQs9GA0YPQt9C40YLRjD1qc29uLmxvYWRzKGhhc2hNYXAuZ2V0KCLQl9Cw0LrQsNC30YvQl9Cw0LPRgNGD0LfQuNGC0YwiKSkK0JfQsNCz0YDRg9C20LXQvdC+0JfQsNC60LDQt9C+0LIgPSBkYlsiT3JkZXJzRm9yU2VsZWN0aW9uIl0uaW5zZXJ0KNCX0LDQutCw0LfRi9CX0LDQs9GA0YPQt9C40YLRjCwgdXBzZXJ0PVRydWUpCgrQotC+0LLQsNGA0YvQl9Cw0LPRgNGD0LfQuNGC0Yw9anNvbi5sb2FkcyhoYXNoTWFwLmdldCgi0KLQvtCy0LDRgNGL0JfQsNCz0YDRg9C30LjRgtGMIikpCtCX0LDQs9GA0YPQttC10L3QvtCi0L7QstCw0YDQvtCyID0gZGJbIkdvb2RzRm9yU2VsZWN0aW9uIl0uaW5zZXJ0KNCi0L7QstCw0YDRi9CX0LDQs9GA0YPQt9C40YLRjCwgdXBzZXJ0PVRydWUpCg=="},
                                     #    {"action":"run","type":"set","method":"speak=Загружены новые заказы"}])) 
+    return hashMap
 
 
 def py_InsertRecords(hashMap, _files=None, _data=None):
 
-    try:
-        with DBSession(db) as s:
-            
-            ЗаказыЗагрузить=json.loads(hashMap.get("ЗаказыЗагрузить"))
-            ЗагруженоЗаказов = db["OrdersForSelection"].insert(ЗаказыЗагрузить, upsert=True, session=s)
+    if hashMap.containsKey("ЗаказыЗагрузить") and hashMap.containsKey("ТоварыЗагрузить"):
+        try:
+            with DBSession(db) as s:
+                
+                ЗаказыЗагрузить=json.loads(hashMap.get("ЗаказыЗагрузить"))
+                ЗагруженоЗаказов = db["OrdersForSelection"].insert(ЗаказыЗагрузить, upsert=True, session=s)
 
-            ТоварыЗагрузить=json.loads(hashMap.get("ТоварыЗагрузить"))
-            ЗагруженоТоваров = db["GoodsForSelection"].insert(ТоварыЗагрузить, upsert=True, session=s)
-    except Exception as e:
-        print("Транзакция не записана:" + str(e))  
+                ТоварыЗагрузить=json.loads(hashMap.get("ТоварыЗагрузить"))
+                ЗагруженоТоваров = db["GoodsForSelection"].insert(ТоварыЗагрузить, upsert=True, session=s)
+                
+                if ЗагруженоЗаказов == hashMap.get("ЗагруженоЗаказов") and ЗагруженоТоваров == hashMap.get("ЗагруженоТоваров"):
+                    #Надо сообщить об этом 1С
+                    hashMap.put("RunEvent",json.dumps([{"action": "runasync", 
+                                                            "type": "online", 
+                                                            "method": "ДанныеВТСДЗагружены"}]))                    
+                
+        except Exception as e:
+            hashMap.put("ErrorMessage ","Транзакция не записана:" + str(e))  
 
+        # hashMap.put("_ZZ", str(len(ЗагруженоЗаказов)))
+        # hashMap.put("_ZT", str(len(ЗагруженоТоваров)))
+        # if len(ЗагруженоЗаказов) > 0 and len(ЗагруженоТоваров) > 0:
+        # hashMap.put("Toast", "Загружено")#+str(len(ЗагруженоЗаказов))+" заказов из "+str(len(ЗагруженоТоваров))+ " товаров")
+        # import requests
+        # from requests.auth import HTTPBasicAuth
 
+        # mainURL = "http://10.4.27.33/test/hs/simpleui"
 
-    hashMap.put("_ZZ", str(len(ЗагруженоЗаказов)))
-    hashMap.put("_ZT", str(len(ЗагруженоТоваров)))
-    # if len(ЗагруженоЗаказов) > 0 and len(ЗагруженоТоваров) > 0:
-    hashMap.put("Toast", "Загружено")#+str(len(ЗагруженоЗаказов))+" заказов из "+str(len(ЗагруженоТоваров))+ " товаров")
-    # import requests
-    # from requests.auth import HTTPBasicAuth
+        # url = mainURL+"/get_orderlist/"
+        # data = {'user': 'user', 'password': 'password'}
+        # headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
-    # mainURL = "http://10.4.27.33/test/hs/simpleui"
+        # r = requests.post(url, data=json.dumps(data), headers=headers,
+        #                   auth=HTTPBasicAuth('Белый'.encode('utf-8'), '20052019SO'))
+        # hashMap.put("toast", str(r.status_code))
 
-    # url = mainURL+"/get_orderlist/"
-    # data = {'user': 'user', 'password': 'password'}
-    # headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-
-    # r = requests.post(url, data=json.dumps(data), headers=headers,
-    #                   auth=HTTPBasicAuth('Белый'.encode('utf-8'), '20052019SO'))
-    # hashMap.put("toast", str(r.status_code))
-
-    # hashMap.put("toast","PeriodicLoadOrder")
+        # hashMap.put("toast","PeriodicLoadOrder")
+    
+    return hashMap
+    
 
 
 
