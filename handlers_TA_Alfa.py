@@ -1153,7 +1153,6 @@ def PeriodicLoadOrder(hashMap, _files=None, _data=None):
 
 
 def py_InsertRecords(hashMap, _files=None, _data=None):
-
     if hashMap.containsKey("ЗаказыЗагрузить") and hashMap.containsKey("ТоварыЗагрузить"):
         try:
             with DBSession(db) as s:
@@ -1166,6 +1165,7 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
                 
                 if ЗагруженоЗаказов == hashMap.get("ЗагруженоЗаказов") and ЗагруженоТоваров == hashMap.get("ЗагруженоТоваров"):
                     #Надо сообщить об этом 1С
+                    android.stop(hashMap)
                     hashMap.put("RunEvent",json.dumps([{"action": "runasync", 
                                                             "type": "online", 
                                                             "method": "ДанныеВТСДЗагружены"}]))                    
