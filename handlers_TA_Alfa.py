@@ -919,8 +919,8 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
     hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
 
     db = pelicans["TA_WMS"]
-    recordsZP = db["OrdersForSelection"].find({"ВидЗаказа": "Заказ покупателя"})
-    recordsVZ = db["OrdersForSelection"].find({"ВидЗаказа": "Внутренний заказ"})
+    recordsZP = db["OrdersForSelection"].find({"ВидЗаказа": "ЗаказПокупателя"})
+    recordsVZ = db["OrdersForSelection"].find({"ВидЗаказа": "ЗаказВнутренний"})
 
     if not hashMap.containsKey("btn_z"):
         list_btn = "Заказы покупателя("+str(len(recordsZP))+")"
