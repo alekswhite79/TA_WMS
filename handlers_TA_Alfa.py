@@ -809,6 +809,7 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
         hashMap.put('barcode', '')
         
         records = db["GoodsForSelection"].find({"ШтрихКод":b})
+        android.stop(hashMap)
         if len(records) == 0:
             hashMap.put("beep", "15")
             hashMap.put("ShowDialog", "Ошибка")
