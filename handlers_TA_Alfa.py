@@ -809,7 +809,6 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
         hashMap.put('barcode', '')
         
         records = db["GoodsForSelection"].find({"ШтрихКод":b})
-        android.stop(hashMap)
         if len(records) == 0:
             hashMap.put("beep", "15")
             hashMap.put("ShowDialog", "Ошибка")
@@ -819,6 +818,7 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
             goods_in_order = json.loads(hashMap.get('CardsGoods'))["customcards"]["cardsdata"]
             # search by barcode value
             card_of_goods = next((item for item in goods_in_order if item["key"] == kodItem), None)
+            android.stop(hashMap)
             if card_of_goods == None:
                 hashMap.put("beep", "15")
                 hashMap.put("ShowDialog", "Ошибка")
