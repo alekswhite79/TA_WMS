@@ -808,14 +808,14 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
         b = hashMap.get('barcode')
         hashMap.put('barcode', '')
         
-        records = db["GoodsForSelection"].find({"ШтрихКод":b})
+        records = db["GoodsForSelection"].find({"$and": [{"ШтрихКод": b},{"НомерЗаказа": hashMap.get('НомерЗаказа')}]})
         if len(records) == 0:
             hashMap.put("beep", "15")
             hashMap.put("ShowDialog", "Ошибка")
             hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
         elif len(records) == 1:
             android.stop(hashMap)
-            kodItem = records['Код']
+            kodItem = records[0]['Код']
             android.stop(hashMap)
             goods_in_order = json.loads(hashMap.get('CardsGoods'))["customcards"]["cardsdata"]
             # search by barcode value
