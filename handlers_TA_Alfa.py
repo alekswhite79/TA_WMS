@@ -843,7 +843,7 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
         hashMap.put("ShowDialog", "Ввод количества")
         hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
 
-    elif hashMap.get("event") == "onResultPositive":
+    elif hashMap.get("event") == "onResultPositive" and hashMap.get("layout_listener") == "Ручной ввод ШК":
 
         b = hashMap.get('barcode')
         hashMap.put('barcode', '')
@@ -857,6 +857,21 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
             hashMap.put("beep", "15")
             hashMap.put("ShowDialog", "Ошибка")
             hashMap.put("ShowDialogStyle", "{'title': 'Введен неверный штрихкод!',   'yes': '',   'no': 'OK' }")
+
+    elif hashMap.get("event") == "onResultPositive" and hashMap.get("layout_listener") == "Ввести количество":
+
+        b = hashMap.get('qty')
+        # hashMap.put('barcode', '')
+
+        # records = db["GoodsForSelection"].find({"ШтрихКод":b})
+        card_data = json.loads(hashMap.get('card_data'))
+
+        # if card_data['ШтрихКод'] == b:
+        Update_Qty_Goods(hashMap, card_data)
+        # else:
+        #     hashMap.put("beep", "15")
+        #     hashMap.put("ShowDialog", "Ошибка")
+        #     hashMap.put("ShowDialogStyle", "{'title': 'Введен неверный штрихкод!',   'yes': '',   'no': 'OK' }")
 
         # if len(records) == 0:
         #     hashMap.put("beep", "15")
@@ -902,7 +917,7 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
     return hashMap
 
 
-def Update_Qty_Goods(hashMap, card_of_goods):
+def Update_Qty_Goods(hashMap, card_of_goods, qty=1):
     # db = pelicans["TA_WMS"]
     # hashMap.put('VAR_DEBUG', "Точка 3")
     # android.stop(hashMap)
@@ -910,7 +925,7 @@ def Update_Qty_Goods(hashMap, card_of_goods):
     db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
                                              {"НомерЗаказа": hashMap.get('НомерЗаказа')},
                                              {"Код": card_of_goods['Код']}]},
-                                   {"Отобрано": card_of_goods['Отобрано']+1})
+                                   {"Отобрано": card_of_goods['Отобрано']+qty})
     return hashMap
 
 
