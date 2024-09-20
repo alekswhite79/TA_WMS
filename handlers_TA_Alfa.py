@@ -860,14 +860,14 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
 
     elif hashMap.get("event") == "onResultPositive" and hashMap.get("layout_listener") == "Ввести количество":
 
-        b = hashMap.get('qty')
+        
         # hashMap.put('barcode', '')
 
         # records = db["GoodsForSelection"].find({"ШтрихКод":b})
         card_data = json.loads(hashMap.get('card_data'))
 
         # if card_data['ШтрихКод'] == b:
-        Update_Qty_Goods(hashMap, card_data)
+        Update_Qty_Goods(hashMap, card_data, hashMap.get('qty'))
         # else:
         #     hashMap.put("beep", "15")
         #     hashMap.put("ShowDialog", "Ошибка")
