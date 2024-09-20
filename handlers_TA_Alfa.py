@@ -841,7 +841,7 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
     elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Ввести количество":
         
         hashMap.put("ShowDialog", "Ввод количества")
-        hashMap.put("ShowDialogStyle", json.dumps({"title": "Введите количество:", "yes": "ОК",   "no": "Отмена"}))
+        hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
 
     elif hashMap.get("event") == "onResultPositive":
 
