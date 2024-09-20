@@ -867,7 +867,7 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
         card_data = json.loads(hashMap.get('card_data'))
 
         # if card_data['ШтрихКод'] == b:
-        Update_Qty_Goods(hashMap, card_data, hashMap.get('qty'))
+        Update_Qty_Goods(hashMap, card_data, int(hashMap.get('qty')))
         # else:
         #     hashMap.put("beep", "15")
         #     hashMap.put("ShowDialog", "Ошибка")
