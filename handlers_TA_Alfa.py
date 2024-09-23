@@ -13,6 +13,7 @@ from ru.travelfood.simple_ui import NoSQL as noClass
 
 db = pelicans["TA_WMS"]
 
+# при старте экрана Отбор 
 def py_OnStartOrder(hashMap, _files=None, _data=None):
     # android.stop()
     if hashMap.containsKey("НомерЗаказа") and hashMap.get("НомерЗаказа") != "":
@@ -20,7 +21,7 @@ def py_OnStartOrder(hashMap, _files=None, _data=None):
     Display_Elrment(hashMap)
     return hashMap
 
-
+# загрузка товаров
 def py_LoadGoods(hashMap):
     # android.stop()
     j = {
@@ -787,7 +788,7 @@ def py_LoadGoods(hashMap):
 
     return hashMap
 
-
+# отображение элементов экрана Отбор
 def Display_Elrment(hashMap):
     OrderIsSelect = hashMap.containsKey(
         "НомерЗаказа") and hashMap.get("НомерЗаказа") != ""
@@ -798,8 +799,8 @@ def Display_Elrment(hashMap):
     hashMap.put("Show_Контейнер_Товар", "1" if OrderIsSelect else "-1")
     return hashMap
 
-
-def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в экране Отбор
+# при вводе в экране Отбор
+def py_select_on_input(hashMap, _files=None, _data=None): 
 
     # android.stop(hashMap)
 
@@ -916,7 +917,7 @@ def py_select_on_input(hashMap, _files=None, _data=None): #при вводе в 
 
     return hashMap
 
-
+# обновление количества отобранного товара в БД
 def Update_Qty_Goods(hashMap, card_of_goods, qty=1):
     # db = pelicans["TA_WMS"]
     # hashMap.put('VAR_DEBUG', "Точка 3")
@@ -928,7 +929,7 @@ def Update_Qty_Goods(hashMap, card_of_goods, qty=1):
                                    {"Отобрано": card_of_goods['Отобрано']+qty})
     return hashMap
 
-
+# при старте экрана выбора заказа
 def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
     hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
@@ -1128,7 +1129,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
     return hashMap
 
-
+# при выборе карточки заказа на экране выбора заказа
 def py_SelectionOrder(hashMap, _files=None, _data=None):
     Sel_card = json.loads(hashMap.get("selected_card_data"))
     hashMap.put("Получатель", Sel_card['Получатель'])
@@ -1146,6 +1147,7 @@ def check_order_position(document):
     else:
         return False
 
+# нажатие кнопки Выгрузить основного меню
 def py_UploadOrders(hashMap, _files=None, _data=None):
     #Использование функции для поиска, вместо условий
     #передаем функцию как параметр, она работает с документом
@@ -1166,7 +1168,7 @@ def PeriodicLoadOrder(hashMap, _files=None, _data=None):
                                     #    {"action":"run","type":"set","method":"speak=Загружены новые заказы"}])) 
     return hashMap
 
-
+# нажатие кнопки Закгрузить основного меню (после отработки обработчика 1С)
 def py_InsertRecords(hashMap, _files=None, _data=None):
     if hashMap.containsKey("ЗаказыЗагрузить") and hashMap.containsKey("ТоварыЗагрузить"):
         try:
