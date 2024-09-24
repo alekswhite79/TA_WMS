@@ -784,11 +784,12 @@ def py_LoadGoods(hashMap):
 
             j["customcards"]["cardsdata"].append(c)
             i += 1
+        hashMap.put("CardsGoods", json.dumps(j, ensure_ascii=False).encode('utf8').decode())
+        hashMap.put("OrderCollected", 0)    
+
     else:
         Set_Order_Collected(hashMap)
-        hashMap.put("OrderCollected", True)    
-
-    hashMap.put("CardsGoods", json.dumps(j, ensure_ascii=False).encode('utf8').decode())
+        hashMap.put("OrderCollected", 1)    
 
     return hashMap
 
