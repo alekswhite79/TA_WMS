@@ -44,7 +44,7 @@ def py_LoadGoods(hashMap):
                         "width": "match_parent",
                         "weight": "0",
                         "Elements": [
-                            {
+                            {   #Карточка товара
                                 "type": "LinearLayout",
                                 "orientation": "vertical",
                                 "height": "wrap_content",
@@ -493,6 +493,7 @@ def py_LoadGoods(hashMap):
     records = db["GoodsForSelection"].find({"$and": [{"ВидЗаказа": hashMap.get("ВидЗаказа")},
                                                      {"НомерЗаказа": hashMap.get("НомерЗаказа")}]})
     if len(records) > 0:
+        hashMap.put("OrderCollected", False)    
         i = 1
         for record in records:
             if (record['КОтбору'] == record['Отобрано']):
@@ -783,20 +784,31 @@ def py_LoadGoods(hashMap):
 
             j["customcards"]["cardsdata"].append(c)
             i += 1
+    else:
+        Set_Order_Collected(hashMap)
+        hashMap.put("OrderCollected", True)    
 
     hashMap.put("CardsGoods", json.dumps(j, ensure_ascii=False).encode('utf8').decode())
 
     return hashMap
 
+# Установка признака собранного заказа
+def Set_Order_Collected(hashMap):
+
+    db["OrdersForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
+                                             {"НомерЗаказа": hashMap.get('НомерЗаказа')}]},
+                                   {"ЗаказСобран": True})
+    return hashMap
+
 # отображение элементов экрана Отбор
 def Display_Elrment(hashMap):
-    OrderIsSelect = hashMap.containsKey(
-        "НомерЗаказа") and hashMap.get("НомерЗаказа") != ""
-    hashMap.put("Заголовок", hashMap.get("ВидЗаказа").upper()
-                if OrderIsSelect else "ВЫБЕРИТЕ ЗАКАЗ")
+    OrderIsSelect = hashMap.containsKey("НомерЗаказа") and hashMap.get("НомерЗаказа") != ""
+    OrderCollected = hashMap.get("OrderCollected")
+    hashMap.put("Заголовок", hashMap.get("ВидЗаказа").upper() if OrderIsSelect else "ВЫБЕРИТЕ ЗАКАЗ")
     hashMap.put("Show_Контейнер_Получатель", "1" if OrderIsSelect else "-1")
     hashMap.put("Show_Контейнер_ВремяОстатков", "1" if OrderIsSelect else "-1")
     hashMap.put("Show_Контейнер_Товар", "1" if OrderIsSelect else "-1")
+    hashMap.put("Show_TextOrderCollected", "1" if OrderCollected else "-1")
     return hashMap
 
 # при вводе в экране Отбор
@@ -935,8 +947,8 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
     hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
 
     db = pelicans["TA_WMS"]
-    recordsZP = db["OrdersForSelection"].find({"ВидЗаказа": "ЗаказПокупателя"})
-    recordsVZ = db["OrdersForSelection"].find({"ВидЗаказа": "ЗаказВнутренний"})
+    recordsZP = db["OrdersForSelection"].find({"ВидЗаказа": "Заказ покупателя"})
+    recordsVZ = db["OrdersForSelection"].find({"ВидЗаказа": "Внутренний заказ"})
 
     if not hashMap.containsKey("btn_z"):
         list_btn = "Заказы покупателя("+str(len(recordsZP))+")"
