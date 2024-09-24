@@ -804,14 +804,14 @@ def Set_Order_Collected(hashMap):
 # отображение элементов экрана Отбор
 def Display_Elrment(hashMap):
     OrderIsSelect = hashMap.containsKey("НомерЗаказа") and hashMap.get("НомерЗаказа") != ""
-    # OrderCollected = eval(hashMap.get("OrderCollected") if hashMap.containsKey("OrderCollected") else "False")
+    OrderCollected = eval(hashMap.get("OrderCollected") if hashMap.containsKey("OrderCollected") else "False")
     
     hashMap.put("Заголовок", hashMap.get("ВидЗаказа").upper() if OrderIsSelect else "ВЫБЕРИТЕ ЗАКАЗ")
     hashMap.put("Show_Контейнер_Получатель", "1" if OrderIsSelect else "-1")
     hashMap.put("Show_Контейнер_ВремяОстатков", "1" if OrderIsSelect else "-1")
     hashMap.put("Show_Контейнер_Товар", "1" if OrderIsSelect else "-1")
-    # hashMap.put("Show_TextOrderCollected", "1" if OrderCollected else "-1")
-    android.stop(hashMap)
+    hashMap.put("Show_TextOrderCollected", "1" if OrderCollected else "-1")
+    # android.stop(hashMap)
     return hashMap
 
 # при вводе в экране Отбор
