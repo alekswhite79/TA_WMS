@@ -785,11 +785,11 @@ def py_LoadGoods(hashMap):
             j["customcards"]["cardsdata"].append(c)
             i += 1
         hashMap.put("CardsGoods", json.dumps(j, ensure_ascii=False).encode('utf8').decode())
-        hashMap.put("OrderCollected", "0")    
+        hashMap.put("OrderCollected", "False")    
 
     else:
         Set_Order_Collected(hashMap)
-        hashMap.put("OrderCollected", "1")    
+        hashMap.put("OrderCollected", "True")    
 
     return hashMap
 
@@ -804,7 +804,7 @@ def Set_Order_Collected(hashMap):
 # отображение элементов экрана Отбор
 def Display_Elrment(hashMap):
     OrderIsSelect = hashMap.containsKey("НомерЗаказа") and hashMap.get("НомерЗаказа") != ""
-    OrderCollected = hashMap.get("OrderCollected")
+    OrderCollected = eval(hashMap.get("OrderCollected"))
     hashMap.put("Заголовок", hashMap.get("ВидЗаказа").upper() if OrderIsSelect else "ВЫБЕРИТЕ ЗАКАЗ")
     hashMap.put("Show_Контейнер_Получатель", "1" if OrderIsSelect else "-1")
     hashMap.put("Show_Контейнер_ВремяОстатков", "1" if OrderIsSelect else "-1")
