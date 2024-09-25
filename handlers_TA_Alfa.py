@@ -792,8 +792,8 @@ def py_LoadGoods(hashMap):
 
     else:
         hashMap.put("OrderCollected", "True")    
-        hashMap.put("ДляОтладки", "Количество найденых записей =0")
-        android.stop(hashMap)
+        # hashMap.put("ДляОтладки", "Количество найденых записей =0")
+        # android.stop(hashMap)
         Set_Order_Collected(hashMap)
 
     return hashMap
