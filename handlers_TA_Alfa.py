@@ -494,9 +494,9 @@ def py_LoadGoods(hashMap):
                                                      {"НомерЗаказа": hashMap.get("НомерЗаказа")},
                                                      {"ПозицияСобрана": False}]})
     if len(records) > 0:
-        hashMap.put("Records", json.dumps(records))
-        hashMap.put("ДляОтладки", "Количество найденых записей >0")
-        android.stop(hashMap)
+        # hashMap.put("Records", json.dumps(records))
+        # hashMap.put("ДляОтладки", "Количество найденых записей >0")
+        # android.stop(hashMap)
         i = 1
         for record in records:
             # if (record['КОтбору'] == record['Отобрано']):
@@ -792,8 +792,6 @@ def py_LoadGoods(hashMap):
 
     else:
         hashMap.put("OrderCollected", "True")    
-        # hashMap.put("ДляОтладки", "Количество найденых записей =0")
-        # android.stop(hashMap)
         Set_Order_Collected(hashMap)
 
     return hashMap
