@@ -797,7 +797,7 @@ def Set_Order_Collected(hashMap):
 
     db["OrdersForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
                                              {"НомерЗаказа": hashMap.get('НомерЗаказа')}]},
-                                   {"ЗаказСобран": True})
+                                   {"ЗаказСобран": "True"})
     return hashMap
 
 # отображение элементов экрана Отбор
