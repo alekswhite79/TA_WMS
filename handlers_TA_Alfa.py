@@ -491,15 +491,16 @@ def py_LoadGoods(hashMap):
 
     # db = pelicans["TA_WMS"]
     records = db["GoodsForSelection"].find({"$and": [{"ВидЗаказа": hashMap.get("ВидЗаказа")},
-                                                     {"НомерЗаказа": hashMap.get("НомерЗаказа")}]})
+                                                     {"НомерЗаказа": hashMap.get("НомерЗаказа")},
+                                                     {"ПозицияСобрана": False}]})
     if len(records) > 0:
         hashMap.put("Records", json.dumps(records))
         hashMap.put("ДляОтладки", "Количество найденых записей >0")
         android.stop(hashMap)
         i = 1
         for record in records:
-            if (record['КОтбору'] == record['Отобрано']):
-                continue
+            # if (record['КОтбору'] == record['Отобрано']):
+            #     continue
             
             # list_btn_Goods = "Подтвердить отбор" if record['ШтрихКод'] == "Нет штрихкода" else "Ручной ввод ШК" + ";Ввести количество" if record['КОтбору'] > 1 else ""
             
@@ -942,11 +943,23 @@ def Update_Qty_Goods(hashMap, card_of_goods, qty=1):
     # db = pelicans["TA_WMS"]
     # hashMap.put('VAR_DEBUG', "Точка 3")
     # android.stop(hashMap)
-
-    db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
-                                             {"НомерЗаказа": hashMap.get('НомерЗаказа')},
-                                             {"Код": card_of_goods['Код']}]},
-                                   {"Отобрано": card_of_goods['Отобрано']+qty})
+    NewSelQty = card_of_goods['Отобрано']+qty
+    if card_of_goods['КОтбору'] > NewSelQty:
+        db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
+                                                {"НомерЗаказа": hashMap.get('НомерЗаказа')},
+                                                {"Код": card_of_goods['Код']}]},
+                                    {"Отобрано": NewSelQty})
+    elif card_of_goods['КОтбору'] == NewSelQty:
+        db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
+                                                {"НомерЗаказа": hashMap.get('НомерЗаказа')},
+                                                {"Код": card_of_goods['Код']}]},
+                                    {"Отобрано": NewSelQty, "ПозицияСобрана": True})
+    else:
+        hashMap.put("beep", "15")
+        hashMap.put("ShowDialog", "Внимание!")
+        hashMap.put("ShowDialogStyle", "{'title': 'Превышение количества!',   'yes': '',   'no': 'OK' }")
+        
+        
     return hashMap
 
 # при старте экрана выбора заказа
