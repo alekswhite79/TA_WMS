@@ -493,7 +493,6 @@ def py_LoadGoods(hashMap):
     records = db["GoodsForSelection"].find({"$and": [{"ВидЗаказа": hashMap.get("ВидЗаказа")},
                                                      {"НомерЗаказа": hashMap.get("НомерЗаказа")}]})
     if len(records) > 0:
-        hashMap.put("OrderCollected", False)    
         i = 1
         for record in records:
             if (record['КОтбору'] == record['Отобрано']):
