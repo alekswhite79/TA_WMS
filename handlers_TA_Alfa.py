@@ -1182,10 +1182,16 @@ def check_order_position(document):
 
 # нажатие кнопки Выгрузить основного меню
 def py_UploadOrders(hashMap, _files=None, _data=None):
+    # Пока собранные товары не буду выгржать, только собранные заказы
     #Использование функции для поиска, вместо условий
     #передаем функцию как параметр, она работает с документом
-    records = db['GoodsForSelection'].find([check_order_position])
-    hashMap.put("ТоварыВыгрузить",json.dumps(records))
+    # records = db['GoodsForSelection'].find([check_order_position])
+    # hashMap.put("ТоварыВыгрузить",json.dumps(records))
+
+    records = db['OrdersForSelection'].find({"ЗаказСобран":True})
+    hashMap.put("ЗаказыСобранные",json.dumps(records))
+    
+    # Для отладки
     # hashMap.put('VAR_DEBUG', "Точка 3")
     # android.stop(hashMap)
     return hashMap
