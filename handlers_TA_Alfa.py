@@ -1202,9 +1202,10 @@ def py_DeleteRecords(hashMap, _files=None, _data=None):
     hashMap.put('VAR_DEBUG', "Точка 1")
     android.stop(hashMap)
     if hashMap.containsKey("ЗаказыСобранные"):
-        hashMap.put('VAR_DEBUG', "Точка 2")
-        android.stop(hashMap)
         recordsZS=json.loads(hashMap.get("ЗаказыСобранные"))
+        hashMap.put('VAR_DEBUG', "Точка 2")
+        hashMap.put('VAR_recordsZS', json.dumps(recordsZS))
+        android.stop(hashMap)
         for record in recordsZS:
             hashMap.put('VAR_DEBUG', "Точка 3")
             hashMap.put("Удаляемая запись", record["ВидЗаказа"]+record["НомерЗаказа"])
