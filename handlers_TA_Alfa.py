@@ -1199,11 +1199,11 @@ def py_UploadOrders(hashMap, _files=None, _data=None):
 # удаляем выгруженные в 1С заказы (после отработки обработчика 1С)
 def py_DeleteRecords(hashMap, _files=None, _data=None):
     # Для отладки
-    # hashMap.put('VAR_DEBUG', "Точка 1")
-    # android.stop(hashMap)
+    hashMap.put('VAR_DEBUG', "Точка 1")
+    android.stop(hashMap)
     if hashMap.containsKey("ЗаказыСобранные"):
-        # hashMap.put('VAR_DEBUG', "Точка 2")
-        # android.stop(hashMap)
+        hashMap.put('VAR_DEBUG', "Точка 2")
+        android.stop(hashMap)
         recordsZS=json.loads(hashMap.get("ЗаказыСобранные"))
         for record in recordsZS:
             hashMap.put('VAR_DEBUG', "Точка 3")
