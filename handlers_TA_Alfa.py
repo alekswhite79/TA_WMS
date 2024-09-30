@@ -971,11 +971,11 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
     recordsZP = db["OrdersForSelection"].find({"ВидЗаказа": "Заказ покупателя"})
     recordsVZ = db["OrdersForSelection"].find({"ВидЗаказа": "Внутренний заказ"})
 
-    if not hashMap.containsKey("btn_z"):
-        list_btn = "Заказы покупателя("+str(len(recordsZP))+")"
-        list_btn = list_btn + ";Внутренние заказы("+str(len(recordsVZ))+")"
-        hashMap.put("list_btn", list_btn)
-        return hashMap
+    # if not hashMap.containsKey("btn_z"):
+    list_btn = "Заказы покупателя("+str(len(recordsZP))+")"
+    list_btn = list_btn + ";Внутренние заказы("+str(len(recordsVZ))+")"
+    hashMap.put("list_btn", list_btn)
+    # return hashMap
     
     # android.stop(hashMap)
         
@@ -1197,6 +1197,7 @@ def py_UploadOrders(hashMap, _files=None, _data=None):
     
     elif hashMap.containsKey("ЗаказыСобранные"):
         hashMap.remove("ЗаказыСобранные")
+        hashMap.put("toast","Нет данных для выгрузки")
     
     # Для отладки
     # hashMap.put('VAR_DEBUG', "Точка 3")
@@ -1217,6 +1218,7 @@ def py_DeleteRecords(hashMap, _files=None, _data=None):
             # hashMap.put('VAR_DEBUG', "Точка 3")
             # hashMap.put("Удаляемая запись", record["ВидЗаказа"]+record["НомерЗаказа"])
             # android.stop(hashMap)
+            hashMap.put('ЗаказыКУдалению', json.dumps())
             db["OrdersForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
                                                 {"НомерЗаказа": record["НомерЗаказа"]}]})
             # db["OrdersForSelection"].shrink()
