@@ -1218,15 +1218,17 @@ def py_DeleteRecords(hashMap, _files=None, _data=None):
             # hashMap.put('VAR_DEBUG', "Точка 3")
             # hashMap.put("Удаляемая запись", record["ВидЗаказа"]+record["НомерЗаказа"])
             # android.stop(hashMap)
-            hashMap.put('ЗаказКУдалению', json.dumps(record))
-            hashMap.put('ЗаказыКУдалению', json.dumps(recordsZS))
+            hashMap.put('ЗаказКУдалению', json.dumps(db["OrdersForSelection"].find({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
+                                                                                    {"НомерЗаказа": record["НомерЗаказа"]}]})))
+            hashMap.put('ТоварыКУдалению', json.dumps(db["GoodsForSelection"].find({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
+                                                                                    {"НомерЗаказа": record["НомерЗаказа"]}]})))
             android.stop(hashMap)
-            db["OrdersForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
-                                                {"НомерЗаказа": record["НомерЗаказа"]}]})
+            # db["OrdersForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
+                                                # {"НомерЗаказа": record["НомерЗаказа"]}]})
             # db["OrdersForSelection"].shrink()
             
-            db["GoodsForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
-                                                {"НомерЗаказа": record["НомерЗаказа"]}]})
+            # db["GoodsForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
+            #                                     {"НомерЗаказа": record["НомерЗаказа"]}]})
             # db["GoodsForSelection"].shrink()
                 
         # try:
