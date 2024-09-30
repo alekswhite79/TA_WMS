@@ -1189,7 +1189,14 @@ def py_UploadOrders(hashMap, _files=None, _data=None):
     # hashMap.put("ТоварыВыгрузить",json.dumps(records))
 
     records = db['OrdersForSelection'].find({"ЗаказСобран":True})
-    hashMap.put("ЗаказыСобранные",json.dumps(records))
+    if len(records)>0:
+        hashMap.put("ЗаказыСобранные",json.dumps(records))
+        hashMap.put("RunEvent",json.dumps([{"action": "run", 
+                                            "type": "online", 
+                                            "method": "ВыгрузитьДанные"}]))
+    
+    elif hashMap.containsKey("ЗаказыСобранные"):
+        hashMap.remove("ЗаказыСобранные")
     
     # Для отладки
     # hashMap.put('VAR_DEBUG', "Точка 3")
