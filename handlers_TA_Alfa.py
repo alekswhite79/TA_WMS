@@ -971,11 +971,11 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
     recordsZP = db["OrdersForSelection"].find({"ВидЗаказа": "Заказ покупателя"})
     recordsVZ = db["OrdersForSelection"].find({"ВидЗаказа": "Внутренний заказ"})
 
-    # if not hashMap.containsKey("btn_z"):
     list_btn = "Заказы покупателя("+str(len(recordsZP))+")"
     list_btn = list_btn + ";Внутренние заказы("+str(len(recordsVZ))+")"
     hashMap.put("list_btn", list_btn)
-    # return hashMap
+    if not hashMap.containsKey("btn_z"):
+        return hashMap
     
     # android.stop(hashMap)
         
