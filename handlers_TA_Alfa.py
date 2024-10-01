@@ -1220,11 +1220,11 @@ def py_DeleteRecords(hashMap, _files=None, _data=None):
             # android.stop(hashMap)
             db["OrdersForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
                                                 {"НомерЗаказа": record["НомерЗаказа"]}]})
-            # db["OrdersForSelection"].shrink()
+            db["OrdersForSelection"].shrink()
             
             db["GoodsForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
                                                 {"НомерЗаказа": record["НомерЗаказа"]}]})
-            # db["GoodsForSelection"].shrink()
+            db["GoodsForSelection"].shrink()
             hashMap.put('ЗаказКУдалению', json.dumps(db["OrdersForSelection"].find({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
                                                                                     {"НомерЗаказа": record["НомерЗаказа"]}]})))
             hashMap.put('ТоварыКУдалению', json.dumps(db["GoodsForSelection"].find({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
