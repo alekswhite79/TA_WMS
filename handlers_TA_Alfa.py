@@ -1218,8 +1218,10 @@ def py_DeleteRecords(hashMap, _files=None, _data=None):
             # hashMap.put('VAR_DEBUG', "Точка 3")
             # hashMap.put("Удаляемая запись", record["ВидЗаказа"]+record["НомерЗаказа"])
             # android.stop(hashMap)
-            pelicans["TA_WMS"]["OrdersForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
-                                                {"НомерЗаказа": record["НомерЗаказа"]}]})
+            pelicans["TA_WMS"]["OrdersForSelection"].delete([record["_id"]])
+
+            # pelicans["TA_WMS"]["OrdersForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
+            #                                     {"НомерЗаказа": record["НомерЗаказа"]}]})
             # pelicans["TA_WMS"]["OrdersForSelection"].shrink()
             
             pelicans["TA_WMS"]["GoodsForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
