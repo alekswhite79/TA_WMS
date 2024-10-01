@@ -1218,19 +1218,19 @@ def py_DeleteRecords(hashMap, _files=None, _data=None):
             # hashMap.put('VAR_DEBUG', "Точка 3")
             # hashMap.put("Удаляемая запись", record["ВидЗаказа"]+record["НомерЗаказа"])
             # android.stop(hashMap)
-            db["OrdersForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
+            pelicans["TA_WMS"]["OrdersForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
                                                 {"НомерЗаказа": record["НомерЗаказа"]}]})
-            db["OrdersForSelection"].shrink()
+            # pelicans["TA_WMS"]["OrdersForSelection"].shrink()
             
-            db["GoodsForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
+            pelicans["TA_WMS"]["GoodsForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
                                                 {"НомерЗаказа": record["НомерЗаказа"]}]})
-            db["GoodsForSelection"].shrink()
+            # pelicans["TA_WMS"]["GoodsForSelection"].shrink()
             
             # db = pelicans["TA_WMS"]
             
-            hashMap.put('ЗаказКУдалению', json.dumps(db["OrdersForSelection"].find({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
+            hashMap.put('ЗаказКУдалению', json.dumps(pelicans["TA_WMS"]["OrdersForSelection"].find({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
                                                                                     {"НомерЗаказа": record["НомерЗаказа"]}]})))
-            hashMap.put('ТоварыКУдалению', json.dumps(db["GoodsForSelection"].find({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
+            hashMap.put('ТоварыКУдалению', json.dumps(pelicans["TA_WMS"]["GoodsForSelection"].find({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
                                                                                     {"НомерЗаказа": record["НомерЗаказа"]}]})))
             android.stop(hashMap)
             
