@@ -1226,7 +1226,7 @@ def py_DeleteRecords(hashMap, _files=None, _data=None):
                                                 {"НомерЗаказа": record["НомерЗаказа"]}]})
             db["GoodsForSelection"].shrink()
             
-            db = pelicans["TA_WMS"]
+            # db = pelicans["TA_WMS"]
             
             hashMap.put('ЗаказКУдалению', json.dumps(db["OrdersForSelection"].find({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
                                                                                     {"НомерЗаказа": record["НомерЗаказа"]}]})))
