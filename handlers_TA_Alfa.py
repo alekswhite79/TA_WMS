@@ -1195,7 +1195,7 @@ def py_UploadOrders(hashMap, _files=None, _data=None):
                                             "type": "online", 
                                             "method": "ВыгрузитьДанные"}]))
     
-    elif hashMap.containsKey("ЗаказыСобранные"):
+    else: 
         hashMap.remove("ЗаказыСобранные")
         hashMap.put("toast","Нет данных для выгрузки")
     
