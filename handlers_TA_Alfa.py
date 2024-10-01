@@ -1230,7 +1230,9 @@ def py_DeleteRecords(hashMap, _files=None, _data=None):
             hashMap.put('ТоварыКУдалению', json.dumps(db["GoodsForSelection"].find({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
                                                                                     {"НомерЗаказа": record["НомерЗаказа"]}]})))
             android.stop(hashMap)
-                
+            
+            hashMap.put('ЗаказКУдалению',"")    
+            hashMap.put('ТоварыКУдалению', "")
         # try:
         #     with DBSession(db) as s:
                 
