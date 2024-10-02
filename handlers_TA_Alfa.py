@@ -1214,46 +1214,46 @@ def py_DeleteRecords(hashMap, _files=None, _data=None):
         # hashMap.put('VAR_DEBUG', "Точка 2")
         # hashMap.put('VAR_recordsZS', json.dumps(recordsZS))
         # android.stop(hashMap)
-        for record in recordsZS:
+        # for record in recordsZS:
             # hashMap.put('VAR_DEBUG', "Точка 3")
             # hashMap.put("Удаляемая запись", record["ВидЗаказа"]+record["НомерЗаказа"])
             # android.stop(hashMap)
-            pelicans["TA_WMS"]["OrdersForSelection"].delete([record["_id"]])
+            # pelicans["TA_WMS"]["OrdersForSelection"].delete([record["_id"]])
 
-            # pelicans["TA_WMS"]["OrdersForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
+            # db["OrdersForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
             #                                     {"НомерЗаказа": record["НомерЗаказа"]}]})
-            # pelicans["TA_WMS"]["OrdersForSelection"].shrink()
+            # db["OrdersForSelection"].shrink()
             
-            pelicans["TA_WMS"]["GoodsForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
-                                                {"НомерЗаказа": record["НомерЗаказа"]}]})
-            # pelicans["TA_WMS"]["GoodsForSelection"].shrink()
+            # db["GoodsForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
+            #                                     {"НомерЗаказа": record["НомерЗаказа"]}]})
+            # db["GoodsForSelection"].shrink()
             
             # db = pelicans["TA_WMS"]
             
-            hashMap.put('ЗаказКУдалению', json.dumps(pelicans["TA_WMS"]["OrdersForSelection"].find({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
-                                                                                    {"НомерЗаказа": record["НомерЗаказа"]}]})))
-            hashMap.put('ТоварыКУдалению', json.dumps(pelicans["TA_WMS"]["GoodsForSelection"].find({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
-                                                                                    {"НомерЗаказа": record["НомерЗаказа"]}]})))
-            hashMap.put('VAR_DEBUG', record["_id"]+" "+record["ВидЗаказа"]+" "+record["НомерЗаказа"])
-            android.stop(hashMap)
+            # hashMap.put('ЗаказКУдалению', json.dumps(pelicans["TA_WMS"]["OrdersForSelection"].find({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
+            #                                                                         {"НомерЗаказа": record["НомерЗаказа"]}]})))
+            # hashMap.put('ТоварыКУдалению', json.dumps(pelicans["TA_WMS"]["GoodsForSelection"].find({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
+            #                                                                         {"НомерЗаказа": record["НомерЗаказа"]}]})))
+            # hashMap.put('VAR_DEBUG', record["_id"]+" "+record["ВидЗаказа"]+" "+record["НомерЗаказа"])
+            # android.stop(hashMap)
             
-            hashMap.put('ЗаказКУдалению',"")    
-            hashMap.put('ТоварыКУдалению', "")
-        # try:
-        #     with DBSession(db) as s:
+            # hashMap.put('ЗаказКУдалению',"")    
+            # hashMap.put('ТоварыКУдалению', "")
+        try:
+            with DBSession(db) as s:
                 
-        #         recordsZS=json.loads(hashMap.get("ЗаказыСобранные"))
-        #         for record in recordsZS:
-        #             db["OrdersForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
-        #                                              {"НомерЗаказа": record["НомерЗаказа"]}]}, session=s)
-        #             db["OrdersForSelection"].shrink(session=s)
+                recordsZS=json.loads(hashMap.get("ЗаказыСобранные"))
+                for record in recordsZS:
+                    db["OrdersForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
+                                                     {"НомерЗаказа": record["НомерЗаказа"]}]}, session=s)
+                    db["OrdersForSelection"].shrink(session=s)
                     
-        #             db["GoodsForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
-        #                                              {"НомерЗаказа": record["НомерЗаказа"]}]}, session=s)
-        #             db["GoodsForSelection"].shrink(session=s)
+                    db["GoodsForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
+                                                     {"НомерЗаказа": record["НомерЗаказа"]}]}, session=s)
+                    db["GoodsForSelection"].shrink(session=s)
                 
-        # except Exception as e:
-        #     hashMap.put("ErrorMessage ","Транзакция не записана:" + str(e))  
+        except Exception as e:
+            hashMap.put("ErrorMessage ","Транзакция не записана:" + str(e))  
 
     return hashMap
 
