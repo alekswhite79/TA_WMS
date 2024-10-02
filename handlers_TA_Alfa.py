@@ -1234,7 +1234,7 @@ def py_DeleteRecords(hashMap, _files=None, _data=None):
                                                                                     {"НомерЗаказа": record["НомерЗаказа"]}]})))
             hashMap.put('ТоварыКУдалению', json.dumps(pelicans["TA_WMS"]["GoodsForSelection"].find({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
                                                                                     {"НомерЗаказа": record["НомерЗаказа"]}]})))
-            hashMap.put(record["_id"])
+            hashMap.put('VAR_DEBUG', record["_id"]+" "+record["ВидЗаказа"]+" "+record["НомерЗаказа"])
             android.stop(hashMap)
             
             hashMap.put('ЗаказКУдалению',"")    
