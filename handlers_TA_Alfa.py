@@ -815,7 +815,7 @@ def Display_Elrment(hashMap):
     hashMap.put("Show_Контейнер_Получатель", "1" if OrderIsSelect else "-1")
     hashMap.put("Show_Контейнер_ВремяОстатков", "1" if OrderIsSelect and not OrderCollected else "-1")
     hashMap.put("Show_Контейнер_Товар", "1" if OrderIsSelect and not OrderCollected else "-1")
-    hashMap.put("Show_TextOrderCollected", "1" if OrderCollected else "-1")
+    hashMap.put("Show_TextOrderCollected", "1" if OrderCollected and OrderIsSelect else "-1")
     # hashMap.put("VarOrderCollected", str(OrderCollected))
     # android.stop(hashMap)
     return hashMap
