@@ -1240,20 +1240,20 @@ def py_DeleteRecords(hashMap, _files=None, _data=None):
             # hashMap.put('ЗаказКУдалению',"")    
             # hashMap.put('ТоварыКУдалению', "")
         try:
-            with DBSession(db) as s:
+            # with DBSession(db) as s:
                 
-                recordsZS=json.loads(hashMap.get("ЗаказыСобранные"))
-                for record in recordsZS:
+                # recordsZS=json.loads(hashMap.get("ЗаказыСобранные"))
+                # for record in recordsZS:
                     # db["OrdersForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
                     #                                  {"НомерЗаказа": record["НомерЗаказа"]}]}, session=s)
-                    db["OrdersForSelection"].delete({"ЗаказСобран":True}, session=s)
                     
                     # db["GoodsForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
                     #                                  {"НомерЗаказа": record["НомерЗаказа"]}]}, session=s)
-                    db["GoodsForSelection"].delete({"ПозицияСобрана": True}, session=s)
+            db["OrdersForSelection"].delete({"ЗаказСобран":True})
+            db["GoodsForSelection"].delete({"ПозицияСобрана": True})
 
-                db["OrdersForSelection"].shrink(session=s)
-                db["GoodsForSelection"].shrink(session=s)
+            db["OrdersForSelection"].shrink()
+            db["GoodsForSelection"].shrink()
                 
         except Exception as e:
             hashMap.put("ErrorMessage ","Транзакция не записана:" + str(e))  
