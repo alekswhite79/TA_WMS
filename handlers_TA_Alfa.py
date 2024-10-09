@@ -1188,15 +1188,18 @@ def py_UploadOrders(hashMap, _files=None, _data=None):
     # records = db['GoodsForSelection'].find([check_order_position])
     # hashMap.put("ТоварыВыгрузить",json.dumps(records))
 
-    records = db['OrdersForSelection'].find({"ЗаказСобран":True})
-    if len(records)>0:
-        hashMap.put("ЗаказыСобранные",json.dumps(records))
+    Orders = db['OrdersForSelection'].find({"ЗаказСобран":True})
+    Goods = db['GoodsForSelection'].find({"ПозицияСобрана":True})
+    if len(Orders)>0 and len(Goods)>0:
+        hashMap.put("ЗаказыСобранные",json.dumps(Orders))
+        hashMap.put("ТоварыСобранные",json.dumps(Goods))
         hashMap.put("RunEvent",json.dumps([{"action": "run", 
                                             "type": "online", 
                                             "method": "ВыгрузитьДанные"}]))
     
     else: 
         hashMap.remove("ЗаказыСобранные")
+        hashMap.remove("ТоварыСобранные")
         hashMap.put("toast","Нет данных для выгрузки")
     
     # Для отладки
@@ -1210,7 +1213,7 @@ def py_DeleteRecords(hashMap, _files=None, _data=None):
     # hashMap.put('VAR_DEBUG', "Точка 1")
     # android.stop(hashMap)
     if hashMap.containsKey("ЗаказыСобранные"):
-        recordsZS=json.loads(hashMap.get("ЗаказыСобранные"))
+        # recordsZS=json.loads(hashMap.get("ЗаказыСобранные"))
         # hashMap.put('VAR_DEBUG', "Точка 2")
         # hashMap.put('VAR_recordsZS', json.dumps(recordsZS))
         # android.stop(hashMap)
@@ -1240,8 +1243,13 @@ def py_DeleteRecords(hashMap, _files=None, _data=None):
             # hashMap.put('ЗаказКУдалению',"")    
             # hashMap.put('ТоварыКУдалению', "")
         try:
-            # with DBSession(db) as s:
+            with DBSession(db) as s:
                 
+                db["OrdersForSelection"].delete({"ЗаказСобран":True})
+                db["GoodsForSelection"].delete({"ПозицияСобрана": True})
+
+                # db["OrdersForSelection"].shrink()
+                # db["GoodsForSelection"].shrink()
                 # recordsZS=json.loads(hashMap.get("ЗаказыСобранные"))
                 # for record in recordsZS:
                     # db["OrdersForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
@@ -1249,11 +1257,6 @@ def py_DeleteRecords(hashMap, _files=None, _data=None):
                     
                     # db["GoodsForSelection"].delete({"$and": [{"ВидЗаказа": record["ВидЗаказа"]},
                     #                                  {"НомерЗаказа": record["НомерЗаказа"]}]}, session=s)
-            db["OrdersForSelection"].delete({"ЗаказСобран":True})
-            db["GoodsForSelection"].delete({"ПозицияСобрана": True})
-
-            db["OrdersForSelection"].shrink()
-            db["GoodsForSelection"].shrink()
                 
         except Exception as e:
             hashMap.put("ErrorMessage ","Транзакция не записана:" + str(e))  
