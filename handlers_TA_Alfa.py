@@ -1215,7 +1215,7 @@ def py_DeleteRecords(hashMap, _files=None, _data=None):
 
     res = feed(db,json.loads(hashMap.get("стрДляFeedPelican")))
     
-    hashMap.put('VAR_DEBUG', str(res))
+    hashMap.put('VAR_DEBUG', 'feed')
     android.stop(hashMap)
     # if hashMap.containsKey("ЗаказыСобранные"):
     #     # recordsZS=json.loads(hashMap.get("ЗаказыСобранные"))
