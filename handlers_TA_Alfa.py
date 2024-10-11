@@ -1213,11 +1213,11 @@ def py_DeleteRecords(hashMap, _files=None, _data=None):
     hashMap.put('VAR_DEBUG', 'py_DeleteRecords')
     android.stop(hashMap)
 
-    dbmap = {"TA_WMS":db}
-    res = feed(dbmap,json.loads(hashMap.get("стрДляFeedPelican")))
+    # dbmap = {"TA_WMS":db}
+    # res = feed(dbmap,json.loads(hashMap.get("стрДляFeedPelican")))
     
-    hashMap.put('VAR_DEBUG', 'feed')
-    android.stop(hashMap)
+    # hashMap.put('VAR_DEBUG', 'feed')
+    # android.stop(hashMap)
     # if hashMap.containsKey("ЗаказыСобранные"):
     #     # recordsZS=json.loads(hashMap.get("ЗаказыСобранные"))
     #     # hashMap.put('VAR_DEBUG', "Точка 2")
