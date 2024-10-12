@@ -1302,7 +1302,8 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
                     # android.stop(hashMap)
                     hashMap.put("RunEvent",json.dumps([{"action": "runasync", 
                                                             "type": "online", 
-                                                            "method": "ДанныеВТСДЗагружены"}]))                    
+                                                            "method": "ДанныеВТСДЗагружены"}]))
+                    hashMap.put("speak","Загружены новые заказы")                    
             # hashMap.remove("ЗаказыЗагрузить")    
             # hashMap.remove("ТоварыЗагрузить")    
         except Exception as e:
