@@ -1189,8 +1189,13 @@ def py_UploadOrders(hashMap, _files=None, _data=None):
     # hashMap.put("ТоварыВыгрузить",json.dumps(records))
 
     Orders = db['OrdersForSelection'].find({"ЗаказСобран":True})
-    Goods = db['GoodsForSelection'].find({"ПозицияСобрана":True})
-    if len(Orders)>0 and len(Goods)>0:
+    # Goods = db['GoodsForSelection'].find({"ПозицияСобрана":True})
+    Goods = []
+    if len(Orders)>0: #and len(Goods)>0:
+        for Order in Orders:
+            СurrentOrderGoods = db['GoodsForSelection'].find({"$and": [{"ВидЗаказа": Order["ВидЗаказа"]},{"НомерЗаказа": Order["НомерЗаказа"]}]})
+            Goods = Goods + СurrentOrderGoods
+        
         hashMap.put("ЗаказыСобранные",json.dumps(Orders))
         hashMap.put("ТоварыСобранные",json.dumps(Goods))
         hashMap.put("RunEvent",json.dumps([{"action": "run", 
