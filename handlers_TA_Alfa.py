@@ -1300,12 +1300,10 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
                 if len(ЗагруженоЗаказов) == int(hashMap.get("ЗагруженоЗаказов")) and len(ЗагруженоТоваров) == int(hashMap.get("ЗагруженоТоваров")):
                     #Надо сообщить об этом 1С
                     # android.stop(hashMap)
-                    hashMap.put("RunEvent",json.dumps([{"action": "runasync", 
-                                                            "type": "online", 
-                                                            "method": "ДанныеВТСДЗагружены"}]))
+                    hashMap.put("RunEvent",json.dumps([{"action": "runasync", "type": "online", "method": "ДанныеВТСДЗагружены"}]))
                     hashMap.put("speak","Загружены новые заказы")                    
-            # hashMap.remove("ЗаказыЗагрузить")    
-            # hashMap.remove("ТоварыЗагрузить")    
+                    hashMap.remove("ЗаказыЗагрузить")    
+                    hashMap.remove("ТоварыЗагрузить")    
         except Exception as e:
             hashMap.put("ErrorMessage ","Транзакция не записана:" + str(e))  
 
