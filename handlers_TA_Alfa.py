@@ -1309,8 +1309,8 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
         except Exception as e:
             hashMap.put("ErrorMessage ","Транзакция не записана:" + str(e))  
 
-        hashMap.remove("ЗаказыЗагрузить")
-        hashMap.remove("ТоварыЗагрузить")
+        # hashMap.remove("ЗаказыЗагрузить")
+        # hashMap.remove("ТоварыЗагрузить")
         
         # hashMap.put("_ZZ", str(len(ЗагруженоЗаказов)))
         # hashMap.put("_ZT", str(len(ЗагруженоТоваров)))
