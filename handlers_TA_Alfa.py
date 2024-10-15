@@ -1337,8 +1337,8 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
 # Удалим переменные обмена
 def py_ClearVariable(hashMap, _files=None, _data=None):
 
-    hashMap.put('VAR_DEBUG', 'py_ClearVariable1')
-    android.stop(hashMap)
+    # hashMap.put('VAR_DEBUG', 'py_ClearVariable1')
+    # android.stop(hashMap)
     if hashMap.containsKey("ЗаказыЗагрузить"):
         hashMap.remove("ЗаказыЗагрузить")    
     if hashMap.containsKey("ТоварыЗагрузить"):
@@ -1348,6 +1348,6 @@ def py_ClearVariable(hashMap, _files=None, _data=None):
     if hashMap.containsKey("ЗагруженоТоваров"):
         hashMap.remove("ЗагруженоТоваров")    
     hashMap.put('VAR_DEBUG', 'py_ClearVariable2')
-    android.stop(hashMap)
-    return hashMap
+    # android.stop(hashMap)
+    # return hashMap
 
