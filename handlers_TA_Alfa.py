@@ -1299,8 +1299,10 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
                 
                 if len(ЗагруженоЗаказов) == int(hashMap.get("ЗагруженоЗаказов")) and len(ЗагруженоТоваров) == int(hashMap.get("ЗагруженоТоваров")):
                     #Надо сообщить об этом 1С
-                    hashMap.put("RunEvent",json.dumps([{"action": "run", "type": "online", "method": "ДанныеВТСДЗагружены"},
-                                                       {"action": "run", "type": "python", "method": "py_ClearVariable"}]))
+                    hashMap.put("RunEvent",json.dumps([{"action": "run", 
+                                                        "type": "online", 
+                                                        "method": "ДанныеВТСДЗагружены",
+                                                        "postExecute": '[{"action": "run","type": "python","method": "py_ClearVariable"}]'}]))
                     # hashMap.put("speak","Загружены новые заказы")                    
                     # hashMap.remove("ЗаказыЗагрузить")    
                     # hashMap.remove("ТоварыЗагрузить")    
