@@ -1,3 +1,4 @@
+import requests
 import android
 from pelican import pelicans
 from pelicandb import Pelican,DBSession,feed
@@ -1301,7 +1302,7 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
                     #Надо сообщить об этом 1С
                     hashMap.put("ЗагруженныеЗаказы",hashMap.get("ЗаказыЗагрузить"))
                     hashMap.put("ЗагруженныеТовары",hashMap.get("ТоварыЗагрузить"))
-                    hashMap.put("RunEvent",json.dumps([{"action": "runprogress", 
+                    hashMap.put("RunEvent",json.dumps([{"action": "run", 
                                                         "type": "online", 
                                                         "method": "ДанныеВТСДЗагружены"}]))
                     # hashMap.put("speak","Загружены новые заказы")                    
@@ -1311,27 +1312,31 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
         except Exception as e:
             hashMap.put("ErrorMessage ","Транзакция не записана:" + str(e))  
 
-        android.remove_process_hashMap("ЗаказыЗагрузить")
-        android.remove_process_hashMap("ТоварыЗагрузить")
-        android.remove_process_hashMap("ЗагруженоЗаказов")    
-        android.remove_process_hashMap("ЗагруженоТоваров")    
+        hashMap.remove("ЗаказыЗагрузить")
+        hashMap.remove("ТоварыЗагрузить")
+        hashMap.remove("ЗагруженоЗаказов")    
+        hashMap.remove("ЗагруженоТоваров")    
+        # android.remove_process_hashMap("ЗаказыЗагрузить")
+        # android.remove_process_hashMap("ТоварыЗагрузить")
+        # android.remove_process_hashMap("ЗагруженоЗаказов")    
+        # android.remove_process_hashMap("ЗагруженоТоваров")    
         
         # hashMap.put("_ZZ", str(len(ЗагруженоЗаказов)))
         # hashMap.put("_ZT", str(len(ЗагруженоТоваров)))
         # if len(ЗагруженоЗаказов) > 0 and len(ЗагруженоТоваров) > 0:
         # hashMap.put("Toast", "Загружено")#+str(len(ЗагруженоЗаказов))+" заказов из "+str(len(ЗагруженоТоваров))+ " товаров")
-        # import requests
-        # from requests.auth import HTTPBasicAuth
+        import requests
+        from requests.auth import HTTPBasicAuth
 
-        # mainURL = "http://10.4.27.33/test/hs/simpleui"
+        mainURL = "http://10.4.27.33/test/hs/simpleui"
 
-        # url = mainURL+"/get_orderlist/"
-        # data = {'user': 'user', 'password': 'password'}
-        # headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+        url = mainURL+"/get_orderlist/"
+        data = {'user': 'user', 'password': 'password'}
+        headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
-        # r = requests.post(url, data=json.dumps(data), headers=headers,
-        #                   auth=HTTPBasicAuth('Белый'.encode('utf-8'), '20052019SO'))
-        # hashMap.put("toast", str(r.status_code))
+        r = requests.post(url, data=json.dumps(data), headers=headers,
+                          auth=HTTPBasicAuth('Белый'.encode('utf-8'), '20052019SO'))
+        hashMap.put("toast", str(r.status_code))
 
         # hashMap.put("toast","PeriodicLoadOrder")
     
