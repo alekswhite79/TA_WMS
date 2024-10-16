@@ -1311,10 +1311,10 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
         except Exception as e:
             hashMap.put("ErrorMessage ","Транзакция не записана:" + str(e))  
 
-        hashMap.remove("ЗаказыЗагрузить")
-        hashMap.remove("ТоварыЗагрузить")
-        hashMap.remove("ЗагруженоЗаказов")    
-        hashMap.remove("ЗагруженоТоваров")    
+        android.remove_process_hashMap("ЗаказыЗагрузить")
+        android.remove_process_hashMap("ТоварыЗагрузить")
+        android.remove_process_hashMap("ЗагруженоЗаказов")    
+        android.remove_process_hashMap("ЗагруженоТоваров")    
         
         # hashMap.put("_ZZ", str(len(ЗагруженоЗаказов)))
         # hashMap.put("_ZT", str(len(ЗагруженоТоваров)))
