@@ -1347,7 +1347,7 @@ def py_ClearVariable(hashMap, _files=None, _data=None):
         hashMap.remove("ЗагруженоЗаказов")    
     if hashMap.containsKey("ЗагруженоТоваров"):
         hashMap.remove("ЗагруженоТоваров")    
-    hashMap.put('VAR_DEBUG', 'py_ClearVariable2')
+    # hashMap.put('VAR_DEBUG', 'py_ClearVariable2')
     # android.stop(hashMap)
-    # return hashMap
+    return hashMap
 
