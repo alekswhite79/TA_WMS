@@ -1325,18 +1325,18 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
         # hashMap.put("_ZT", str(len(ЗагруженоТоваров)))
         # if len(ЗагруженоЗаказов) > 0 and len(ЗагруженоТоваров) > 0:
         # hashMap.put("Toast", "Загружено")#+str(len(ЗагруженоЗаказов))+" заказов из "+str(len(ЗагруженоТоваров))+ " товаров")
-        import requests
-        from requests.auth import HTTPBasicAuth
+        # import requests
+        # from requests.auth import HTTPBasicAuth
 
-        mainURL = "http://10.4.27.33/test/hs/simpleui"
+        # mainURL = "http://10.4.27.33/test/hs/simpleui"
 
-        url = mainURL+"/get_orderlist/"
-        data = {'user': 'user', 'password': 'password'}
-        headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+        # url = mainURL+"/get_orderlist/"
+        # data = {'user': 'user', 'password': 'password'}
+        # headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
-        r = requests.post(url, data=json.dumps(data), headers=headers,
-                          auth=HTTPBasicAuth('Белый'.encode('utf-8'), '20052019SO'))
-        hashMap.put("toast", str(r.status_code))
+        # r = requests.post(url, data=json.dumps(data), headers=headers,
+        #                   auth=HTTPBasicAuth('Белый'.encode('utf-8'), '20052019SO'))
+        # hashMap.put("toast", str(r.status_code))
 
         # hashMap.put("toast","PeriodicLoadOrder")
     
