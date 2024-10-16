@@ -1285,54 +1285,57 @@ def py_DeleteRecords(hashMap, _files=None, _data=None):
 #                                     #    {"action":"run","type":"set","method":"speak=Загружены новые заказы"}])) 
 #     return hashMap
 
-# # нажатие кнопки Закгрузить основного меню (после отработки обработчика 1С)
-# def py_InsertRecords(hashMap, _files=None, _data=None):
-#     if hashMap.containsKey("ЗаказыЗагрузить") and hashMap.containsKey("ТоварыЗагрузить"):
-#         try:
-#             with DBSession(db) as s:
+# нажатие кнопки Закгрузить основного меню (после отработки обработчика 1С)
+def py_InsertRecords(hashMap, _files=None, _data=None):
+    if hashMap.containsKey("ЗаказыЗагрузить") and hashMap.containsKey("ТоварыЗагрузить"):
+        try:
+            with DBSession(db) as s:
                 
-#                 ЗаказыЗагрузить=json.loads(hashMap.get("ЗаказыЗагрузить"))
-#                 ЗагруженоЗаказов = db["OrdersForSelection"].insert(ЗаказыЗагрузить, upsert=True, session=s)
+                ЗаказыЗагрузить=json.loads(hashMap.get("ЗаказыЗагрузить"))
+                ЗагруженоЗаказов = db["OrdersForSelection"].insert(ЗаказыЗагрузить, upsert=True, session=s)
 
-#                 ТоварыЗагрузить=json.loads(hashMap.get("ТоварыЗагрузить"))
-#                 ЗагруженоТоваров = db["GoodsForSelection"].insert(ТоварыЗагрузить, upsert=True, session=s)
+                ТоварыЗагрузить=json.loads(hashMap.get("ТоварыЗагрузить"))
+                ЗагруженоТоваров = db["GoodsForSelection"].insert(ТоварыЗагрузить, upsert=True, session=s)
                 
-#                 if len(ЗагруженоЗаказов) == int(hashMap.get("ЗагруженоЗаказов")) and len(ЗагруженоТоваров) == int(hashMap.get("ЗагруженоТоваров")):
-#                     #Надо сообщить об этом 1С
-#                     hashMap.put("RunEvent",json.dumps([{"action": "runprogress", 
-#                                                         "type": "online", 
-#                                                         "method": "ДанныеВТСДЗагружены",
-#                                                         "postExecute": "[{'action': 'run','type': 'python','method': 'py_ClearVariable'}]"}]))
-#                     # hashMap.put("speak","Загружены новые заказы")                    
-#                     # hashMap.remove("ЗаказыЗагрузить")    
-#                     # hashMap.remove("ТоварыЗагрузить")    
-#                     # android.stop(hashMap)
-#         except Exception as e:
-#             hashMap.put("ErrorMessage ","Транзакция не записана:" + str(e))  
+                if len(ЗагруженоЗаказов) == int(hashMap.get("ЗагруженоЗаказов")) and len(ЗагруженоТоваров) == int(hashMap.get("ЗагруженоТоваров")):
+                    #Надо сообщить об этом 1С
+                    hashMap.put("ЗагруженныеЗаказы",hashMap.get("ЗаказыЗагрузить"))
+                    hashMap.put("ЗагруженныеТовары",hashMap.get("ТоварыЗагрузить"))
+                    hashMap.put("RunEvent",json.dumps([{"action": "runprogress", 
+                                                        "type": "online", 
+                                                        "method": "ДанныеВТСДЗагружены"}]))
+                    # hashMap.put("speak","Загружены новые заказы")                    
+                    # hashMap.remove("ЗаказыЗагрузить")    
+                    # hashMap.remove("ТоварыЗагрузить")    
+                    # android.stop(hashMap)
+        except Exception as e:
+            hashMap.put("ErrorMessage ","Транзакция не записана:" + str(e))  
 
-#         # hashMap.remove("ЗаказыЗагрузить")
-#         # hashMap.remove("ТоварыЗагрузить")
+        hashMap.remove("ЗаказыЗагрузить")
+        hashMap.remove("ТоварыЗагрузить")
+        hashMap.remove("ЗагруженоЗаказов")    
+        hashMap.remove("ЗагруженоТоваров")    
         
-#         # hashMap.put("_ZZ", str(len(ЗагруженоЗаказов)))
-#         # hashMap.put("_ZT", str(len(ЗагруженоТоваров)))
-#         # if len(ЗагруженоЗаказов) > 0 and len(ЗагруженоТоваров) > 0:
-#         # hashMap.put("Toast", "Загружено")#+str(len(ЗагруженоЗаказов))+" заказов из "+str(len(ЗагруженоТоваров))+ " товаров")
-#         # import requests
-#         # from requests.auth import HTTPBasicAuth
+        # hashMap.put("_ZZ", str(len(ЗагруженоЗаказов)))
+        # hashMap.put("_ZT", str(len(ЗагруженоТоваров)))
+        # if len(ЗагруженоЗаказов) > 0 and len(ЗагруженоТоваров) > 0:
+        # hashMap.put("Toast", "Загружено")#+str(len(ЗагруженоЗаказов))+" заказов из "+str(len(ЗагруженоТоваров))+ " товаров")
+        # import requests
+        # from requests.auth import HTTPBasicAuth
 
-#         # mainURL = "http://10.4.27.33/test/hs/simpleui"
+        # mainURL = "http://10.4.27.33/test/hs/simpleui"
 
-#         # url = mainURL+"/get_orderlist/"
-#         # data = {'user': 'user', 'password': 'password'}
-#         # headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+        # url = mainURL+"/get_orderlist/"
+        # data = {'user': 'user', 'password': 'password'}
+        # headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
-#         # r = requests.post(url, data=json.dumps(data), headers=headers,
-#         #                   auth=HTTPBasicAuth('Белый'.encode('utf-8'), '20052019SO'))
-#         # hashMap.put("toast", str(r.status_code))
+        # r = requests.post(url, data=json.dumps(data), headers=headers,
+        #                   auth=HTTPBasicAuth('Белый'.encode('utf-8'), '20052019SO'))
+        # hashMap.put("toast", str(r.status_code))
 
-#         # hashMap.put("toast","PeriodicLoadOrder")
+        # hashMap.put("toast","PeriodicLoadOrder")
     
-#     return hashMap
+    return hashMap
     
 # # Удалим переменные обмена
 # def py_ClearVariable(hashMap, _files=None, _data=None):
