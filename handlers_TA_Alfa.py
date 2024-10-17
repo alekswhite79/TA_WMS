@@ -1288,7 +1288,7 @@ def py_DeleteRecords(hashMap, _files=None, _data=None):
 
 # нажатие кнопки Закгрузить основного меню (после отработки обработчика 1С)
 def py_InsertRecords(hashMap, _files=None, _data=None):
-    if hashMap.containsKey("ЗаказыЗагрузить") and hashMap.containsKey("ТоварыЗагрузить"):
+    if hashMap.containsKey("ЗаказыЗагрузить") and hashMap.containsKey("ТоварыЗагрузить") and hashMap.get("ЗаказыЗагрузить") != "" and hashMap.get("ТоварыЗагрузить") != "":
         try:
             with DBSession(db) as s:
                 
