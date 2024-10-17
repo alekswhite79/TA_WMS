@@ -1310,7 +1310,7 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
                     # hashMap.remove("ТоварыЗагрузить")    
                     # android.stop(hashMap)
         except Exception as e:
-            hashMap.put("ErrorMessage","Транзакция не записана:" + str(e))  
+            hashMap.put("toast","Транзакция не записана:" + str(e))  
 
         hashMap.put("ЗаказыЗагрузить","")
         hashMap.put("ТоварыЗагрузить","")
