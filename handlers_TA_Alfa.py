@@ -1215,12 +1215,18 @@ def py_UploadOrders(hashMap, _files=None, _data=None):
 
 # удаляем выгруженные в 1С заказы (после отработки обработчика 1С)
 def py_DeleteRecords(hashMap, _files=None, _data=None):
-    db["OrdersForSelection"].shrink()
-    db["GoodsForSelection"].shrink()
-
     # Для отладки
-    # hashMap.put('VAR_DEBUG', 'py_DeleteRecords')
-    # android.stop(hashMap)
+    hashMap.put('VAR_DEBUG', 'py_DeleteRecords')
+    android.stop(hashMap)
+
+    # DelOrders=json.loads(hashMap.get("ЗаказыКУдалению"))
+    # for OrderID in DelOrders:
+    db["OrdersForSelection"].delete(json.loads(hashMap.get("ЗаказыКУдалению")))
+    db["GoodsForSelection"].delete(json.loads(hashMap.get("ТоварыКУдалению")))
+    
+
+    # db["OrdersForSelection"].shrink()
+    # db["GoodsForSelection"].shrink()
 
     # dbmap = {"TA_WMS":db}
     # res = feed(dbmap,json.loads(hashMap.get("стрДляFeedPelican")))
