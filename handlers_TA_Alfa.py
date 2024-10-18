@@ -12,7 +12,7 @@ from ru.travelfood.simple_ui import SimpleUtilites as suClass
 import os
 from ru.travelfood.simple_ui import NoSQL as noClass
 
-db = pelicans["TA_WMS"]
+#db = pelicans["TA_WMS"]
 
 # при старте экрана Отбор 
 def py_OnStartOrder(hashMap, _files=None, _data=None):
