@@ -1215,6 +1215,9 @@ def py_UploadOrders(hashMap, _files=None, _data=None):
 
 # удаляем выгруженные в 1С заказы (после отработки обработчика 1С)
 def py_DeleteRecords(hashMap, _files=None, _data=None):
+    db["OrdersForSelection"].shrink()
+    db["GoodsForSelection"].shrink()
+
     # Для отладки
     # hashMap.put('VAR_DEBUG', 'py_DeleteRecords')
     # android.stop(hashMap)
