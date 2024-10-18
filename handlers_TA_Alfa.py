@@ -1219,8 +1219,8 @@ def py_DeleteRecords(hashMap, _files=None, _data=None):
     db["GoodsForSelection"].shrink()
 
     # Для отладки
-    hashMap.put('VAR_DEBUG', 'py_DeleteRecords')
-    android.stop(hashMap)
+    # hashMap.put('VAR_DEBUG', 'py_DeleteRecords')
+    # android.stop(hashMap)
 
     # dbmap = {"TA_WMS":db}
     # res = feed(dbmap,json.loads(hashMap.get("стрДляFeedPelican")))
