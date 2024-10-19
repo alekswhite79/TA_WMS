@@ -839,14 +839,18 @@ def py_select_on_input(hashMap, _files=None, _data=None):
         elif len(records) == 1:
             kodItem = records[0]['Код']
             goods_in_order = json.loads(hashMap.get('CardsGoods'))["customcards"]["cardsdata"]
-            # search by barcode value
+            # поиск по коду тоавра
             card_of_goods = next((item for item in goods_in_order if item["key"] == kodItem), None)
             if card_of_goods == None:
                 hashMap.put("beep", "15")
                 hashMap.put("ShowDialog", "Ошибка")
                 hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
             else:
-                Update_Qty_Goods(hashMap, card_of_goods)
+                if card_of_goods['КОтбору']-card_of_goods['Отобрано'] > 4:
+                    hashMap.put("ShowDialog", "Ввод количества")
+                    hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
+                else:    
+                    Update_Qty_Goods(hashMap, card_of_goods)
         else:
             hashMap.put("beep", "15")
             hashMap.put("ShowDialog", "Ошибка")
