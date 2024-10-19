@@ -871,6 +871,7 @@ def py_select_on_input(hashMap, _files=None, _data=None):
             hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
         else:    
             Update_Qty_Goods(hashMap, card_data)
+        hashMap.remove("layout_listener")
 
     # elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Ввести количество":
         
@@ -890,9 +891,10 @@ def py_select_on_input(hashMap, _files=None, _data=None):
                 hashMap.put('qty', "0")
                 hashMap.put("ShowDialog", "Ввод количества")
                 hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
+                
             else:    
                 Update_Qty_Goods(hashMap, card_data)
-
+            hashMap.remove("layout_listener")
         else:
             hashMap.put("beep", "15")
             hashMap.put("ShowDialog", "Ошибка")
