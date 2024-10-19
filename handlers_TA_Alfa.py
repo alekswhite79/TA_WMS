@@ -824,7 +824,7 @@ def Display_Elrment(hashMap):
 # при вводе в экране Отбор
 def py_select_on_input(hashMap, _files=None, _data=None): 
 
-    android.stop(hashMap)
+    # android.stop(hashMap)
 
     if hashMap.get("listener") == 'barcode': #сканирование
 
@@ -847,6 +847,7 @@ def py_select_on_input(hashMap, _files=None, _data=None):
                 hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
             else:
                 if card_of_goods['КОтбору']-card_of_goods['Отобрано'] > 4:
+                    hashMap.put("card_of_goods", json.dumps(card_of_goods))
                     hashMap.put("ShowDialog", "Ввод количества")
                     hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
                 else:    
@@ -886,8 +887,9 @@ def py_select_on_input(hashMap, _files=None, _data=None):
             hashMap.put("ShowDialogStyle", "{'title': 'Введен неверный штрихкод!',   'yes': '',   'no': 'OK' }")
 
     elif hashMap.get("event") == "onResultPositive" and hashMap.get("listener") == "Ввод количества":
-        
-        card_data = json.loads(hashMap.get('card_data'))
+        # android.stop(hashMap)
+    
+        card_data = json.loads(hashMap.get("card_of_goods"))
 
         Update_Qty_Goods(hashMap, card_data, int(hashMap.get('qty')))
 
