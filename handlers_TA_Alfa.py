@@ -824,7 +824,7 @@ def Display_Elrment(hashMap):
 # при вводе в экране Отбор
 def py_select_on_input(hashMap, _files=None, _data=None): 
 
-    android.stop(hashMap)
+    # android.stop(hashMap)
 
     if hashMap.get("listener") == 'barcode': #сканирование
 
@@ -884,6 +884,12 @@ def py_select_on_input(hashMap, _files=None, _data=None):
             hashMap.put("beep", "15")
             hashMap.put("ShowDialog", "Ошибка")
             hashMap.put("ShowDialogStyle", "{'title': 'Введен неверный штрихкод!',   'yes': '',   'no': 'OK' }")
+
+    elif hashMap.get("event") == "onResultPositive" and hashMap.get("listener") == "Ввести количество":
+        
+        card_data = json.loads(hashMap.get('card_data'))
+
+        Update_Qty_Goods(hashMap, card_data, int(hashMap.get('qty')))
 
     elif hashMap.get("event") == "onResultPositive" and hashMap.get("layout_listener") == "Ввести количество":
         
