@@ -885,7 +885,7 @@ def py_select_on_input(hashMap, _files=None, _data=None):
             hashMap.put("ShowDialog", "Ошибка")
             hashMap.put("ShowDialogStyle", "{'title': 'Введен неверный штрихкод!',   'yes': '',   'no': 'OK' }")
 
-    elif hashMap.get("event") == "onResultPositive" and hashMap.get("listener") == "Ввести количество":
+    elif hashMap.get("event") == "onResultPositive" and hashMap.get("listener") == "Ввод количества":
         
         card_data = json.loads(hashMap.get('card_data'))
 
