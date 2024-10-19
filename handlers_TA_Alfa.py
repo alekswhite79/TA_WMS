@@ -848,6 +848,7 @@ def py_select_on_input(hashMap, _files=None, _data=None):
             else:
                 if card_of_goods['КОтбору']-card_of_goods['Отобрано'] > 4:
                     hashMap.put("card_of_goods", json.dumps(card_of_goods))
+                    hashMap.put('qty', "0")
                     hashMap.put("ShowDialog", "Ввод количества")
                     hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
                 else:    
