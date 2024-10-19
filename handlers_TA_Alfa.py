@@ -886,6 +886,7 @@ def py_select_on_input(hashMap, _files=None, _data=None):
             hashMap.put("ShowDialogStyle", "{'title': 'Введен неверный штрихкод!',   'yes': '',   'no': 'OK' }")
 
     elif hashMap.get("event") == "onResultPositive" and hashMap.get("layout_listener") == "Ввести количество":
+        android.stop(hashMap)
 
         
         # hashMap.put('barcode', '')
