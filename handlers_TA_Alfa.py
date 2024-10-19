@@ -517,7 +517,7 @@ def py_LoadGoods(hashMap):
                 "ШтрихКод": record['ШтрихКод'],
                 "КОтбору": record['КОтбору'],
                 "Отобрано": record['Отобрано'],
-                "ListCardMenu": "Подтвердить отбор;Ввести количество" if record['ШтрихКод'] == "Нет штрихкода" else "Ручной ввод ШК;Ввести количество"
+                "ListCardMenu": "Подтвердить отбор" if record['ШтрихКод'] == "Нет штрихкода" else "Ручной ввод ШК"
                 # "_layout": { #корневой контейнер
                 #         "type": "LinearLayout",
                 #         "orientation": "vertical",
@@ -847,7 +847,7 @@ def py_select_on_input(hashMap, _files=None, _data=None):
                 hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
             else:
                 if card_of_goods['КОтбору']-card_of_goods['Отобрано'] > 4:
-                    hashMap.put("card_of_goods", json.dumps(card_of_goods))
+                    hashMap.put("card_data", json.dumps(card_of_goods))
                     hashMap.put('qty', "0")
                     hashMap.put("ShowDialog", "Ввод количества")
                     hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
@@ -865,12 +865,17 @@ def py_select_on_input(hashMap, _files=None, _data=None):
     
     elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Подтвердить отбор":
         card_data = json.loads(hashMap.get('card_data'))
-        Update_Qty_Goods(hashMap, card_data)
+        if card_data['КОтбору']-card_data['Отобрано'] > 4:
+            hashMap.put('qty', "0")
+            hashMap.put("ShowDialog", "Ввод количества")
+            hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
+        else:    
+            Update_Qty_Goods(hashMap, card_data)
 
-    elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Ввести количество":
+    # elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Ввести количество":
         
-        hashMap.put("ShowDialog", "Ввод количества")
-        hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
+    #     hashMap.put("ShowDialog", "Ввод количества")
+    #     hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
 
     elif hashMap.get("event") == "onResultPositive" and hashMap.get("layout_listener") == "Ручной ввод ШК":
 
@@ -881,7 +886,13 @@ def py_select_on_input(hashMap, _files=None, _data=None):
         card_data = json.loads(hashMap.get('card_data'))
 
         if card_data['ШтрихКод'] == b:
-            Update_Qty_Goods(hashMap, card_data)
+            if card_data['КОтбору']-card_data['Отобрано'] > 4:
+                hashMap.put('qty', "0")
+                hashMap.put("ShowDialog", "Ввод количества")
+                hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
+            else:    
+                Update_Qty_Goods(hashMap, card_data)
+
         else:
             hashMap.put("beep", "15")
             hashMap.put("ShowDialog", "Ошибка")
@@ -890,19 +901,19 @@ def py_select_on_input(hashMap, _files=None, _data=None):
     elif hashMap.get("event") == "onResultPositive" and hashMap.get("listener") == "Ввод количества":
         # android.stop(hashMap)
     
-        card_data = json.loads(hashMap.get("card_of_goods"))
+        card_data = json.loads(hashMap.get("card_data"))
 
         Update_Qty_Goods(hashMap, card_data, int(hashMap.get('qty')))
 
-    elif hashMap.get("event") == "onResultPositive" and hashMap.get("layout_listener") == "Ввести количество":
+    # elif hashMap.get("event") == "onResultPositive" and hashMap.get("layout_listener") == "Ввести количество":
         
-        # hashMap.put('barcode', '')
+    #     # hashMap.put('barcode', '')
 
-        # records = db["GoodsForSelection"].find({"ШтрихКод":b})
-        card_data = json.loads(hashMap.get('card_data'))
+    #     # records = db["GoodsForSelection"].find({"ШтрихКод":b})
+    #     card_data = json.loads(hashMap.get('card_data'))
 
-        # if card_data['ШтрихКод'] == b:
-        Update_Qty_Goods(hashMap, card_data, int(hashMap.get('qty')))
+    #     # if card_data['ШтрихКод'] == b:
+    #     Update_Qty_Goods(hashMap, card_data, int(hashMap.get('qty')))
         # else:
         #     hashMap.put("beep", "15")
         #     hashMap.put("ShowDialog", "Ошибка")
