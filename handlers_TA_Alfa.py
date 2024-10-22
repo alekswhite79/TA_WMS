@@ -45,6 +45,15 @@ def py_LoadGoods(hashMap):
                         "width": "match_parent",
                         "weight": "0",
                         "Elements": [
+                            {  # Меню карточки
+                                "type": "PopupMenuButton",
+                                "show_by_condition": "",
+                                "Value": "@ListCardMenu",
+                                "NoRefresh": False,
+                                "document_type": "",
+                                "mask": "",
+                                "Variable": "menu_card"
+                            },  
                             {   #Карточка товара
                                 "type": "LinearLayout",
                                 "orientation": "vertical",
@@ -256,16 +265,7 @@ def py_LoadGoods(hashMap):
                                     #     ],
                                     # }  # ,
                                 ]
-                            },
-                            {  # Меню карточки
-                                "type": "PopupMenuButton",
-                                "show_by_condition": "",
-                                "Value": "@ListCardMenu",
-                                "NoRefresh": False,
-                                "document_type": "",
-                                "mask": "",
-                                "Variable": "menu_card"
-                            }  # ,
+                            }
                         ]
                     }# ,
                     # {
