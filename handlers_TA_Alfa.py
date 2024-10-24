@@ -1412,6 +1412,6 @@ def py_auth_on_input(hashMap, _files=None, _data=None):
             hashMap.put("ShowDialogStyle", "{'title': 'Выберите тип операций!',   'yes': '',   'no': 'OK' }")
             return hashMap
 
-    hashMap.put("ShowScreen", "Выбор операции")
+        hashMap.put("ShowScreen", "Выбор операции")
 
     return hashMap
