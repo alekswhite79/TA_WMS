@@ -517,7 +517,7 @@ def py_LoadGoods(hashMap):
                 "ШтрихКод": record['ШтрихКод'],
                 "КОтбору": record['КОтбору'],
                 "Отобрано": record['Отобрано'],
-                "ListCardMenu": "Подтвердить отбор" if record['ШтрихКод'] == "Нет штрихкода" else "Ручной ввод ШК"
+                "ListCardMenu": "Подтвердить отбор" if record['ШтрихКод'] == "Нет штрихкода" else "Ручной ввод ШК;Подтвердить отбор"
                 # "_layout": { #корневой контейнер
                 #         "type": "LinearLayout",
                 #         "orientation": "vertical",
