@@ -824,7 +824,7 @@ def Display_Elrment(hashMap):
 # при вводе в экране Отбор
 def py_select_on_input(hashMap, _files=None, _data=None): 
 
-    # android.stop(hashMap)
+    android.stop(hashMap)
 
     if hashMap.get("listener") == 'barcode': #сканирование
 
@@ -865,12 +865,17 @@ def py_select_on_input(hashMap, _files=None, _data=None):
     
     elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Подтвердить отбор":
         card_data = json.loads(hashMap.get('card_data'))
-        if card_data['КОтбору']-card_data['Отобрано'] > 4:
-            hashMap.put('qty', "0")
-            hashMap.put("ShowDialog", "Ввод количества")
-            hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
-        else:    
-            Update_Qty_Goods(hashMap, card_data)
+        if card_data['ШтрихКод'] != "Нет штрихкода":
+            hashMap.put("beep", "15")
+            hashMap.put("ShowDialog", "ВНИМАНИЕ")
+            hashMap.put("ShowDialogStyle", "{'title': 'Товару в базе присвоен штрихкод! Вы уверены что хотите продолжить?',   'yes': 'Да',   'no': 'Нет' }")
+        else:
+            if card_data['КОтбору']-card_data['Отобрано'] > 4:
+                hashMap.put('qty', "0")
+                hashMap.put("ShowDialog", "Ввод количества")
+                hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
+            else:    
+                Update_Qty_Goods(hashMap, card_data)
         hashMap.remove("layout_listener")
 
     # elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Ввести количество":
