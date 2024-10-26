@@ -867,8 +867,9 @@ def py_select_on_input(hashMap, _files=None, _data=None):
         card_data = json.loads(hashMap.get('card_data'))
         if card_data['ШтрихКод'] != "Нет штрихкода":
             hashMap.put("beep", "15")
-            hashMap.put("ShowDialog", "ВНИМАНИЕ")
-            hashMap.put("ShowDialogStyle", "{'title': 'Товару в базе присвоен штрихкод! Вы уверены что хотите продолжить?',   'yes': 'Да',   'no': 'Нет' }")
+            hashMap.put("ShowDialog", "Сообщение")
+            hashMap.put("Сообщение","Товару в базе присвоен штрихкод! Вы уверены что хотите продолжить?")
+            hashMap.put("ShowDialogStyle", "{'title': '',   'yes': 'Да',   'no': 'Нет' }")
         else:
             if card_data['КОтбору']-card_data['Отобрано'] > 4:
                 hashMap.put('qty', "0")
