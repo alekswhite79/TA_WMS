@@ -1406,7 +1406,7 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
 # при вводе в экране Авторизация
 def py_auth_on_input(hashMap, _files=None, _data=None): 
 
-    android.stop(hashMap)
+    # android.stop(hashMap)
 
     if hashMap.get("listener") == 'кнОК': #нажата кнопка ОК
 
