@@ -824,7 +824,7 @@ def Display_Elrment(hashMap):
 # при вводе в экране Отбор
 def py_select_on_input(hashMap, _files=None, _data=None): 
 
-    android.stop(hashMap)
+    # android.stop(hashMap)
 
     if hashMap.get("listener") == 'barcode': #сканирование
 
@@ -879,10 +879,14 @@ def py_select_on_input(hashMap, _files=None, _data=None):
                 Update_Qty_Goods(hashMap, card_data)
         hashMap.remove("layout_listener")
 
-    # elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Ввести количество":
-        
-    #     hashMap.put("ShowDialog", "Ввод количества")
-    #     hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
+    elif hashMap.get("event") == "onResultPositive" and hashMap.get("listener") == "Сообщение":
+        card_data = json.loads(hashMap.get('card_data'))
+        if card_data['КОтбору']-card_data['Отобрано'] > 4:
+            hashMap.put('qty', "0")
+            hashMap.put("ShowDialog", "Ввод количества")
+            hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
+        else:    
+            Update_Qty_Goods(hashMap, card_data)
 
     elif hashMap.get("event") == "onResultPositive" and hashMap.get("layout_listener") == "Ручной ввод ШК":
 
