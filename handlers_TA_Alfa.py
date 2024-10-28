@@ -1220,8 +1220,11 @@ def py_AddBarcode_OnStart(hashMap, _files=None, _data=None):
     hashMap.put("Артикул", card_data['Артикул'])
     hashMap.put("Производитель", card_data['Производитель'])
     hashMap.put("Товар", card_data['Номенклатура'])
-    hashMap.put("ШтрихКод", hashMap.get("new_barcode") if hashMap.containsKey("new_barcode") else card_data['ШтрихКод'])
-    hashMap.remove("new_barcode")
+    if hashMap.containsKey("new_barcode"):
+        hashMap.put("ШтрихКод", hashMap.get("new_barcode"))    
+        hashMap.remove("new_barcode")
+    else:
+        hashMap.put("ШтрихКод",card_data['ШтрихКод'])
     
 # Функция для поиска собранных позиций зказов 
 def check_order_position(document): 
