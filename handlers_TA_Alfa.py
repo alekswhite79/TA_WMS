@@ -824,7 +824,7 @@ def Display_Elrment(hashMap):
 # при вводе в экране Отбор
 def py_select_on_input(hashMap, _files=None, _data=None): 
 
-    android.stop(hashMap)
+    # android.stop(hashMap)
 
     if hashMap.get("listener") == 'barcode': #сканирование
 
@@ -881,8 +881,8 @@ def py_select_on_input(hashMap, _files=None, _data=None):
 
     elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Добавить ШК в базу":
     
-        hashMap.put("ShowDialog", "Ввод штрихкода")
-        hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
+        hashMap.put("ShowScreen", "Ввод штрихкода")
+        # hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
     
     elif hashMap.get("event") == "onResultPositive" and hashMap.get("listener") == "Сообщение":
         card_data = json.loads(hashMap.get('card_data'))
@@ -1214,6 +1214,15 @@ def py_SelectionOrder(hashMap, _files=None, _data=None):
     # @field=@selected_card_key; BackScreen
     return hashMap
 
+# при старте экрана добавления штрихкода
+def py_AddBarcode_OnStart(hashMap, _files=None, _data=None):
+    card_data = json.loads(hashMap.get('card_data'))
+    hashMap.put("Артикул", card_data['Артикул'])
+    hashMap.put("Производитель", card_data['Производитель'])
+    hashMap.put("Товар", card_data['Номенклатура'])
+    hashMap.put("ШтрихКод", hashMap.get("new_barcode") if hashMap.containsKey("new_barcode") else card_data['ШтрихКод'])
+    hashMap.remove("new_barcode")
+    
 # Функция для поиска собранных позиций зказов 
 def check_order_position(document): 
     if document.get("Отобрано") == document.get("КОтбору"):
