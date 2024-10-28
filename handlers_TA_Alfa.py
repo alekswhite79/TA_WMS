@@ -517,7 +517,7 @@ def py_LoadGoods(hashMap):
                 "ШтрихКод": record['ШтрихКод'],
                 "КОтбору": record['КОтбору'],
                 "Отобрано": record['Отобрано'],
-                "ListCardMenu": "Подтвердить отбор;Добавить ШК на обработку" if record['ШтрихКод'] == "Нет штрихкода" else "Ручной ввод ШК;Подтвердить отбор;Добавить ШК на обработку"
+                "ListCardMenu": "Подтвердить отбор;Добавить ШК в базу" if record['ШтрихКод'] == "Нет штрихкода" else "Ручной ввод ШК;Подтвердить отбор;Добавить ШК в базу"
                 # "_layout": { #корневой контейнер
                 #         "type": "LinearLayout",
                 #         "orientation": "vertical",
@@ -824,7 +824,7 @@ def Display_Elrment(hashMap):
 # при вводе в экране Отбор
 def py_select_on_input(hashMap, _files=None, _data=None): 
 
-    # android.stop(hashMap)
+    android.stop(hashMap)
 
     if hashMap.get("listener") == 'barcode': #сканирование
 
@@ -841,7 +841,7 @@ def py_select_on_input(hashMap, _files=None, _data=None):
             goods_in_order = json.loads(hashMap.get('CardsGoods'))["customcards"]["cardsdata"]
             # поиск по коду тоавра
             card_of_goods = next((item for item in goods_in_order if item["key"] == kodItem), None)
-            if card_of_goods == None:
+            if card_of_goods is None:
                 hashMap.put("beep", "15")
                 hashMap.put("ShowDialog", "Ошибка")
                 hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
@@ -879,6 +879,11 @@ def py_select_on_input(hashMap, _files=None, _data=None):
                 Update_Qty_Goods(hashMap, card_data)
         hashMap.remove("layout_listener")
 
+    elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Добавить ШК в базу":
+    
+        hashMap.put("ShowDialog", "Ввод штрихкода")
+        hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
+    
     elif hashMap.get("event") == "onResultPositive" and hashMap.get("listener") == "Сообщение":
         card_data = json.loads(hashMap.get('card_data'))
         if card_data['КОтбору']-card_data['Отобрано'] > 4:
