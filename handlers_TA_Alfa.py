@@ -831,6 +831,7 @@ def py_select_on_input(hashMap, _files=None, _data=None):
 
         b = hashMap.get('barcode')
         hashMap.put('barcode', '')
+        hashMap.put('scaned', 'True')
         
         records = db["GoodsForSelection"].find({"$and": [{"ШтрихКод": b},{"НомерЗаказа": hashMap.get('НомерЗаказа')}]})
         if len(records) == 0:
@@ -861,10 +862,12 @@ def py_select_on_input(hashMap, _files=None, _data=None):
 
     elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Ручной ввод ШК":
     
+        hashMap.put('scaned', 'False')
         hashMap.put("ShowDialog", "ДиалогВводШК")
         hashMap.put("ShowDialogStyle", json.dumps({"title": "Введите штрихкод:", "yes": "ОК",   "no": "Отмена"}))
     
     elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Подтвердить отбор":
+        hashMap.put('scaned', 'False')
         card_data = json.loads(hashMap.get('card_data'))
         if card_data['ШтрихКод'] != "Нет штрихкода":
             hashMap.put("beep", "15")
@@ -877,7 +880,7 @@ def py_select_on_input(hashMap, _files=None, _data=None):
                 hashMap.put("ShowDialog", "Ввод количества")
                 hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
             else:    
-                Update_Qty_Goods(hashMap, card_data, 1, False)
+                Update_Qty_Goods(hashMap, card_data)
         hashMap.remove("layout_listener")
 
     elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Добавить ШК в базу":
@@ -891,7 +894,7 @@ def py_select_on_input(hashMap, _files=None, _data=None):
             hashMap.put("ShowDialog", "Ввод количества")
             hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
         else:    
-            Update_Qty_Goods(hashMap, card_data, 1, False)
+            Update_Qty_Goods(hashMap, card_data)
 
     elif hashMap.get("event") == "onResultPositive" and hashMap.get("layout_listener") == "Ручной ввод ШК":
 
@@ -908,7 +911,7 @@ def py_select_on_input(hashMap, _files=None, _data=None):
                 hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
                 
             else:    
-                Update_Qty_Goods(hashMap, card_data, 1, False)
+                Update_Qty_Goods(hashMap, card_data)
             hashMap.remove("layout_listener")
         else:
             hashMap.put("beep", "15")
@@ -980,12 +983,12 @@ def py_select_on_input(hashMap, _files=None, _data=None):
     return hashMap
 
 # обновление количества отобранного товара в БД
-def Update_Qty_Goods(hashMap, card_of_goods, qty=1, Scanned = True):
+def Update_Qty_Goods(hashMap, card_of_goods, qty=1):
     # db = pelicans["TA_WMS"]
     # hashMap.put('VAR_DEBUG', "Точка 3")
     # android.stop(hashMap)
     NewSelQty = card_of_goods['Отобрано']+qty
-    NewScanned = card_of_goods['Просканировано']+1 if Scanned else card_of_goods['Просканировано']
+    NewScanned = card_of_goods['Просканировано']+1 if eval(hashMap.get('scanned')) else card_of_goods['Просканировано']
     if card_of_goods['КОтбору'] > NewSelQty:
         db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
                                                 {"НомерЗаказа": hashMap.get('НомерЗаказа')},
