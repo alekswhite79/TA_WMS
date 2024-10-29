@@ -1216,25 +1216,17 @@ def py_SelectionOrder(hashMap, _files=None, _data=None):
 
 # при старте экрана добавления штрихкода
 def py_AddBarcode_OnStart(hashMap, _files=None, _data=None):
-    android.stop(hashMap)
     card_data = json.loads(hashMap.get('card_data'))
-    android.stop(hashMap)
     hashMap.put("Артикул", card_data['Артикул'])
-    android.stop(hashMap)
     hashMap.put("Производитель", card_data['Производитель'])
-    android.stop(hashMap)
     hashMap.put("Товар", card_data['Номенклатура'])
-    android.stop(hashMap)
     if hashMap.containsKey("new_barcode"):
-        android.stop(hashMap)
         hashMap.put("ШтрихКод", hashMap.get("new_barcode"))    
-        android.stop(hashMap)
         hashMap.remove("new_barcode")
-        android.stop(hashMap)
     else:
         hashMap.put("ШтрихКод",card_data['ШтрихКод'])
-        android.stop(hashMap)
-    
+    return hashMap
+   
 # Функция для поиска собранных позиций зказов 
 def check_order_position(document): 
     if document.get("Отобрано") == document.get("КОтбору"):
