@@ -986,7 +986,7 @@ def py_select_on_input(hashMap, _files=None, _data=None):
 def Update_Qty_Goods(hashMap, card_of_goods, qty=1):
     # db = pelicans["TA_WMS"]
     # hashMap.put('VAR_DEBUG', "Точка 3")
-    # android.stop(hashMap)
+    android.stop(hashMap)
     NewSelQty = card_of_goods['Отобрано']+qty
     NewScanned = card_of_goods['Просканировано']+1 if eval(hashMap.get('scanned')) else card_of_goods['Просканировано']
     if card_of_goods['КОтбору'] > NewSelQty:
