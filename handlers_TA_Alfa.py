@@ -1238,6 +1238,7 @@ def py_AddBarcode_on_input(hashMap, _files=None, _data=None):
                                                 {"НомерЗаказа": hashMap.get('НомерЗаказа')},
                                                 {"Код": card_data['Код']}]},
                                        {"НовыйШтрихКод": hashMap.get('НовыйШтрихКод')})
+        hashMap.put("BackScreen", "")
 
     elif hashMap.get("listener") == "menu" and hashMap.get("menu") == "ЗАКРЫТЬ":
     
