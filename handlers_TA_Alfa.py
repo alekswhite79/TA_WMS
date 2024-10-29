@@ -831,7 +831,7 @@ def py_select_on_input(hashMap, _files=None, _data=None):
 
         b = hashMap.get('barcode')
         hashMap.put('barcode', '')
-        hashMap.put('scaned', 'True')
+        # hashMap.put('scaned', 'True')
         
         records = db["GoodsForSelection"].find({"$and": [{"ШтрихКод": b},{"НомерЗаказа": hashMap.get('НомерЗаказа')}]})
         if len(records) == 0:
@@ -848,6 +848,7 @@ def py_select_on_input(hashMap, _files=None, _data=None):
                 hashMap.put("ShowDialog", "Ошибка")
                 hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
             else:
+                card_of_goods['Просканировано'] = card_of_goods['Просканировано'] + 1
                 if card_of_goods['КОтбору']-card_of_goods['Отобрано'] > 4:
                     hashMap.put("card_data", json.dumps(card_of_goods))
                     hashMap.put('qty', "0")
@@ -863,12 +864,12 @@ def py_select_on_input(hashMap, _files=None, _data=None):
 
     elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Ручной ввод ШК":
     
-        hashMap.put('scaned', 'False')
+        # hashMap.put('scaned', 'False')
         hashMap.put("ShowDialog", "ДиалогВводШК")
         hashMap.put("ShowDialogStyle", json.dumps({"title": "Введите штрихкод:", "yes": "ОК",   "no": "Отмена"}))
     
     elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Подтвердить отбор":
-        hashMap.put('scaned', 'False')
+        # hashMap.put('scaned', 'False')
         card_data = json.loads(hashMap.get('card_data'))
         if card_data['ШтрихКод'] != "Нет штрихкода":
             hashMap.put("beep", "15")
@@ -993,17 +994,17 @@ def Update_Qty_Goods(hashMap, card_of_goods):#, qty=1):
     # hashMap.put('VAR_DEBUG', "Точка 3")
     # android.stop(hashMap)
     # NewSelQty = card_of_goods['Отобрано']+qty
-    NewScanned = card_of_goods['Просканировано']+1 if eval(hashMap.get('scaned')) else card_of_goods['Просканировано']
+    # NewScanned = card_of_goods['Просканировано']+1 if eval(hashMap.get('scaned')) else card_of_goods['Просканировано']
     if card_of_goods['КОтбору'] > card_of_goods['Отобрано']:#NewSelQty:
         db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
                                                 {"НомерЗаказа": hashMap.get('НомерЗаказа')},
                                                 {"Код": card_of_goods['Код']}]},
-                                    {"Отобрано": card_of_goods['Отобрано'], "Просканировано": NewScanned})
+                                    {"Отобрано": card_of_goods['Отобрано'], "Просканировано": card_of_goods['Просканировано']})
     elif card_of_goods['КОтбору'] == card_of_goods['Отобрано']:#NewSelQty:
         db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
                                                 {"НомерЗаказа": hashMap.get('НомерЗаказа')},
                                                 {"Код": card_of_goods['Код']}]},
-                                    {"Отобрано": card_of_goods['Отобрано'], "Просканировано": NewScanned, "ПозицияСобрана": True})
+                                    {"Отобрано": card_of_goods['Отобрано'], "Просканировано": card_of_goods['Просканировано'], "ПозицияСобрана": True})
     else:
         hashMap.put("beep", "15")
         hashMap.put("ShowDialog", "Внимание!")
