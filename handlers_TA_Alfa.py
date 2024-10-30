@@ -1231,22 +1231,23 @@ def py_AddBarcode_OnStart(hashMap, _files=None, _data=None):
     hashMap.put("Производитель", card_data['Производитель'])
     hashMap.put("Товар", card_data['Номенклатура'])
     hashMap.put("ШтрихКод",card_data['ШтрихКод'])
-    if hashMap.containsKey("new_barcode") and hashMap.get("new_barcode") != "":
-        hashMap.put("НовыйШтрихКод", hashMap.get("new_barcode"))    
-        hashMap.put("new_barcode","")
+    hashMap.put("НовыйШтрихКод", card_data.get('НовыйШтрихКод',''))   
+    # if hashMap.containsKey("new_barcode") and hashMap.get("new_barcode") != "":
+    #     hashMap.put("НовыйШтрихКод", hashMap.get("new_barcode"))    
+    #     hashMap.put("new_barcode","")
     return hashMap
 
 # при вводе в экране добавления штрихкода
 def py_AddBarcode_on_input(hashMap, _files=None, _data=None): 
 
     # android.stop(hashMap)
-    # card_data = json.loads(hashMap.get('card_data'))
+    card_data = json.loads(hashMap.get('card_data'))
 
-    # if hashMap.get("listener") == 'barcode': #сканирование
+    if hashMap.get("listener") == 'barcode': #сканирование
 
-    #     card_data[] = hashMap.get('new_barcode')
-    #     hashMap.put('new_barcode', '')
-
+        card_data['НовыйШтрихКод'] = hashMap.get('new_barcode')
+        hashMap.put('new_barcode', '')
+        hashMap.put('card_data',json.dumps(card_data))
 
     if hashMap.get("listener") == "menu" and hashMap.get("menu") == "СОХРАНИТЬ":
    
@@ -1261,7 +1262,12 @@ def py_AddBarcode_on_input(hashMap, _files=None, _data=None):
     elif hashMap.get("listener") == "menu" and hashMap.get("menu") == "ЗАКРЫТЬ":
     
         hashMap.put("BackScreen", "")
-    
+        hashMap.put("Артикул", card_data['Артикул'])
+        hashMap.put("Производитель", card_data['Производитель'])
+        hashMap.put("Товар", card_data['Номенклатура'])
+        hashMap.put("ШтрихКод",card_data['ШтрихКод'])
+        hashMap.put("НовыйШтрихКод", hashMap.get("new_barcode"))    
+
     return hashMap
    
 # Функция для поиска собранных позиций зказов 
