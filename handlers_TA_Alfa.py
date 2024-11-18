@@ -1548,6 +1548,7 @@ def py_InsertUsers(hashMap, _files=None, _data=None):
 
 
 def py_auth_on_start(hashMap, _files=None, _data=None):
+    android.stop(hashMap)
     users = db["users"].all()
     list_users = "<выберите...>"
     for user in users:
