@@ -15,8 +15,6 @@ from ru.travelfood.simple_ui import NoSQL as noClass
 db = pelicans["TA_WMS"]
 
 # при старте экрана Отбор
-
-
 def py_OnStartOrder(hashMap, _files=None, _data=None):
     # android.stop()
     if hashMap.containsKey("НомерЗаказа") and hashMap.get("НомерЗаказа") != "":
@@ -25,8 +23,6 @@ def py_OnStartOrder(hashMap, _files=None, _data=None):
     return hashMap
 
 # загрузка товаров
-
-
 def py_LoadGoods(hashMap):
     # android.stop()
     j = {
@@ -807,8 +803,6 @@ def py_LoadGoods(hashMap):
     return hashMap
 
 # Установка признака собранного заказа
-
-
 def Set_Order_Collected(hashMap):
 
     db["OrdersForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
@@ -817,8 +811,6 @@ def Set_Order_Collected(hashMap):
     return hashMap
 
 # отображение элементов экрана Отбор
-
-
 def Display_Elrment(hashMap):
     OrderIsSelect = hashMap.containsKey(
         "НомерЗаказа") and hashMap.get("НомерЗаказа") != ""
@@ -839,8 +831,6 @@ def Display_Elrment(hashMap):
     return hashMap
 
 # при вводе в экране Отбор
-
-
 def py_select_on_input(hashMap, _files=None, _data=None):
 
     # android.stop(hashMap)
@@ -1020,8 +1010,6 @@ def py_select_on_input(hashMap, _files=None, _data=None):
     return hashMap
 
 # обновление количества отобранного товара в БД
-
-
 def Update_Qty_Goods(hashMap, card_of_goods):  # , qty=1):
     # db = pelicans["TA_WMS"]
     # hashMap.put('VAR_DEBUG', "Точка 3")
@@ -1049,8 +1037,6 @@ def Update_Qty_Goods(hashMap, card_of_goods):  # , qty=1):
     return hashMap
 
 # при старте экрана выбора заказа
-
-
 def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
     hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
@@ -1259,8 +1245,6 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
     return hashMap
 
 # при выборе карточки заказа на экране выбора заказа
-
-
 def py_SelectionOrder(hashMap, _files=None, _data=None):
     Sel_card = json.loads(hashMap.get("selected_card_data"))
     hashMap.put("Получатель", Sel_card['Получатель'])
@@ -1272,8 +1256,6 @@ def py_SelectionOrder(hashMap, _files=None, _data=None):
     return hashMap
 
 # при старте экрана добавления штрихкода
-
-
 def py_AddBarcode_OnStart(hashMap, _files=None, _data=None):
     card_data = json.loads(hashMap.get('card_data'))
     hashMap.put("Артикул", card_data['Артикул'])
@@ -1287,8 +1269,6 @@ def py_AddBarcode_OnStart(hashMap, _files=None, _data=None):
     return hashMap
 
 # при вводе в экране добавления штрихкода
-
-
 def py_AddBarcode_on_input(hashMap, _files=None, _data=None):
 
     # android.stop(hashMap)
@@ -1323,8 +1303,6 @@ def py_AddBarcode_on_input(hashMap, _files=None, _data=None):
     return hashMap
 
 # Функция для поиска собранных позиций зказов
-
-
 def check_order_position(document):
     if document.get("Отобрано") == document.get("КОтбору"):
         return True
@@ -1332,8 +1310,6 @@ def check_order_position(document):
         return False
 
 # нажатие кнопки Выгрузить основного меню
-
-
 def py_UploadOrders(hashMap, _files=None, _data=None):
     # Пока собранные товары не буду выгржать, только собранные заказы
     # Использование функции для поиска, вместо условий
@@ -1367,8 +1343,6 @@ def py_UploadOrders(hashMap, _files=None, _data=None):
     return hashMap
 
 # удаляем выгруженные в 1С заказы (после отработки обработчика 1С)
-
-
 def py_DeleteRecords(hashMap, _files=None, _data=None):
     # Для отладки
     # hashMap.put('VAR_DEBUG', 'py_DeleteRecords')
@@ -1450,8 +1424,6 @@ def py_DeleteRecords(hashMap, _files=None, _data=None):
 #     return hashMap
 
 # нажатие кнопки Закгрузить основного меню (после отработки обработчика 1С)
-
-
 def py_InsertRecords(hashMap, _files=None, _data=None):
     if hashMap.containsKey("ЗаказыЗагрузить") and hashMap.containsKey("ТоварыЗагрузить") and hashMap.get("ЗаказыЗагрузить") != "" and hashMap.get("ТоварыЗагрузить") != "":
         try:
@@ -1545,11 +1517,13 @@ def py_InsertUsers(hashMap, _files=None, _data=None):
     return hashMap
 
 # при старте экрана Авторизация
-
-
 def py_auth_on_start(hashMap, _files=None, _data=None):
     android.stop(hashMap)
-    
+    if hashMap.containsKey("auth_pass"):
+        hashMap.put("ShowScreen", "Выбор операции")
+        hashMap.remove("auth_pass")
+        return hashMap
+
     users = db["users"].all()
     list_users = "<выберите...>"
     for user in users:
@@ -1558,8 +1532,6 @@ def py_auth_on_start(hashMap, _files=None, _data=None):
     return hashMap
 
 # при вводе в экране Авторизация
-
-
 def py_auth_on_input(hashMap, _files=None, _data=None):
 
     # android.stop(hashMap)
@@ -1586,8 +1558,6 @@ def py_auth_on_input(hashMap, _files=None, _data=None):
     return hashMap
 
 # вывод окна ввода пин-кода
-
-
 def show_pin(hashMap, _files=None, _data=None):
 
     h = [{"action": "run", "type": "python", "listener": "pin_success", "method": "check_pin"},
@@ -1598,13 +1568,11 @@ def show_pin(hashMap, _files=None, _data=None):
     #     {"header": "Введите ПИН", "handlers": h, "block_cancel": False}, ensure_ascii=False))
 
     hashMap.put("ShowPIN", json.dumps(
-        {"header": "Введите ПИН", "handlers": h, "block_cancel": False}, ensure_ascii=False))
+        {"header": "Введите ПИН", "handlers": h, "block_cancel": True}, ensure_ascii=False))
 
     return hashMap
 
 # проверка пин-кода
-
-
 def check_pin(hashMap, _files=None, _data=None):
 
     #    hashMap.put("toast",hashMap.get("pin"))
@@ -1613,10 +1581,10 @@ def check_pin(hashMap, _files=None, _data=None):
 
     if hashMap.get("pin") == "1111" or (len(result) == 1 and hashMap.get("pin") == result[0]['PIN']):
         hashMap.put("beep", "")
-        hashMap.put("pin1","OK")
+        hashMap.put("auth_pass", "OK")
         hashMap.put("ClosePIN", "")
     else:
         hashMap.put("toast", "Неверный PIN")
-    android.stop(hashMap)
+    # android.stop(hashMap)
 
     return hashMap
