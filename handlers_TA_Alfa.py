@@ -14,6 +14,29 @@ from ru.travelfood.simple_ui import NoSQL as noClass
 
 db = pelicans["TA_WMS"]
 
+# вывод окна ввода пин-кода 
+def show_pin(hashMap,_files=None,_data=None):
+    
+   h=[{"action":"run","type":"python","listener":"pin_success","method":"check_pin"},
+               {"action":"run","type":"set","listener":"pin_cancel","method":"vibrate"}
+               ]
+   hashMap.put("ShowPIN",json.dumps({"header":"Введите ПИН","handlers":h,"block_cancel":False},ensure_ascii=False))
+
+    
+   return hashMap
+
+# проверка пин-кода
+def check_pin(hashMap,_files=None,_data=None):
+    
+   hashMap.put("toast",hashMap.get("pin"))
+
+   if hashMap.get("pin")=="1111":
+      hashMap.put("beep","")
+      hashMap.put("ClosePIN","")
+   
+    
+   return hashMap
+
 # при старте экрана Отбор 
 def py_OnStartOrder(hashMap, _files=None, _data=None):
     # android.stop()
@@ -1399,7 +1422,8 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
                 
                 ЗаказыЗагрузить=json.loads(hashMap.get("ЗаказыЗагрузить"))
                 ЗагруженоЗаказов = db["OrdersForSelection"].insert(ЗаказыЗагрузить, upsert=True, session=s)
-
+                hashMap.put("ЗагруженоЗаказовTest",json.dumps(ЗагруженоЗаказов))
+                
                 ТоварыЗагрузить=json.loads(hashMap.get("ТоварыЗагрузить"))
                 ЗагруженоТоваров = db["GoodsForSelection"].insert(ТоварыЗагрузить, upsert=True, session=s)
                 
@@ -1417,6 +1441,7 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
         except Exception as e:
             hashMap.put("toast","Транзакция не записана:" + str(e))  
 
+        android.stop(hashMap)
         hashMap.put("ЗаказыЗагрузить","")
         hashMap.put("ТоварыЗагрузить","")
         hashMap.put("ЗагруженоЗаказов","")    
@@ -1463,6 +1488,32 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
 #     # hashMap.put('VAR_DEBUG', 'py_ClearVariable2')
 #     # android.stop(hashMap)
 #     return hashMap
+
+def py_InsertUsers(hashMap, _files=None, _data=None):
+    # db["users"].clear()
+    # if hashMap.containsKey("users") and hashMap.get("users") != "":
+    #     try:
+    #         with DBSession(db) as s:
+                
+    #             users=json.loads(hashMap.get("users"))
+    #             db["users"].insert(users, upsert=True, session=s)
+
+    #             if len(ЗагруженоЗаказов) == int(hashMap.get("ЗагруженоЗаказов")) and len(ЗагруженоТоваров) == int(hashMap.get("ЗагруженоТоваров")):
+    #                 #Надо сообщить об этом 1С
+    #                 hashMap.put("ЗагруженныеЗаказы",hashMap.get("ЗаказыЗагрузить"))
+    #                 hashMap.put("ЗагруженныеТовары",hashMap.get("ТоварыЗагрузить"))
+    #                 hashMap.put("RunEvent",json.dumps([{"action": "run", 
+    #                                                     "type": "online", 
+    #                                                     "method": "ДанныеВТСДЗагружены"}]))
+    #     except Exception as e:
+    #         hashMap.put("toast","Транзакция не записана:" + str(e))  
+
+    #     hashMap.put("ЗаказыЗагрузить","")
+    #     hashMap.put("ТоварыЗагрузить","")
+    #     hashMap.put("ЗагруженоЗаказов","")    
+    #     hashMap.put("ЗагруженоТоваров","")    
+    
+    return hashMap
 
 # при вводе в экране Авторизация
 def py_auth_on_input(hashMap, _files=None, _data=None): 
