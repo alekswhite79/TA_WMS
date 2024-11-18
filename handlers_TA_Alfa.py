@@ -1527,19 +1527,10 @@ def show_pin(hashMap,_files=None,_data=None):
 def check_pin(hashMap,_files=None,_data=None):
     
    hashMap.put("toast",hashMap.get("pin"))
-   android.stop(hashMap)
    user = hashMap.get("user")
-   android.stop(hashMap)
    result = db["users"].find({"_id":user}) 
-   android.stop(hashMap)
-   hashMap.put("result",json.dumps(result))
-   android.stop(hashMap)
-   hashMap.put("PIN_1",str(result['PIN']))
-   
-   android.stop(hashMap)
-   
 
-   if hashMap.get("pin")=="1111" or hashMap.get("pin")==result['PIN']:
+   if hashMap.get("pin")=="1111" or (len(result)==1 and hashMap.get("pin")==result[0]['PIN']):
       hashMap.put("beep","")
       hashMap.put("ClosePIN","")
       hashMap.put("ShowScreen", "Выбор операции")
