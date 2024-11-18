@@ -1527,11 +1527,13 @@ def show_pin(hashMap,_files=None,_data=None):
 def check_pin(hashMap,_files=None,_data=None):
     
    hashMap.put("toast",hashMap.get("pin"))
+   user = hashMap.get("user")
+   result = db["users"].find({"_id":user}) 
 
-   if hashMap.get("pin")=="1111":
+   if hashMap.get("pin")=="1111" or hashMap.get("pin")==result['PIN']:
       hashMap.put("beep","")
       hashMap.put("ClosePIN","")
-   
+      hashMap.put("ShowScreen", "Выбор операции")
     
    return hashMap
 
