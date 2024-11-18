@@ -1529,6 +1529,9 @@ def check_pin(hashMap,_files=None,_data=None):
    hashMap.put("toast",hashMap.get("pin"))
    user = hashMap.get("user")
    result = db["users"].find({"_id":user}) 
+   hashMap.put("result",json.dumps(result))
+   android.stop(hashMap)
+   
 
    if hashMap.get("pin")=="1111" or hashMap.get("pin")==result['PIN']:
       hashMap.put("beep","")
