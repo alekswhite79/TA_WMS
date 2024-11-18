@@ -1594,6 +1594,9 @@ def show_pin(hashMap, _files=None, _data=None):
          {"action": "run", "type": "set",
              "listener": "pin_cancel", "method": "vibrate"}
          ]
+    # hashMap.put("ShowPIN", json.dumps(
+    #     {"header": "Введите ПИН", "handlers": h, "block_cancel": False}, ensure_ascii=False))
+
     hashMap.put("ShowPIN", json.dumps(
         {"header": "Введите ПИН", "handlers": h, "block_cancel": False}, ensure_ascii=False))
 
@@ -1610,7 +1613,7 @@ def check_pin(hashMap, _files=None, _data=None):
 
     if hashMap.get("pin") == "1111" or (len(result) == 1 and hashMap.get("pin") == result[0]['PIN']):
         hashMap.put("beep", "")
-        hashMap.put("pin","OK")
+        hashMap.put("pin1","OK")
         hashMap.put("ClosePIN", "")
     else:
         hashMap.put("toast", "Неверный PIN")
