@@ -1507,7 +1507,7 @@ def py_auth_on_start(hashMap, _files=None, _data=None):
     users = db["users"].all()
     list_users = "<выберите...>"
     for user in users:
-        list_users = list_users + ';' + user.ID
+        list_users = list_users + ';' + user['_id']
     hashMap.put("list_users", list_users)
     return hashMap
 
