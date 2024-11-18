@@ -1526,6 +1526,7 @@ def show_pin(hashMap,_files=None,_data=None):
 # проверка пин-кода
 def check_pin(hashMap,_files=None,_data=None):
     
+   android.stop(hashMap)
    hashMap.put("toast",hashMap.get("pin"))
    user = hashMap.get("user")
    result = db["users"].find({"_id":user}) 
