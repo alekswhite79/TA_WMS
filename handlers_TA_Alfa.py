@@ -1422,7 +1422,6 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
                 
                 ЗаказыЗагрузить=json.loads(hashMap.get("ЗаказыЗагрузить"))
                 ЗагруженоЗаказов = db["OrdersForSelection"].insert(ЗаказыЗагрузить, upsert=True, session=s)
-                hashMap.put("ЗагруженоЗаказовTest",json.dumps(ЗагруженоЗаказов))
                 
                 ТоварыЗагрузить=json.loads(hashMap.get("ТоварыЗагрузить"))
                 ЗагруженоТоваров = db["GoodsForSelection"].insert(ТоварыЗагрузить, upsert=True, session=s)
@@ -1441,7 +1440,6 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
         except Exception as e:
             hashMap.put("toast","Транзакция не записана:" + str(e))  
 
-        android.stop(hashMap)
         hashMap.put("ЗаказыЗагрузить","")
         hashMap.put("ТоварыЗагрузить","")
         hashMap.put("ЗагруженоЗаказов","")    
@@ -1490,29 +1488,27 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
 #     return hashMap
 
 def py_InsertUsers(hashMap, _files=None, _data=None):
-    # db["users"].clear()
-    # if hashMap.containsKey("users") and hashMap.get("users") != "":
-    #     try:
-    #         with DBSession(db) as s:
-                
-    #             users=json.loads(hashMap.get("users"))
-    #             db["users"].insert(users, upsert=True, session=s)
-
-    #             if len(ЗагруженоЗаказов) == int(hashMap.get("ЗагруженоЗаказов")) and len(ЗагруженоТоваров) == int(hashMap.get("ЗагруженоТоваров")):
-    #                 #Надо сообщить об этом 1С
-    #                 hashMap.put("ЗагруженныеЗаказы",hashMap.get("ЗаказыЗагрузить"))
-    #                 hashMap.put("ЗагруженныеТовары",hashMap.get("ТоварыЗагрузить"))
-    #                 hashMap.put("RunEvent",json.dumps([{"action": "run", 
-    #                                                     "type": "online", 
-    #                                                     "method": "ДанныеВТСДЗагружены"}]))
-    #     except Exception as e:
-    #         hashMap.put("toast","Транзакция не записана:" + str(e))  
-
-    #     hashMap.put("ЗаказыЗагрузить","")
-    #     hashMap.put("ТоварыЗагрузить","")
-    #     hashMap.put("ЗагруженоЗаказов","")    
-    #     hashMap.put("ЗагруженоТоваров","")    
+    db["users"].clear()
     
+    if hashMap.containsKey("users") and hashMap.get("users") != "":
+        try:
+            with DBSession(db) as s:
+                
+                users=json.loads(hashMap.get("users"))
+                db["users"].insert(users, upsert=True, session=s)
+
+        except Exception as e:
+            hashMap.put("toast","Транзакция не записана:" + str(e))  
+
+    return hashMap
+
+# при старте экрана Авторизация
+def py_auth_on_start(hashMap, _files=None, _data=None):
+    users = db["users"].all()
+    list_users = "<выберите...>"
+    for user in users:
+        list_users = list_users + ';' + user.ID
+    hashMap.put("list_users", list_users)
     return hashMap
 
 # при вводе в экране Авторизация
