@@ -1609,10 +1609,10 @@ def check_pin(hashMap, _files=None, _data=None):
     if hashMap.get("pin") == "1111" or (len(result) == 1 and hashMap.get("pin") == result[0]['PIN']):
         hashMap.put("beep", "")
         hashMap.put("pin","")
-        hashMap.put("ShowScreen", "Выбор операции")
+        hashMap.put("ShowScreen", "Основное меню|Выбор операции")
         hashMap.put("ClosePIN", "")
     else:
         hashMap.put("toast", "Неверный PIN")
-    android.stop(hashMap)
+    # android.stop(hashMap)
 
     return hashMap
