@@ -14,29 +14,6 @@ from ru.travelfood.simple_ui import NoSQL as noClass
 
 db = pelicans["TA_WMS"]
 
-# вывод окна ввода пин-кода 
-def show_pin(hashMap,_files=None,_data=None):
-    
-   h=[{"action":"run","type":"python","listener":"pin_success","method":"check_pin"},
-               {"action":"run","type":"set","listener":"pin_cancel","method":"vibrate"}
-               ]
-   hashMap.put("ShowPIN",json.dumps({"header":"Введите ПИН","handlers":h,"block_cancel":False},ensure_ascii=False))
-
-    
-   return hashMap
-
-# проверка пин-кода
-def check_pin(hashMap,_files=None,_data=None):
-    
-   hashMap.put("toast",hashMap.get("pin"))
-
-   if hashMap.get("pin")=="1111":
-      hashMap.put("beep","")
-      hashMap.put("ClosePIN","")
-   
-    
-   return hashMap
-
 # при старте экрана Отбор 
 def py_OnStartOrder(hashMap, _files=None, _data=None):
     # android.stop()
@@ -1530,6 +1507,31 @@ def py_auth_on_input(hashMap, _files=None, _data=None):
             hashMap.put("ShowDialogStyle", "{'title': 'Выберите тип операций!',   'yes': '',   'no': 'OK' }")
             return hashMap
 
-        hashMap.put("ShowScreen", "Выбор операции")
+        show_pin(hashMap)
+        # hashMap.put("ShowScreen", "Выбор операции")
 
     return hashMap
+
+# вывод окна ввода пин-кода 
+def show_pin(hashMap,_files=None,_data=None):
+    
+   h=[{"action":"run","type":"python","listener":"pin_success","method":"check_pin"},
+               {"action":"run","type":"set","listener":"pin_cancel","method":"vibrate"}
+               ]
+   hashMap.put("ShowPIN",json.dumps({"header":"Введите ПИН","handlers":h,"block_cancel":False},ensure_ascii=False))
+
+    
+   return hashMap
+
+# проверка пин-кода
+def check_pin(hashMap,_files=None,_data=None):
+    
+   hashMap.put("toast",hashMap.get("pin"))
+
+   if hashMap.get("pin")=="1111":
+      hashMap.put("beep","")
+      hashMap.put("ClosePIN","")
+   
+    
+   return hashMap
+
