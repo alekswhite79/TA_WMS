@@ -1530,7 +1530,7 @@ def check_pin(hashMap,_files=None,_data=None):
    user = hashMap.get("user")
    result = db["users"].find({"_id":user}) 
    hashMap.put("result",json.dumps(result))
-   hashMap.put("PIN_1",result['PIN'])
+   hashMap.put("PIN_1",str(result['PIN']))
    
    android.stop(hashMap)
    
