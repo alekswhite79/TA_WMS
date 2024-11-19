@@ -1519,7 +1519,7 @@ def py_InsertUsers(hashMap, _files=None, _data=None):
 # при старте экрана Авторизация
 def py_auth_on_start(hashMap, _files=None, _data=None):
     # android.stop(hashMap)
-    if not hashMap.containsKey("list_users") or hashMap.put("list_users")!="":
+    if not hashMap.containsKey("list_users") or hashMap.get("list_users")!="":
         users = db["users"].all()
         list_users = "<выберите...>"
         for user in users:
