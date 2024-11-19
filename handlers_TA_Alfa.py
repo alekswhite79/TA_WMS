@@ -1519,73 +1519,72 @@ def py_InsertUsers(hashMap, _files=None, _data=None):
 # при старте экрана Авторизация
 def py_auth_on_start(hashMap, _files=None, _data=None):
     # android.stop(hashMap)
-    if hashMap.containsKey("_auth_pass"):
-        hashMap.put("ShowScreen", "Выбор операции")
-        hashMap.remove("_auth_pass")
-        hashMap.put("RefreshScreen","")
-        return hashMap
+    if not hashMap.containsKey("list_users") or hashMap.put("list_users")!="":
+        users = db["users"].all()
+        list_users = "<выберите...>"
+        for user in users:
+            list_users = list_users + ';' + user['_id']
+        hashMap.put("list_users", list_users)
 
-    users = db["users"].all()
-    list_users = "<выберите...>"
-    for user in users:
-        list_users = list_users + ';' + user['_id']
-    hashMap.put("list_users", list_users)
     return hashMap
 
 # при вводе в экране Авторизация
 def py_auth_on_input(hashMap, _files=None, _data=None):
 
-    android.stop(hashMap)
+    # android.stop(hashMap)
 
     if hashMap.get("listener") == 'кнОК':  # нажата кнопка ОК
 
         if hashMap.get("user") == '<выберите...>':
             hashMap.put("beep", "15")
             hashMap.put("ShowDialog", "Ошибка")
-            hashMap.put(
-                "ShowDialogStyle", "{'title': 'Выберите пользователя!',   'yes': '',   'no': 'OK' }")
+            hashMap.put("ShowDialogStyle", "{'title': 'Выберите пользователя!',   'yes': '',   'no': 'OK' }")
             return hashMap
 
         if hashMap.get("TypeOperation") == '<выберите...>':
             hashMap.put("beep", "15")
             hashMap.put("ShowDialog", "Ошибка")
-            hashMap.put(
-                "ShowDialogStyle", "{'title': 'Выберите тип операций!',   'yes': '',   'no': 'OK' }")
+            hashMap.put("ShowDialogStyle", "{'title': 'Выберите тип операций!',   'yes': '',   'no': 'OK' }")
             return hashMap
 
         show_pin(hashMap)
         # hashMap.put("ShowScreen", "Выбор операции")
+    if hashMap.get("listener") == 'pin':  # введен пин
+        user = hashMap.get("user")
+        result = db["users"].find({"_id": user})
+
+        if hashMap.get("pin") == "1111" or (len(result) == 1 and hashMap.get("pin") == result[0]['PIN']):
+            hashMap.put("ShowScreen", "Выбор операции")
+        else:
+            hashMap.put("toast", "Неверный PIN")
 
     return hashMap
 
 # вывод окна ввода пин-кода
 def show_pin(hashMap, _files=None, _data=None):
 
-    h = [{"action": "run", "type": "python", "listener": "pin_success", "method": "check_pin"},
-         {"action": "run", "type": "set",
-             "listener": "pin_cancel", "method": "vibrate"}
-         ]
-    hashMap.put("ShowPIN", json.dumps(
-        {"header": "Введите ПИН", "handlers": h, "block_cancel": False}, ensure_ascii=False))
+    h = [{"action": "run", "type": "python", "listener": "pin_success", "method": "beep"},
+         {"action": "run", "type": "set", "listener": "pin_cancel", "method": "vibrate"}]
+    
+    hashMap.put("ShowPIN", json.dumps({"header": "Введите ПИН", "handlers": h, "block_cancel": False}, ensure_ascii=False))
 
     return hashMap
 
 # проверка пин-кода
-def check_pin(hashMap, _files=None, _data=None):
+# def check_pin(hashMap, _files=None, _data=None):
 
-    #    hashMap.put("toast",hashMap.get("pin"))
-    user = hashMap.get("user")
-    result = db["users"].find({"_id": user})
+#     #    hashMap.put("toast",hashMap.get("pin"))
+#     user = hashMap.get("user")
+#     result = db["users"].find({"_id": user})
 
-    if hashMap.get("pin") == "1111" or (len(result) == 1 and hashMap.get("pin") == result[0]['PIN']):
-        hashMap.put("beep", "")
-        hashMap.put("_auth_pass", "OK")
-        hashMap.put("ClosePIN", "")
-    else:
-        hashMap.put("toast", "Неверный PIN")
-    # android.stop(hashMap)
+#     if hashMap.get("pin") == "1111" or (len(result) == 1 and hashMap.get("pin") == result[0]['PIN']):
+#         hashMap.put("beep", "")
+#         hashMap.put("ClosePIN", "")
+#     else:
+#         hashMap.put("toast", "Неверный PIN")
+#     # android.stop(hashMap)
 
-    return hashMap
+#     return hashMap
 
 
 # def show_pin(hashMap, _files=None, _data=None):
