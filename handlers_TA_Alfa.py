@@ -1563,7 +1563,7 @@ def py_auth_on_input(hashMap, _files=None, _data=None):
 # вывод окна ввода пин-кода
 def show_pin(hashMap, _files=None, _data=None):
 
-    h = [{"action": "run", "type": "python", "listener": "pin_success", "method": "beep"},
+    h = [{"action": "run", "type": "python", "listener": "pin_success", "method": "check_pin"},
          {"action": "run", "type": "set", "listener": "pin_cancel", "method": "vibrate"}]
     
     hashMap.put("ShowPIN", json.dumps({"header": "Введите ПИН", "handlers": h, "block_cancel": False}, ensure_ascii=False))
@@ -1571,20 +1571,22 @@ def show_pin(hashMap, _files=None, _data=None):
     return hashMap
 
 # проверка пин-кода
-# def check_pin(hashMap, _files=None, _data=None):
+def check_pin(hashMap, _files=None, _data=None):
 
-#     #    hashMap.put("toast",hashMap.get("pin"))
-#     user = hashMap.get("user")
-#     result = db["users"].find({"_id": user})
+    # #    hashMap.put("toast",hashMap.get("pin"))
+    # user = hashMap.get("user")
+    # result = db["users"].find({"_id": user})
 
-#     if hashMap.get("pin") == "1111" or (len(result) == 1 and hashMap.get("pin") == result[0]['PIN']):
-#         hashMap.put("beep", "")
-#         hashMap.put("ClosePIN", "")
-#     else:
-#         hashMap.put("toast", "Неверный PIN")
-#     # android.stop(hashMap)
+    # if hashMap.get("pin") == "1111" or (len(result) == 1 and hashMap.get("pin") == result[0]['PIN']):
+    #     hashMap.put("beep", "")
+    #     hashMap.put("ClosePIN", "")
+    # else:
+    #     hashMap.put("toast", "Неверный PIN")
+    # # android.stop(hashMap)
+    hashMap.put("beep", "")
+    hashMap.put("ClosePIN", "")
 
-#     return hashMap
+    return hashMap
 
 
 # def show_pin(hashMap, _files=None, _data=None):
