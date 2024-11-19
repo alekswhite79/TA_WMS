@@ -1564,11 +1564,8 @@ def show_pin(hashMap, _files=None, _data=None):
          {"action": "run", "type": "set",
              "listener": "pin_cancel", "method": "vibrate"}
          ]
-    # hashMap.put("ShowPIN", json.dumps(
-    #     {"header": "Введите ПИН", "handlers": h, "block_cancel": False}, ensure_ascii=False))
-
     hashMap.put("ShowPIN", json.dumps(
-        {"header": "Введите ПИН", "handlers": h, "block_cancel": True}, ensure_ascii=False))
+        {"header": "Введите ПИН", "handlers": h, "block_cancel": False}, ensure_ascii=False))
 
     return hashMap
 
