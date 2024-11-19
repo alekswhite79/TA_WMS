@@ -1522,7 +1522,7 @@ def py_auth_on_start(hashMap, _files=None, _data=None):
     if hashMap.containsKey("_auth_pass"):
         hashMap.put("ShowScreen", "Выбор операции")
         hashMap.remove("_auth_pass")
-        return hashMap
+        # return hashMap
 
     users = db["users"].all()
     list_users = "<выберите...>"
