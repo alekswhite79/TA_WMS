@@ -1645,6 +1645,6 @@ def check_pin(hashMap, _files=None, _data=None):
         hashMap.put("ShowScreen", "Выбор операции")
     else:
         hashMap.put("toast", "Неверный PIN")
-    # android.stop(hashMap)
+    android.stop(hashMap)
 
     return hashMap
