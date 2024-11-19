@@ -1518,7 +1518,7 @@ def py_InsertUsers(hashMap, _files=None, _data=None):
 
 # при старте экрана Авторизация
 def py_auth_on_start(hashMap, _files=None, _data=None):
-    # android.stop(hashMap)
+    android.stop(hashMap)
     if hashMap.containsKey("auth_pass"):
         hashMap.put("ShowScreen", "Выбор операции")
         hashMap.remove("auth_pass")
