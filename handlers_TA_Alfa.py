@@ -1518,7 +1518,7 @@ def py_InsertUsers(hashMap, _files=None, _data=None):
 
 # при старте экрана Авторизация
 def py_auth_on_start(hashMap, _files=None, _data=None):
-    # android.stop(hashMap)
+    android.stop(hashMap)
     if not hashMap.containsKey("list_users") or hashMap.get("list_users")!="":
         users = db["users"].all()
         list_users = "<выберите...>"
@@ -1589,29 +1589,3 @@ def check_pin(hashMap, _files=None, _data=None):
     return hashMap
 
 
-# def show_pin(hashMap, _files=None, _data=None):
-
-#     h = [{"action": "run", "type": "python", "listener": "pin_success", "method": "check_pin"},
-#          {"action": "run", "type": "set",
-#              "listener": "pin_cancel", "method": "vibrate"}
-#          ]
-#     hashMap.put("ShowPIN", json.dumps(
-#         {"header": "Введите ПИН", "handlers": h, "block_cancel": False}, ensure_ascii=False))
-
-#     return hashMap
-
-
-# def check_pin(hashMap, _files=None, _data=None):
-
-#     user = hashMap.get("user")
-#     result = db["users"].find({"_id": user})
-
-#     if hashMap.get("pin") == "1111" or (len(result) == 1 and hashMap.get("pin") == result[0]['PIN']):
-#         hashMap.put("beep", "")
-#         hashMap.put("ClosePIN", "")
-#         hashMap.put("ShowScreen", "Выбор операции")
-#     else:
-#         hashMap.put("toast", "Неверный PIN")
-#     #android.stop(hashMap)
-
-#     return hashMap
