@@ -1519,9 +1519,9 @@ def py_InsertUsers(hashMap, _files=None, _data=None):
 # при старте экрана Авторизация
 def py_auth_on_start(hashMap, _files=None, _data=None):
     android.stop(hashMap)
-    if hashMap.containsKey("auth_pass"):
+    if hashMap.containsKey("_auth_pass"):
         hashMap.put("ShowScreen", "Выбор операции")
-        hashMap.remove("auth_pass")
+        hashMap.remove("_auth_pass")
         return hashMap
 
     users = db["users"].all()
@@ -1581,7 +1581,7 @@ def check_pin(hashMap, _files=None, _data=None):
 
     if hashMap.get("pin") == "1111" or (len(result) == 1 and hashMap.get("pin") == result[0]['PIN']):
         hashMap.put("beep", "")
-        hashMap.put("auth_pass", "OK")
+        hashMap.put("_auth_pass", "OK")
         hashMap.put("ClosePIN", "")
     else:
         hashMap.put("toast", "Неверный PIN")
