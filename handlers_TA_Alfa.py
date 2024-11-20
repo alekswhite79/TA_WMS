@@ -1519,6 +1519,7 @@ def py_InsertUsers(hashMap, _files=None, _data=None):
 # при старте экрана Авторизация
 def py_auth_on_start(hashMap, _files=None, _data=None):
     # android.stop(hashMap)
+    
     if not hashMap.containsKey("list_users") or hashMap.get("list_users")!="":
         users = db["users"].all()
         list_users = "<выберите...>"
@@ -1526,6 +1527,7 @@ def py_auth_on_start(hashMap, _files=None, _data=None):
             list_users = list_users + ';' + user['_id']
         hashMap.put("list_users", list_users)
 
+    hashMap.put("disable_events","")
     return hashMap
 
 # при вводе в экране Авторизация
