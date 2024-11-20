@@ -1527,13 +1527,13 @@ def py_auth_on_start(hashMap, _files=None, _data=None):
             list_users = list_users + ';' + user['_id']
         hashMap.put("list_users", list_users)
 
-    hashMap.put("disable_events","")
+    # hashMap.put("disable_events","")
     return hashMap
 
 # при вводе в экране Авторизация
 def py_auth_on_input(hashMap, _files=None, _data=None):
 
-    # android.stop(hashMap)
+    android.stop(hashMap)
 
     if hashMap.get("listener") == 'кнОК':  # нажата кнопка ОК
 
