@@ -1533,8 +1533,8 @@ def py_auth_on_start(hashMap, _files=None, _data=None):
 # при вводе в экране Авторизация
 def py_auth_on_input(hashMap, _files=None, _data=None):
 
-    android.stop(hashMap)
-
+    # android.stop(hashMap)
+    hashMap.put("noRefresh","") 
     if hashMap.get("listener") == 'кнОК':  # нажата кнопка ОК
 
         if hashMap.get("user") == '<выберите...>':
