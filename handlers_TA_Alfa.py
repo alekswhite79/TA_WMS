@@ -1557,6 +1557,9 @@ def py_auth_on_input(hashMap, _files=None, _data=None):
 
         if hashMap.get("pin") == "1111" or (len(result) == 1 and hashMap.get("pin") == result[0]['PIN']):
             hashMap.put("ShowScreen", "Выбор операции")
+            db["cur_user"].clear()
+            db["cur_user"].insert({"user":user, "price":100, "_id":""}, upsert=True)
+            
         else:
             hashMap.put("toast", "Неверный PIN")
 
