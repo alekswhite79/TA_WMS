@@ -1530,6 +1530,7 @@ def py_auth_on_start(hashMap, _files=None, _data=None):
     result = db["app_settings"].find({"_id": "Last_User"})
     if len(result) == 1:
         hashMap.put("user",result[0]['user'])
+        hashMap.put("TypeOperation",result[0]['TypeOperation'])
     
     hashMap.put("disable_events","")
     return hashMap
@@ -1562,7 +1563,7 @@ def py_auth_on_input(hashMap, _files=None, _data=None):
         if hashMap.get("pin") == "1111" or (len(result) == 1 and hashMap.get("pin") == result[0]['PIN']):
             hashMap.put("ShowScreen", "Выбор операции")
             # db["cur_user"].clear()
-            db["app_settings"].insert({"user":user, "_id":"Last_User"}, upsert=True)
+            db["app_settings"].insert({"user":user, "TypeOperation":hashMap.get("TypeOperation"), "_id":"Last_User"}, upsert=True)
         else:
             hashMap.put("toast", "Неверный PIN")
 
