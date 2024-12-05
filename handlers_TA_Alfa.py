@@ -842,7 +842,7 @@ def py_select_on_input(hashMap, _files=None, _data=None):
         # hashMap.put('scaned', 'True')
 
         records = db["GoodsForSelection"].find(
-            {"$and": [{"ШтрихКод": b}, {"НомерЗаказа": hashMap.get('НомерЗаказа')}]})
+            {"$and": [{ "$or":[{"ШтрихКод": b},{"НовыйШтрихКод": b}]}, {"НомерЗаказа": hashMap.get('НомерЗаказа')}]})
         if len(records) == 0:
             hashMap.put("beep", "15")
             hashMap.put("ShowDialog", "Ошибка")
