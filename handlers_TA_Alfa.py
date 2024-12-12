@@ -1039,7 +1039,6 @@ def Update_Qty_Goods(hashMap, card_of_goods):  # , qty=1):
 # при старте экрана выбора заказа
 def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
-    android.stop(hashMap)
     hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
 
     # if hashMap.co
@@ -1047,7 +1046,6 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
     records = db["OrdersForSelection"].all()
     # recordsVZ = db["OrdersForSelection"].find(
     #     {"ВидЗаказа": "Внутренний заказ"})
-    android.stop(hashMap)
 
     # list_btn = "Заказы покупателя("+str(len(recordsZP))+")"
     # list_btn = list_btn + ";Внутренние заказы("+str(len(recordsVZ))+")"
@@ -1173,7 +1171,6 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
     j["customcards"]["cardsdata"] = []
     # hashMap.put("structcards", str(j))
-    android.stop(hashMap)
 
     if len(records) > 0:
         i = 1
@@ -1198,8 +1195,6 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
     # if not hashMap.containsKey("cards"):
     hashMap.put("cards", json.dumps(
         j, ensure_ascii=False).encode('utf8').decode())
-
-    android.stop(hashMap)
 
     return hashMap
 
