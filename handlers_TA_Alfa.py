@@ -1634,6 +1634,11 @@ def py_DeleteRecords(hashMap, _files=None, _data=None):
 
 # нажатие кнопки Закгрузить основного меню (после отработки обработчика 1С)
 def py_InsertRecords(hashMap, _files=None, _data=None):
+
+    #Очистим таблицы
+    db["OrdersForSelection"].clear()
+    db["GoodsForSelection"].clear()
+
     if hashMap.containsKey("ЗаказыЗагрузить") and hashMap.containsKey("ТоварыЗагрузить") and hashMap.get("ЗаказыЗагрузить") != "" and hashMap.get("ТоварыЗагрузить") != "":
         try:
             with DBSession(db) as s:
@@ -1646,15 +1651,15 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
                 ЗагруженоТоваров = db["GoodsForSelection"].insert(
                     ТоварыЗагрузить, upsert=True, session=s)
 
-                if len(ЗагруженоЗаказов) == int(hashMap.get("ЗагруженоЗаказов")) and len(ЗагруженоТоваров) == int(hashMap.get("ЗагруженоТоваров")):
-                    # Надо сообщить об этом 1С
-                    hashMap.put("ЗагруженныеЗаказы",
-                                hashMap.get("ЗаказыЗагрузить"))
-                    hashMap.put("ЗагруженныеТовары",
-                                hashMap.get("ТоварыЗагрузить"))
-                    hashMap.put("RunEvent", json.dumps([{"action": "run",
-                                                        "type": "online",
-                                                         "method": "ДанныеВТСДЗагружены"}]))
+                # if len(ЗагруженоЗаказов) == int(hashMap.get("ЗагруженоЗаказов")) and len(ЗагруженоТоваров) == int(hashMap.get("ЗагруженоТоваров")):
+                #     # Надо сообщить об этом 1С
+                #     hashMap.put("ЗагруженныеЗаказы",
+                #                 hashMap.get("ЗаказыЗагрузить"))
+                #     hashMap.put("ЗагруженныеТовары",
+                #                 hashMap.get("ТоварыЗагрузить"))
+                #     hashMap.put("RunEvent", json.dumps([{"action": "run",
+                #                                         "type": "online",
+                #                                          "method": "ДанныеВТСДЗагружены"}]))
                     # hashMap.put("speak","Загружены новые заказы")
                     # hashMap.remove("ЗаказыЗагрузить")
                     # hashMap.remove("ТоварыЗагрузить")
