@@ -1041,6 +1041,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
     hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
 
+    if hashMap.co
     # db = pelicans["TA_WMS"]
     recordsZP = db["OrdersForSelection"].find(
         {"ВидЗаказа": "Заказ покупателя"})
@@ -1243,6 +1244,214 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
         j, ensure_ascii=False).encode('utf8').decode())
 
     return hashMap
+
+# # при старте экрана выбора заказа
+# def py_OrderList_OnStart(hashMap, _files=None, _data=None):
+
+#     hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
+
+#     # db = pelicans["TA_WMS"]
+#     recordsZP = db["OrdersForSelection"].find(
+#         {"ВидЗаказа": "Заказ покупателя"})
+#     recordsVZ = db["OrdersForSelection"].find(
+#         {"ВидЗаказа": "Внутренний заказ"})
+
+#     list_btn = "Заказы покупателя("+str(len(recordsZP))+")"
+#     list_btn = list_btn + ";Внутренние заказы("+str(len(recordsVZ))+")"
+#     hashMap.put("list_btn", list_btn)
+#     if not hashMap.containsKey("btn_z"):
+#         return hashMap
+
+#     # android.stop(hashMap)
+
+#     j = {"customcards": {
+#         "options": {
+#             # "search_enabled": True,
+#             # "save_position": True
+#         },
+#         "layout": {  # Корневой котейнер
+#             "type": "LinearLayout",
+#             "orientation": "vertical",
+#             "height": "match_parent",
+#             "width": "match_parent",
+#             "weight": "0",
+#             "Elements": [
+#                 {  # Надпись ЗаголовокЗаказа
+#                     "type": "TextView",
+#                     "show_by_condition": "",
+#                     "Value": "@ЗаголовокЗаказа",
+#                     "NoRefresh": False,
+#                     "document_type": "",
+#                     "mask": "",
+#                     "Variable": "",
+#                     "TextSize": "-1",
+#                     "TextColor": "#6F9393",
+#                     "TextBold": False,
+#                     "TextItalic": True,
+#                     "gravity_horizontal": "left",
+#                     "BackgroundColor": "",
+#                     "width": "wrap_content",
+#                     "height": "wrap_content",
+#                     "weight": 0
+#                 },
+#                 {  # Контейнер Получатель
+#                     "type": "LinearLayout",
+#                     "orientation": "horizontal",
+#                     "height": "wrap_content",
+#                     "width": "match_parent",
+#                     "weight": "0",
+#                     "Elements": [
+#                         {
+#                             "type": "TextView",
+#                             "show_by_condition": "",
+#                             "Value": "@ПолучательНадпись",
+#                             "NoRefresh": False,
+#                             "document_type": "",
+#                             "mask": "",
+#                             "Variable": "",
+#                             "TextSize": "16",
+#                             # "TextColor": "#DB7093",
+#                             # "TextBold": True,
+#                             # "TextItalic": False,
+#                             "BackgroundColor": "",
+#                             "width": 200,  # "match_parent",
+#                             "height": "wrap_content",
+#                             "weight": 1
+#                         },
+#                         {
+#                             "type": "TextView",
+#                             "show_by_condition": "",
+#                             "Value": "@Получатель",
+#                             "NoRefresh": False,
+#                             "document_type": "",
+#                             "mask": "",
+#                             "Variable": "",
+#                             "TextSize": "16",
+#                             # "TextColor": "#DB7093",
+#                             "TextBold": True,
+#                             "TextItalic": False,
+#                             "gravity_horizontal": "left",
+#                             "BackgroundColor": "",
+#                             "width": "match_parent",
+#                             "height": "wrap_content",
+#                             "weight": 1
+#                         }  # ,
+#                         # {
+#                         #     "type": "LinearLayout",
+#                         #     "orientation": "vertical",
+#                         #     "height": "wrap_content",
+#                         #     "width": "match_parent",
+#                         #     "weight": "1",
+#                         #     "Elements": [
+#                         #             { #Надпись Получатель
+#                         #                 "type": "TextView",
+#                         #                 "show_by_condition": "",
+#                         #                 "Value": "@Получатель",
+#                         #                 "NoRefresh": False,
+#                         #                 "document_type": "",
+#                         #                 "mask": "",
+#                         #                 "Variable": ""
+#                         #             }
+#                         #     ]
+#                         # },
+#                         # { #Надпись НомерЗаказа
+#                         #     "type": "TextView",
+#                         #     "show_by_condition": "",
+#                         #     "Value": "@НомерЗаказа",
+#                         #     "NoRefresh": False,
+#                         #     "document_type": "",
+#                         #     "mask": "",
+#                         #     "Variable": "",
+#                         #     "TextSize": "16",
+#                         #     "TextColor": "#DB7093",
+#                         #     "TextBold": True,
+#                         #     "TextItalic": False,
+#                         #     "BackgroundColor": "",
+#                         #     "width": "match_parent",
+#                         #     "height": "wrap_content",
+#                         #     "weight": 2
+#                         # }
+#                     ]
+#                 }
+#             ]
+#         }
+#     }
+#     }
+
+#     j["customcards"]["cardsdata"] = []
+#     # hashMap.put("structcards", str(j))
+#     # android.stop(hashMap)
+#     ZP = True if hashMap.get("btn_z")[:6] == "Заказы" else False
+
+#     if ZP:
+#         i = 0
+#         if len(recordsZP) > 0:
+#             i = 1
+#             # c = {"group": "Заказы покупателя"}
+#             # j["customcards"]["cardsdata"].append(c)
+#             for record in recordsZP:
+#                 # OrderHeader = ""
+#                 OrderHeader = "<font color=#000000><b>" + \
+#                     record['Заказ']+"</b></font><br>"
+#                 OrderHeader = OrderHeader + "Статус: " + record['Статус']
+#                 OrderHeader = OrderHeader if record['Доставка'] == "" else OrderHeader + \
+#                     "<br>"+record['Доставка']
+#                 OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader + \
+#                     "<br><font color=#DB7093>"+record['Комментарий']+"</font>"
+#                 # OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка'] + "</p>"
+#                 # OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<p align=left><font color=#DB7093>"+record['Комментарий']+"</font></p>"
+#                 # OrderHeader = OrderHeader +"<p align=left><font color=#2E8B57>"+record['Заказ']+"</font><br>"
+#                 # OrderHeader = OrderHeader +"<font color=#000000>Статус: "+record['Статус']+"</font></p>"
+#                 c = {
+#                     "key": record['НомерЗаказа'],
+#                     "ЗаголовокЗаказа": OrderHeader,
+#                     "НомерЗаказа": record['НомерЗаказа'],
+#                     "Получатель": "<b>"+record['Получатель']+"</b>",
+#                     "ПолучательНадпись": "Покупатель: ",
+#                     "ВремяОстатков": record['ВремяОстатков'],
+#                     "ВидЗаказа": record['ВидЗаказа']
+#                 }
+
+#                 j["customcards"]["cardsdata"].append(c)
+#                 i += 1
+#     else:
+#         i = 0
+#         if len(recordsVZ) > 0:
+#             i = 1
+#             # c = {"group": "Внутренние заказы"}
+#             # j["customcards"]["cardsdata"].append(c)
+#             for record in recordsVZ:
+#                 OrderHeader = "<font color=#000000><b>" + \
+#                     record['Заказ']+"</b></font><br>"
+#                 OrderHeader = OrderHeader + "Статус: " + record['Статус']
+#                 OrderHeader = OrderHeader if record['Доставка'] == "" else OrderHeader + \
+#                     "<br>"+record['Доставка']
+#                 OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader + \
+#                     "<br><font color=#DB7093>"+record['Комментарий']+"</font>"
+
+#                 # OrderHeader = ""
+#                 # OrderHeader = OrderHeader if record['Доставка'] == "" else "<p align=left>"+record['Доставка'] + "</p>"
+#                 # OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader +"<p align=left><font color=#DB7093>"+record['Комментарий']+"</font></p>"
+#                 # OrderHeader = OrderHeader +"<p align=left><font color=#2E8B57>"+record['Заказ']+"</font></p>"
+#                 # OrderHeader = OrderHeader +"<p align=left><font color=#000000>Статус:"+record['Статус']+"</font></p>"
+#                 c = {
+#                     "key": record['НомерЗаказа'],
+#                     "ЗаголовокЗаказа": OrderHeader,
+#                     "НомерЗаказа": record['НомерЗаказа'],
+#                     "ПолучательНадпись": "Получатель: ",
+#                     "Получатель": record['Получатель'],
+#                     "ВремяОстатков": record['ВремяОстатков'],
+#                     "ВидЗаказа": record['ВидЗаказа']
+#                 }
+
+#                 j["customcards"]["cardsdata"].append(c)
+#                 i += 1
+
+#     # if not hashMap.containsKey("cards"):
+#     hashMap.put("cards", json.dumps(
+#         j, ensure_ascii=False).encode('utf8').decode())
+
+#     return hashMap
 
 # при выборе карточки заказа на экране выбора заказа
 def py_SelectionOrder(hashMap, _files=None, _data=None):
@@ -1561,11 +1770,14 @@ def py_auth_on_input(hashMap, _files=None, _data=None):
         result = db["users"].find({"_id": user})
 
         if hashMap.get("pin") == "1111" or (len(result) == 1 and hashMap.get("pin") == result[0]['PIN']):
-            hashMap.put("ShowScreen", "Выбор операции")
+            # hashMap.put("ShowScreen", "Выбор задачи")
             db["app_settings"].insert({"user":user, "TypeOperation":hashMap.get("TypeOperation"), "_id":"Last_User"}, upsert=True)
             hashMap.put("RunEvent", json.dumps([{"action": "run",
                                                 "type": "online",
-                                                "method": "ЗаполнитьСостояниеМобУст"}]))
+                                                "method": "ЗаполнитьСостояниеМобУст"},
+                                                {"action": "run",
+                                                "type": "online",
+                                                "method": "ЗагрузитьДанные"}]))
         else:
             hashMap.put("toast", "Неверный PIN")
 
