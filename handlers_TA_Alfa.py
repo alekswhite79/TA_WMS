@@ -1039,6 +1039,7 @@ def Update_Qty_Goods(hashMap, card_of_goods):  # , qty=1):
 # при старте экрана выбора заказа
 def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
+    android.stop(hashMap)
     hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
 
     # if hashMap.co
