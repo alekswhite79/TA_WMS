@@ -1774,10 +1774,13 @@ def py_auth_on_input(hashMap, _files=None, _data=None):
             db["app_settings"].insert({"user":user, "TypeOperation":hashMap.get("TypeOperation"), "_id":"Last_User"}, upsert=True)
             hashMap.put("RunEvent", json.dumps([{"action": "run",
                                                 "type": "online",
-                                                "method": "ЗаполнитьСостояниеМобУст"},
-                                                {"action": "run",
-                                                "type": "online",
-                                                "method": "ЗагрузитьДанные"}]))
+                                                "method": "ЗаполнитьСостояниеМобУст"}]))
+            # hashMap.put("RunEvent", json.dumps([{"action": "run",
+            #                                     "type": "online",
+            #                                     "method": "ЗаполнитьСостояниеМобУст"},
+            #                                     {"action": "run",
+            #                                     "type": "online",
+            #                                     "method": "ЗагрузитьДанные"}]))
         else:
             hashMap.put("toast", "Неверный PIN")
 
