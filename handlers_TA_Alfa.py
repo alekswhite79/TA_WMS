@@ -1055,7 +1055,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
     # android.stop(hashMap)
 
-    j = {"customcards": {
+    # j = {"customcards": {
         "options": {
             # "search_enabled": True,
             # "save_position": True
@@ -1067,7 +1067,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
             "width": "match_parent",
             "weight": "0",
             "Elements": [
-                {  # Надпись ЗаголовокЗаказа
+                {  
                     "type": "TextView",
                     "show_by_condition": "",
                     "Value": "@ЗаголовокЗаказа",
@@ -1085,7 +1085,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                     "height": "wrap_content",
                     "weight": 0
                 },
-                {  # Контейнер Получатель
+                {  
                     "type": "LinearLayout",
                     "orientation": "horizontal",
                     "height": "wrap_content",
@@ -1101,11 +1101,8 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                             "mask": "",
                             "Variable": "",
                             "TextSize": "16",
-                            # "TextColor": "#DB7093",
-                            # "TextBold": True,
-                            # "TextItalic": False,
                             "BackgroundColor": "",
-                            "width": 200,  # "match_parent",
+                            "width": 200,  
                             "height": "wrap_content",
                             "weight": 1
                         },
@@ -1118,7 +1115,6 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                             "mask": "",
                             "Variable": "",
                             "TextSize": "16",
-                            # "TextColor": "#DB7093",
                             "TextBold": True,
                             "TextItalic": False,
                             "gravity_horizontal": "left",
@@ -1126,50 +1122,20 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
                             "width": "match_parent",
                             "height": "wrap_content",
                             "weight": 1
-                        }  # ,
-                        # {
-                        #     "type": "LinearLayout",
-                        #     "orientation": "vertical",
-                        #     "height": "wrap_content",
-                        #     "width": "match_parent",
-                        #     "weight": "1",
-                        #     "Elements": [
-                        #             { #Надпись Получатель
-                        #                 "type": "TextView",
-                        #                 "show_by_condition": "",
-                        #                 "Value": "@Получатель",
-                        #                 "NoRefresh": False,
-                        #                 "document_type": "",
-                        #                 "mask": "",
-                        #                 "Variable": ""
-                        #             }
-                        #     ]
-                        # },
-                        # { #Надпись НомерЗаказа
-                        #     "type": "TextView",
-                        #     "show_by_condition": "",
-                        #     "Value": "@НомерЗаказа",
-                        #     "NoRefresh": False,
-                        #     "document_type": "",
-                        #     "mask": "",
-                        #     "Variable": "",
-                        #     "TextSize": "16",
-                        #     "TextColor": "#DB7093",
-                        #     "TextBold": True,
-                        #     "TextItalic": False,
-                        #     "BackgroundColor": "",
-                        #     "width": "match_parent",
-                        #     "height": "wrap_content",
-                        #     "weight": 2
-                        # }
+                        } 
                     ]
                 }
             ]
         }
+
     }
+    }
+    j = {"customcards": {
+                "layout": "^CardZakaz",
+                "cardsdata":[]    }
     }
 
-    j["customcards"]["cardsdata"] = []
+    # j["customcards"]["cardsdata"] = []
     # hashMap.put("structcards", str(j))
 
     if len(records) > 0:
