@@ -1041,103 +1041,12 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
     hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
 
-    # if hashMap.co
-    # db = pelicans["TA_WMS"]
     records = db["OrdersForSelection"].all()
-    # recordsVZ = db["OrdersForSelection"].find(
-    #     {"ВидЗаказа": "Внутренний заказ"})
-
-    # list_btn = "Заказы покупателя("+str(len(recordsZP))+")"
-    # list_btn = list_btn + ";Внутренние заказы("+str(len(recordsVZ))+")"
-    # hashMap.put("list_btn", list_btn)
-    # if not hashMap.containsKey("btn_z"):
-    #     return hashMap
-
-    # android.stop(hashMap)
-
-    # # j = {"customcards": {
-    #     "options": {
-    #         # "search_enabled": True,
-    #         # "save_position": True
-    #     },
-    #     "layout": {  # Корневой котейнер
-    #         "type": "LinearLayout",
-    #         "orientation": "vertical",
-    #         "height": "match_parent",
-    #         "width": "match_parent",
-    #         "weight": "0",
-    #         "Elements": [
-    #             {  
-    #                 "type": "TextView",
-    #                 "show_by_condition": "",
-    #                 "Value": "@ЗаголовокЗаказа",
-    #                 "NoRefresh": False,
-    #                 "document_type": "",
-    #                 "mask": "",
-    #                 "Variable": "",
-    #                 "TextSize": "-1",
-    #                 "TextColor": "#6F9393",
-    #                 "TextBold": False,
-    #                 "TextItalic": True,
-    #                 "gravity_horizontal": "left",
-    #                 "BackgroundColor": "",
-    #                 "width": "wrap_content",
-    #                 "height": "wrap_content",
-    #                 "weight": 0
-    #             },
-    #             {  
-    #                 "type": "LinearLayout",
-    #                 "orientation": "horizontal",
-    #                 "height": "wrap_content",
-    #                 "width": "match_parent",
-    #                 "weight": "0",
-    #                 "Elements": [
-    #                     {
-    #                         "type": "TextView",
-    #                         "show_by_condition": "",
-    #                         "Value": "@ПолучательНадпись",
-    #                         "NoRefresh": False,
-    #                         "document_type": "",
-    #                         "mask": "",
-    #                         "Variable": "",
-    #                         "TextSize": "16",
-    #                         "BackgroundColor": "",
-    #                         "width": 200,  
-    #                         "height": "wrap_content",
-    #                         "weight": 1
-    #                     },
-    #                     {
-    #                         "type": "TextView",
-    #                         "show_by_condition": "",
-    #                         "Value": "@Получатель",
-    #                         "NoRefresh": False,
-    #                         "document_type": "",
-    #                         "mask": "",
-    #                         "Variable": "",
-    #                         "TextSize": "16",
-    #                         "TextBold": True,
-    #                         "TextItalic": False,
-    #                         "gravity_horizontal": "left",
-    #                         "BackgroundColor": "",
-    #                         "width": "match_parent",
-    #                         "height": "wrap_content",
-    #                         "weight": 1
-    #                     } 
-    #                 ]
-    #             }
-    #         ]
-    #     }
-
-    # }
-    # }
     
     j = {"customcards": {
                 "layout": "^CardZakaz",
                 "cardsdata":[]    }
     }
-
-    # j["customcards"]["cardsdata"] = []
-    # hashMap.put("structcards", str(j))
 
     if len(records) > 0:
         i = 1
@@ -1159,7 +1068,6 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
             j["customcards"]["cardsdata"].append(c)
             i += 1
 
-    # if not hashMap.containsKey("cards"):
     hashMap.put("cards", json.dumps(
         j, ensure_ascii=False).encode('utf8').decode())
 
