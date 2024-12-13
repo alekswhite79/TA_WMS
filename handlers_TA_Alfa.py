@@ -1055,81 +1055,82 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
     # android.stop(hashMap)
 
-    # j = {"customcards": {
-        "options": {
-            # "search_enabled": True,
-            # "save_position": True
-        },
-        "layout": {  # Корневой котейнер
-            "type": "LinearLayout",
-            "orientation": "vertical",
-            "height": "match_parent",
-            "width": "match_parent",
-            "weight": "0",
-            "Elements": [
-                {  
-                    "type": "TextView",
-                    "show_by_condition": "",
-                    "Value": "@ЗаголовокЗаказа",
-                    "NoRefresh": False,
-                    "document_type": "",
-                    "mask": "",
-                    "Variable": "",
-                    "TextSize": "-1",
-                    "TextColor": "#6F9393",
-                    "TextBold": False,
-                    "TextItalic": True,
-                    "gravity_horizontal": "left",
-                    "BackgroundColor": "",
-                    "width": "wrap_content",
-                    "height": "wrap_content",
-                    "weight": 0
-                },
-                {  
-                    "type": "LinearLayout",
-                    "orientation": "horizontal",
-                    "height": "wrap_content",
-                    "width": "match_parent",
-                    "weight": "0",
-                    "Elements": [
-                        {
-                            "type": "TextView",
-                            "show_by_condition": "",
-                            "Value": "@ПолучательНадпись",
-                            "NoRefresh": False,
-                            "document_type": "",
-                            "mask": "",
-                            "Variable": "",
-                            "TextSize": "16",
-                            "BackgroundColor": "",
-                            "width": 200,  
-                            "height": "wrap_content",
-                            "weight": 1
-                        },
-                        {
-                            "type": "TextView",
-                            "show_by_condition": "",
-                            "Value": "@Получатель",
-                            "NoRefresh": False,
-                            "document_type": "",
-                            "mask": "",
-                            "Variable": "",
-                            "TextSize": "16",
-                            "TextBold": True,
-                            "TextItalic": False,
-                            "gravity_horizontal": "left",
-                            "BackgroundColor": "",
-                            "width": "match_parent",
-                            "height": "wrap_content",
-                            "weight": 1
-                        } 
-                    ]
-                }
-            ]
-        }
+    # # j = {"customcards": {
+    #     "options": {
+    #         # "search_enabled": True,
+    #         # "save_position": True
+    #     },
+    #     "layout": {  # Корневой котейнер
+    #         "type": "LinearLayout",
+    #         "orientation": "vertical",
+    #         "height": "match_parent",
+    #         "width": "match_parent",
+    #         "weight": "0",
+    #         "Elements": [
+    #             {  
+    #                 "type": "TextView",
+    #                 "show_by_condition": "",
+    #                 "Value": "@ЗаголовокЗаказа",
+    #                 "NoRefresh": False,
+    #                 "document_type": "",
+    #                 "mask": "",
+    #                 "Variable": "",
+    #                 "TextSize": "-1",
+    #                 "TextColor": "#6F9393",
+    #                 "TextBold": False,
+    #                 "TextItalic": True,
+    #                 "gravity_horizontal": "left",
+    #                 "BackgroundColor": "",
+    #                 "width": "wrap_content",
+    #                 "height": "wrap_content",
+    #                 "weight": 0
+    #             },
+    #             {  
+    #                 "type": "LinearLayout",
+    #                 "orientation": "horizontal",
+    #                 "height": "wrap_content",
+    #                 "width": "match_parent",
+    #                 "weight": "0",
+    #                 "Elements": [
+    #                     {
+    #                         "type": "TextView",
+    #                         "show_by_condition": "",
+    #                         "Value": "@ПолучательНадпись",
+    #                         "NoRefresh": False,
+    #                         "document_type": "",
+    #                         "mask": "",
+    #                         "Variable": "",
+    #                         "TextSize": "16",
+    #                         "BackgroundColor": "",
+    #                         "width": 200,  
+    #                         "height": "wrap_content",
+    #                         "weight": 1
+    #                     },
+    #                     {
+    #                         "type": "TextView",
+    #                         "show_by_condition": "",
+    #                         "Value": "@Получатель",
+    #                         "NoRefresh": False,
+    #                         "document_type": "",
+    #                         "mask": "",
+    #                         "Variable": "",
+    #                         "TextSize": "16",
+    #                         "TextBold": True,
+    #                         "TextItalic": False,
+    #                         "gravity_horizontal": "left",
+    #                         "BackgroundColor": "",
+    #                         "width": "match_parent",
+    #                         "height": "wrap_content",
+    #                         "weight": 1
+    #                     } 
+    #                 ]
+    #             }
+    #         ]
+    #     }
 
-    }
-    }
+    # }
+    # }
+    
     j = {"customcards": {
                 "layout": "^CardZakaz",
                 "cardsdata":[]    }
