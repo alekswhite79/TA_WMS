@@ -1283,6 +1283,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
 # при выборе карточки заказа на экране выбора заказа
 def py_SelectionOrder(hashMap, _files=None, _data=None):
+    android.stop(hashMap)
     Sel_card = json.loads(hashMap.get("selected_card_data"))
     hashMap.put("Получатель", Sel_card['Получатель'])
     hashMap.put("ВидЗаказа", Sel_card['ВидЗаказа'])
