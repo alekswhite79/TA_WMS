@@ -1535,7 +1535,7 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
         # hashMap.put("toast", str(r.status_code))
 
         # hashMap.put("toast","PeriodicLoadOrder")
-    hashMap.put("ShowScreen", "Выбор задачи")
+    # hashMap.put("ShowScreen", "Выбор задачи")
     return hashMap
 
 # # Удалим переменные обмена
@@ -1620,7 +1620,10 @@ def py_auth_on_input(hashMap, _files=None, _data=None):
             db["app_settings"].insert({"user":user, "TypeOperation":hashMap.get("TypeOperation"), "_id":"Last_User"}, upsert=True)
             hashMap.put("RunEvent", json.dumps([{"action": "run",
                                                 "type": "online",
-                                                "method": "ЗагрузитьДанные"}]))
+                                                "method": "ЗагрузитьДанные"},
+                                                {"action": "run",
+                                                "type": "set",
+                                                "method": "ShowScreen=Выбор задачи"}]))
             # hashMap.put("RunEvent", json.dumps([{"action": "run",
             #                                     "type": "online",
             #                                     "method": "ЗаполнитьСостояниеМобУст"},
