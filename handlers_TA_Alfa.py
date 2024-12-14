@@ -1288,7 +1288,9 @@ def py_SelectionOrder(hashMap, _files=None, _data=None):
     hashMap.put("ВидЗаказа", Sel_card['ВидЗаказа'])
     hashMap.put("ВремяОстатков", Sel_card['ВремяОстатков'])
     hashMap.put(hashMap.get("field"), hashMap.get("selected_card_key"))
-    hashMap.put("BackScreen", "")
+    hashMap.put("ShowScreen", "Отбор")
+
+    # hashMap.put("BackScreen", "")
     # @field=@selected_card_key; BackScreen
     return hashMap
 
