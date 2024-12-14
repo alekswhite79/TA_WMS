@@ -1041,7 +1041,15 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
     hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
 
-    records = db["OrdersForSelection"].all()
+    filter = hashMap.get('filter')
+    TypeOperation = hashMap.get('TypeOperation')    
+    if filter == "Все":
+        records = db["OrdersForSelection"].all()
+    elif TypeOperation == "Отбор для доставки":
+        records = db["OrdersForSelection"].find({"стрДатаВремяОтправки": filter})
+    else:
+        records = db["OrdersForSelection"].find({"Получатель": filter})
+            
     
     j = {"customcards": {
                 "layout": "^CardZakaz",
