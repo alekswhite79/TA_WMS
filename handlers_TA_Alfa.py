@@ -1535,7 +1535,7 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
         # hashMap.put("toast", str(r.status_code))
 
         # hashMap.put("toast","PeriodicLoadOrder")
-
+    hashMap.put("ShowScreen", "Выбор задачи")
     return hashMap
 
 # # Удалим переменные обмена
