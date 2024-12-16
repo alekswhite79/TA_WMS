@@ -1091,10 +1091,12 @@ def py_SelectTask_onInput(hashMap, _files=None, _data=None):
 
     if hashMap.get("listener") == 'CardsClick':  # выбор задачи
         py_SelectionOrder(hashMap)
+    elif hashMap.get("listener") == 'bk_btn':  # плавающая кнопка "назад"
+        hashMap.put("BackScreen", "")
+
     hashMap.put("toast", hashMap.get("listener"))
 
-    # elif hashMap.get("listener") == 'filter':  # выбор задачи
-
+    
     # hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
     # # android.stop(hashMap)
 
