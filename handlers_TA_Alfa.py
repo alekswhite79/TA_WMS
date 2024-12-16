@@ -1491,6 +1491,9 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
                 ТоварыЗагрузить = json.loads(hashMap.get("ТоварыЗагрузить"))
                 ЗагруженоТоваров = db["GoodsForSelection"].insert(
                     ТоварыЗагрузить, upsert=True, session=s)
+                hashMap.put("RunEvent", json.dumps([{"action": "run",
+                                                    "type": "set",
+                                                    "method": "ShowScreen=Выбор задачи"}]))
 
                 # if len(ЗагруженоЗаказов) == int(hashMap.get("ЗагруженоЗаказов")) and len(ЗагруженоТоваров) == int(hashMap.get("ЗагруженоТоваров")):
                 #     # Надо сообщить об этом 1С
@@ -1620,10 +1623,10 @@ def py_auth_on_input(hashMap, _files=None, _data=None):
             db["app_settings"].insert({"user":user, "TypeOperation":hashMap.get("TypeOperation"), "_id":"Last_User"}, upsert=True)
             hashMap.put("RunEvent", json.dumps([{"action": "run",
                                                 "type": "online",
-                                                "method": "ЗагрузитьДанные"},
-                                                {"action": "run",
-                                                "type": "set",
-                                                "method": "ShowScreen=Выбор задачи"}]))
+                                                "method": "ЗагрузитьДанные"}]))
+                                                # {"action": "run",
+                                                # "type": "set",
+                                                # "method": "ShowScreen=Выбор задачи"}]))
             # hashMap.put("RunEvent", json.dumps([{"action": "run",
             #                                     "type": "online",
             #                                     "method": "ЗаполнитьСостояниеМобУст"},
