@@ -1040,6 +1040,7 @@ def Update_Qty_Goods(hashMap, card_of_goods):  # , qty=1):
 def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
     hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
+    android.stop(hashMap)
 
     filter = hashMap.get('filter')
     TypeOperation = hashMap.get('TypeOperation')    
