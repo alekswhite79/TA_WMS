@@ -1043,6 +1043,8 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
     # android.stop(hashMap)
 
     filter = hashMap.get('filter')
+    hashMap.put("toast", filter)
+    
     TypeOperation = hashMap.get('TypeOperation')    
     if filter == "Все":
         records = db["OrdersForSelection"].all()
