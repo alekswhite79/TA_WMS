@@ -1087,6 +1087,62 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
     return hashMap
 
+def py_SelectTask_onInput(hashMap, _files=None, _data=None):
+
+    if hashMap.get("listener") == 'CardsClick':  # выбор задачи
+        py_SelectionOrder(hashMap)
+    hashMap.put("toast", hashMap.get("listener"))
+
+    # elif hashMap.get("listener") == 'filter':  # выбор задачи
+
+    # hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
+    # # android.stop(hashMap)
+
+    # if hashMap.containsKey("filter"):
+    #     filter = hashMap.get('filter')
+    # else: 
+    #     filter = "Все"   
+    # # hashMap.put("toast", filter)
+    
+    # TypeOperation = hashMap.get('TypeOperation')    
+    # if filter == "Все":
+    #     records = db["OrdersForSelection"].all()
+    # elif TypeOperation == "Отбор для доставки":
+    #     records = db["OrdersForSelection"].find({"стрДатаВремяОтправки": filter})
+    # else:
+    #     records = db["OrdersForSelection"].find({"Получатель": filter})
+            
+    
+    # j = {"customcards": {
+    #             "layout": "^CardZakaz",
+    #             "cardsdata":[]    }
+    # }
+
+    # if len(records) > 0:
+    #     i = 1
+    #     for record in records:
+    #         OrderHeader = "<font color=#000000><b>" + record['Заказ']+"</b></font><br>"
+    #         OrderHeader = OrderHeader + "Статус: " + record['Статус']
+    #         OrderHeader = OrderHeader if record['Доставка'] == "" else OrderHeader + "<br>"+record['Доставка']
+    #         OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader + "<br><font color=#DB7093>"+record['Комментарий']+"</font>"
+    #         c = {
+    #             "key": record['НомерЗаказа'],
+    #             "ЗаголовокЗаказа": OrderHeader,
+    #             "НомерЗаказа": record['НомерЗаказа'],
+    #             "ПолучательНадпись": "Получатель: ",
+    #             "Получатель": "<b>"+record['Получатель']+"</b>",
+    #             "ВремяОстатков": record['ВремяОстатков'],
+    #             "ВидЗаказа": record['ВидЗаказа']
+    #         }
+
+    #         j["customcards"]["cardsdata"].append(c)
+    #         i += 1
+
+    # hashMap.put("cards", json.dumps(
+    #     j, ensure_ascii=False).encode('utf8').decode())
+
+    return hashMap
+
 # # при старте экрана выбора заказа
 # def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
