@@ -1042,8 +1042,11 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
     hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
     # android.stop(hashMap)
 
-    filter = hashMap.get('filter')
-    hashMap.put("toast", filter)
+    if hashMap.containsKey("filter"):
+        filter = hashMap.get('filter')
+    else: 
+        filter = "Все"   
+    # hashMap.put("toast", filter)
     
     TypeOperation = hashMap.get('TypeOperation')    
     if filter == "Все":
