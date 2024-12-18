@@ -1654,7 +1654,7 @@ def py_auth_on_start(hashMap, _files=None, _data=None):
         hashMap.put("user",result[0]['user'])
         hashMap.put("TypeOperation",result[0]['TypeOperation'])
     
-    hashMap.put("disable_events","user")
+    # hashMap.put("disable_events","user")
     return hashMap
 
 # при вводе в экране Авторизация
