@@ -1660,7 +1660,6 @@ def py_auth_on_start(hashMap, _files=None, _data=None):
 # при вводе в экране Авторизация
 def py_auth_on_input(hashMap, _files=None, _data=None):
 
-    android.stop(hashMap)
     hashMap.put("noRefresh","") 
     if hashMap.get("listener") == 'кнОК':  # нажата кнопка ОК
 
@@ -1679,6 +1678,7 @@ def py_auth_on_input(hashMap, _files=None, _data=None):
         show_pin(hashMap)
         # hashMap.put("ShowScreen", "Выбор операции")
     if hashMap.get("listener") == 'pin':  # введен пин
+        android.stop(hashMap)
         user = hashMap.get("user")
         result = db["users"].find({"_id": user})
 
