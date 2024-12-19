@@ -1687,9 +1687,9 @@ def py_auth_on_input(hashMap, _files=None, _data=None):
                 TestVar = int(hashMap.get("TestVar"))+1
             else:
                 TestVar = 1
-                
             hashMap.put("toast", TestVar)
-            
+            hashMap.get("TestVar",TestVar)
+
             db["app_settings"].insert({"user":user, "TypeOperation":hashMap.get("TypeOperation"), "_id":"Last_User"}, upsert=True)
             hashMap.put("RunEvent", json.dumps([{"action": "run",
                                                 "type": "online",
