@@ -1561,9 +1561,6 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
                 ТоварыЗагрузить = json.loads(hashMap.get("ТоварыЗагрузить"))
                 ЗагруженоТоваров = db["GoodsForSelection"].insert(
                     ТоварыЗагрузить, upsert=True, session=s)
-                hashMap.put("RunEvent", json.dumps([{"action": "run",
-                                                    "type": "set",
-                                                    "method": "ShowScreen=Выбор задачи"}]))
 
                 # if len(ЗагруженоЗаказов) == int(hashMap.get("ЗагруженоЗаказов")) and len(ЗагруженоТоваров) == int(hashMap.get("ЗагруженоТоваров")):
                 #     # Надо сообщить об этом 1С
@@ -1609,6 +1606,10 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
 
         # hashMap.put("toast","PeriodicLoadOrder")
     # hashMap.put("ShowScreen", "Выбор задачи")
+    hashMap.put("RunEvent", json.dumps([{"action": "run",
+                                        "type": "set",
+                                        "method": "ShowScreen=Выбор задачи"}]))
+    
     return hashMap
 
 # # Удалим переменные обмена
