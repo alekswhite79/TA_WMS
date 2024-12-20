@@ -1085,7 +1085,7 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
     hashMap.put("cards", json.dumps(
         j, ensure_ascii=False).encode('utf8').decode())
 
-    hashMap.put("disable_events","")
+    hashMap.put("enable_events","")
 
     return hashMap
 
