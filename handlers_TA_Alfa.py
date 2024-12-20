@@ -1085,8 +1085,6 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
     hashMap.put("cards", json.dumps(
         j, ensure_ascii=False).encode('utf8').decode())
 
-    hashMap.put("enable_events","")
-
     return hashMap
 
 def py_SelectTask_onInput(hashMap, _files=None, _data=None):
@@ -1656,7 +1654,7 @@ def py_auth_on_start(hashMap, _files=None, _data=None):
         hashMap.put("user",result[0]['user'])
         hashMap.put("TypeOperation",result[0]['TypeOperation'])
     
-    hashMap.put("disable_events","")
+    # hashMap.put("disable_events","")
     return hashMap
 
 # при вводе в экране Авторизация
