@@ -1048,7 +1048,13 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
         filter = "Все"   
     # hashMap.put("toast", filter)
     
-    TypeOperation = hashMap.get('TypeOperation')    
+    TypeOperation = hashMap.get('TypeOperation') 
+    if TypeOperation == "Отбор для доставки":
+        НадписьФильтр = "Доставка:"
+    else:        
+        НадписьФильтр = "Получатель:"   
+    hashMap.put('НадписьФильтр',НадписьФильтр)
+    
     if filter == "Все":
         records = db["OrdersForSelection"].all()
     elif TypeOperation == "Отбор для доставки":
