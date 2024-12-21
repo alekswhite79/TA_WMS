@@ -1605,10 +1605,10 @@ def py_InsertRecords(hashMap, _files=None, _data=None):
         # hashMap.put("toast", str(r.status_code))
 
         # hashMap.put("toast","PeriodicLoadOrder")
-    # hashMap.put("ShowScreen", "Выбор задачи")
-    hashMap.put("RunEvent", json.dumps([{"action": "run",
-                                        "type": "set",
-                                        "method": "ShowScreen=Выбор задачи"}]))
+    hashMap.put("ShowScreen", "Выбор задачи")
+    # hashMap.put("RunEvent", json.dumps([{"action": "run",
+    #                                     "type": "set",
+    #                                     "method": "ShowScreen=Выбор задачи"}]))
     
     return hashMap
 
