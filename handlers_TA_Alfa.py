@@ -15,7 +15,7 @@ from ru.travelfood.simple_ui import NoSQL as noClass
 db = pelicans["TA_WMS"]
 
 # при старте экрана Отбор
-def py_OnStartOrder(hashMap, _files=None, _data=None):
+def py_OnStart_Order(hashMap, _files=None, _data=None):
     # android.stop()
     if hashMap.containsKey("НомерЗаказа") and hashMap.get("НомерЗаказа") != "":
         py_LoadGoods(hashMap)
@@ -831,7 +831,7 @@ def Display_Elrment(hashMap):
     return hashMap
 
 # при вводе в экране Отбор
-def py_select_on_input(hashMap, _files=None, _data=None):
+def py_onInput_Order(hashMap, _files=None, _data=None):
 
     # android.stop(hashMap)
 
@@ -1016,6 +1016,10 @@ def Update_Qty_Goods(hashMap, card_of_goods):  # , qty=1):
     # android.stop(hashMap)
     # NewSelQty = card_of_goods['Отобрано']+qty
     # NewScanned = card_of_goods['Просканировано']+1 if eval(hashMap.get('scaned')) else card_of_goods['Просканировано']
+    CurrentOrder = db["OrdersForSelection"].find({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
+                                                 {"НомерЗаказа": hashMap.get('НомерЗаказа')}]})
+    # if CurrentOrder[0]['Исполнитель'] == "":
+        
     if card_of_goods['КОтбору'] > card_of_goods['Отобрано']:  # NewSelQty:
         db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
                                                  {"НомерЗаказа": hashMap.get(
@@ -1037,7 +1041,7 @@ def Update_Qty_Goods(hashMap, card_of_goods):  # , qty=1):
     return hashMap
 
 # при старте экрана выбора заказа
-def py_OrderList_OnStart(hashMap, _files=None, _data=None):
+def py_OnStart_TaskList(hashMap, _files=None, _data=None):
 
     hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
     # android.stop(hashMap)
@@ -1093,10 +1097,10 @@ def py_OrderList_OnStart(hashMap, _files=None, _data=None):
 
     return hashMap
 
-def py_SelectTask_onInput(hashMap, _files=None, _data=None):
+def py_onInput_TaskList(hashMap, _files=None, _data=None):
 
     if hashMap.get("listener") == 'CardsClick':  # выбор задачи
-        py_SelectionOrder(hashMap)
+        py_SelectionTask(hashMap)
     elif hashMap.get("listener") == 'bk_btn':  # плавающая кнопка "назад"
         hashMap.put("BackScreen", "")
 
@@ -1360,7 +1364,7 @@ def py_SelectTask_onInput(hashMap, _files=None, _data=None):
 #     return hashMap
 
 # при выборе карточки заказа на экране выбора заказа
-def py_SelectionOrder(hashMap, _files=None, _data=None):
+def py_SelectionTask(hashMap, _files=None, _data=None):
     Sel_card = json.loads(hashMap.get("selected_card_data"))
     # android.stop(hashMap)
     hashMap.put("Получатель", Sel_card['Получатель'])
@@ -1646,7 +1650,7 @@ def py_InsertUsers(hashMap, _files=None, _data=None):
     return hashMap
 
 # при старте экрана Авторизация
-def py_auth_on_start(hashMap, _files=None, _data=None):
+def py_onStart_auth(hashMap, _files=None, _data=None):
     # android.stop(hashMap)
     
     if not hashMap.containsKey("list_users") or hashMap.get("list_users")!="":
@@ -1665,7 +1669,7 @@ def py_auth_on_start(hashMap, _files=None, _data=None):
     return hashMap
 
 # при вводе в экране Авторизация
-def py_auth_on_input(hashMap, _files=None, _data=None):
+def py_onInput_auth(hashMap, _files=None, _data=None):
 
     hashMap.put("noRefresh","") 
     if hashMap.get("listener") == 'кнОК':  # нажата кнопка ОК
