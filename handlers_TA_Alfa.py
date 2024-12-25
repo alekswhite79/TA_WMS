@@ -237,257 +237,15 @@ def py_LoadGoods(hashMap):
                                                 # "TextColor": "#DB7093"
                                             }
                                         ]
-                                    }  # ,
-                                    # {  # Кнопка ШК
-                                    #     "type": "LinearLayout",
-                                    #     "height": "wrap_content",
-                                    #     "width": "match_parent",
-                                    #     "weight": "0",
-                                    #     "Value": "",
-                                    #     "Variable": "",
-                                    #     "orientation": "horizontal",
-                                    #     # "Padding": "10",
-                                    #     "Elements": [
-                                    #         {
-                                    #             "type": "Button",
-                                    #             "show_by_condition": False,
-                                    #             "Value": "@НадписьКнРучВвод",
-                                    #             "Variable": "btn_manual",
-                                    #             "NoRefresh": False,
-                                    #             "document_type": "",
-                                    #             "mask": "",
-                                    #             "TextSize": "-1",
-                                    #             "TextColor": "#6F9393",
-                                    #             "width": "wrap_content",
-                                    #             "height": "wrap_content",
-                                    #             "weight": "1"
-                                    #         }
-                                    #     ],
-                                    # }  # ,
+                                    }
                                 ]
                             }
                         ]
-                    }  # ,
-                    # {
-                    #     "type": "TextView",
-                    #     "show_by_condition": "",
-                    #     "Value": "@descr",
-                    #     "NoRefresh": False,
-                    #     "document_type": "",
-                    #     "mask": "",
-                    #     "Variable": "",
-                    #     "TextSize": "-1",
-                    #     "TextColor": "#6F9393",
-                    #     "gravity_horizontal": "left",
-                    #     "gravity_vertical": "center",
-                    #     "TextBold": False,
-                    #     "TextItalic": True,
-                    #     "BackgroundColor": "",
-                    #     "width": "wrap_content",
-                    #     "height": "wrap_content",
-                    #     "weight": "3"
-                    # }
+                    }
                 ]
             }
         }
     }
-
-    # j = {
-    #     "customcards":  {
-    #         "options":  {
-    #             "search_enabled": True,
-    #             "save_position": True
-    #         },
-    #         "layout":   { #корневой контейнер
-    #             "type": "LinearLayout",
-    #             "orientation": "vertical",
-    #             "height": "match_parent",
-    #             "width": "match_parent",
-    #             "weight": "0",
-    #             "Elements": [
-    #                 {
-    #                     "type": "LinearLayout",
-    #                     "orientation": "vertical",
-    #                     "height": "wrap_content",
-    #                     "width": "match_parent",
-    #                     "weight": "0",
-    #                     "Elements": [
-    #                         {
-    #                             "type": "LinearLayout",
-    #                             "orientation": "vertical",
-    #                             "height": "wrap_content",
-    #                             "width": "match_parent",
-    #                             "weight": "5",
-    #                             "Elements": [
-    #                                 {
-    #                                     "type": "TextView",
-    #                                     "show_by_condition": "",
-    #                                     "Value": "@Номенклатура",
-    #                                     "width": "match_parent",
-    #                                     "gravity_horizontal": "center",
-    #                                     "NoRefresh": False,
-    #                                     "document_type": "",
-    #                                     "mask": "",
-    #                                     "Variable": ""
-    #                                 },
-    #                                 {
-    #                                     "type": "TextView",
-    #                                     "show_by_condition": "",
-    #                                     "Value": "@Артикул",
-    #                                     "width": "match_parent",
-    #                                     "gravity_horizontal": "center",
-    #                                     "NoRefresh": False,
-    #                                     "document_type": "",
-    #                                     "mask": "",
-    #                                     "Variable": ""
-    #                                 },
-    #                                 {
-    #                                     "type": "TextView",
-    #                                     "show_by_condition": "",
-    #                                     "Value": "@Производитель",
-    #                                     "width": "match_parent",
-    #                                     "gravity_horizontal": "center",
-    #                                     "NoRefresh": False,
-    #                                     "document_type": "",
-    #                                     "mask": "",
-    #                                     "Variable": ""
-    #                                 }
-    #                             ]
-    #                         },
-    #                         {
-    #                             "type": "LinearLayout",
-    #                             "orientation": "vertical",
-    #                             "height": "wrap_content",
-    #                             "width": "match_parent",
-    #                             "weight": "2",
-    #                             "Elements": [
-    #                                 {
-    #                                     "type": "LinearLayout",
-    #                                     "height": "wrap_content",
-    #                                     "width": "wrap_content",
-    #                                     "weight": "0",
-    #                                     "Value": "",
-    #                                     "Variable": "",
-    #                                     "orientation": "horizontal",
-    #                                     "Elements": [
-    #                                         {
-    #                                             "type": "TextView",
-    #                                             "height": "wrap_content",
-    #                                             "width": "wrap_content",
-    #                                             "weight": "0",
-    #                                             "Value": "Заказано:",
-    #                                             "Variable": "",
-    #                                             "TextSize": "16",
-    #                                             "TextBold": True,
-    #                                             "TextColor": "#DB7093"
-    #                                         },
-    #                                         {
-    #                                             "type": "TextView",
-    #                                             "height": "wrap_content",
-    #                                             "width": "wrap_content",
-    #                                             "weight": "0",
-    #                                             "Value": "@КОтбору",
-    #                                             "Variable": "",
-    #                                             "TextSize": "16",
-    #                                             "TextBold": True,
-    #                                             "TextColor": "#DB7093"
-    #                                         }
-    #                                     ]
-    #                                 },
-    #                                 {
-    #                                     "type": "LinearLayout",
-    #                                     "height": "wrap_content",
-    #                                     "width": "wrap_content",
-    #                                     "weight": "0",
-    #                                     "Value": "",
-    #                                     "Variable": "",
-    #                                     "orientation": "horizontal",
-    #                                     "Elements": [
-    #                                         {
-    #                                             "type": "TextView",
-    #                                             "height": "wrap_content",
-    #                                             "width": "wrap_content",
-    #                                             "weight": "0",
-    #                                             "Value": "Отобрано:",
-    #                                             "Variable": "",
-    #                                             "TextSize": "16",
-    #                                             "TextBold": True,
-    #                                             "TextColor": "#DB7093"
-    #                                         },
-    #                                         {
-    #                                             "type": "TextView",
-    #                                             "height": "wrap_content",
-    #                                             "width": "wrap_content",
-    #                                             "weight": "0",
-    #                                             "Value": "@Отобрано",
-    #                                             "Variable": "",
-    #                                             "TextSize": "16",
-    #                                             "TextBold": True,
-    #                                             "TextColor": "#DB7093"
-    #                                         }
-    #                                     ]
-    #                                 },
-    #                                 {
-    #                                     "type": "LinearLayout",
-    #                                     "height": "wrap_content",
-    #                                     "width": "wrap_content",
-    #                                     "weight": "0",
-    #                                     "Value": "",
-    #                                     "Variable": "",
-    #                                     "orientation": "horizontal",
-    #                                     "Elements": [
-    #                                         {
-    #                                             "type": "TextView",
-    #                                             "height": "wrap_content",
-    #                                             "width": "wrap_content",
-    #                                             "weight": "0",
-    #                                             "Value": "Св.остаток:",
-    #                                             "Variable": "",
-    #                                             "TextSize": "16",
-    #                                             "TextBold": True,
-    #                                             "TextColor": "#DB7093"
-    #                                         },
-    #                                         {
-    #                                             "type": "TextView",
-    #                                             "height": "wrap_content",
-    #                                             "width": "wrap_content",
-    #                                             "weight": "0",
-    #                                             "Value": "@СвободныйОстаток",
-    #                                             "Variable": "",
-    #                                             "TextSize": "16",
-    #                                             "TextBold": True,
-    #                                             "TextColor": "#DB7093"
-    #                                         }
-    #                                     ]
-    #                                 }
-    #                             ]
-    #                         }
-    #                     ]
-    #                 },
-    #                 {
-    #                     "type": "TextView",
-    #                     "show_by_condition": "",
-    #                     "Value": "@descr",
-    #                     "NoRefresh": False,
-    #                     "document_type": "",
-    #                     "mask": "",
-    #                     "Variable": "",
-    #                     "TextSize": "-1",
-    #                     "TextColor": "#6F9393",
-    #                     "gravity_horizontal": "left",
-    #                     "gravity_vertical": "center",
-    #                     "TextBold": False,
-    #                     "TextItalic": True,
-    #                     "BackgroundColor": "",
-    #                     "width": "wrap_content",
-    #                     "height": "wrap_content",
-    #                     "weight": "3"
-    #                 }
-    #             ]
-    #         }
-    #     }
-    # }
-
     j["customcards"]["cardsdata"] = []
 
     # db = pelicans["TA_WMS"]
@@ -501,12 +259,6 @@ def py_LoadGoods(hashMap):
         # android.stop(hashMap)
         i = 1
         for record in records:
-            # if (record['КОтбору'] == record['Отобрано']):
-            #     continue
-
-            # list_btn_Goods = "Подтвердить отбор" if record['ШтрихКод'] == "Нет штрихкода" else "Ручной ввод ШК" + ";Ввести количество" if record['КОтбору'] > 1 else ""
-
-            # if record['ШтрихКод'] == "Нет штрихкода":
             c = {
                 "key": record['Код'],
                 "ЗаказаноОтобрано": "<font color=#F08080>"+str(record['ФактическоеКоличество'])+"/"+str(record['СпланированноеКоличество'])+" " + record['ЕдиницаИзмерения']+"</font>",
@@ -520,275 +272,7 @@ def py_LoadGoods(hashMap):
                 "ФактическоеКоличество": record['ФактическоеКоличество'],
                 "Просканировано": record['Просканировано'],
                 "ListCardMenu": "Подтвердить отбор;Добавить ШК в базу" if record['ШтрихКод'] == "Нет штрихкода" else "Ручной ввод ШК;Подтвердить отбор;Добавить ШК в базу"
-                # "_layout": { #корневой контейнер
-                #         "type": "LinearLayout",
-                #         "orientation": "vertical",
-                #         "height": "match_parent",
-                #         "width": "match_parent",
-                #         "weight": "0",
-                #         "Elements": [
-                #             {
-                #                 "type": "LinearLayout",
-                #                 "orientation": "vertical",
-                #                 "height": "wrap_content",
-                #                 "width": "match_parent",
-                #                 "weight": "0",
-                #                 "Elements": [
-                #                     {
-                #                         "type": "LinearLayout",
-                #                         "orientation": "vertical",
-                #                         "height": "wrap_content",
-                #                         "width": "match_parent",
-                #                         "weight": "5",
-                #                         "Elements": [
-                #                             { #Контейнер Производитель
-                #                                 "type": "LinearLayout",
-                #                                 "height": "wrap_content",
-                #                                 "width": "match_parent",
-                #                                 "weight": "0",
-                #                                 "Value": "",
-                #                                 "Variable": "",
-                #                                 "orientation": "horizontal",
-                #                                 "Elements": [
-                #                                     {
-                #                                         "type": "TextView",
-                #                                         "height": "wrap_content",
-                #                                         "width": "match_parent",
-                #                                         "weight": "3",
-                #                                         "Value": "Производитель:",
-                #                                         "Variable": "",
-                #                                         "gravity_horizontal": "right",
-                #                                         "TextSize": "16",
-                #                                         # "TextBold": True,
-                #                                         # "BackgroundColor": "#A9A9A9",
-                #                                         # "TextColor": "#DB7093"
-                #                                     },
-                #                                     {
-                #                                         "type": "TextView",
-                #                                         "height": "wrap_content",
-                #                                         "width": "match_parent",
-                #                                         "weight": "2",
-                #                                         "Value": "@Производитель",
-                #                                         "Variable": "",
-                #                                         "gravity_horizontal": "left",
-                #                                         "TextSize": "16",
-                #                                         "TextBold": True,
-                #                                         # "BackgroundColor": "#A9A9A9",
-                #                                         # "TextColor": "#DB7093"
-                #                                     }
-                #                                 ]
-                #                             },
-                #                             { #Контейнер Артикул
-                #                                 "type": "LinearLayout",
-                #                                 "height": "wrap_content",
-                #                                 "width": "match_parent",
-                #                                 "weight": "0",
-                #                                 "Value": "",
-                #                                 "Variable": "",
-                #                                 "orientation": "horizontal",
-                #                                 "Elements": [
-                #                                     {
-                #                                         "type": "TextView",
-                #                                         "height": "wrap_content",
-                #                                         "width": "match_parent",
-                #                                         "weight": "3",
-                #                                         "Value": "№ по каталогу:",
-                #                                         "Variable": "",
-                #                                         "gravity_horizontal": "right",
-                #                                         "TextSize": "16",
-                #                                         # "TextBold": True,
-                #                                         # "BackgroundColor": "#A9A9A9",
-                #                                         # "TextColor": "#DB7093"
-                #                                     },
-                #                                     {
-                #                                         "type": "TextView",
-                #                                         "height": "wrap_content",
-                #                                         "width": "match_parent",
-                #                                         "weight": "2",
-                #                                         "Value": "@Артикул",
-                #                                         "Variable": "",
-                #                                         "gravity_horizontal": "left",
-                #                                         "TextSize": "16",
-                #                                         "TextBold": True,
-                #                                         # "BackgroundColor": "#A9A9A9",
-                #                                         # "TextColor": "#DB7093"
-                #                                     }
-                #                                 ]
-                #                             },
-                #                             { #Контейнер Наименование
-                #                                 "type": "LinearLayout",
-                #                                 "height": "wrap_content",
-                #                                 "width": "match_parent",
-                #                                 "weight": "0",
-                #                                 "Value": "",
-                #                                 "Variable": "",
-                #                                 "orientation": "horizontal",
-                #                                 "Elements": [
-                #                                     {
-                #                                         "type": "TextView",
-                #                                         "height": "wrap_content",
-                #                                         "width": "match_parent",
-                #                                         "weight": "3",
-                #                                         "Value": "Наименование:",
-                #                                         "Variable": "",
-                #                                         "gravity_horizontal": "right",
-                #                                         "TextSize": "16",
-                #                                         # "TextBold": True,
-                #                                         # "TextColor": "#DB7093"
-                #                                     },
-                #                                     {
-                #                                         "type": "TextView",
-                #                                         "height": "wrap_content",
-                #                                         "width": "match_parent",
-                #                                         "weight": "2",
-                #                                         "Value": "@Номенклатура",
-                #                                         "Variable": "",
-                #                                         "gravity_horizontal": "left",
-                #                                         "TextSize": "16",
-                #                                         "TextBold": True,
-                #                                         # "TextColor": "#DB7093"
-                #                                     }
-                #                                 ]
-                #                             },
-                #                             { #Контейнер Св.остаток
-                #                                 "type": "LinearLayout",
-                #                                 "height": "wrap_content",
-                #                                 "width": "match_parent",
-                #                                 "weight": "0",
-                #                                 "Value": "",
-                #                                 "Variable": "",
-                #                                 "orientation": "horizontal",
-                #                                 "Elements": [
-                #                                     {
-                #                                         "type": "TextView",
-                #                                         "height": "wrap_content",
-                #                                         "width": "match_parent",
-                #                                         "weight": "1",
-                #                                         "Value": "Св.остаток:",
-                #                                         "Variable": "",
-                #                                         "TextSize": "16",
-                #                                         "gravity_horizontal": "right",
-                #                                         "TextBold": True,
-                #                                         # "TextColor": "#DB7093"
-                #                                     },
-                #                                     {
-                #                                         "type": "TextView",
-                #                                         "height": "wrap_content",
-                #                                         "width": "match_parent",
-                #                                         "weight": "1",
-                #                                         "Value": "@СвободныйОстаток",
-                #                                         "Variable": "",
-                #                                         "TextSize": "16",
-                #                                         "TextBold": True,
-                #                                         # "TextColor": "#DB7093"
-                #                                     }
-                #                                 ]
-                #                             },
-                #                             { #Контейнер Заказано/Отобрано
-                #                                 "type": "LinearLayout",
-                #                                 "height": "wrap_content",
-                #                                 "width": "match_parent",
-                #                                 "weight": "0",
-                #                                 "Value": "",
-                #                                 "Variable": "",
-                #                                 "orientation": "horizontal",
-                #                                 "Elements": [
-                #                                     {
-                #                                         "type": "TextView",
-                #                                         "height": "wrap_content",
-                #                                         "width": "match_parent",
-                #                                         "weight": "1",
-                #                                         "Value": "Отобрано/Заказано:",
-                #                                         "Variable": "",
-                #                                         "TextSize": "16",
-                #                                         "gravity_horizontal": "right",
-                #                                         "TextBold": True,
-                #                                         # "TextColor": "#DB7093"
-                #                                     },
-                #                                     {
-                #                                         "type": "TextView",
-                #                                         "height": "wrap_content",
-                #                                         "width": "match_parent",
-                #                                         "weight": "1",
-                #                                         "Value": "@ЗаказаноОтобрано",
-                #                                         "Variable": "",
-                #                                         "TextSize": "16",
-                #                                         "TextBold": True,
-                #                                         # "TextColor": "#DB7093"
-                #                                     }
-                #                                 ]
-                #                             },
-                #                             { #Кнопка ШК
-                #                                 "type": "LinearLayout",
-                #                                 "height": "wrap_content",
-                #                                 "width": "match_parent",
-                #                                 "weight": "0",
-                #                                 "Value": "",
-                #                                 "Variable": "",
-                #                                 "orientation": "horizontal",
-                #                                 # "Padding": "10",
-                #                                 "Elements": [
-                #                                     {
-                #                                         "type": "Button",
-                #                                         "show_by_condition": False,
-                #                                         "Value": "@НадписьКнРучВвод",
-                #                                         "Variable": "btn_manual",
-                #                                         "NoRefresh": False,
-                #                                         "document_type": "",
-                #                                         "mask": "",
-                #                                         "TextSize": "-1",
-                #                                         "TextColor": "#6F9393",
-                #                                         "width": "wrap_content",
-                #                                         "height": "wrap_content",
-                #                                         "weight": "1"
-                #                                     }
-                #                                 ],
-                #                             },
-                #                             { # Кнопка ввод количества
-                #                                 "type": "Button",
-                #                                 "show_by_condition": "",
-                #                                 "Value": "Ввод количества",
-                #                                 "Variable": "btn_q",
-                #                                 "NoRefresh": False,
-                #                                 "document_type": "",
-                #                                 "mask": "",
-                #                                 "TextSize": "-1",
-                #                                 "TextColor": "#6F9393",
-                #                                 "width": "wrap_content",
-                #                                 "height": "wrap_content",
-                #                                 "weight": "1"
-                #                             }
-                #                         ]
-                #                     }
-                #                 ]
-                #             }
-                #         ]
-                # }
-
             }
-            # else:
-            # c = {
-            #     "key": record['Код'],
-            #     # "descr": "Pos. "+str(i)+". "+record['Код'],
-            #     "ЗаказаноОтобрано": "<font color=#F08080>"+str(record['Отобрано'])+"/"+str(record['КОтбору'])+" "+ record['ЕдиницаИзмерения']+"</font>",
-            #     # "ЗаказаноОтобрано": "<font color=#F08080>" if record['КОтбору']>record['Отобрано'] else "<font color=#32CD32>" + str(record['КОтбору'])+"/"+str(record['Отобрано'])+" "+ record['ЕдиницаИзмерения']+"</font>",
-            #     # "КОтбору": record['КОтбору'],
-            #     # "Отобрано": record['Отобрано'],
-            #     "СвободныйОстаток": record['СвободныйОстаток'] + " " + record['ЕдиницаИзмерения'],
-            #     "Код": record['Код'],
-            #     "Номенклатура": record['Номенклатура'],
-            #     "Артикул": record['Артикул'],
-            #     "Производитель": record['Производитель'],
-            #     "ШтрихКод": record['ШтрихКод'],
-            #     # "list_btn_Goods": list_btn_Goods
-
-            #     "НадписьКнРучВвод": "Подтвердить отбор" if record['ШтрихКод'] == "Нет штрихкода" else "Ручной ввод ШК"
-            #     # "ЕдиницаИзмерения": record['ЕдиницаИзмерения']
-            #     # "НомерЗаказа": record['НомерЗаказа'],
-            #     # "Получатель": record['Получатель'],
-            #     # "ВидЗаказа": record['ВидЗаказа']
-            # }
-
             j["customcards"]["cardsdata"].append(c)
             i += 1
         hashMap.put("CardsGoods", json.dumps(
@@ -1016,9 +500,6 @@ def Update_Qty_Goods(hashMap, card_of_goods):  # , qty=1):
     # android.stop(hashMap)
     # NewSelQty = card_of_goods['Отобрано']+qty
     # NewScanned = card_of_goods['Просканировано']+1 if eval(hashMap.get('scaned')) else card_of_goods['Просканировано']
-    CurrentOrder = db["OrdersForSelection"].find({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
-                                                 {"НомерЗаказа": hashMap.get('НомерЗаказа')}]})
-    # if CurrentOrder[0]['Исполнитель'] == "":
         
     if card_of_goods['СпланированноеКоличество'] > card_of_goods['ФактическоеКоличество']:  # NewSelQty:
         db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
@@ -1037,6 +518,28 @@ def Update_Qty_Goods(hashMap, card_of_goods):  # , qty=1):
         hashMap.put("ShowDialog", "Внимание!")
         hashMap.put("ShowDialogStyle",
                     "{'title': 'Превышение количества!',   'yes': '',   'no': 'OK' }")
+        return hashMap
+
+    # CurrentOrder = db["OrdersForSelection"].find({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
+    #                                              {"НомерЗаказа": hashMap.get('НомерЗаказа')}]})
+    # if not CurrentOrder[0]['ЗаказВРаботе']:
+    #     db["OrdersForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
+    #                                              {"НомерЗаказа": hashMap.get('НомерЗаказа')}]},
+    #                                     {})        
+    #     Orders = db['OrdersForSelection'].find({"ЗаказСобран": True})
+    #     # Goods = db['GoodsForSelection'].find({"ПозицияСобрана":True})
+    #     Goods = []
+    #     if len(Orders) > 0:  # and len(Goods)>0:
+    #         for Order in Orders:
+    #             СurrentOrderGoods = db['GoodsForSelection'].find(
+    #                 {"$and": [{"ВидЗаказа": Order["ВидЗаказа"]}, {"НомерЗаказа": Order["НомерЗаказа"]}]})
+    #             Goods = Goods + СurrentOrderGoods
+
+    #         hashMap.put("ЗаказыСобранные", json.dumps(Orders))
+    #         hashMap.put("ТоварыСобранные", json.dumps(Goods))
+    hashMap.put("RunEvent", json.dumps([{"action": "run",
+                                        "type": "online",
+                                        "method": "ОбновитьПозициюЗаказа"}]))
 
     return hashMap
 
