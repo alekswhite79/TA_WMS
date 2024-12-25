@@ -509,15 +509,15 @@ def py_LoadGoods(hashMap):
             # if record['ШтрихКод'] == "Нет штрихкода":
             c = {
                 "key": record['Код'],
-                "ЗаказаноОтобрано": "<font color=#F08080>"+str(record['Отобрано'])+"/"+str(record['КОтбору'])+" " + record['ЕдиницаИзмерения']+"</font>",
+                "ЗаказаноОтобрано": "<font color=#F08080>"+str(record['ФактическоеКоличество'])+"/"+str(record['СпланированноеКоличество'])+" " + record['ЕдиницаИзмерения']+"</font>",
                 "СвободныйОстаток": record['СвободныйОстаток'] + " " + record['ЕдиницаИзмерения'],
                 "Код": record['Код'],
                 "Номенклатура": record['Номенклатура'],
                 "Артикул": record['Артикул'],
                 "Производитель": record['Производитель'],
                 "ШтрихКод": record['ШтрихКод'],
-                "КОтбору": record['КОтбору'],
-                "Отобрано": record['Отобрано'],
+                "СпланированноеКоличество": record['СпланированноеКоличество'],
+                "ФактическоеКоличество": record['ФактическоеКоличество'],
                 "Просканировано": record['Просканировано'],
                 "ListCardMenu": "Подтвердить отбор;Добавить ШК в базу" if record['ШтрихКод'] == "Нет штрихкода" else "Ручной ввод ШК;Подтвердить отбор;Добавить ШК в базу"
                 # "_layout": { #корневой контейнер
@@ -862,14 +862,14 @@ def py_onInput_Order(hashMap, _files=None, _data=None):
                     "ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
             else:
                 card_of_goods['Просканировано'] = card_of_goods['Просканировано'] + 1
-                if card_of_goods['КОтбору']-card_of_goods['Отобрано'] > 4:
+                if card_of_goods['СпланированноеКоличество']-card_of_goods['ФактическоеКоличество'] > 4:
                     hashMap.put("card_data", json.dumps(card_of_goods))
                     hashMap.put('qty', "0")
                     hashMap.put("ShowDialog", "Ввод количества")
                     hashMap.put("ShowDialogStyle", json.dumps(
                         {"title": "", "yes": "ОК",   "no": "Отмена"}))
                 else:
-                    card_of_goods['Отобрано'] = card_of_goods['Отобрано'] + 1
+                    card_of_goods['ФактическоеКоличество'] = card_of_goods['ФактическоеКоличество'] + 1
                     Update_Qty_Goods(hashMap, card_of_goods)
         else:
             hashMap.put("beep", "15")
@@ -895,13 +895,13 @@ def py_onInput_Order(hashMap, _files=None, _data=None):
             hashMap.put("ShowDialogStyle",
                         "{'title': '',   'yes': 'Да',   'no': 'Нет' }")
         else:
-            if card_data['КОтбору']-card_data['Отобрано'] > 4:
+            if card_data['СпланированноеКоличество']-card_data['ФактическоеКоличество'] > 4:
                 hashMap.put('qty', "0")
                 hashMap.put("ShowDialog", "Ввод количества")
                 hashMap.put("ShowDialogStyle", json.dumps(
                     {"title": "", "yes": "ОК",   "no": "Отмена"}))
             else:
-                card_data['Отобрано'] = card_data['Отобрано'] + 1
+                card_data['ФактическоеКоличество'] = card_data['ФактическоеКоличество'] + 1
                 Update_Qty_Goods(hashMap, card_data)
         hashMap.remove("layout_listener")
 
@@ -911,13 +911,13 @@ def py_onInput_Order(hashMap, _files=None, _data=None):
 
     elif hashMap.get("event") == "onResultPositive" and hashMap.get("listener") == "Сообщение":
         card_data = json.loads(hashMap.get('card_data'))
-        if card_data['КОтбору']-card_data['Отобрано'] > 4:
+        if card_data['СпланированноеКоличество']-card_data['ФактическоеКоличество'] > 4:
             hashMap.put('qty', "0")
             hashMap.put("ShowDialog", "Ввод количества")
             hashMap.put("ShowDialogStyle", json.dumps(
                 {"title": "", "yes": "ОК",   "no": "Отмена"}))
         else:
-            card_data['Отобрано'] = card_data['Отобрано'] + 1
+            card_data['ФактическоеКоличество'] = card_data['ФактическоеКоличество'] + 1
             Update_Qty_Goods(hashMap, card_data)
 
     elif hashMap.get("event") == "onResultPositive" and hashMap.get("layout_listener") == "Ручной ввод ШК":
@@ -929,14 +929,14 @@ def py_onInput_Order(hashMap, _files=None, _data=None):
         card_data = json.loads(hashMap.get('card_data'))
 
         if card_data['ШтрихКод'] == b:
-            if card_data['КОтбору']-card_data['Отобрано'] > 4:
+            if card_data['СпланированноеКоличество']-card_data['ФактическоеКоличество'] > 4:
                 hashMap.put('qty', "0")
                 hashMap.put("ShowDialog", "Ввод количества")
                 hashMap.put("ShowDialogStyle", json.dumps(
                     {"title": "", "yes": "ОК",   "no": "Отмена"}))
 
             else:
-                card_data['Отобрано'] = card_data['Отобрано'] + 1
+                card_data['ФактическоеКоличество'] = card_data['ФактическоеКоличество'] + 1
                 Update_Qty_Goods(hashMap, card_data)
             hashMap.remove("layout_listener")
         else:
@@ -949,7 +949,7 @@ def py_onInput_Order(hashMap, _files=None, _data=None):
         # android.stop(hashMap)
 
         card_data = json.loads(hashMap.get("card_data"))
-        card_data['Отобрано'] = card_data['Отобрано'] + int(hashMap.get('qty'))
+        card_data['ФактическоеКоличество'] = card_data['ФактическоеКоличество'] + int(hashMap.get('qty'))
         Update_Qty_Goods(hashMap, card_data)
         # Update_Qty_Goods(hashMap, card_data, int(hashMap.get('qty')))
 
@@ -1020,18 +1020,18 @@ def Update_Qty_Goods(hashMap, card_of_goods):  # , qty=1):
                                                  {"НомерЗаказа": hashMap.get('НомерЗаказа')}]})
     # if CurrentOrder[0]['Исполнитель'] == "":
         
-    if card_of_goods['КОтбору'] > card_of_goods['Отобрано']:  # NewSelQty:
+    if card_of_goods['СпланированноеКоличество'] > card_of_goods['ФактическоеКоличество']:  # NewSelQty:
         db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
                                                  {"НомерЗаказа": hashMap.get(
                                                      'НомерЗаказа')},
                                                  {"Код": card_of_goods['Код']}]},
-                                       {"Отобрано": card_of_goods['Отобрано'], "Просканировано": card_of_goods['Просканировано']})
-    elif card_of_goods['КОтбору'] == card_of_goods['Отобрано']:  # NewSelQty:
+                                       {"ФактическоеКоличество": card_of_goods['ФактическоеКоличество'], "Просканировано": card_of_goods['Просканировано']})
+    elif card_of_goods['СпланированноеКоличество'] == card_of_goods['ФактическоеКоличество']:  # NewSelQty:
         db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
                                                  {"НомерЗаказа": hashMap.get(
                                                      'НомерЗаказа')},
                                                  {"Код": card_of_goods['Код']}]},
-                                       {"Отобрано": card_of_goods['Отобрано'], "Просканировано": card_of_goods['Просканировано'], "ПозицияСобрана": True})
+                                       {"ФактическоеКоличество": card_of_goods['ФактическоеКоличество'], "Просканировано": card_of_goods['Просканировано'], "ПозицияСобрана": True})
     else:
         hashMap.put("beep", "15")
         hashMap.put("ShowDialog", "Внимание!")
@@ -1428,7 +1428,7 @@ def py_AddBarcode_on_input(hashMap, _files=None, _data=None):
 
 # Функция для поиска собранных позиций зказов
 def check_order_position(document):
-    if document.get("Отобрано") == document.get("КОтбору"):
+    if document.get("ФактическоеКоличество") == document.get("СпланированноеКоличество"):
         return True
     else:
         return False
