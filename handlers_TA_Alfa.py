@@ -218,7 +218,7 @@ def py_LoadGoods(hashMap):
                                                 "height": "wrap_content",
                                                 "width": "match_parent",
                                                 "weight": "1",
-                                                "Value": "Отобрано/Заказано:",
+                                                "Value": "Факт/План:",
                                                 "Variable": "",
                                                 "TextSize": "16",
                                                 "gravity_horizontal": "right",
