@@ -552,7 +552,9 @@ def Update_Qty_Goods(hashMap, card_of_goods):  # , qty=1):
 # при старте экрана выбора заказа
 def py_OnStart_TaskList(hashMap, _files=None, _data=None):
 
-    hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА")
+    TypeOperation = hashMap.get('TypeOperation') 
+
+    hashMap.put("SetTitle", "ВЫБОР ЗАКАЗА: "+TypeOperation)
     # android.stop(hashMap)
 
     if hashMap.containsKey("filter"):
@@ -561,7 +563,6 @@ def py_OnStart_TaskList(hashMap, _files=None, _data=None):
         filter = "Все"   
     # hashMap.put("toast", filter)
     
-    TypeOperation = hashMap.get('TypeOperation') 
     if TypeOperation == "Отбор для доставки":
         НадписьФильтр = "Доставка:"
     else:        
