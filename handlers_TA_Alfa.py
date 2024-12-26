@@ -569,13 +569,6 @@ def py_OnStart_TaskList(hashMap, _files=None, _data=None):
         НадписьФильтр = "Получатель:"   
     hashMap.put('НадписьФильтр',НадписьФильтр)
     
-    # if filter == "Все":
-    #     records = db["OrdersForSelection"].all()
-    # elif TypeOperation == "Отбор для доставки":
-    #     records = db["OrdersForSelection"].find({"стрДатаВремяОтправки": filter})
-    # else:
-    #     records = db["OrdersForSelection"].find({"Получатель": filter})
-    
     records = json.loads(hashMap.get("Tasks"))            
     
     j = {"customcards": {
@@ -615,7 +608,6 @@ def AppendTask(j, record):
         }
 
         j["customcards"]["cardsdata"].append(c)
-    
 
 def py_onInput_TaskList(hashMap, _files=None, _data=None):
 
@@ -1224,7 +1216,7 @@ def py_onInput_auth(hashMap, _files=None, _data=None):
             db["app_settings"].insert({"user":user, "TypeOperation":hashMap.get("TypeOperation"), "_id":"Last_User"}, upsert=True)
             hashMap.put("RunEvent", json.dumps([{"action": "run",
                                                 "type": "online",
-                                                "method": "ЗагрузитьЗадачи"}]))
+                                                "method": "ПолучитьЗадачи"}]))
             # hashMap.put("RunEvent", json.dumps([{"action": "run",
             #                                     "type": "online",
             #                                     "method": "ЗагрузитьДанные"}]))
