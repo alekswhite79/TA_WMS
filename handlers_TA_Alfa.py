@@ -503,16 +503,17 @@ def Update_Qty_Goods(hashMap, card_of_goods):  # , qty=1):
         
     if card_of_goods['СпланированноеКоличество'] > card_of_goods['ФактическоеКоличество']:  # NewSelQty:
         db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
-                                                 {"НомерЗаказа": hashMap.get(
-                                                     'НомерЗаказа')},
+                                                 {"НомерЗаказа": hashMap.get('НомерЗаказа')},
                                                  {"Код": card_of_goods['Код']}]},
-                                       {"ФактическоеКоличество": card_of_goods['ФактическоеКоличество'], "Просканировано": card_of_goods['Просканировано']})
+                                       {"ФактическоеКоличество": card_of_goods['ФактическоеКоличество'], 
+                                        "Просканировано": card_of_goods['Просканировано']})
     elif card_of_goods['СпланированноеКоличество'] == card_of_goods['ФактическоеКоличество']:  # NewSelQty:
         db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
-                                                 {"НомерЗаказа": hashMap.get(
-                                                     'НомерЗаказа')},
+                                                 {"НомерЗаказа": hashMap.get('НомерЗаказа')},
                                                  {"Код": card_of_goods['Код']}]},
-                                       {"ФактическоеКоличество": card_of_goods['ФактическоеКоличество'], "Просканировано": card_of_goods['Просканировано'], "ПозицияСобрана": True})
+                                       {"ФактическоеКоличество": card_of_goods['ФактическоеКоличество'], 
+                                        "Просканировано": card_of_goods['Просканировано'], 
+                                        "ПозицияСобрана": True})
     else:
         hashMap.put("beep", "15")
         hashMap.put("ShowDialog", "Внимание!")
@@ -537,6 +538,11 @@ def Update_Qty_Goods(hashMap, card_of_goods):  # , qty=1):
 
     #         hashMap.put("ЗаказыСобранные", json.dumps(Orders))
     #         hashMap.put("ТоварыСобранные", json.dumps(Goods))
+    RecordForUptade = db["GoodsForSelection"].find({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
+                                                             {"НомерЗаказа": hashMap.get('НомерЗаказа')},
+                                                             {"Код": card_of_goods['Код']}]})
+    hashMap.put("ПозицияДляОбновления", json.dumps(RecordForUptade))
+
     hashMap.put("RunEvent", json.dumps([{"action": "run",
                                         "type": "online",
                                         "method": "ОбновитьПозициюЗаказа"}]))
