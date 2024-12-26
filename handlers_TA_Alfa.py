@@ -568,13 +568,14 @@ def py_OnStart_TaskList(hashMap, _files=None, _data=None):
         НадписьФильтр = "Получатель:"   
     hashMap.put('НадписьФильтр',НадписьФильтр)
     
-    if filter == "Все":
-        records = db["OrdersForSelection"].all()
-    elif TypeOperation == "Отбор для доставки":
-        records = db["OrdersForSelection"].find({"стрДатаВремяОтправки": filter})
-    else:
-        records = db["OrdersForSelection"].find({"Получатель": filter})
-            
+    # if filter == "Все":
+    #     records = db["OrdersForSelection"].all()
+    # elif TypeOperation == "Отбор для доставки":
+    #     records = db["OrdersForSelection"].find({"стрДатаВремяОтправки": filter})
+    # else:
+    #     records = db["OrdersForSelection"].find({"Получатель": filter})
+    
+    records = json.loads(hashMap.get("Tasks"))            
     
     j = {"customcards": {
                 "layout": "^CardZakaz",
@@ -582,29 +583,38 @@ def py_OnStart_TaskList(hashMap, _files=None, _data=None):
     }
 
     if len(records) > 0:
-        i = 1
         for record in records:
-            OrderHeader = "<font color=#000000><b>" + record['Заказ']+"</b></font><br>"
-            OrderHeader = OrderHeader + "Статус: " + record['Статус']
-            OrderHeader = OrderHeader if record['Доставка'] == "" else OrderHeader + "<br>"+record['Доставка']
-            OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader + "<br><font color=#DB7093>"+record['Комментарий']+"</font>"
-            c = {
-                "key": record['НомерЗаказа'],
-                "ЗаголовокЗаказа": OrderHeader,
-                "НомерЗаказа": record['НомерЗаказа'],
-                "ПолучательНадпись": "Получатель: ",
-                "Получатель": "<b>"+record['Получатель']+"</b>",
-                "ВремяОстатков": record['ВремяОстатков'],
-                "ВидЗаказа": record['ВидЗаказа']
-            }
-
-            j["customcards"]["cardsdata"].append(c)
-            i += 1
+            if filter == "Все":
+                AppendTask(j, record)
+            elif TypeOperation == "Отбор для доставки":
+                if record["стрДатаВремяОтправки"] == filter:
+                    AppendTask(j, record)
+            else:
+                if record["Получатель"] == filter:
+                    AppendTask(j, record)
 
     hashMap.put("cards", json.dumps(
         j, ensure_ascii=False).encode('utf8').decode())
 
     return hashMap
+
+def AppendTask(j, record):
+        OrderHeader = "<font color=#000000><b>" + record['Заказ']+"</b></font><br>"
+        OrderHeader = OrderHeader + "Статус: " + record['Статус']
+        OrderHeader = OrderHeader if record['Доставка'] == "" else OrderHeader + "<br>"+record['Доставка']
+        OrderHeader = OrderHeader if record['Комментарий'] == "" else OrderHeader + "<br><font color=#DB7093>"+record['Комментарий']+"</font>"
+        c = {
+            "key": record['НомерЗаказа'],
+            "ЗаголовокЗаказа": OrderHeader,
+            "НомерЗаказа": record['НомерЗаказа'],
+            "ПолучательНадпись": "Получатель: ",
+            "Получатель": "<b>"+record['Получатель']+"</b>",
+            "ВремяОстатков": record['ВремяОстатков'],
+            "ВидЗаказа": record['ВидЗаказа']
+        }
+
+        j["customcards"]["cardsdata"].append(c)
+    
 
 def py_onInput_TaskList(hashMap, _files=None, _data=None):
 
@@ -1213,7 +1223,10 @@ def py_onInput_auth(hashMap, _files=None, _data=None):
             db["app_settings"].insert({"user":user, "TypeOperation":hashMap.get("TypeOperation"), "_id":"Last_User"}, upsert=True)
             hashMap.put("RunEvent", json.dumps([{"action": "run",
                                                 "type": "online",
-                                                "method": "ЗагрузитьДанные"}]))
+                                                "method": "ЗагрузитьЗадачи"}]))
+            # hashMap.put("RunEvent", json.dumps([{"action": "run",
+            #                                     "type": "online",
+            #                                     "method": "ЗагрузитьДанные"}]))
                                                 # {"action": "run",
                                                 # "type": "set",
                                                 # "method": "ShowScreen=Выбор задачи"}]))
