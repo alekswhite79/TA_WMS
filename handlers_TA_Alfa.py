@@ -250,9 +250,9 @@ def py_LoadGoods(hashMap):
 
     # db = pelicans["TA_WMS"]
     # records = db["GoodsForSelection"].find({"$and": [{"ВидЗаказа": hashMap.get("ВидЗаказа")},
-                                                     {"НомерЗаказа": hashMap.get(
-                                                         "НомерЗаказа")},
-                                                     {"ПозицияСобрана": False}]})
+    #                                                  {"НомерЗаказа": hashMap.get(
+    #                                                      "НомерЗаказа")},
+    #                                                  {"ПозицияСобрана": False}]})
     records = json.loads(hashMap.get("Goods"))            
 
     if len(records) > 0:
