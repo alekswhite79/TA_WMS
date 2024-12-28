@@ -249,10 +249,12 @@ def py_LoadGoods(hashMap):
     j["customcards"]["cardsdata"] = []
 
     # db = pelicans["TA_WMS"]
-    records = db["GoodsForSelection"].find({"$and": [{"ВидЗаказа": hashMap.get("ВидЗаказа")},
+    # records = db["GoodsForSelection"].find({"$and": [{"ВидЗаказа": hashMap.get("ВидЗаказа")},
                                                      {"НомерЗаказа": hashMap.get(
                                                          "НомерЗаказа")},
                                                      {"ПозицияСобрана": False}]})
+    records = json.loads(hashMap.get("Goods"))            
+
     if len(records) > 0:
         # hashMap.put("Records", json.dumps(records))
         # hashMap.put("ДляОтладки", "Количество найденых записей >0")
@@ -883,8 +885,12 @@ def py_SelectionTask(hashMap, _files=None, _data=None):
     hashMap.put("ВидЗаказа", Sel_card['ВидЗаказа'])
     hashMap.put("ВремяОстатков", Sel_card['ВремяОстатков'])
     hashMap.put("НомерЗаказа", hashMap.get("selected_card_key"))
+    hashMap.put("RunEvent", json.dumps([{"action": "run",
+                                        "type": "online",
+                                        "method": "ПолучитьПозицииЗадачи"}]))
+
     # hashMap.put(hashMap.get("field"), hashMap.get("selected_card_key"))
-    hashMap.put("ShowScreen", "Отбор")
+    # hashMap.put("ShowScreen", "Отбор")
     # android.stop(hashMap)
 
     # hashMap.put("BackScreen", "")
