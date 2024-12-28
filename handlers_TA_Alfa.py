@@ -503,25 +503,25 @@ def Update_Qty_Goods(hashMap, card_of_goods):  # , qty=1):
     # NewSelQty = card_of_goods['Отобрано']+qty
     # NewScanned = card_of_goods['Просканировано']+1 if eval(hashMap.get('scaned')) else card_of_goods['Просканировано']
         
-    if card_of_goods['СпланированноеКоличество'] > card_of_goods['ФактическоеКоличество']:  # NewSelQty:
-        db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
-                                                 {"НомерЗаказа": hashMap.get('НомерЗаказа')},
-                                                 {"Код": card_of_goods['Код']}]},
-                                       {"ФактическоеКоличество": card_of_goods['ФактическоеКоличество'], 
-                                        "Просканировано": card_of_goods['Просканировано']})
-    elif card_of_goods['СпланированноеКоличество'] == card_of_goods['ФактическоеКоличество']:  # NewSelQty:
-        db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
-                                                 {"НомерЗаказа": hashMap.get('НомерЗаказа')},
-                                                 {"Код": card_of_goods['Код']}]},
-                                       {"ФактическоеКоличество": card_of_goods['ФактическоеКоличество'], 
-                                        "Просканировано": card_of_goods['Просканировано'], 
-                                        "ПозицияСобрана": True})
-    else:
-        hashMap.put("beep", "15")
-        hashMap.put("ShowDialog", "Внимание!")
-        hashMap.put("ShowDialogStyle",
-                    "{'title': 'Превышение количества!',   'yes': '',   'no': 'OK' }")
-        return hashMap
+    # if card_of_goods['СпланированноеКоличество'] > card_of_goods['ФактическоеКоличество']:  # NewSelQty:
+    #     db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
+    #                                              {"НомерЗаказа": hashMap.get('НомерЗаказа')},
+    #                                              {"Код": card_of_goods['Код']}]},
+    #                                    {"ФактическоеКоличество": card_of_goods['ФактическоеКоличество'], 
+    #                                     "Просканировано": card_of_goods['Просканировано']})
+    # elif card_of_goods['СпланированноеКоличество'] == card_of_goods['ФактическоеКоличество']:  # NewSelQty:
+    #     db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
+    #                                              {"НомерЗаказа": hashMap.get('НомерЗаказа')},
+    #                                              {"Код": card_of_goods['Код']}]},
+    #                                    {"ФактическоеКоличество": card_of_goods['ФактическоеКоличество'], 
+    #                                     "Просканировано": card_of_goods['Просканировано'], 
+    #                                     "ПозицияСобрана": True})
+    # else:
+    #     hashMap.put("beep", "15")
+    #     hashMap.put("ShowDialog", "Внимание!")
+    #     hashMap.put("ShowDialogStyle",
+    #                 "{'title': 'Превышение количества!',   'yes': '',   'no': 'OK' }")
+    #     return hashMap
 
     # CurrentOrder = db["OrdersForSelection"].find({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
     #                                              {"НомерЗаказа": hashMap.get('НомерЗаказа')}]})
@@ -540,10 +540,17 @@ def Update_Qty_Goods(hashMap, card_of_goods):  # , qty=1):
 
     #         hashMap.put("ЗаказыСобранные", json.dumps(Orders))
     #         hashMap.put("ТоварыСобранные", json.dumps(Goods))
-    RecordForUptade = db["GoodsForSelection"].find({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
-                                                             {"НомерЗаказа": hashMap.get('НомерЗаказа')},
-                                                             {"Код": card_of_goods['Код']}]})
-    hashMap.put("ПозицияДляОбновления", json.dumps(RecordForUptade))
+    # RecordForUptade = db["GoodsForSelection"].find({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
+    #                                                          {"НомерЗаказа": hashMap.get('НомерЗаказа')},
+    #                                                          {"Код": card_of_goods['Код']}]})
+    if card_of_goods['СпланированноеКоличество'] < card_of_goods['ФактическоеКоличество']:  # NewSelQty:
+        hashMap.put("beep", "15")
+        hashMap.put("ShowDialog", "Внимание!")
+        hashMap.put("ShowDialogStyle",
+                    "{'title': 'Превышение количества!',   'yes': '',   'no': 'OK' }")
+        return hashMap
+
+    hashMap.put("ПозицияДляОбновления", json.dumps(card_of_goods))
 
     hashMap.put("RunEvent", json.dumps([{"action": "run",
                                         "type": "online",
