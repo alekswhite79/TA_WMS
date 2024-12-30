@@ -278,7 +278,6 @@ def py_LoadGoods(hashMap):
                 "ListCardMenu": "Подтвердить отбор;Добавить ШК в базу" if record['ШтрихКод'] == "Нет штрихкода" else "Ручной ввод ШК;Подтвердить отбор;Добавить ШК в базу"
             }
             j["customcards"]["cardsdata"].append(c)
-            i += 1
         hashMap.put("CardsGoods", json.dumps(
             j, ensure_ascii=False).encode('utf8').decode())
         hashMap.put("OrderCollected", "False")
