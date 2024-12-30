@@ -273,6 +273,7 @@ def py_LoadGoods(hashMap):
                 "СпланированноеКоличество": record['СпланированноеКоличество'],
                 "ФактическоеКоличество": record['ФактическоеКоличество'],
                 "Просканировано": record['Просканировано'],
+                "Исполнитель": record['Исполнитель'],
                 "ListCardMenu": "Подтвердить отбор;Добавить ШК в базу" if record['ШтрихКод'] == "Нет штрихкода" else "Ручной ввод ШК;Подтвердить отбор;Добавить ШК в базу"
             }
             j["customcards"]["cardsdata"].append(c)
@@ -439,61 +440,188 @@ def py_onInput_Order(hashMap, _files=None, _data=None):
         Update_Qty_Goods(hashMap, card_data)
         # Update_Qty_Goods(hashMap, card_data, int(hashMap.get('qty')))
 
-    # elif hashMap.get("event") == "onResultPositive" and hashMap.get("layout_listener") == "Ввести количество":
-
-    #     # hashMap.put('barcode', '')
-
-    #     # records = db["GoodsForSelection"].find({"ШтрихКод":b})
-    #     card_data = json.loads(hashMap.get('card_data'))
-
-    #     # if card_data['ШтрихКод'] == b:
-    #     Update_Qty_Goods(hashMap, card_data, int(hashMap.get('qty')))
-        # else:
-        #     hashMap.put("beep", "15")
-        #     hashMap.put("ShowDialog", "Ошибка")
-        #     hashMap.put("ShowDialogStyle", "{'title': 'Введен неверный штрихкод!',   'yes': '',   'no': 'OK' }")
-
-        # if len(records) == 0:
-        #     hashMap.put("beep", "15")
-        #     hashMap.put("ShowDialog", "Ошибка")
-        #     hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
-        # elif len(records) == 1:
-        #     kodItem = records[0]['Код']
-        #     hashMap.put('VAR_DEBUG', kodItem)
-        #     android.stop(hashMap)
-        #     if hashMap.get('selected_card_key') == kodItem:
-        #         hashMap.put('VAR_DEBUG', "Точка 4")
-        #         android.stop(hashMap)
-        #         dict_selected_card = json.loads(hashMap.get('selected_card_data'))
-        #         hashMap.put('VAR_DEBUG', "Точка 5")
-        #         android.stop(hashMap)
-        #         Update_Qty_Goods(hashMap, dict_selected_card)
-        #     else:
-        #         hashMap.put("beep", "15")
-        #         hashMap.put("ShowDialog", "Ошибка")
-        #         hashMap.put("ShowDialogStyle", "{'title': 'Введен неверный штрихкод!',   'yes': '',   'no': 'OK' }")
-
-        #     goods_in_order = json.loads(hashMap.get('CardsGoods'))["customcards"]["cardsdata"]
-        #     # search by barcode value
-        #     card_of_goods = next((item for item in goods_in_order if item["key"] == kodItem), None)
-        #     if card_of_goods == None:
-        #         hashMap.put("beep", "15")
-        #         hashMap.put("ShowDialog", "Ошибка")
-        #         hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
-        #     else:
-        #         Update_Qty_Goods(hashMap, card_of_goods)
-        # else:
-        #     hashMap.put("beep", "15")
-        #     hashMap.put("ShowDialog", "Ошибка")
-        #     hashMap.put("ShowDialogStyle", "{'title': 'Более 1-го товара с таким штрихкодом!',   'yes': '',   'no': 'OK' }")
-
-    # elif hashMap.get("listener") == 'CardsClick': #тап по карточке
-        # android.stop(hashMap)
-
-        # hashMap.put("ShowDialog", "ДиалогВводШК")
-        # hashMap.put("ShowDialogStyle", json.dumps({"title": "Введите штрихкод:", "yes": "ОК",   "no": "Отмена"}))
 
     return hashMap
+
+
+# # при вводе в экране Отбор
+# def py_onInput_Order(hashMap, _files=None, _data=None):
+
+#     # android.stop(hashMap)
+
+#     if hashMap.get("listener") == 'barcode':  # сканирование
+
+#         b = hashMap.get('barcode')
+#         hashMap.put('barcode', '')
+#         # hashMap.put('scaned', 'True')
+
+#         records = db["GoodsForSelection"].find(
+#             {"$and": [{ "$or":[{"ШтрихКод": b},{"НовыйШтрихКод": b}]}, {"НомерЗаказа": hashMap.get('НомерЗаказа')}]})
+#         if len(records) == 0:
+#             hashMap.put("beep", "15")
+#             hashMap.put("ShowDialog", "Ошибка")
+#             hashMap.put(
+#                 "ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
+#         elif len(records) == 1:
+#             kodItem = records[0]['Код']
+#             goods_in_order = json.loads(hashMap.get('CardsGoods'))[
+#                 "customcards"]["cardsdata"]
+#             # поиск по коду тоавра
+#             card_of_goods = next(
+#                 (item for item in goods_in_order if item["key"] == kodItem), None)
+#             if card_of_goods is None:
+#                 hashMap.put("beep", "15")
+#                 hashMap.put("ShowDialog", "Ошибка")
+#                 hashMap.put(
+#                     "ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
+#             else:
+#                 card_of_goods['Просканировано'] = card_of_goods['Просканировано'] + 1
+#                 if card_of_goods['СпланированноеКоличество']-card_of_goods['ФактическоеКоличество'] > 4:
+#                     hashMap.put("card_data", json.dumps(card_of_goods))
+#                     hashMap.put('qty', "0")
+#                     hashMap.put("ShowDialog", "Ввод количества")
+#                     hashMap.put("ShowDialogStyle", json.dumps(
+#                         {"title": "", "yes": "ОК",   "no": "Отмена"}))
+#                 else:
+#                     card_of_goods['ФактическоеКоличество'] = card_of_goods['ФактическоеКоличество'] + 1
+#                     Update_Qty_Goods(hashMap, card_of_goods)
+#         else:
+#             hashMap.put("beep", "15")
+#             hashMap.put("ShowDialog", "Ошибка")
+#             hashMap.put(
+#                 "ShowDialogStyle", "{'title': 'Более 1-го товара с таким штрихкодом!',   'yes': '',   'no': 'OK' }")
+
+#     elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Ручной ввод ШК":
+
+#         # hashMap.put('scaned', 'False')
+#         hashMap.put("ShowDialog", "ДиалогВводШК")
+#         hashMap.put("ShowDialogStyle", json.dumps(
+#             {"title": "Введите штрихкод:", "yes": "ОК",   "no": "Отмена"}))
+
+#     elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Подтвердить отбор":
+#         # hashMap.put('scaned', 'False')
+#         card_data = json.loads(hashMap.get('card_data'))
+#         if card_data['ШтрихКод'] != "Нет штрихкода":
+#             hashMap.put("beep", "15")
+#             hashMap.put("ShowDialog", "Сообщение")
+#             hashMap.put(
+#                 "Сообщение", "Товару в базе присвоен штрихкод! Вы уверены что хотите продолжить?")
+#             hashMap.put("ShowDialogStyle",
+#                         "{'title': '',   'yes': 'Да',   'no': 'Нет' }")
+#         else:
+#             if card_data['СпланированноеКоличество']-card_data['ФактическоеКоличество'] > 4:
+#                 hashMap.put('qty', "0")
+#                 hashMap.put("ShowDialog", "Ввод количества")
+#                 hashMap.put("ShowDialogStyle", json.dumps(
+#                     {"title": "", "yes": "ОК",   "no": "Отмена"}))
+#             else:
+#                 card_data['ФактическоеКоличество'] = card_data['ФактическоеКоличество'] + 1
+#                 Update_Qty_Goods(hashMap, card_data)
+#         hashMap.remove("layout_listener")
+
+#     elif hashMap.get("listener") == "LayoutAction" and hashMap.get("layout_listener") == "Добавить ШК в базу":
+
+#         hashMap.put("ShowScreen", "Ввод штрихкода")
+
+#     elif hashMap.get("event") == "onResultPositive" and hashMap.get("listener") == "Сообщение":
+#         card_data = json.loads(hashMap.get('card_data'))
+#         if card_data['СпланированноеКоличество']-card_data['ФактическоеКоличество'] > 4:
+#             hashMap.put('qty', "0")
+#             hashMap.put("ShowDialog", "Ввод количества")
+#             hashMap.put("ShowDialogStyle", json.dumps(
+#                 {"title": "", "yes": "ОК",   "no": "Отмена"}))
+#         else:
+#             card_data['ФактическоеКоличество'] = card_data['ФактическоеКоличество'] + 1
+#             Update_Qty_Goods(hashMap, card_data)
+
+#     elif hashMap.get("event") == "onResultPositive" and hashMap.get("layout_listener") == "Ручной ввод ШК":
+
+#         b = hashMap.get('barcode')
+#         hashMap.put('barcode', '')
+
+#         # records = db["GoodsForSelection"].find({"ШтрихКод":b})
+#         card_data = json.loads(hashMap.get('card_data'))
+
+#         if card_data['ШтрихКод'] == b:
+#             if card_data['СпланированноеКоличество']-card_data['ФактическоеКоличество'] > 4:
+#                 hashMap.put('qty', "0")
+#                 hashMap.put("ShowDialog", "Ввод количества")
+#                 hashMap.put("ShowDialogStyle", json.dumps(
+#                     {"title": "", "yes": "ОК",   "no": "Отмена"}))
+
+#             else:
+#                 card_data['ФактическоеКоличество'] = card_data['ФактическоеКоличество'] + 1
+#                 Update_Qty_Goods(hashMap, card_data)
+#             hashMap.remove("layout_listener")
+#         else:
+#             hashMap.put("beep", "15")
+#             hashMap.put("ShowDialog", "Ошибка")
+#             hashMap.put(
+#                 "ShowDialogStyle", "{'title': 'Введен неверный штрихкод!',   'yes': '',   'no': 'OK' }")
+
+#     elif hashMap.get("event") == "onResultPositive" and hashMap.get("listener") == "Ввод количества":
+#         # android.stop(hashMap)
+
+#         card_data = json.loads(hashMap.get("card_data"))
+#         card_data['ФактическоеКоличество'] = card_data['ФактическоеКоличество'] + int(hashMap.get('qty'))
+#         Update_Qty_Goods(hashMap, card_data)
+#         # Update_Qty_Goods(hashMap, card_data, int(hashMap.get('qty')))
+
+#     # elif hashMap.get("event") == "onResultPositive" and hashMap.get("layout_listener") == "Ввести количество":
+
+#     #     # hashMap.put('barcode', '')
+
+#     #     # records = db["GoodsForSelection"].find({"ШтрихКод":b})
+#     #     card_data = json.loads(hashMap.get('card_data'))
+
+#     #     # if card_data['ШтрихКод'] == b:
+#     #     Update_Qty_Goods(hashMap, card_data, int(hashMap.get('qty')))
+#         # else:
+#         #     hashMap.put("beep", "15")
+#         #     hashMap.put("ShowDialog", "Ошибка")
+#         #     hashMap.put("ShowDialogStyle", "{'title': 'Введен неверный штрихкод!',   'yes': '',   'no': 'OK' }")
+
+#         # if len(records) == 0:
+#         #     hashMap.put("beep", "15")
+#         #     hashMap.put("ShowDialog", "Ошибка")
+#         #     hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
+#         # elif len(records) == 1:
+#         #     kodItem = records[0]['Код']
+#         #     hashMap.put('VAR_DEBUG', kodItem)
+#         #     android.stop(hashMap)
+#         #     if hashMap.get('selected_card_key') == kodItem:
+#         #         hashMap.put('VAR_DEBUG', "Точка 4")
+#         #         android.stop(hashMap)
+#         #         dict_selected_card = json.loads(hashMap.get('selected_card_data'))
+#         #         hashMap.put('VAR_DEBUG', "Точка 5")
+#         #         android.stop(hashMap)
+#         #         Update_Qty_Goods(hashMap, dict_selected_card)
+#         #     else:
+#         #         hashMap.put("beep", "15")
+#         #         hashMap.put("ShowDialog", "Ошибка")
+#         #         hashMap.put("ShowDialogStyle", "{'title': 'Введен неверный штрихкод!',   'yes': '',   'no': 'OK' }")
+
+#         #     goods_in_order = json.loads(hashMap.get('CardsGoods'))["customcards"]["cardsdata"]
+#         #     # search by barcode value
+#         #     card_of_goods = next((item for item in goods_in_order if item["key"] == kodItem), None)
+#         #     if card_of_goods == None:
+#         #         hashMap.put("beep", "15")
+#         #         hashMap.put("ShowDialog", "Ошибка")
+#         #         hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
+#         #     else:
+#         #         Update_Qty_Goods(hashMap, card_of_goods)
+#         # else:
+#         #     hashMap.put("beep", "15")
+#         #     hashMap.put("ShowDialog", "Ошибка")
+#         #     hashMap.put("ShowDialogStyle", "{'title': 'Более 1-го товара с таким штрихкодом!',   'yes': '',   'no': 'OK' }")
+
+#     # elif hashMap.get("listener") == 'CardsClick': #тап по карточке
+#         # android.stop(hashMap)
+
+#         # hashMap.put("ShowDialog", "ДиалогВводШК")
+#         # hashMap.put("ShowDialogStyle", json.dumps({"title": "Введите штрихкод:", "yes": "ОК",   "no": "Отмена"}))
+
+#     return hashMap
 
 # обновление количества отобранного товара в БД
 def Update_Qty_Goods(hashMap, card_of_goods):  # , qty=1):
