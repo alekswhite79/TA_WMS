@@ -259,8 +259,9 @@ def py_LoadGoods(hashMap):
         # hashMap.put("Records", json.dumps(records))
         # hashMap.put("ДляОтладки", "Количество найденых записей >0")
         # android.stop(hashMap)
-        i = 1
         for record in records:
+            if record['СпланированноеКоличество'] == record['ФактическоеКоличество']:
+                continue
             c = {
                 "key": record['Код'],
                 "ЗаказаноОтобрано": "<font color=#F08080>"+str(record['ФактическоеКоличество'])+"/"+str(record['СпланированноеКоличество'])+" " + record['ЕдиницаИзмерения']+"</font>",
