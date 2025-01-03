@@ -264,7 +264,7 @@ def py_LoadGoods(hashMap):
                 continue
             if record['Исполнитель'] is not None and record['Исполнитель'] != hashMap.get('user'): # не добавлять карточку если позиция собирается другим исполнителем
                 continue
-            hashMap.put("toast", "Количество найденых записей >0")
+            hashMap.put("toast", type(record['Исполнитель']))
             c = {
                 "key": record['Код'],
                 "ЗаказаноОтобрано": "<font color=#F08080>"+str(record['ФактическоеКоличество'])+"/"+str(record['СпланированноеКоличество'])+" " + record['ЕдиницаИзмерения']+"</font>",
