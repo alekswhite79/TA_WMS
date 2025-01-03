@@ -262,7 +262,7 @@ def py_LoadGoods(hashMap):
             if record['СпланированноеКоличество'] == record['ФактическоеКоличество']: # не добавлять карточку если позиция собрана
                 continue
             if record['Исполнитель'] != "" and record['Исполнитель'] != hashMap.get('user'): # не добавлять карточку если позиция собирается другим исполнителем
-                hashMap.put("toast", record['Исполнитель'])
+                hashMap.put("toast", str(len(record['Исполнитель'])))
                 continue
             c = {
                 "key": record['Код'],
