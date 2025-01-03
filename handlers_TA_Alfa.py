@@ -259,10 +259,10 @@ def py_LoadGoods(hashMap):
         # hashMap.put("Records", json.dumps(records))
         # android.stop(hashMap)
         for record in records:
-            hashMap.put("toast", str(type(record['Исполнитель'])))
+            hashMap.put("toast", record['Исполнитель'])
             if record['СпланированноеКоличество'] == record['ФактическоеКоличество']: # не добавлять карточку если позиция собрана
                 continue
-            if record['Исполнитель'] is not None and record['Исполнитель'] != hashMap.get('user'): # не добавлять карточку если позиция собирается другим исполнителем
+            if record['Исполнитель'] != "" and record['Исполнитель'] != hashMap.get('user'): # не добавлять карточку если позиция собирается другим исполнителем
                 continue
             c = {
                 "key": record['Код'],
