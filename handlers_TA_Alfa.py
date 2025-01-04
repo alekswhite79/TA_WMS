@@ -273,6 +273,7 @@ def py_LoadGoods(hashMap):
                 "Артикул": record['Артикул'],
                 "Производитель": record['Производитель'],
                 "ШтрихКод": record['ШтрихКод'],
+                "НовыйШтрихКод": record['НовыйШтрихКод'],
                 "СпланированноеКоличество": record['СпланированноеКоличество'],
                 "ФактическоеКоличество": record['ФактическоеКоличество'],
                 "Просканировано": record['Просканировано'],
@@ -329,6 +330,16 @@ def py_onInput_Order(hashMap, _files=None, _data=None):
         b = hashMap.get('barcode')
         hashMap.put('barcode', '')
         # hashMap.put('scaned', 'True')
+        
+        # data = [
+        # {"name": "Tom", "age": 10},
+        # {"name": "Mark", "age": 5},
+        # {"name": "Pam", "age": 7}
+        # ]
+        
+        # for person in data:
+        #     if person['name'] == 'Pam':
+        #         print(person)
 
         records = db["GoodsForSelection"].find(
             {"$and": [{ "$or":[{"ШтрихКод": b},{"НовыйШтрихКод": b}]}, {"НомерЗаказа": hashMap.get('НомерЗаказа')}]})
@@ -711,7 +722,7 @@ def py_OnStart_TaskList(hashMap, _files=None, _data=None):
     records = json.loads(hashMap.get("Tasks"))            
     
     j = {"customcards": {
-                "layout": "^CardZakaz",
+                "layout": "^CardTask",
                 "cardsdata":[]    }
     }
 
