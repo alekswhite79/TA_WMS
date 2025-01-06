@@ -284,21 +284,20 @@ def py_LoadGoods(hashMap):
         hashMap.put("CardsGoods", json.dumps(
             j, ensure_ascii=False).encode('utf8').decode())
         hashMap.put("OrderCollected", "False")
-
     else:
         hashMap.remove("CardsGoods")
         hashMap.put("OrderCollected", "True")
-        Set_Order_Collected(hashMap)
+        # Set_Order_Collected(hashMap)
 
     return hashMap
 
 # Установка признака собранного заказа
-def Set_Order_Collected(hashMap):
+# def Set_Order_Collected(hashMap):
 
-    db["OrdersForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
-                                              {"НомерЗаказа": hashMap.get('НомерЗаказа')}]},
-                                    {"ЗаказСобран": True})
-    return hashMap
+#     db["OrdersForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
+#                                               {"НомерЗаказа": hashMap.get('НомерЗаказа')}]},
+#                                     {"ЗаказСобран": True})
+#     return hashMap
 
 # отображение элементов экрана Отбор
 def Display_Elrment(hashMap):
@@ -357,8 +356,7 @@ def py_onInput_Order(hashMap, _files=None, _data=None):
                 hashMap.put("card_data", json.dumps(card_of_goods))
                 hashMap.put('qty', "0")
                 hashMap.put("ShowDialog", "Ввод количества")
-                hashMap.put("ShowDialogStyle", json.dumps(
-                    {"title": "", "yes": "ОК",   "no": "Отмена"}))
+                hashMap.put("ShowDialogStyle", json.dumps({"title": "", "yes": "ОК",   "no": "Отмена"}))
             else:
                 card_of_goods['ФактическоеКоличество'] = card_of_goods['ФактическоеКоличество'] + 1
                 Update_Qty_Goods(hashMap, card_of_goods)
