@@ -341,36 +341,48 @@ def py_onInput_Order(hashMap, _files=None, _data=None):
         #     if person['name'] == 'Pam':
         #         print(person)
 
-        records = db["GoodsForSelection"].find(
-            {"$and": [{ "$or":[{"ШтрихКод": b},{"НовыйШтрихКод": b}]}, {"НомерЗаказа": hashMap.get('НомерЗаказа')}]})
+        # records = db["GoodsForSelection"].find(
+        #     {"$and": [{ "$or":[{"ШтрихКод": b},{"НовыйШтрихКод": b}]}, {"НомерЗаказа": hashMap.get('НомерЗаказа')}]})
+        goods_in_order = json.loads(hashMap.get('CardsGoods'))["customcards"]["cardsdata"]
+
+        records = [record for record in goods_in_order if record["ШтрихКод"] == b or record["НовыйШтрихКод"] == b]
         if len(records) == 0:
             hashMap.put("beep", "15")
             hashMap.put("ShowDialog", "Ошибка")
-            hashMap.put(
-                "ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
+            hashMap.put("ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
         elif len(records) == 1:
-            kodItem = records[0]['Код']
-            goods_in_order = json.loads(hashMap.get('CardsGoods'))[
-                "customcards"]["cardsdata"]
-            # поиск по коду тоавра
-            card_of_goods = next(
-                (item for item in goods_in_order if item["key"] == kodItem), None)
-            if card_of_goods is None:
-                hashMap.put("beep", "15")
-                hashMap.put("ShowDialog", "Ошибка")
-                hashMap.put(
-                    "ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
+            card_of_goods = records[0]
+            card_of_goods['Просканировано'] = card_of_goods['Просканировано'] + 1
+            if card_of_goods['СпланированноеКоличество']-card_of_goods['ФактическоеКоличество'] > 4:
+                hashMap.put("card_data", json.dumps(card_of_goods))
+                hashMap.put('qty', "0")
+                hashMap.put("ShowDialog", "Ввод количества")
+                hashMap.put("ShowDialogStyle", json.dumps(
+                    {"title": "", "yes": "ОК",   "no": "Отмена"}))
             else:
-                card_of_goods['Просканировано'] = card_of_goods['Просканировано'] + 1
-                if card_of_goods['СпланированноеКоличество']-card_of_goods['ФактическоеКоличество'] > 4:
-                    hashMap.put("card_data", json.dumps(card_of_goods))
-                    hashMap.put('qty', "0")
-                    hashMap.put("ShowDialog", "Ввод количества")
-                    hashMap.put("ShowDialogStyle", json.dumps(
-                        {"title": "", "yes": "ОК",   "no": "Отмена"}))
-                else:
-                    card_of_goods['ФактическоеКоличество'] = card_of_goods['ФактическоеКоличество'] + 1
-                    Update_Qty_Goods(hashMap, card_of_goods)
+                card_of_goods['ФактическоеКоличество'] = card_of_goods['ФактическоеКоличество'] + 1
+                Update_Qty_Goods(hashMap, card_of_goods)
+            # kodItem = records[0]['Код']
+            # goods_in_order = json.loads(hashMap.get('CardsGoods'))["customcards"]["cardsdata"]
+            # поиск по коду тоавра
+            # card_of_goods = next(
+            #     (item for item in goods_in_order if item["key"] == kodItem), None)
+            # if card_of_goods is None:
+            #     hashMap.put("beep", "15")
+            #     hashMap.put("ShowDialog", "Ошибка")
+            #     hashMap.put(
+            #         "ShowDialogStyle", "{'title': 'Товара с таким штрихкодом нет в заказе!',   'yes': '',   'no': 'OK' }")
+            # else:
+            #     card_of_goods['Просканировано'] = card_of_goods['Просканировано'] + 1
+            #     if card_of_goods['СпланированноеКоличество']-card_of_goods['ФактическоеКоличество'] > 4:
+            #         hashMap.put("card_data", json.dumps(card_of_goods))
+            #         hashMap.put('qty', "0")
+            #         hashMap.put("ShowDialog", "Ввод количества")
+            #         hashMap.put("ShowDialogStyle", json.dumps(
+            #             {"title": "", "yes": "ОК",   "no": "Отмена"}))
+            #     else:
+            #         card_of_goods['ФактическоеКоличество'] = card_of_goods['ФактическоеКоличество'] + 1
+            #         Update_Qty_Goods(hashMap, card_of_goods)
         else:
             hashMap.put("beep", "15")
             hashMap.put("ShowDialog", "Ошибка")
