@@ -287,6 +287,7 @@ def py_LoadGoods(hashMap):
     else:
         hashMap.remove("CardsGoods")
         hashMap.put("OrderCollected", "True")
+        hashMap.put("toast", "True")
         # Set_Order_Collected(hashMap)
 
     return hashMap
