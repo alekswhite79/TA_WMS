@@ -287,7 +287,6 @@ def py_LoadGoods(hashMap):
     else:
         hashMap.remove("CardsGoods")
         hashMap.put("OrderCollected", "True")
-        hashMap.put("toast", "True")
         # Set_Order_Collected(hashMap)
 
     return hashMap
@@ -775,7 +774,7 @@ def py_onInput_TaskList(hashMap, _files=None, _data=None):
     if hashMap.get("listener") == 'CardsClick':  # выбор задачи
         py_SelectionTask(hashMap)
     elif hashMap.get("listener") == 'bk_btn':  # плавающая кнопка "назад"
-        hashMap.put("BackScreen", "")
+        hashMap.put("ShowScreen", "Авторизация")
 
     # hashMap.put("toast", hashMap.get("listener"))
 
