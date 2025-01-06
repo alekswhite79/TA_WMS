@@ -1082,13 +1082,18 @@ def py_AddBarcode_on_input(hashMap, _files=None, _data=None):
 
     if hashMap.get("listener") == "menu" and hashMap.get("menu") == "СОХРАНИТЬ":
 
-        card_data = json.loads(hashMap.get('card_data'))
+        # card_data = json.loads(hashMap.get('card_data'))
+        hashMap.put("ПозицияДляОбновления", json.dumps(card_data))
 
-        db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
-                                                 {"НомерЗаказа": hashMap.get(
-                                                     'НомерЗаказа')},
-                                                 {"Код": card_data['Код']}]},
-                                       {"НовыйШтрихКод": hashMap.get('НовыйШтрихКод')})
+        hashMap.put("RunEvent", json.dumps([{"action": "run",
+                                            "type": "online",
+                                            "method": "ОбновитьПозициюЗаказа"}]))
+
+        # db["GoodsForSelection"].update({"$and": [{"ВидЗаказа": hashMap.get('ВидЗаказа')},
+        #                                          {"НомерЗаказа": hashMap.get(
+        #                                              'НомерЗаказа')},
+        #                                          {"Код": card_data['Код']}]},
+        #                                {"НовыйШтрихКод": hashMap.get('НовыйШтрихКод')})
         hashMap.put("BackScreen", "")
 
     elif hashMap.get("listener") == "menu" and hashMap.get("menu") == "ЗАКРЫТЬ":
