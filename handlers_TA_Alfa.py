@@ -258,6 +258,7 @@ def py_LoadGoods(hashMap):
     if len(records) > 0:
         # hashMap.put("Records", json.dumps(records))
         # android.stop(hashMap)
+        hashMap.put("OrderCollected", "True")
         for record in records:
             if record['СпланированноеКоличество'] == record['ФактическоеКоличество']: # не добавлять карточку если позиция собрана
                 continue
@@ -281,9 +282,8 @@ def py_LoadGoods(hashMap):
                 "ListCardMenu": "Подтвердить отбор;Добавить ШК в базу" if record['ШтрихКод'] == "Нет штрихкода" else "Ручной ввод ШК;Подтвердить отбор;Добавить ШК в базу"
             }
             j["customcards"]["cardsdata"].append(c)
-        hashMap.put("CardsGoods", json.dumps(
-            j, ensure_ascii=False).encode('utf8').decode())
-        hashMap.put("OrderCollected", "False")
+            hashMap.put("OrderCollected", "False")
+        hashMap.put("CardsGoods", json.dumps(j, ensure_ascii=False).encode('utf8').decode())
     else:
         hashMap.remove("CardsGoods")
         hashMap.put("OrderCollected", "True")
