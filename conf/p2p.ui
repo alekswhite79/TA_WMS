@@ -1,0 +1,387 @@
+{
+    "ClientConfiguration": {
+        "ConfigurationName": "Связь без сети",
+        "ConfigurationDescription": "Примеры совместной работы без сети и интернета",
+        "ConfigurationVersion": "0.0.1",
+        "Processes": [
+            {
+                "ProcessName": "Инициализировать тестовые данные",
+                "type": "Process",
+                "Operations": [
+                    {
+                        "type": "Operation",
+                        "Name": "Новый экран",
+                        "Elements": [
+                            {
+                                "type": "LinearLayout",
+                                "orientation": "vertical",
+                                "height": "match_parent",
+                                "width": "match_parent",
+                                "Elements": [
+                                    {
+                                        "type": "Button",
+                                        "orientation": "vertical",
+                                        "height": "wrap_content",
+                                        "width": "match_parent",
+                                        "Value": "Начальное заполнение",
+                                        "Variable": "btn_demo",
+                                        "type_s": "Кнопка",
+                                        "weight": "0",
+                                        "width_value": "match_parent",
+                                        "height_value": "wrap_content"
+                                    }
+                                ],
+                                "type_s": "Контейнер",
+                                "weight": "0",
+                                "width_value": "match_parent",
+                                "height_value": "match_parent"
+                            }
+                        ],
+                        "Handlers": [
+                            {
+                                "event": "onInput",
+                                "action": "run",
+                                "listener": "btn_demo",
+                                "type": "pythonscript",
+                                "method": "ZnJvbSBnZW5lcmFsIGltcG9ydCAqCgpkYXRhc2V0ID0gWwp7Il9pZCI6IjEiLCJza3UiOiLQk9Cw0LnQutCwINCcOCIsInBsYW4iOjIwLCJmYWN0IjowfSwKeyJfaWQiOiIyIiwic2t1Ijoi0KjQsNC50LHQsCDQnDgiLCJwbGFuIjoyMCwiZmFjdCI6MH0sCnsiX2lkIjoiMyIsInNrdSI6ItCo0L/QuNC70YzQutCwINCcOCDQvtGG0LjQvdC60L7QstCw0L3QvdCw0Y8iLCJwbGFuIjo1MCwiZmFjdCI6MH0sCnsiX2lkIjoiMyIsInNrdSI6ItCo0L/QuNC70YzQutCwINCcMTAiLCJwbGFuIjo1MCwiZmFjdCI6MH0sCnsiX2lkIjoiNCIsInNrdSI6ItCo0L/QuNC70YzQutCwINCcMTIg0L7RhtC40L3QutC+0LLQsNC90L3QsNGPIiwicGxhbiI6NTAsImZhY3QiOjB9LAp7Il9pZCI6IjUiLCJza3UiOiLQk9Cw0LnQutCwINCcOCIsInBsYW4iOjUwLCJmYWN0IjowfSwKeyJfaWQiOiI2Iiwic2t1Ijoi0JPQsNC50LrQsCDQnDEwINC+0YbQuNC90LrQvtCy0LDQvdC90LDRjyIsInBsYW4iOjUwLCJmYWN0IjowfSwKeyJfaWQiOiI3Iiwic2t1Ijoi0JPQsNC50LrQsCDQnDEyINC+0YbQuNC90LrQvtCy0LDQvdC90LDRjyIsInBsYW4iOjUwLCJmYWN0IjowfQpdCgphID0gcGVsaWNhbnNbJ25vbGFuX2RlbW8nXVsnaW52ZW50b3J5J10uaW5zZXJ0KGRhdGFzZXQgLHVwc2VydD1UcnVlKQphbmRyb2lkLnRvYXN0KCLQl9Cw0L/QuNGB0LDQu9C4INC00LDQvdC90YvQtSIp",
+                                "postExecute": "",
+                                "alias": ""
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "Process",
+                "ProcessName": "Инвентаризация отправка по ODT",
+                "Operations": [
+                    {
+                        "type": "Operation",
+                        "Name": "Инвентаризация отправка по ODT",
+                        "Elements": [
+                            {
+                                "type": "LinearLayout",
+                                "orientation": "vertical",
+                                "height": "match_parent",
+                                "width": "match_parent",
+                                "Elements": [
+                                    {
+                                        "type": "TableLayout",
+                                        "orientation": "vertical",
+                                        "height": "match_parent",
+                                        "width": "match_parent",
+                                        "Value": "@table",
+                                        "Variable": "table",
+                                        "type_s": "Таблица",
+                                        "weight": "0",
+                                        "width_value": "match_parent",
+                                        "height_value": "match_parent"
+                                    }
+                                ],
+                                "type_s": "Контейнер",
+                                "weight": "0",
+                                "width_value": "match_parent",
+                                "height_value": "match_parent"
+                            },
+                            {
+                                "type": "MenuItem",
+                                "orientation": "vertical",
+                                "height": "match_parent",
+                                "width": "match_parent",
+                                "Value": "Отправить",
+                                "Variable": "menu_send",
+                                "type_s": "Элемент меню",
+                                "weight": "0",
+                                "width_value": "match_parent",
+                                "height_value": "match_parent"
+                            },
+                            {
+                                "type": "MenuItem",
+                                "orientation": "vertical",
+                                "height": "match_parent",
+                                "width": "match_parent",
+                                "Value": "Принять",
+                                "Variable": "menu_recieve",
+                                "type_s": "Элемент меню",
+                                "weight": "0",
+                                "width_value": "match_parent",
+                                "height_value": "match_parent"
+                            }
+                        ],
+                        "hideBottomBarScreen": true,
+                        "Handlers": [
+                            {
+                                "event": "onStart",
+                                "action": "run",
+                                "listener": "",
+                                "type": "pythonscript",
+                                "method": "ZnJvbSBnZW5lcmFsIGltcG9ydCAqCgpqID0geyAiY3VzdG9tdGFibGUiOiAgICAgICAgIHsKICAgICAgICAgICAgCiAgICAgICAgICAgICJsYXlvdXQiOiAgewogICAgICAidHlwZSI6ICJMaW5lYXJMYXlvdXQiLAogICAgICAib3JpZW50YXRpb24iOiAidmVydGljYWwiLAogICAgICAiaGVpZ2h0IjogIm1hdGNoX3BhcmVudCIsCiAgICAgICJ3aWR0aCI6ICJtYXRjaF9wYXJlbnQiLAogICAgICAid2VpZ2h0IjogIjAiLAogICAgICAiRWxlbWVudHMiOiBbCiAgICAgICB7CiAgICAgICAgInR5cGUiOiAiTGluZWFyTGF5b3V0IiwKICAgICAgICAib3JpZW50YXRpb24iOiAiaG9yaXpvbnRhbCIsCgkJCQkiU3Ryb2tlV2lkdGgiOjEsCgkJCQkiUGFkZGluZyI6MiwKCQkJCSJCYWNrZ3JvdW5kQ29sb3IiOiIjRUVGMEYyIiwKICAgICAgICAiaGVpZ2h0IjogIndyYXBfY29udGVudCIsCiAgICAgICAgIndpZHRoIjogIm1hdGNoX3BhcmVudCIsCiAgICAgICAgIndlaWdodCI6ICIxIiwKICAgICAgICAiRWxlbWVudHMiOiBbCiAgICAgICAgIHsKICAgICAgICAgICAgInR5cGUiOiAiVGV4dFZpZXciLAoJCQkJCQkid2lkdGgiOiAibWF0Y2hfcGFyZW50IiwKICAgICAgICAgICAgIlZhbHVlIjogIkBza3UiLAogICAgICAgICAgICAiVmFyaWFibGUiOiAiIiwKCQkJCQkJIndlaWdodCI6ICIxIgogICAgICAgICB9LAogICAgICAgICB7CiAgICAgICAgICAgICJ0eXBlIjogIlRleHRWaWV3IiwKCQkJCQkJIndpZHRoIjogIm1hdGNoX3BhcmVudCIsCiAgICAgICAgICAgICJWYWx1ZSI6ICJAcGxhbiIsCiAgICAgICAgICAgICJWYXJpYWJsZSI6ICIiLAoJCQkJCQkid2VpZ2h0IjogIjEiCiAgICAgICAgIH0sICAgICAgCiAgICAgICAgIHsKICAgICAgICAgICAgInR5cGUiOiAiVGV4dFZpZXciLAoJCQkJCQkid2lkdGgiOiAibWF0Y2hfcGFyZW50IiwKICAgICAgICAgICAgIlZhbHVlIjogIkBmYWN0IiwKICAgICAgICAgICAgIlZhcmlhYmxlIjogIiIsCgkJCQkJCSJ3ZWlnaHQiOiAiMSIKICAgICAgICAgfQogICAgICAgICAgXQogICAgICAgICAgfQogICAgICAgIAogICAgICBdCn0KCiAgICB9CiAgICB9CgogICAKalsiY3VzdG9tdGFibGUiXVsidGFibGVkYXRhIl09W10KcmVjb3JkcyA9IHBlbGljYW5zWydub2xhbl9kZW1vJ11bJ2ludmVudG9yeSddLmFsbCgpCmZvciByZWMgaW4gcmVjb3JkczoKCQkJCQogICAgYyA9ICB7CiAgICAia2V5IjogcmVjWyJfaWQiXSwKICAgIAogICAgInNrdSI6IHJlY1sic2t1Il0sCiAgICAicGxhbiI6IHJlY1sicGxhbiJdCiAgICAKICAgIH0KICAgIGlmIHN0cihyZWNbInBsYW4iXSk9PXN0cihyZWNbImZhY3QiXSk6CiAgICAgICAgY1siZmFjdCJdICA9ICc8c3BhbiBzdHlsZT0iY29sb3I6ICMwMDY2MzM7Ij4nK3N0cihyZWNbImZhY3QiXSkrJzwvc3Bhbj4nCiAgICBlbHNlOgkKICAgICAgICBjWyJmYWN0Il0gID0gJzxzcGFuIHN0eWxlPSJjb2xvcjogI0NDMzMwMDsiPicrc3RyKHJlY1siZmFjdCJdKSsnPC9zcGFuPicKICAgIAogICAgalsiY3VzdG9tdGFibGUiXVsidGFibGVkYXRhIl0uYXBwZW5kKGMpCgpoYXNoTWFwLnB1dCgidGFibGUiLGpzb24uZHVtcHMoaixlbnN1cmVfYXNjaWk9RmFsc2UpKQ==",
+                                "postExecute": "",
+                                "alias": ""
+                            },
+                            {
+                                "event": "onInput",
+                                "action": "run",
+                                "listener": "CardsClick",
+                                "type": "pythonscript",
+                                "method": "ZnJvbSBnZW5lcmFsIGltcG9ydCAqCgpyZWNvcmQgPSBwZWxpY2Fuc1snbm9sYW5fZGVtbyddWydpbnZlbnRvcnknXS5nZXQoaGFzaE1hcC5nZXQoJ3NlbGVjdGVkX2NhcmRfa2V5JykpCgpoYXNoTWFwLnB1dCgnc2t1JyxyZWNvcmQuZ2V0KCJza3UiKSkgIApoYXNoTWFwLnB1dCgncGxhbicscmVjb3JkLmdldCgicGxhbiIpKSAgCmhhc2hNYXAucHV0KCdmYWN0JyxyZWNvcmQuZ2V0KCJmYWN0IikpICAKCmxheW91dCA9IHsKICAgICAgICAgICAgIlZhbHVlIjogIiIsCiAgICAgICAgICAgICJWYXJpYWJsZSI6ICIiLAogICAgICAgICAgICAidHlwZSI6ICJMaW5lYXJMYXlvdXQiLAogICAgICAgICAgICAid2VpZ2h0IjogIjAiLAogICAgICAgICAgICAiaGVpZ2h0IjogIm1hdGNoX3BhcmVudCIsCiAgICAgICAgICAgICJ3aWR0aCI6ICJtYXRjaF9wYXJlbnQiLAogICAgICAgICAgICAib3JpZW50YXRpb24iOiAidmVydGljYWwiLAogICAgICAgICAgICAiRWxlbWVudHMiOiBbCiAgICAgICAgICAgICAgICB7CiAgICAgICAgICAgICAgICAgICAgInR5cGUiOiAiVGV4dFZpZXciLAogICAgICAgICAgICAgICAgICAgICJoZWlnaHQiOiAid3JhcF9jb250ZW50IiwKICAgICAgICAgICAgICAgICAgICAid2lkdGgiOiAibWF0Y2hfcGFyZW50IiwKICAgICAgICAgICAgICAgICAgICAid2VpZ2h0IjogIjAiLAogICAgICAgICAgICAgICAgICAgICJWYWx1ZSI6ICLQotC+0LLQsNGAIiwKICAgICAgICAgICAgICAgICAgICAiVmFyaWFibGUiOiAiIgogICAgICAgICAgICAgICAgfSwKCQkJCQkJCSB7CiAgICAgICAgICAgICAgICAgICAgInR5cGUiOiAiVGV4dFZpZXciLAogICAgICAgICAgICAgICAgICAgICJoZWlnaHQiOiAid3JhcF9jb250ZW50IiwKICAgICAgICAgICAgICAgICAgICAid2lkdGgiOiAibWF0Y2hfcGFyZW50IiwKICAgICAgICAgICAgICAgICAgICAid2VpZ2h0IjogIjAiLAoJCQkJCQkJCQkJIlRleHRCb2xkIjpUcnVlLAoJCQkJCQkJCQkJIlRleHRDb2xvciI6IiMyQjY3OTUiLAogICAgICAgICAgICAgICAgICAgICJWYWx1ZSI6ICJAc2t1IiwKICAgICAgICAgICAgICAgICAgICAiVmFyaWFibGUiOiAiIgogICAgICAgICAgICAgICAgfSwKewogICAgICAgICAgICAgICAgICAgICJ0eXBlIjogIlRleHRWaWV3IiwKICAgICAgICAgICAgICAgICAgICAiaGVpZ2h0IjogIndyYXBfY29udGVudCIsCiAgICAgICAgICAgICAgICAgICAgIndpZHRoIjogIm1hdGNoX3BhcmVudCIsCiAgICAgICAgICAgICAgICAgICAgIndlaWdodCI6ICIwIiwKICAgICAgICAgICAgICAgICAgICAiVmFsdWUiOiAi0J/Qu9Cw0L0iLAogICAgICAgICAgICAgICAgICAgICJWYXJpYWJsZSI6ICIiCiAgICAgICAgICAgICAgICB9LAoJCQkJCQkJIHsKICAgICAgICAgICAgICAgICAgICAidHlwZSI6ICJUZXh0VmlldyIsCiAgICAgICAgICAgICAgICAgICAgImhlaWdodCI6ICJ3cmFwX2NvbnRlbnQiLAogICAgICAgICAgICAgICAgICAgICJ3aWR0aCI6ICJtYXRjaF9wYXJlbnQiLAogICAgICAgICAgICAgICAgICAgICJ3ZWlnaHQiOiAiMCIsCgkJCQkJCQkJCQkiVGV4dEJvbGQiOlRydWUsCgkJCQkJCQkJCQkiVGV4dENvbG9yIjoiIzJCNjc5NSIsCiAgICAgICAgICAgICAgICAgICAgIlZhbHVlIjogIkBwbGFuIiwKICAgICAgICAgICAgICAgICAgICAiVmFyaWFibGUiOiAiIgogICAgICAgICAgICAgICAgfSwKCQkJCQkJCQl7CiAgICAgICAgICAgICAgICAgICAgInR5cGUiOiAiVGV4dFZpZXciLAogICAgICAgICAgICAgICAgICAgICJoZWlnaHQiOiAid3JhcF9jb250ZW50IiwKICAgICAgICAgICAgICAgICAgICAid2lkdGgiOiAibWF0Y2hfcGFyZW50IiwKICAgICAgICAgICAgICAgICAgICAid2VpZ2h0IjogIjAiLAogICAgICAgICAgICAgICAgICAgICJWYWx1ZSI6ICLQpNCw0LrRgiIsCiAgICAgICAgICAgICAgICAgICAgIlZhcmlhYmxlIjogIiIKICAgICAgICAgICAgICAgIH0sCiAgICAgICAgICAgICAgICB7CiAgICAgICAgICAgICAgICAgICAgInR5cGUiOiAiRWRpdFRleHROdW1lcmljIiwKICAgICAgICAgICAgICAgICAgICAiaGVpZ2h0IjogIndyYXBfY29udGVudCIsCiAgICAgICAgICAgICAgICAgICAgIndpZHRoIjogIm1hdGNoX3BhcmVudCIsCiAgICAgICAgICAgICAgICAgICAgIndlaWdodCI6ICIwIiwKICAgICAgICAgICAgICAgICAgICAiVmFsdWUiOiAiQGZhY3QiLAogICAgICAgICAgICAgICAgICAgICJWYXJpYWJsZSI6ICJmYWN0IgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICBdLAogICAgICAgICAgICAiQmFja2dyb3VuZENvbG9yIjogIiIsCiAgICAgICAgICAgICJTdHJva2VXaWR0aCI6ICIiLAogICAgICAgICAgICAiUGFkZGluZyI6ICIiCiAgICAgICAgfQogICAgCgpoYXNoTWFwLnB1dCgiU2hvd0RpYWxvZ0xheW91dCIsanNvbi5kdW1wcyhsYXlvdXQsZW5zdXJlX2FzY2lpPUZhbHNlKSkKaGFzaE1hcC5wdXQoIlNob3dEaWFsb2ciLCIiKQ==",
+                                "postExecute": "",
+                                "alias": ""
+                            },
+                            {
+                                "event": "onInput",
+                                "action": "run",
+                                "listener": "",
+                                "type": "set",
+                                "method": "toast=@listener",
+                                "postExecute": "",
+                                "alias": ""
+                            },
+                            {
+                                "event": "onInput",
+                                "action": "run",
+                                "listener": "",
+                                "type": "pythonscript",
+                                "method": "ZnJvbSBnZW5lcmFsIGltcG9ydCAqCgppZiBoYXNoTWFwLmdldCgiZXZlbnQiKT09Im9uUmVzdWx0UG9zaXRpdmUiOgoJYSA9IHBlbGljYW5zWydub2xhbl9kZW1vJ11bJ2ludmVudG9yeSddLnVwZGF0ZSh7Il9pZCI6aGFzaE1hcC5nZXQoInNlbGVjdGVkX2NhcmRfa2V5Iil9LHsiZmFjdCI6aGFzaE1hcC5nZXQoImZhY3QiKX0pCg==",
+                                "postExecute": "",
+                                "alias": ""
+                            },
+                            {
+                                "event": "onInput",
+                                "action": "run",
+                                "listener": "menu_send",
+                                "type": "pythonscript",
+                                "method": "ZnJvbSBnZW5lcmFsIGltcG9ydCAqCgpyZWNvcmRzID0gcGVsaWNhbnNbJ25vbGFuX2RlbW8nXVsnaW52ZW50b3J5J10uYWxsKCkKaGFzaE1hcC5wdXQoIlNlbmRPRFQiLGpzb24uZHVtcHMocmVjb3JkcywgZW5zdXJlX2FzY2lpPUZhbHNlKSk=",
+                                "postExecute": "",
+                                "alias": ""
+                            },
+                            {
+                                "event": "onInput",
+                                "action": "run",
+                                "listener": "ODTResultSend",
+                                "type": "pythonscript",
+                                "method": "aWYgaGFzaE1hcC5nZXQoIk9EVFJlc3VsdFNlbmQiKSA9PSAidHJ1ZSI6CgloYXNoTWFwLnB1dCgic3BlYWsiLCAi0J/QtdGA0LXQtNCw0L3QviDRg9GB0L/QtdGI0L3QviIpCmVsc2U6CQoJaGFzaE1hcC5wdXQoInNwZWFrIiwgItCf0LXRgNC10LTQsNGH0LAg0L3QtSDRgdC+0YHRgtC+0Y/Qu9Cw0YHRjCIp",
+                                "postExecute": "",
+                                "alias": ""
+                            },
+                            {
+                                "event": "onInput",
+                                "action": "run",
+                                "listener": "ODTResultReceive",
+                                "type": "pythonscript",
+                                "method": "ZnJvbSBnZW5lcmFsIGltcG9ydCAqCgpqcmVzID0ganNvbi5sb2FkcyhoYXNoTWFwLmdldCgiT0RUUmVzdWx0UmVjZWl2ZSIpKQphID0gcGVsaWNhbnNbJ25vbGFuX2RlbW8nXVsnaW52ZW50b3J5J10uaW5zZXJ0KGpyZXMsIHVwc2VydD1UcnVlKQo=",
+                                "postExecute": "",
+                                "alias": ""
+                            },
+                            {
+                                "event": "onInput",
+                                "action": "run",
+                                "listener": "menu_recieve",
+                                "type": "set",
+                                "method": "ReceiveODT",
+                                "postExecute": "",
+                                "alias": ""
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "Process",
+                "ProcessName": "Инвентаризация отправка по DirectWIFI",
+                "Operations": [
+                    {
+                        "type": "Operation",
+                        "Name": "Инвентаризация отправка по DirectWIFI",
+                        "Elements": [
+                            {
+                                "type": "LinearLayout",
+                                "orientation": "vertical",
+                                "height": "match_parent",
+                                "width": "match_parent",
+                                "Elements": [
+                                    {
+                                        "type": "TableLayout",
+                                        "orientation": "vertical",
+                                        "height": "match_parent",
+                                        "width": "match_parent",
+                                        "Value": "@table",
+                                        "Variable": "table",
+                                        "type_s": "Таблица",
+                                        "weight": "0",
+                                        "width_value": "match_parent",
+                                        "height_value": "match_parent"
+                                    }
+                                ],
+                                "type_s": "Контейнер",
+                                "weight": "0",
+                                "width_value": "match_parent",
+                                "height_value": "match_parent"
+                            },
+                            {
+                                "type": "MenuItem",
+                                "orientation": "vertical",
+                                "height": "match_parent",
+                                "width": "match_parent",
+                                "Value": "Отправить",
+                                "Variable": "menu_send",
+                                "type_s": "Элемент меню",
+                                "weight": "0",
+                                "width_value": "match_parent",
+                                "height_value": "match_parent"
+                            },
+                            {
+                                "type": "MenuItem",
+                                "orientation": "vertical",
+                                "height": "match_parent",
+                                "width": "match_parent",
+                                "Value": "Принять",
+                                "Variable": "menu_recieve",
+                                "type_s": "Элемент меню",
+                                "weight": "0",
+                                "width_value": "match_parent",
+                                "height_value": "match_parent"
+                            },
+                            {
+                                "type": "MenuItem",
+                                "orientation": "vertical",
+                                "height": "match_parent",
+                                "width": "match_parent",
+                                "Value": "Отправить в общий DirectWIFI",
+                                "Variable": "common_directwifi",
+                                "type_s": "Элемент меню",
+                                "weight": "0",
+                                "width_value": "match_parent",
+                                "height_value": "match_parent"
+                            }
+                        ],
+                        "hideBottomBarScreen": true,
+                        "Handlers": [
+                            {
+                                "event": "onStart",
+                                "action": "run",
+                                "listener": "",
+                                "type": "pythonscript",
+                                "method": "ZnJvbSBnZW5lcmFsIGltcG9ydCAqCgpqID0geyAiY3VzdG9tdGFibGUiOiAgICAgICAgIHsKICAgICAgICAgICAgCiAgICAgICAgICAgICJsYXlvdXQiOiAgewogICAgICAidHlwZSI6ICJMaW5lYXJMYXlvdXQiLAogICAgICAib3JpZW50YXRpb24iOiAidmVydGljYWwiLAogICAgICAiaGVpZ2h0IjogIm1hdGNoX3BhcmVudCIsCiAgICAgICJ3aWR0aCI6ICJtYXRjaF9wYXJlbnQiLAogICAgICAid2VpZ2h0IjogIjAiLAogICAgICAiRWxlbWVudHMiOiBbCiAgICAgICB7CiAgICAgICAgInR5cGUiOiAiTGluZWFyTGF5b3V0IiwKICAgICAgICAib3JpZW50YXRpb24iOiAiaG9yaXpvbnRhbCIsCgkJCQkiU3Ryb2tlV2lkdGgiOjEsCgkJCQkiUGFkZGluZyI6MiwKCQkJCSJCYWNrZ3JvdW5kQ29sb3IiOiIjRUVGMEYyIiwKICAgICAgICAiaGVpZ2h0IjogIndyYXBfY29udGVudCIsCiAgICAgICAgIndpZHRoIjogIm1hdGNoX3BhcmVudCIsCiAgICAgICAgIndlaWdodCI6ICIxIiwKICAgICAgICAiRWxlbWVudHMiOiBbCiAgICAgICAgIHsKICAgICAgICAgICAgInR5cGUiOiAiVGV4dFZpZXciLAoJCQkJCQkid2lkdGgiOiAibWF0Y2hfcGFyZW50IiwKICAgICAgICAgICAgIlZhbHVlIjogIkBza3UiLAogICAgICAgICAgICAiVmFyaWFibGUiOiAiIiwKCQkJCQkJIndlaWdodCI6ICIxIgogICAgICAgICB9LAogICAgICAgICB7CiAgICAgICAgICAgICJ0eXBlIjogIlRleHRWaWV3IiwKCQkJCQkJIndpZHRoIjogIm1hdGNoX3BhcmVudCIsCiAgICAgICAgICAgICJWYWx1ZSI6ICJAcGxhbiIsCiAgICAgICAgICAgICJWYXJpYWJsZSI6ICIiLAoJCQkJCQkid2VpZ2h0IjogIjEiCiAgICAgICAgIH0sICAgICAgCiAgICAgICAgIHsKICAgICAgICAgICAgInR5cGUiOiAiVGV4dFZpZXciLAoJCQkJCQkid2lkdGgiOiAibWF0Y2hfcGFyZW50IiwKICAgICAgICAgICAgIlZhbHVlIjogIkBmYWN0IiwKICAgICAgICAgICAgIlZhcmlhYmxlIjogIiIsCgkJCQkJCSJ3ZWlnaHQiOiAiMSIKICAgICAgICAgfQogICAgICAgICAgXQogICAgICAgICAgfQogICAgICAgIAogICAgICBdCn0KCiAgICB9CiAgICB9CgogICAKalsiY3VzdG9tdGFibGUiXVsidGFibGVkYXRhIl09W10KcmVjb3JkcyA9IHBlbGljYW5zWydub2xhbl9kZW1vJ11bJ2ludmVudG9yeSddLmFsbCgpCmZvciByZWMgaW4gcmVjb3JkczoKCQkJCQogICAgYyA9ICB7CiAgICAia2V5IjogcmVjWyJfaWQiXSwKICAgIAogICAgInNrdSI6IHJlY1sic2t1Il0sCiAgICAicGxhbiI6IHJlY1sicGxhbiJdCiAgICAKICAgIH0KICAgIGlmIHN0cihyZWNbInBsYW4iXSk9PXN0cihyZWNbImZhY3QiXSk6CiAgICAgICAgY1siZmFjdCJdICA9ICc8c3BhbiBzdHlsZT0iY29sb3I6ICMwMDY2MzM7Ij4nK3N0cihyZWNbImZhY3QiXSkrJzwvc3Bhbj4nCiAgICBlbHNlOgkKICAgICAgICBjWyJmYWN0Il0gID0gJzxzcGFuIHN0eWxlPSJjb2xvcjogI0NDMzMwMDsiPicrc3RyKHJlY1siZmFjdCJdKSsnPC9zcGFuPicKICAgIAogICAgalsiY3VzdG9tdGFibGUiXVsidGFibGVkYXRhIl0uYXBwZW5kKGMpCgpoYXNoTWFwLnB1dCgidGFibGUiLGpzb24uZHVtcHMoaixlbnN1cmVfYXNjaWk9RmFsc2UpKQ==",
+                                "postExecute": "",
+                                "alias": ""
+                            },
+                            {
+                                "event": "onInput",
+                                "action": "run",
+                                "listener": "CardsClick",
+                                "type": "pythonscript",
+                                "method": "ZnJvbSBnZW5lcmFsIGltcG9ydCAqCgpyZWNvcmQgPSBwZWxpY2Fuc1snbm9sYW5fZGVtbyddWydpbnZlbnRvcnknXS5nZXQoaGFzaE1hcC5nZXQoJ3NlbGVjdGVkX2NhcmRfa2V5JykpCgpoYXNoTWFwLnB1dCgnc2t1JyxyZWNvcmQuZ2V0KCJza3UiKSkgIApoYXNoTWFwLnB1dCgncGxhbicscmVjb3JkLmdldCgicGxhbiIpKSAgCmhhc2hNYXAucHV0KCdmYWN0JyxyZWNvcmQuZ2V0KCJmYWN0IikpICAKCmxheW91dCA9IHsKICAgICAgICAgICAgIlZhbHVlIjogIiIsCiAgICAgICAgICAgICJWYXJpYWJsZSI6ICIiLAogICAgICAgICAgICAidHlwZSI6ICJMaW5lYXJMYXlvdXQiLAogICAgICAgICAgICAid2VpZ2h0IjogIjAiLAogICAgICAgICAgICAiaGVpZ2h0IjogIm1hdGNoX3BhcmVudCIsCiAgICAgICAgICAgICJ3aWR0aCI6ICJtYXRjaF9wYXJlbnQiLAogICAgICAgICAgICAib3JpZW50YXRpb24iOiAidmVydGljYWwiLAogICAgICAgICAgICAiRWxlbWVudHMiOiBbCiAgICAgICAgICAgICAgICB7CiAgICAgICAgICAgICAgICAgICAgInR5cGUiOiAiVGV4dFZpZXciLAogICAgICAgICAgICAgICAgICAgICJoZWlnaHQiOiAid3JhcF9jb250ZW50IiwKICAgICAgICAgICAgICAgICAgICAid2lkdGgiOiAibWF0Y2hfcGFyZW50IiwKICAgICAgICAgICAgICAgICAgICAid2VpZ2h0IjogIjAiLAogICAgICAgICAgICAgICAgICAgICJWYWx1ZSI6ICLQotC+0LLQsNGAIiwKICAgICAgICAgICAgICAgICAgICAiVmFyaWFibGUiOiAiIgogICAgICAgICAgICAgICAgfSwKCQkJCQkJCSB7CiAgICAgICAgICAgICAgICAgICAgInR5cGUiOiAiVGV4dFZpZXciLAogICAgICAgICAgICAgICAgICAgICJoZWlnaHQiOiAid3JhcF9jb250ZW50IiwKICAgICAgICAgICAgICAgICAgICAid2lkdGgiOiAibWF0Y2hfcGFyZW50IiwKICAgICAgICAgICAgICAgICAgICAid2VpZ2h0IjogIjAiLAoJCQkJCQkJCQkJIlRleHRCb2xkIjpUcnVlLAoJCQkJCQkJCQkJIlRleHRDb2xvciI6IiMyQjY3OTUiLAogICAgICAgICAgICAgICAgICAgICJWYWx1ZSI6ICJAc2t1IiwKICAgICAgICAgICAgICAgICAgICAiVmFyaWFibGUiOiAiIgogICAgICAgICAgICAgICAgfSwKewogICAgICAgICAgICAgICAgICAgICJ0eXBlIjogIlRleHRWaWV3IiwKICAgICAgICAgICAgICAgICAgICAiaGVpZ2h0IjogIndyYXBfY29udGVudCIsCiAgICAgICAgICAgICAgICAgICAgIndpZHRoIjogIm1hdGNoX3BhcmVudCIsCiAgICAgICAgICAgICAgICAgICAgIndlaWdodCI6ICIwIiwKICAgICAgICAgICAgICAgICAgICAiVmFsdWUiOiAi0J/Qu9Cw0L0iLAogICAgICAgICAgICAgICAgICAgICJWYXJpYWJsZSI6ICIiCiAgICAgICAgICAgICAgICB9LAoJCQkJCQkJIHsKICAgICAgICAgICAgICAgICAgICAidHlwZSI6ICJUZXh0VmlldyIsCiAgICAgICAgICAgICAgICAgICAgImhlaWdodCI6ICJ3cmFwX2NvbnRlbnQiLAogICAgICAgICAgICAgICAgICAgICJ3aWR0aCI6ICJtYXRjaF9wYXJlbnQiLAogICAgICAgICAgICAgICAgICAgICJ3ZWlnaHQiOiAiMCIsCgkJCQkJCQkJCQkiVGV4dEJvbGQiOlRydWUsCgkJCQkJCQkJCQkiVGV4dENvbG9yIjoiIzJCNjc5NSIsCiAgICAgICAgICAgICAgICAgICAgIlZhbHVlIjogIkBwbGFuIiwKICAgICAgICAgICAgICAgICAgICAiVmFyaWFibGUiOiAiIgogICAgICAgICAgICAgICAgfSwKCQkJCQkJCQl7CiAgICAgICAgICAgICAgICAgICAgInR5cGUiOiAiVGV4dFZpZXciLAogICAgICAgICAgICAgICAgICAgICJoZWlnaHQiOiAid3JhcF9jb250ZW50IiwKICAgICAgICAgICAgICAgICAgICAid2lkdGgiOiAibWF0Y2hfcGFyZW50IiwKICAgICAgICAgICAgICAgICAgICAid2VpZ2h0IjogIjAiLAogICAgICAgICAgICAgICAgICAgICJWYWx1ZSI6ICLQpNCw0LrRgiIsCiAgICAgICAgICAgICAgICAgICAgIlZhcmlhYmxlIjogIiIKICAgICAgICAgICAgICAgIH0sCiAgICAgICAgICAgICAgICB7CiAgICAgICAgICAgICAgICAgICAgInR5cGUiOiAiRWRpdFRleHROdW1lcmljIiwKICAgICAgICAgICAgICAgICAgICAiaGVpZ2h0IjogIndyYXBfY29udGVudCIsCiAgICAgICAgICAgICAgICAgICAgIndpZHRoIjogIm1hdGNoX3BhcmVudCIsCiAgICAgICAgICAgICAgICAgICAgIndlaWdodCI6ICIwIiwKICAgICAgICAgICAgICAgICAgICAiVmFsdWUiOiAiQGZhY3QiLAogICAgICAgICAgICAgICAgICAgICJWYXJpYWJsZSI6ICJmYWN0IgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICBdLAogICAgICAgICAgICAiQmFja2dyb3VuZENvbG9yIjogIiIsCiAgICAgICAgICAgICJTdHJva2VXaWR0aCI6ICIiLAogICAgICAgICAgICAiUGFkZGluZyI6ICIiCiAgICAgICAgfQogICAgCgpoYXNoTWFwLnB1dCgiU2hvd0RpYWxvZ0xheW91dCIsanNvbi5kdW1wcyhsYXlvdXQsZW5zdXJlX2FzY2lpPUZhbHNlKSkKaGFzaE1hcC5wdXQoIlNob3dEaWFsb2ciLCIiKQ==",
+                                "postExecute": "",
+                                "alias": ""
+                            },
+                            {
+                                "event": "onInput",
+                                "action": "run",
+                                "listener": "",
+                                "type": "set",
+                                "method": "toast=@listener",
+                                "postExecute": "",
+                                "alias": ""
+                            },
+                            {
+                                "event": "onInput",
+                                "action": "run",
+                                "listener": "",
+                                "type": "pythonscript",
+                                "method": "ZnJvbSBnZW5lcmFsIGltcG9ydCAqCgppZiBoYXNoTWFwLmdldCgiZXZlbnQiKT09Im9uUmVzdWx0UG9zaXRpdmUiOgoJYSA9IHBlbGljYW5zWydub2xhbl9kZW1vJ11bJ2ludmVudG9yeSddLnVwZGF0ZSh7Il9pZCI6aGFzaE1hcC5nZXQoInNlbGVjdGVkX2NhcmRfa2V5Iil9LHsiZmFjdCI6aGFzaE1hcC5nZXQoImZhY3QiKX0pCg==",
+                                "postExecute": "",
+                                "alias": ""
+                            },
+                            {
+                                "event": "onInput",
+                                "action": "run",
+                                "listener": "menu_send",
+                                "type": "pythonscript",
+                                "method": "ZnJvbSBnZW5lcmFsIGltcG9ydCAqCgpyZWNvcmRzID0gcGVsaWNhbnNbJ25vbGFuX2RlbW8nXVsnaW52ZW50b3J5J10uYWxsKCkKaGFzaE1hcC5wdXQoIlNlbmREaXJlY3RXSUZJIixqc29uLmR1bXBzKHJlY29yZHMsIGVuc3VyZV9hc2NpaT1GYWxzZSkp",
+                                "postExecute": "",
+                                "alias": ""
+                            },
+                            {
+                                "event": "onInput",
+                                "action": "run",
+                                "listener": "DirectWIFIResultSend",
+                                "type": "pythonscript",
+                                "method": "aWYgaGFzaE1hcC5nZXQoIkRpcmVjdFdJRklSZXN1bHRTZW5kIikgPT0gInRydWUiOgoJaGFzaE1hcC5wdXQoInNwZWFrIiwgItCf0LXRgNC10LTQsNC90L4g0YPRgdC/0LXRiNC90L4iKQplbHNlOgkKCWhhc2hNYXAucHV0KCJzcGVhayIsICLQn9C10YDQtdC00LDRh9CwINC90LUg0YHQvtGB0YLQvtGP0LvQsNGB0YwiKQ==",
+                                "postExecute": "",
+                                "alias": ""
+                            },
+                            {
+                                "event": "onInput",
+                                "action": "run",
+                                "listener": "DirectWIFIResultReceive",
+                                "type": "pythonscript",
+                                "method": "ZnJvbSBnZW5lcmFsIGltcG9ydCAqCgphbmRyb2lkLnRvYXN0KGhhc2hNYXAuZ2V0KCJEaXJlY3RXSUZJUmVzdWx0UmVjZWl2ZSIpKQpqcmVzID0ganNvbi5sb2FkcyhoYXNoTWFwLmdldCgiRGlyZWN0V0lGSVJlc3VsdFJlY2VpdmUiKSkKYSA9IHBlbGljYW5zWydub2xhbl9kZW1vJ11bJ2ludmVudG9yeSddLmluc2VydChqcmVzLCB1cHNlcnQ9VHJ1ZSkK",
+                                "postExecute": "",
+                                "alias": ""
+                            },
+                            {
+                                "event": "onInput",
+                                "action": "run",
+                                "listener": "menu_recieve",
+                                "type": "set",
+                                "method": "ReceiveDirectWIFI",
+                                "postExecute": "",
+                                "alias": ""
+                            },
+                            {
+                                "event": "onInput",
+                                "action": "run",
+                                "listener": "common_directwifi",
+                                "type": "pythonscript",
+                                "method": "ZnJvbSBnZW5lcmFsIGltcG9ydCAqCgpyZWNvcmRzID0gcGVsaWNhbnNbJ25vbGFuX2RlbW8nXVsnaW52ZW50b3J5J10uYWxsKCkKCmptZXNzYWdlID0geyJjYXB0aW9uIjoi0JTQsNC90L3Ri9C1INC/0L4g0LjQvdCy0LXQvdGC0LDRgNC40LfQsNGG0LjQuCDihJYxIiwgImRhdGEiOmpzb24uZHVtcHMocmVjb3JkcyAsIGVuc3VyZV9hc2NpaT1GYWxzZSl9Cmhhc2hNYXAucHV0KCJTZW5kRGlyZWN0V0lGSUdsb2JhbCIsanNvbi5kdW1wcyhqbWVzc2FnZSwgZW5zdXJlX2FzY2lpPUZhbHNlKSk=",
+                                "postExecute": "",
+                                "alias": ""
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "ConfigurationSettings": {
+            "uid": "6b41f2407059458e9283c9958d6b2ea0",
+            "dictionaries": "",
+            "vendor": "",
+            "vendor_url": "",
+            "vendor_password": "",
+            "handler_split_mode": false,
+            "handler_url": "",
+            "handler_password": ""
+        },
+        "host_uid": "7d4fa1db52a641718bcc1dfd0268e401",
+        "ConfigurationTags": "",
+        "ConfigurationFileName": "nolan.ui",
+        "agent": false,
+        "ForegroundService": false,
+        "StopForegroundServiceOnExit": false,
+        "BroadcastIntent": "",
+        "BroadcastVariable": "",
+        "FaceRecognitionURL": "",
+        "OnKeyboardMain": false,
+        "LaunchProcess": "",
+        "LaunchVar": "",
+        "MenuWebTemplate": "",
+        "Launch": "",
+        "HTMLHead": "",
+        "HTMLdocument_ready": "",
+        "PyGeneral": "aW1wb3J0IGFuZHJvaWQKZnJvbSBwZWxpY2FuIGltcG9ydCBwZWxpY2FucwppbXBvcnQganNvbg==",
+        "PelicanInit": "[\n{\n\"database\":\"nolan_demo\",\n\"RAM\":false,\n\"initialize\":true\n}\n]",
+        "uid": "541f3d3c75c64714a3223ff23357cb30",
+        "CommonHandlers": [
+            {
+                "event": "onDirectWIFIMessage",
+                "action": "run",
+                "listener": "",
+                "type": "pythonscript",
+                "method": "ZnJvbSBnZW5lcmFsIGltcG9ydCAqCmZyb20gcnUudHJhdmVsZm9vZC5zaW1wbGVfdWkgaW1wb3J0IFNpbXBsZVV0aWxpdGVzIGFzIHN1Q2xhc3MKZnJvbSBwZWxpY2FuZGIgaW1wb3J0IFBlbGljYW4KCmpyZXMgPSBqc29uLmxvYWRzKGhhc2hNYXAuZ2V0KCJEaXJlY3RXSUZJTWVzc2FnZSIpKQppZiAnbm9sYW5fZGVtbycgaW4gcGVsaWNhbnM6ICPQt9Cw0LPRg9C20LXQvdCwINGC0LXQutGD0YnQsNGPINC60L7QvdGE0LAKCWEgPSBwZWxpY2Fuc1snbm9sYW5fZGVtbyddWydpbnZlbnRvcnknXS5pbnNlcnQoanJlcywgdXBzZXJ0PVRydWUpCglhbmRyb2lkLnRvYXN0KCLQlNCw0L3QvdGL0LUg0L/QvtC70YPRh9C10L3RiyIpCmVsc2U6CSPQstGL0LfQvtCyINC40Lcg0YDQtdC/0L7Qt9C40YLQvtGA0LjRjwoJZGJkaXIgPSBzdUNsYXNzLmdldF9zaW1wbGViYXNlX2RpcigpCglkYiA9IFBlbGljYW4oIm5vbGFuX2RlbW8iLHBhdGg9ZGJkaXIpCglhID0gZGIgWydpbnZlbnRvcnknXS5pbnNlcnQoanJlcywgdXBzZXJ0PVRydWUpCglhbmRyb2lkLnRvYXN0KCLQlNCw0L3QvdGL0LUg0L/QvtC70YPRh9C10L3RiyIpCgkK",
+                "postExecute": "",
+                "alias": ""
+            }
+        ]
+    }
+}
